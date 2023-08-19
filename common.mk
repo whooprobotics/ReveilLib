@@ -179,6 +179,8 @@ clean:
 	@echo Cleaning project
 	-$Drm -rf $(BINDIR)
 	-$Drm -rf $(DEPDIR)
+	-$Drm -rf html
+	-$Drm -rf latex
 
 ifeq ($(IS_LIBRARY),1)
 ifeq ($(LIBNAME),libbest)
