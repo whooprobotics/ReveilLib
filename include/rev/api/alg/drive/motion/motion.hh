@@ -1,4 +1,5 @@
-#include "rev/api/odometry/odometry.hpp"
+#pragma once
+#include "rev/api/odometry/odometry.hh"
 
 /**
  * @brief Interface for generating raw motor powers

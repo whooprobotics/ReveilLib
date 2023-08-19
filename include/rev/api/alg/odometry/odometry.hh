@@ -1,4 +1,5 @@
-#include "rev/api/unit/unit.hpp"
+#pragma once
+#include "rev/api/unit/unit.hh"
 
 struct Position {
   Length x;

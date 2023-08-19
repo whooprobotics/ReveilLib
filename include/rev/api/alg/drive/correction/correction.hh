@@ -1,5 +1,5 @@
 #pragma once
-#include "rev/api/alg/odometry/odometry.hpp"
+#include "rev/api/alg/odometry/odometry.hh"
 
 /**
  * @brief Interface for correction algorithms

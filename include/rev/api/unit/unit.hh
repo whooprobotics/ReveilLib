@@ -1,3 +1,4 @@
+#pragma once
 // TODO: Implement a proper units api
 
 typedef double Length;
