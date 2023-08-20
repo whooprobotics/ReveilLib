@@ -3,8 +3,9 @@ var indexSectionsWithContent =
   0: "acmnopv",
   1: "cmnopv",
   2: "am",
-  3: "a",
-  4: "p"
+  3: "ap",
+  4: "p",
+  5: "c"
 };
 
 var indexSectionNames =
@@ -13,7 +14,8 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "defines"
+  4: "defines",
+  5: "pages"
 };
 
 var indexSectionLabels =
@@ -22,6 +24,7 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Macros"
+  4: "Macros",
+  5: "Pages"
 };
 

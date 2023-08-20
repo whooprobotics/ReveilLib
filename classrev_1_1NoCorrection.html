@@ -92,16 +92,22 @@ $(document).ready(function(){initNavTree('classrev_1_1NoCorrection.html',''); in
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrev_1_1NoCorrection-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">rev::NoCorrection Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Dummy class implementing <a class="el" href="classrev_1_1Correction.html" title="Interface for correction algorithms.">Correction</a> that does nothing.  
+ <a href="classrev_1_1NoCorrection.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="no__correction_8hh_source.html">no_correction.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for rev::NoCorrection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1NoCorrection__inherit__graph.png" border="0" usemap="#arev_1_1NoCorrection_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1NoCorrection_inherit__map" id="arev_1_1NoCorrection_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,127,105"/>
+<area shape="rect" title="Dummy class implementing Correction that does nothing." alt="" coords="5,79,127,105"/>
 <area shape="rect" href="classrev_1_1Correction.html" title="Interface for correction algorithms." alt="" coords="14,5,118,31"/>
 <area shape="poly" title=" " alt="" coords="69,46,69,79,63,79,63,46"/>
 </map>
@@ -111,11 +117,80 @@ Collaboration diagram for rev::NoCorrection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1NoCorrection__coll__graph.png" border="0" usemap="#arev_1_1NoCorrection_coll__map" alt="Collaboration graph"/></div>
 <map name="arev_1_1NoCorrection_coll__map" id="arev_1_1NoCorrection_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,127,105"/>
+<area shape="rect" title="Dummy class implementing Correction that does nothing." alt="" coords="5,79,127,105"/>
 <area shape="rect" href="classrev_1_1Correction.html" title="Interface for correction algorithms." alt="" coords="14,5,118,31"/>
 <area shape="poly" title=" " alt="" coords="69,46,69,79,63,79,63,46"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6a71a9459039120f0f1ca62df9a39500"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1NoCorrection.html#a6a71a9459039120f0f1ca62df9a39500">apply_correction</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state, <a class="el" href="structrev_1_1Position.html">Position</a> target_state, std::tuple&lt; double, double &gt; powers) override</td></tr>
+<tr class="memdesc:a6a71a9459039120f0f1ca62df9a39500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies correction to the input.  <br /></td></tr>
+<tr class="separator:a6a71a9459039120f0f1ca62df9a39500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec1efc7dd945b317970506f9057a6504"><td class="memItemLeft" align="right" valign="top">virtual std::tuple&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Correction.html#aec1efc7dd945b317970506f9057a6504">apply_correction</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state, <a class="el" href="structrev_1_1Position.html">Position</a> target_state, std::tuple&lt; double, double &gt; powers)=0</td></tr>
+<tr class="memdesc:aec1efc7dd945b317970506f9057a6504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies correction to the input.  <br /></td></tr>
+<tr class="separator:aec1efc7dd945b317970506f9057a6504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dummy class implementing <a class="el" href="classrev_1_1Correction.html" title="Interface for correction algorithms.">Correction</a> that does nothing. </p>
+<p>This is mostly for testing, but also allows for having an eventual system which does not rely on correction whatsoever </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6a71a9459039120f0f1ca62df9a39500" name="a6a71a9459039120f0f1ca62df9a39500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a71a9459039120f0f1ca62df9a39500">&#9670;&#160;</a></span>apply_correction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; double, double &gt; rev::NoCorrection::apply_correction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrev_1_1OdometryState.html">rev::OdometryState</a>&#160;</td>
+          <td class="paramname"><em>current_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrev_1_1Position.html">rev::Position</a>&#160;</td>
+          <td class="paramname"><em>target_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::tuple&lt; double, double &gt;&#160;</td>
+          <td class="paramname"><em>powers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Applies correction to the input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_state</td><td></td></tr>
+    <tr><td class="paramname">target_state</td><td></td></tr>
+    <tr><td class="paramname">powers</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::tuple&lt;double, double&gt; </dd></dl>
+
+<p>Implements <a class="el" href="classrev_1_1Correction.html#aec1efc7dd945b317970506f9057a6504">rev::Correction</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/rev/api/alg/drive/correction/<a class="el" href="no__correction_8hh_source.html">no_correction.hh</a></li>
 <li>src/api/alg/drive/correction/no_correction.cc</li>

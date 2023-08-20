@@ -2,7 +2,8 @@ var hierarchy =
 [
     [ "rev::Chassis", "classrev_1_1Chassis.html", null ],
     [ "rev::Correction", "classrev_1_1Correction.html", [
-      [ "rev::NoCorrection", "classrev_1_1NoCorrection.html", null ]
+      [ "rev::NoCorrection", "classrev_1_1NoCorrection.html", null ],
+      [ "rev::PilonsCorrection", "classrev_1_1PilonsCorrection.html", null ]
     ] ],
     [ "rev::Motion", "classrev_1_1Motion.html", null ],
     [ "rev::Odometry", "classrev_1_1Odometry.html", null ],
