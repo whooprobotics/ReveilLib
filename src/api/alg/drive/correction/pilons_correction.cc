@@ -3,7 +3,7 @@
 #include <tuple>
 
 rev::PilonsCorrection::PilonsCorrection(double ikCorrection, Length imaxError)
-    : kCorrection(ikCorrection), maxError(imaxError) {}
+    : k_correction(ikCorrection), max_error(imaxError) {}
 
 std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     rev::OdometryState current_state,
@@ -38,7 +38,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
       angle_to_target - current_state.pos.facing;
 
   // Calculate correction factor
-  double correction = kCorrection * correction_angle * sgn_power;
+  double correction =
+      err_x > max_error ? k_correction * correction_angle * sgn_power : 0.0;
 
   if (correction > 0)
     return std::make_tuple(std::get<0>(powers),

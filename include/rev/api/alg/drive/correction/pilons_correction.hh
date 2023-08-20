@@ -44,11 +44,11 @@ class PilonsCorrection : public Correction {
    * but tuning is recommended.
    * @param imaxError The error threshold over which correction will be applied
    */
-  PilonsCorrection(double ikCorrection, Length imaxError);
+  PilonsCorrection(double ik_correction, Length imax_error);
 
  private:
-  double kCorrection;
-  Length maxError;
+  double k_correction;
+  Length max_error;
 };
 
 }  // namespace rev
