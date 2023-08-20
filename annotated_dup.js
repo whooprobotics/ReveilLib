@@ -2,8 +2,9 @@ var annotated_dup =
 [
     [ "rev", null, [
       [ "Chassis", "classrev_1_1Chassis.html", null ],
+      [ "ConstantMotion", "classrev_1_1ConstantMotion.html", "classrev_1_1ConstantMotion" ],
       [ "Correction", "classrev_1_1Correction.html", "classrev_1_1Correction" ],
-      [ "Motion", "classrev_1_1Motion.html", null ],
+      [ "Motion", "classrev_1_1Motion.html", "classrev_1_1Motion" ],
       [ "NoCorrection", "classrev_1_1NoCorrection.html", "classrev_1_1NoCorrection" ],
       [ "Odometry", "classrev_1_1Odometry.html", null ],
       [ "OdometryState", "structrev_1_1OdometryState.html", null ],

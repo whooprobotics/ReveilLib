@@ -128,9 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47853c664579927a110396266e30cae0"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1PilonsCorrection.html#a47853c664579927a110396266e30cae0">apply_correction</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state, <a class="el" href="structrev_1_1Position.html">Position</a> target_state, std::tuple&lt; double, double &gt; powers) override</td></tr>
 <tr class="memdesc:a47853c664579927a110396266e30cae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies correction to the input.  <br /></td></tr>
 <tr class="separator:a47853c664579927a110396266e30cae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4526dacb66112befdc415182f6968e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1PilonsCorrection.html#af4526dacb66112befdc415182f6968e7">PilonsCorrection</a> (double ikCorrection, Length imaxError)</td></tr>
-<tr class="memdesc:af4526dacb66112befdc415182f6968e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Pilons <a class="el" href="classrev_1_1Correction.html" title="Interface for correction algorithms.">Correction</a> object.  <br /></td></tr>
-<tr class="separator:af4526dacb66112befdc415182f6968e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0cd0b75926395ba73c3680787c64f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1PilonsCorrection.html#a2d0cd0b75926395ba73c3680787c64f3">PilonsCorrection</a> (double ik_correction, Length imax_error)</td></tr>
+<tr class="memdesc:a2d0cd0b75926395ba73c3680787c64f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Pilons <a class="el" href="classrev_1_1Correction.html" title="Interface for correction algorithms.">Correction</a> object.  <br /></td></tr>
+<tr class="separator:a2d0cd0b75926395ba73c3680787c64f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec1efc7dd945b317970506f9057a6504"><td class="memItemLeft" align="right" valign="top">virtual std::tuple&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Correction.html#aec1efc7dd945b317970506f9057a6504">apply_correction</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state, <a class="el" href="structrev_1_1Position.html">Position</a> target_state, std::tuple&lt; double, double &gt; powers)=0</td></tr>
 <tr class="memdesc:aec1efc7dd945b317970506f9057a6504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies correction to the input.  <br /></td></tr>
 <tr class="separator:aec1efc7dd945b317970506f9057a6504"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,8 +148,8 @@ Public Member Functions</h2></td></tr>
 <li>If <code>correction == 0</code>, skip correcting. If <code>correction &gt; 0</code>, multiply the right power by <code>exp(-correction)</code>. If <code>correction &lt; 0</code>, multiply left power by <code>exp(correction)</code> </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af4526dacb66112befdc415182f6968e7" name="af4526dacb66112befdc415182f6968e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4526dacb66112befdc415182f6968e7">&#9670;&#160;</a></span>PilonsCorrection()</h2>
+<a id="a2d0cd0b75926395ba73c3680787c64f3" name="a2d0cd0b75926395ba73c3680787c64f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0cd0b75926395ba73c3680787c64f3">&#9670;&#160;</a></span>PilonsCorrection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,13 +158,13 @@ Public Member Functions</h2></td></tr>
           <td class="memname">rev::PilonsCorrection::PilonsCorrection </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikCorrection</em>, </td>
+          <td class="paramname"><em>ik_correction</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Length&#160;</td>
-          <td class="paramname"><em>imaxError</em>&#160;</td>
+          <td class="paramname"><em>imax_error</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
