@@ -9,6 +9,7 @@ namespace rev {
  *
  */
 class Correction {
+ public:
   /**
    * @brief Applies correction to the input
    *

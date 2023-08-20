@@ -3,4 +3,6 @@
 std::tuple<double, double> rev::NoCorrection::apply_correction(
     rev::OdometryState current_state,
     rev::Position target_state,
-    std::tuple<double, double> powers) {}
+    std::tuple<double, double> powers) {
+  return powers;
+}
