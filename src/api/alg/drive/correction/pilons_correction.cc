@@ -39,4 +39,13 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
   // Calculate correction factor
   double correction = kCorrection * correction_angle * sgn_power;
+
+  if (correction > 0)
+    return std::make_tuple(std::get<0>(powers),
+                           std::get<1>(powers) * exp(-correction));
+  else if (correction < 0)
+    return std::make_tuple(std::get<0>(powers) * exp(correction),
+                           std::get<1>(powers));
+  else
+    return powers;
 }
