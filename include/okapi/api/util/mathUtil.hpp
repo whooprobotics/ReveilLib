@@ -5,11 +5,11 @@
  */
 #pragma once
 
-#include "okapi/api/device/motor/abstractMotor.hpp"
+#include <math.h>
 #include <algorithm>
 #include <cstdint>
-#include <math.h>
 #include <type_traits>
+#include "okapi/api/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 /**
@@ -129,14 +129,17 @@ constexpr double ipow(const double base, const int expo) {
 
 /**
  * Cuts out a range from the number. The new range of the input number will be
- * `(-inf, min]U[max, +inf)`. If value sits equally between `min` and `max`, `max` will be returned.
+ * `(-inf, min]U[max, +inf)`. If value sits equally between `min` and `max`,
+ * `max` will be returned.
  *
  * @param value The number to bound.
  * @param min The lower bound of range.
  * @param max The upper bound of range.
  * @return The remapped value.
  */
-constexpr double cutRange(const double value, const double min, const double max) {
+constexpr double cutRange(const double value,
+                          const double min,
+                          const double max) {
   const double middle = max - ((max - min) / 2);
 
   if (value > min && value < middle) {
@@ -149,20 +152,23 @@ constexpr double cutRange(const double value, const double min, const double max
 }
 
 /**
- * Deadbands a range of the number. Returns the input value, or `0` if it is in the range `[min,
- * max]`.
+ * Deadbands a range of the number. Returns the input value, or `0` if it is in
+ * the range `[min, max]`.
  *
  * @param value The number to deadband.
  * @param min The lower bound of deadband.
  * @param max The upper bound of deadband.
  * @return The input value or `0` if it is in the range `[min, max]`.
  */
-constexpr double deadband(const double value, const double min, const double max) {
+constexpr double deadband(const double value,
+                          const double min,
+                          const double max) {
   return std::clamp(value, min, max) == value ? 0 : value;
 }
 
 /**
- * Remap a value in the range `[oldMin, oldMax]` to the range `[newMin, newMax]`.
+ * Remap a value in the range `[oldMin, oldMax]` to the range `[newMin,
+ * newMax]`.
  *
  * @param value The value in the old range.
  * @param oldMin The old range lower bound.
@@ -185,7 +191,8 @@ constexpr double remapRange(const double value,
  * @param e The enum value.
  * @return The corresponding value.
  */
-template <typename E> constexpr auto toUnderlyingType(const E e) noexcept {
+template <typename E>
+constexpr auto toUnderlyingType(const E e) noexcept {
   return static_cast<std::underlying_type_t<E>>(e);
 }
 
@@ -200,8 +207,8 @@ constexpr auto boolToSign(const bool b) noexcept {
 }
 
 /**
- * Computes `lhs mod rhs` using Euclidean division. C's `%` symbol computes the remainder, not
- * modulus.
+ * Computes `lhs mod rhs` using Euclidean division. C's `%` symbol computes the
+ * remainder, not modulus.
  *
  * @param lhs The left-hand side.
  * @param rhs The right-hand side.
@@ -217,16 +224,17 @@ constexpr long modulus(const long lhs, const long rhs) noexcept {
  * @param igearset The gearset.
  * @return The corresponding TPR.
  */
-constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexcept {
+constexpr std::int32_t gearsetToTPR(
+    const AbstractMotor::gearset igearset) noexcept {
   switch (igearset) {
-  case AbstractMotor::gearset::red:
-    return imev5RedTPR;
-  case AbstractMotor::gearset::green:
-    return imev5GreenTPR;
-  case AbstractMotor::gearset::blue:
-  case AbstractMotor::gearset::invalid:
-  default:
-    return imev5BlueTPR;
+    case AbstractMotor::gearset::red:
+      return imev5RedTPR;
+    case AbstractMotor::gearset::green:
+      return imev5GreenTPR;
+    case AbstractMotor::gearset::blue:
+    case AbstractMotor::gearset::invalid:
+    default:
+      return imev5BlueTPR;
   }
 }
 
@@ -252,4 +260,4 @@ constexpr std::int8_t transformADIPort(const std::int8_t port) {
     return port;
   }
 }
-} // namespace okapi
+}  // namespace okapi

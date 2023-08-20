@@ -17,23 +17,26 @@ namespace squiggles {
  * @return 1 if the value is positive, -1 if the value is negative, and 0 if
  *         the value is 0.
  */
-template <class T> inline int sgn(T v) {
+template <class T>
+inline int sgn(T v) {
   return (v > T(0)) - (v < T(0));
 }
 
-inline bool
-nearly_equal(const double& a, const double& b, double epsilon = 1e-5) {
+inline bool nearly_equal(const double& a,
+                         const double& b,
+                         double epsilon = 1e-5) {
   return std::fabs(a - b) < epsilon;
 }
-} // namespace squiggles
+}  // namespace squiggles
 
 namespace std {
 // Copied from https://github.com/emsr/cxx_linear
 template <typename _Float>
-constexpr std::enable_if_t<
-  std::is_floating_point_v<_Float> &&
-    __cplusplus <= 201703L, // Only defines this function if C++ standard < 20
-  _Float>
+constexpr std::enable_if_t<std::is_floating_point_v<_Float> &&
+                               __cplusplus <=
+                                   201703L,  // Only defines this function if
+                                             // C++ standard < 20
+                           _Float>
 lerp(_Float __a, _Float __b, _Float __t) {
   if (std::isnan(__a) || std::isnan(__b) || std::isnan(__t))
     return std::numeric_limits<_Float>::quiet_NaN();
@@ -47,7 +50,7 @@ lerp(_Float __a, _Float __b, _Float __t) {
 #endif
   else if (__t == _Float{1})
     return __b;
-  else { // monotonic near t == 1.
+  else {  // monotonic near t == 1.
 #ifndef FMA
     const auto __x = __a + __t * (__b - __a);
 #else
@@ -57,5 +60,5 @@ lerp(_Float __a, _Float __b, _Float __t) {
                                             : std::min(__b, __x);
   }
 }
-} // namespace std
+}  // namespace std
 #endif

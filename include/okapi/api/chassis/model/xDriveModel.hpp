@@ -12,10 +12,10 @@
 
 namespace okapi {
 class XDriveModel : public ChassisModel {
-  public:
+ public:
   /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +100%, the robot should move forward in a straight line.
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all
+   * motors are powered +100%, the robot should move forward in a straight line.
    *
    * @param itopLeftMotor The top left motor.
    * @param itopRightMotor The top right motor.
@@ -70,21 +70,19 @@ class XDriveModel : public ChassisModel {
   void rotate(double ipower) override;
 
   /**
-   * Drive the robot side-ways (using open-loop control) where positive ipower is
-   * to the right and negative ipower is to the left. Uses velocity mode.
+   * Drive the robot side-ways (using open-loop control) where positive ipower
+   * is to the right and negative ipower is to the left. Uses velocity mode.
    *
    * @param ispeed motor power
    */
   void strafe(double ipower);
 
   /**
-   * Strafe the robot in an arc (using open-loop control) where positive istrafeSpeed is
-   * to the right and negative istrafeSpeed is to the left. Uses velocity mode.
-   * The algorithm is (approximately):
-   *   topLeftPower = -1 * istrafeSpeed + yaw
-   *   topRightPower = istrafeSpeed - yaw
-   *   bottomRightPower = -1 * istrafeSpeed - yaw
-   *   bottomLeftPower = istrafeSpeed + yaw
+   * Strafe the robot in an arc (using open-loop control) where positive
+   * istrafeSpeed is to the right and negative istrafeSpeed is to the left. Uses
+   * velocity mode. The algorithm is (approximately): topLeftPower = -1 *
+   * istrafeSpeed + yaw topRightPower = istrafeSpeed - yaw bottomRightPower = -1
+   * * istrafeSpeed - yaw bottomLeftPower = istrafeSpeed + yaw
    *
    * @param istrafeSpeed speed to the right
    * @param iyaw speed around the vertical axis
@@ -103,7 +101,9 @@ class XDriveModel : public ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override;
+  void tank(double ileftSpeed,
+            double irightSpeed,
+            double ithreshold = 0) override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -112,19 +112,24 @@ class XDriveModel : public ChassisModel {
    * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
-  void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override;
+  void arcade(double iforwardSpeed,
+              double iyaw,
+              double ithreshold = 0) override;
 
   /**
-   * Drive the robot with a curvature drive layout. The robot drives in constant radius turns
-   * where you control the curvature (inverse of radius) you drive in. This is advantageous
-   * because the forward speed will not affect the rate of turning. The algorithm switches to
-   * arcade if the forward speed is 0. Uses voltage mode.
+   * Drive the robot with a curvature drive layout. The robot drives in constant
+   * radius turns where you control the curvature (inverse of radius) you drive
+   * in. This is advantageous because the forward speed will not affect the rate
+   * of turning. The algorithm switches to arcade if the forward speed is 0.
+   * Uses voltage mode.
    *
    * @param iforwardSpeed speed forward direction
    * @param icurvature curvature (inverse of radius) to drive in
    * @param ithreshold deadband on joystick values
    */
-  void curvature(double iforwardSpeed, double icurvature, double ithreshold = 0) override;
+  void curvature(double iforwardSpeed,
+                 double icurvature,
+                 double ithreshold = 0) override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -134,22 +139,25 @@ class XDriveModel : public ChassisModel {
    * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
-  virtual void
-  xArcade(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0);
+  virtual void xArcade(double irightSpeed,
+                       double iforwardSpeed,
+                       double iyaw,
+                       double ithreshold = 0);
 
   /**
-   * Drive the robot with a field-oriented arcade drive layout. Uses voltage mode.
-   * For example:
-   *    Both `fieldOrientedXArcade(1, 0, 0, 0_deg)` and `fieldOrientedXArcade(1, 0, 0, 90_deg)`
-   *    will drive the chassis in the forward/north direction. In other words, no matter
-   *    the robot's heading, the robot will move forward/north when you tell it
-   *    to move forward/north and will move right/east when you tell it to move right/east.
+   * Drive the robot with a field-oriented arcade drive layout. Uses voltage
+   * mode. For example: Both `fieldOrientedXArcade(1, 0, 0, 0_deg)` and
+   * `fieldOrientedXArcade(1, 0, 0, 90_deg)` will drive the chassis in the
+   * forward/north direction. In other words, no matter the robot's heading, the
+   * robot will move forward/north when you tell it to move forward/north and
+   * will move right/east when you tell it to move right/east.
    *
    *
    * @param ixSpeed forward speed -- (`+1`) forward, (`-1`) backward
    * @param iySpeed sideways speed -- (`+1`) right, (`-1`) left
    * @param iyaw turn speed -- (`+1`) clockwise, (`-1`) counter-clockwise
-   * @param iangle current chassis angle (`0_deg` = no correction, winds clockwise)
+   * @param iangle current chassis angle (`0_deg` = no correction, winds
+   * clockwise)
    * @param ithreshold deadband on joystick values
    */
   virtual void fieldOrientedXArcade(double ixSpeed,
@@ -206,10 +214,11 @@ class XDriveModel : public ChassisModel {
   void setGearing(AbstractMotor::gearset gearset) override;
 
   /**
-   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
-   * currently installed gearset. If the configured maximum velocity is greater than the attainable
-   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
-   * that velocity.
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the
+   * maximum velocity of the currently installed gearset. If the configured
+   * maximum velocity is greater than the attainable maximum velocity from the
+   * currently installed gearset, the ChassisModel will still scale to that
+   * velocity.
    *
    * @param imaxVelocity The new maximum velocity.
    */
@@ -260,7 +269,7 @@ class XDriveModel : public ChassisModel {
    */
   std::shared_ptr<AbstractMotor> getBottomLeftMotor() const;
 
-  protected:
+ protected:
   double maxVelocity;
   double maxVoltage;
   std::shared_ptr<AbstractMotor> topLeftMotor;
@@ -270,4 +279,4 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
 };
-} // namespace okapi
+}  // namespace okapi

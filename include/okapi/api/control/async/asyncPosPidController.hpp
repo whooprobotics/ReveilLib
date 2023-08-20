@@ -5,22 +5,23 @@
  */
 #pragma once
 
+#include <memory>
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/offsettableControllerInput.hpp"
 #include "okapi/api/util/timeUtil.hpp"
-#include <memory>
 
 namespace okapi {
 class AsyncPosPIDController : public AsyncWrapper<double, double>,
                               public AsyncPositionController<double, double> {
-  public:
+ public:
   /**
    * An async position PID controller.
    *
-   * @param iinput The controller input. Will be turned into an OffsettableControllerInput.
+   * @param iinput The controller input. Will be turned into an
+   * OffsettableControllerInput.
    * @param ioutput The controller output.
    * @param itimeUtil The TimeUtil.
    * @param ikP The proportional gain.
@@ -31,16 +32,17 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
-    const std::shared_ptr<ControllerInput<double>> &iinput,
-    const std::shared_ptr<ControllerOutput<double>> &ioutput,
-    const TimeUtil &itimeUtil,
-    double ikP,
-    double ikI,
-    double ikD,
-    double ikBias = 0,
-    double iratio = 1,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+      const std::shared_ptr<ControllerInput<double>>& iinput,
+      const std::shared_ptr<ControllerOutput<double>>& ioutput,
+      const TimeUtil& itimeUtil,
+      double ikP,
+      double ikI,
+      double ikD,
+      double ikBias = 0,
+      double iratio = 1,
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
    * An async position PID controller.
@@ -56,19 +58,21 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
-    const std::shared_ptr<OffsetableControllerInput> &iinput,
-    const std::shared_ptr<ControllerOutput<double>> &ioutput,
-    const TimeUtil &itimeUtil,
-    double ikP,
-    double ikI,
-    double ikD,
-    double ikBias = 0,
-    double iratio = 1,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+      const std::shared_ptr<OffsetableControllerInput>& iinput,
+      const std::shared_ptr<ControllerOutput<double>>& ioutput,
+      const TimeUtil& itimeUtil,
+      double ikP,
+      double ikI,
+      double ikD,
+      double ikBias = 0,
+      double iratio = 1,
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
-   * Sets the "absolute" zero position of the controller to its current position.
+   * Sets the "absolute" zero position of the controller to its current
+   * position.
    */
   void tarePosition() override;
 
@@ -84,7 +88,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    *
    * @param igains The new gains.
    */
-  void setGains(const IterativePosPIDController::Gains &igains);
+  void setGains(const IterativePosPIDController::Gains& igains);
 
   /**
    * Gets the current gains.
@@ -93,8 +97,8 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    */
   IterativePosPIDController::Gains getGains() const;
 
-  protected:
+ protected:
   std::shared_ptr<OffsetableControllerInput> offsettableInput;
   std::shared_ptr<IterativePosPIDController> internalController;
 };
-} // namespace okapi
+}  // namespace okapi

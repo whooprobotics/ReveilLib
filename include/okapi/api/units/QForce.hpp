@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -39,5 +39,5 @@ constexpr QForce operator"" _kp(long double x) {
 constexpr QForce operator"" _kp(unsigned long long int x) {
   return static_cast<double>(x) * kilopond;
 }
-} // namespace literals
-} // namespace okapi
+}  // namespace literals
+}  // namespace okapi

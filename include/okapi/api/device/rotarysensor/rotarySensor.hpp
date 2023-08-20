@@ -10,7 +10,7 @@
 
 namespace okapi {
 class RotarySensor : public ControllerInput<double> {
-  public:
+ public:
   virtual ~RotarySensor();
 
   /**
@@ -20,4 +20,4 @@ class RotarySensor : public ControllerInput<double> {
    */
   virtual double get() const = 0;
 };
-} // namespace okapi
+}  // namespace okapi

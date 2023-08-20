@@ -11,7 +11,7 @@
 
 namespace squiggles {
 class QuinticPolynomial {
-  public:
+ public:
   /**
    * Defines the polynomial function for a spline in one dimension.
    *
@@ -54,12 +54,12 @@ class QuinticPolynomial {
            " 5: " + std::to_string(a5) + "}";
   }
 
-  protected:
+ protected:
   /**
    * The coefficients for each term of the polynomial.
    */
   double a0, a1, a2, a3, a4, a5;
 };
-} // namespace squiggles
+}  // namespace squiggles
 
 #endif

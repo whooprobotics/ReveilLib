@@ -5,25 +5,25 @@
  */
 #pragma once
 
+#include <memory>
+#include <vector>
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
-#include <memory>
-#include <vector>
 
 namespace okapi {
 class PIDTuner {
-  public:
+ public:
   struct Output {
     double kP, kI, kD;
   };
 
-  PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
-           const std::shared_ptr<ControllerOutput<double>> &ioutput,
-           const TimeUtil &itimeUtil,
+  PIDTuner(const std::shared_ptr<ControllerInput<double>>& iinput,
+           const std::shared_ptr<ControllerOutput<double>>& ioutput,
+           const TimeUtil& itimeUtil,
            QTime itimeout,
            std::int32_t igoal,
            double ikPMin,
@@ -36,19 +36,19 @@ class PIDTuner {
            std::size_t inumParticles = 16,
            double ikSettle = 1,
            double ikITAE = 2,
-           const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+           const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   virtual ~PIDTuner();
 
   virtual Output autotune();
 
-  protected:
-  static constexpr double inertia = 0.5;   // Particle inertia
-  static constexpr double confSelf = 1.1;  // Self confidence
-  static constexpr double confSwarm = 1.2; // Particle swarm confidence
+ protected:
+  static constexpr double inertia = 0.5;    // Particle inertia
+  static constexpr double confSelf = 1.1;   // Self confidence
+  static constexpr double confSwarm = 1.2;  // Particle swarm confidence
   static constexpr int increment = 5;
   static constexpr int divisor = 5;
-  static constexpr QTime loopDelta = 10_ms; // NOLINT
+  static constexpr QTime loopDelta = 10_ms;  // NOLINT
 
   struct Particle {
     double pos, vel, best;
@@ -77,4 +77,4 @@ class PIDTuner {
   const double kSettle;
   const double kITAE;
 };
-} // namespace okapi
+}  // namespace okapi

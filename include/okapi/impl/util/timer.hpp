@@ -9,7 +9,7 @@
 
 namespace okapi {
 class Timer : public AbstractTimer {
-  public:
+ public:
   Timer();
 
   /**
@@ -19,4 +19,4 @@ class Timer : public AbstractTimer {
    */
   QTime millis() const override;
 };
-} // namespace okapi
+}  // namespace okapi

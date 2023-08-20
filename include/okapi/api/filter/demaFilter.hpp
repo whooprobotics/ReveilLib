@@ -5,12 +5,12 @@
  */
 #pragma once
 
-#include "okapi/api/filter/filter.hpp"
 #include <ratio>
+#include "okapi/api/filter/filter.hpp"
 
 namespace okapi {
 class DemaFilter : public Filter {
-  public:
+ public:
   /**
    * Double exponential moving average filter.
    *
@@ -42,11 +42,11 @@ class DemaFilter : public Filter {
    */
   virtual void setGains(double ialpha, double ibeta);
 
-  protected:
+ protected:
   double alpha, beta;
   double outputS = 0;
   double lastOutputS = 0;
   double outputB = 0;
   double lastOutputB = 0;
 };
-} // namespace okapi
+}  // namespace okapi

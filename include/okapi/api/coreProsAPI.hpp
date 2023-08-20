@@ -27,29 +27,34 @@
 #define CROSSPLATFORM_MUTEX_T pros::Mutex
 #endif
 
-#define NOT_INITIALIZE_TASK                                                                        \
-  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), "User Initialization (PROS)") != 0)
+#define NOT_INITIALIZE_TASK                                    \
+  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), \
+          "User Initialization (PROS)") != 0)
 
-#define NOT_COMP_INITIALIZE_TASK                                                                   \
-  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), "User Comp. Init. (PROS)") != 0)
+#define NOT_COMP_INITIALIZE_TASK                               \
+  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), \
+          "User Comp. Init. (PROS)") != 0)
 
 class CrossplatformThread {
-  public:
+ public:
 #ifdef THREADS_STD
-  CrossplatformThread(void (*ptr)(void *),
-                      void *params,
-                      const char *const = "OkapiLibCrossplatformTask")
+  CrossplatformThread(void (*ptr)(void*),
+                      void* params,
+                      const char* const = "OkapiLibCrossplatformTask")
 #else
-  CrossplatformThread(void (*ptr)(void *),
-                      void *params,
-                      const char *const name = "OkapiLibCrossplatformTask")
+  CrossplatformThread(void (*ptr)(void*),
+                      void* params,
+                      const char* const name = "OkapiLibCrossplatformTask")
 #endif
-    :
+      :
 #ifdef THREADS_STD
-      thread(ptr, params)
+        thread(ptr, params)
 #else
-      thread(
-        pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, name))
+        thread(pros::c::task_create(ptr,
+                                    params,
+                                    TASK_PRIORITY_DEFAULT,
+                                    TASK_STACK_DEPTH_DEFAULT,
+                                    name))
 #endif
   {
   }
@@ -65,20 +70,20 @@ class CrossplatformThread {
   }
 
 #ifdef THREADS_STD
-  void notifyWhenDeleting(CrossplatformThread *) {
-  }
+  void notifyWhenDeleting(CrossplatformThread*) {}
 #else
-  void notifyWhenDeleting(CrossplatformThread *parent) {
-    pros::c::task_notify_when_deleting(parent->thread, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+  void notifyWhenDeleting(CrossplatformThread* parent) {
+    pros::c::task_notify_when_deleting(parent->thread, thread, 1,
+                                       pros::E_NOTIFY_ACTION_INCR);
   }
 #endif
 
 #ifdef THREADS_STD
-  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T *) {
-  }
+  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T*) {}
 #else
   void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T parent) {
-    pros::c::task_notify_when_deleting(parent, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+    pros::c::task_notify_when_deleting(parent, thread, 1,
+                                       pros::E_NOTIFY_ACTION_INCR);
   }
 #endif
 
@@ -106,7 +111,7 @@ class CrossplatformThread {
 };
 
 class CrossplatformMutex {
-  public:
+ public:
   CrossplatformMutex() = default;
 
   void lock() {
@@ -126,6 +131,6 @@ class CrossplatformMutex {
 #endif
   }
 
-  protected:
+ protected:
   CROSSPLATFORM_MUTEX_T mutex;
 };

@@ -10,8 +10,8 @@ namespace okapi {
  * The mode for the OdomState calculated by Odometry.
  */
 enum class StateMode {
-  FRAME_TRANSFORMATION, ///< +x is forward, +y is right, 0 degrees is along +x
-  CARTESIAN             ///< +x is right, +y is forward, 0 degrees is along +y
+  FRAME_TRANSFORMATION,  ///< +x is forward, +y is right, 0 degrees is along +x
+  CARTESIAN              ///< +x is right, +y is forward, 0 degrees is along +y
 };
 
-} // namespace okapi
+}  // namespace okapi

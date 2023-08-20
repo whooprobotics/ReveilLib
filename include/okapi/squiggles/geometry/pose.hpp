@@ -14,7 +14,7 @@
 
 namespace squiggles {
 class Pose {
-  public:
+ public:
   /**
    * Specifies a point and heading in 2D space.
    *
@@ -62,6 +62,6 @@ class Pose {
   double y;
   double yaw;
 };
-} // namespace squiggles
+}  // namespace squiggles
 
 #endif

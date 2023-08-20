@@ -65,10 +65,10 @@ bool shutdown(void);
 namespace {
 template <typename T>
 T convert_args(T arg) {
-	return arg;
+  return arg;
 }
 const char* convert_args(const std::string& arg) {
-	return arg.c_str();
+  return arg.c_str();
 }
 }  // namespace
 #pragma GCC diagnostic pop
@@ -93,7 +93,7 @@ const char* convert_args(const std::string& arg) {
  */
 template <typename... Params>
 bool print(std::int16_t line, const char* fmt, Params... args) {
-	return pros::c::lcd_print(line, fmt, convert_args(args)...);
+  return pros::c::lcd_print(line, fmt, convert_args(args)...);
 }
 
 /**
@@ -200,7 +200,7 @@ std::uint8_t read_buttons(void);
  *
  * \param color
  *         A color of type lv_color_t
- * 
+ *
  * \return void
  */
 void set_background_color(lv_color_t color);
@@ -212,15 +212,15 @@ void set_background_color(lv_color_t color);
  * \param r
  *         A value of type uint8_t, with a range of 0 to 255, representing the
  *         red value of a color
- * 
+ *
  * \param g
  *         A value of type uint8_t, with a range of 0 to 255, representing the
  *         green value of a color
- * 
+ *
  * \param b
  *         A value of type uint8_t, with a range of 0 to 255, representing the
  *         blue value of a color
- * 
+ *
  * \return void
  */
 void set_background_color(std::uint8_t r, std::uint8_t g, std::uint8_t b);

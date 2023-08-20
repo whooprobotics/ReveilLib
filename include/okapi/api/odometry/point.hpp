@@ -19,7 +19,7 @@ struct Point {
    * @param imode The StateMode this Point is currently specified in.
    * @return This point specified in `StateMode::FRAME_TRANSFORMATION`.
    */
-  Point inFT(const StateMode &imode) const {
+  Point inFT(const StateMode& imode) const {
     if (imode == StateMode::FRAME_TRANSFORMATION) {
       return *this;
     } else {
@@ -27,4 +27,4 @@ struct Point {
     }
   }
 };
-} // namespace okapi
+}  // namespace okapi

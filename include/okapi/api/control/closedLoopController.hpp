@@ -17,7 +17,7 @@ namespace okapi {
  */
 template <typename Input, typename Output>
 class ClosedLoopController : public ControllerOutput<Input> {
-  public:
+ public:
   virtual ~ClosedLoopController() = default;
 
   /**
@@ -47,8 +47,8 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual Output getError() const = 0;
 
   /**
-   * Returns whether the controller has settled at the target. Determining what settling means is
-   * implementation-dependent.
+   * Returns whether the controller has settled at the target. Determining what
+   * settling means is implementation-dependent.
    *
    * If the controller is disabled, this method must return `true`.
    *
@@ -57,20 +57,22 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual bool isSettled() = 0;
 
   /**
-   * Resets the controller's internal state so it is similar to when it was first initialized, while
-   * keeping any user-configured information.
+   * Resets the controller's internal state so it is similar to when it was
+   * first initialized, while keeping any user-configured information.
    */
   virtual void reset() = 0;
 
   /**
-   * Changes whether the controller is off or on. Turning the controller on after it was off will
-   * cause the controller to move to its last set target, unless it was reset in that time.
+   * Changes whether the controller is off or on. Turning the controller on
+   * after it was off will cause the controller to move to its last set target,
+   * unless it was reset in that time.
    */
   virtual void flipDisable() = 0;
 
   /**
-   * Sets whether the controller is off or on. Turning the controller on after it was off will
-   * cause the controller to move to its last set target, unless it was reset in that time.
+   * Sets whether the controller is off or on. Turning the controller on after
+   * it was off will cause the controller to move to its last set target, unless
+   * it was reset in that time.
    *
    * @param iisDisabled whether the controller is disabled
    */
@@ -83,4 +85,4 @@ class ClosedLoopController : public ControllerOutput<Input> {
    */
   virtual bool isDisabled() const = 0;
 };
-} // namespace okapi
+}  // namespace okapi

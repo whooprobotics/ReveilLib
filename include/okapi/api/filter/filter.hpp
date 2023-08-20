@@ -7,7 +7,7 @@
 
 namespace okapi {
 class Filter {
-  public:
+ public:
   virtual ~Filter();
 
   /**
@@ -25,4 +25,4 @@ class Filter {
    */
   virtual double getOutput() const = 0;
 };
-} // namespace okapi
+}  // namespace okapi

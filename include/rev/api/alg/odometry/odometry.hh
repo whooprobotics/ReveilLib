@@ -1,6 +1,7 @@
 #pragma once
 #include "rev/api/unit/unit.hh"
 
+namespace rev {
 struct Position {
   Length x;
   Length y;
@@ -19,7 +20,8 @@ struct OdometryState {
 };
 
 class Odometry {
-  virtual OdometryState getState() = 0;
-  virtual void setPosition(Position pos) = 0;
-  virtual void resetPosition() = 0;
+  virtual OdometryState get_state() = 0;
+  virtual void set_position(Position pos) = 0;
+  virtual void reset_position() = 0;
 };
+}  // namespace rev

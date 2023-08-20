@@ -10,7 +10,7 @@
 
 namespace okapi {
 class RotationSensor : public ContinuousRotarySensor {
-  public:
+ public:
   /**
    * A rotation sensor in a V5 port.
    *
@@ -20,15 +20,16 @@ class RotationSensor : public ContinuousRotarySensor {
    * ```
    *
    * @param iport The V5 port the device uses.
-   * @param ireversed Whether the sensor is reversed. This will set the reversed state in the
-   * kernel.
+   * @param ireversed Whether the sensor is reversed. This will set the reversed
+   * state in the kernel.
    */
   RotationSensor(std::uint8_t iport, bool ireversed = false);
 
   /**
    * Get the current rotation in degrees.
    *
-   * @return The current rotation in degrees or ``PROS_ERR_F`` if the operation failed, setting
+   * @return The current rotation in degrees or ``PROS_ERR_F`` if the operation
+   * failed, setting
    * ``errno``.
    */
   double get() const override;
@@ -36,14 +37,15 @@ class RotationSensor : public ContinuousRotarySensor {
   /**
    * Reset the sensor to zero.
    *
-   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
+   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the
+   * operation failed, setting
    * ``errno``.
    */
   std::int32_t reset() override;
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically called in
-   * another thread by the controller.
+   * Get the sensor value for use in a control loop. This method might be
+   * automatically called in another thread by the controller.
    *
    * @return The same as [get](@ref okapi::RotationSensor::get).
    */
@@ -52,13 +54,13 @@ class RotationSensor : public ContinuousRotarySensor {
   /**
    * Get the current rotational velocity estimate in degrees per second.
    *
-   * @return The current rotational velocity estimate in degrees per second or ``PROS_ERR_F`` if the
-   * operation failed, setting ``errno``.
+   * @return The current rotational velocity estimate in degrees per second or
+   * ``PROS_ERR_F`` if the operation failed, setting ``errno``.
    */
   double getVelocity() const;
 
-  protected:
+ protected:
   std::uint8_t port;
   std::int8_t reversed{1};
 };
-} // namespace okapi
+}  // namespace okapi

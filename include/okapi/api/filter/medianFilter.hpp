@@ -1,5 +1,6 @@
 /*
- * Uses the median filter algorithm from N. Wirth’s book, implementation by N. Devillard.
+ * Uses the median filter algorithm from N. Wirth’s book, implementation by N.
+ * Devillard.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,10 +8,10 @@
  */
 #pragma once
 
-#include "okapi/api/filter/filter.hpp"
 #include <algorithm>
 #include <array>
 #include <cstddef>
+#include "okapi/api/filter/filter.hpp"
 
 namespace okapi {
 /**
@@ -18,10 +19,10 @@ namespace okapi {
  *
  * @tparam n number of taps in the filter
  */
-template <std::size_t n> class MedianFilter : public Filter {
-  public:
-  MedianFilter() : middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {
-  }
+template <std::size_t n>
+class MedianFilter : public Filter {
+ public:
+  MedianFilter() : middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {}
 
   /**
    * Filters a value, like a sensor reading.
@@ -44,11 +45,9 @@ template <std::size_t n> class MedianFilter : public Filter {
    *
    * @return the previous output from filter
    */
-  double getOutput() const override {
-    return output;
-  }
+  double getOutput() const override { return output; }
 
-  protected:
+ protected:
   std::array<double, n> data{0};
   std::size_t index = 0;
   double output = 0;
@@ -91,4 +90,4 @@ template <std::size_t n> class MedianFilter : public Filter {
     return dataCopy[middleIndex];
   }
 };
-} // namespace okapi
+}  // namespace okapi

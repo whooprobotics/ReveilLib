@@ -5,22 +5,23 @@
  */
 #pragma once
 
+#include <memory>
 #include "okapi/api/filter/composableFilter.hpp"
 #include "okapi/api/units/QAngularAcceleration.hpp"
 #include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/logging.hpp"
-#include <memory>
 
 namespace okapi {
 class VelMath {
-  public:
+ public:
   /**
-   * Velocity math helper. Calculates filtered velocity. Throws a `std::invalid_argument` exception
-   * if `iticksPerRev` is zero.
+   * Velocity math helper. Calculates filtered velocity. Throws a
+   * `std::invalid_argument` exception if `iticksPerRev` is zero.
    *
-   * @param iticksPerRev The number of ticks per revolution (or whatever units you are using).
+   * @param iticksPerRev The number of ticks per revolution (or whatever units
+   * you are using).
    * @param ifilter The filter used for filtering the calculated velocity.
    * @param isampleTime The minimum time between velocity measurements.
    * @param ilogger The logger this instance will log to.
@@ -34,7 +35,8 @@ class VelMath {
   virtual ~VelMath();
 
   /**
-   * Calculates the current velocity and acceleration. Returns the (filtered) velocity.
+   * Calculates the current velocity and acceleration. Returns the (filtered)
+   * velocity.
    *
    * @param inewPos The new position measurement.
    * @return The new velocity estimate.
@@ -42,8 +44,8 @@ class VelMath {
   virtual QAngularSpeed step(double inewPos);
 
   /**
-   * Sets ticks per revolution (or whatever units you are using). Throws a `std::invalid_argument`
-   * exception if iticksPerRev is zero.
+   * Sets ticks per revolution (or whatever units you are using). Throws a
+   * `std::invalid_argument` exception if iticksPerRev is zero.
    *
    * @param iTPR The number of ticks per revolution.
    */
@@ -59,7 +61,7 @@ class VelMath {
    */
   virtual QAngularAcceleration getAccel() const;
 
-  protected:
+ protected:
   std::shared_ptr<Logger> logger;
   QAngularSpeed vel{0_rpm};
   QAngularSpeed lastVel{0_rpm};
@@ -71,4 +73,4 @@ class VelMath {
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<Filter> filter;
 };
-} // namespace okapi
+}  // namespace okapi

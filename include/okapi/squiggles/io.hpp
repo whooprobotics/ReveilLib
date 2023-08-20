@@ -49,8 +49,9 @@ std::optional<std::vector<ProfilePoint>> deserialize_path(std::istream& in);
  * @return The path specified by the CSV data or std::nullopt if de-serializing
  *         the path was unsuccessful.
  */
-std::optional<std::vector<ProfilePoint>>
-deserialize_pathfinder_path(std::istream& left, std::istream& right);
-} // namespace squiggles
+std::optional<std::vector<ProfilePoint>> deserialize_pathfinder_path(
+    std::istream& left,
+    std::istream& right);
+}  // namespace squiggles
 
 #endif

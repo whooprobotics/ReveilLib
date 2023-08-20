@@ -5,9 +5,9 @@
  */
 #pragma once
 
-#include "okapi/api/filter/filter.hpp"
 #include <array>
 #include <cstddef>
+#include "okapi/api/filter/filter.hpp"
 
 namespace okapi {
 /**
@@ -15,8 +15,9 @@ namespace okapi {
  *
  * @tparam n number of taps in the filter
  */
-template <std::size_t n> class AverageFilter : public Filter {
-  public:
+template <std::size_t n>
+class AverageFilter : public Filter {
+ public:
   /**
    * Averaging filter.
    */
@@ -47,13 +48,11 @@ template <std::size_t n> class AverageFilter : public Filter {
    *
    * @return the previous output from filter
    */
-  double getOutput() const override {
-    return output;
-  }
+  double getOutput() const override { return output; }
 
-  protected:
+ protected:
   std::array<double, n> data{0};
   std::size_t index = 0;
   double output = 0;
 };
-} // namespace okapi
+}  // namespace okapi

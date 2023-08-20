@@ -31,10 +31,10 @@ struct ProfilePoint {
                std::vector<double> iwheel_velocities,
                double icurvature,
                double itime)
-    : vector(ivector),
-      wheel_velocities(iwheel_velocities),
-      curvature(icurvature),
-      time(itime) {}
+      : vector(ivector),
+        wheel_velocities(iwheel_velocities),
+        curvature(icurvature),
+        time(itime) {}
 
   ProfilePoint() = default;
 
@@ -77,16 +77,16 @@ struct ProfilePoint {
 
   friend std::ostream& operator<<(std::ostream& os, const ProfilePoint& p) {
     return os << "ProfilePoint(ControlVector(Pose(" +
-                   std::to_string(p.vector.pose.x) + "," +
-                   std::to_string(p.vector.pose.y) + "," +
-                   std::to_string(p.vector.pose.yaw) + ")," +
-                   std::to_string(p.vector.vel) + "," +
-                   std::to_string(p.vector.accel) + "," +
-                   std::to_string(p.vector.jerk) + "),{" +
-                   std::to_string(p.wheel_velocities[0]) + "," +
-                   std::to_string(p.wheel_velocities[1]) + "}," +
-                   std::to_string(p.curvature) + "," + std::to_string(p.time) +
-                   "),";
+                     std::to_string(p.vector.pose.x) + "," +
+                     std::to_string(p.vector.pose.y) + "," +
+                     std::to_string(p.vector.pose.yaw) + ")," +
+                     std::to_string(p.vector.vel) + "," +
+                     std::to_string(p.vector.accel) + "," +
+                     std::to_string(p.vector.jerk) + "),{" +
+                     std::to_string(p.wheel_velocities[0]) + "," +
+                     std::to_string(p.wheel_velocities[1]) + "}," +
+                     std::to_string(p.curvature) + "," +
+                     std::to_string(p.time) + "),";
     // return os << p.to_string();
   }
 
@@ -95,6 +95,6 @@ struct ProfilePoint {
   double curvature;
   double time;
 };
-} // namespace squiggles
+}  // namespace squiggles
 
 #endif

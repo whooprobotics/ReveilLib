@@ -15,7 +15,7 @@
 
 namespace okapi {
 class IterativeControllerFactory {
-  public:
+ public:
   /**
    * Position PID controller.
    *
@@ -26,13 +26,14 @@ class IterativeControllerFactory {
    * @param iderivativeFilter A filter for filtering the derivative term.
    * @param ilogger The logger this instance will log to.
    */
-  static IterativePosPIDController
-  posPID(double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+  static IterativePosPIDController posPID(
+      double ikP,
+      double ikI,
+      double ikD,
+      double ikBias = 0,
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller.
@@ -44,14 +45,16 @@ class IterativeControllerFactory {
    * @param iderivativeFilter A filter for filtering the derivative term.
    * @param ilogger The logger this instance will log to.
    */
-  static IterativeVelPIDController
-  velPID(double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+  static IterativeVelPIDController velPID(
+      double ikP,
+      double ikD,
+      double ikF = 0,
+      double ikSF = 0,
+      std::unique_ptr<VelMath> ivelMath =
+          VelMathFactory::createPtr(imev5GreenTPR),
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -65,15 +68,17 @@ class IterativeControllerFactory {
    * @param iderivativeFilter A filter for filtering the derivative term.
    * @param ilogger The logger this instance will log to.
    */
-  static IterativeMotorVelocityController
-  motorVelocity(Motor imotor,
-                double ikP,
-                double ikD,
-                double ikF = 0,
-                double ikSF = 0,
-                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
-                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+  static IterativeMotorVelocityController motorVelocity(
+      Motor imotor,
+      double ikP,
+      double ikD,
+      double ikF = 0,
+      double ikSF = 0,
+      std::unique_ptr<VelMath> ivelMath =
+          VelMathFactory::createPtr(imev5GreenTPR),
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -87,15 +92,17 @@ class IterativeControllerFactory {
    * @param iderivativeFilter A filter for filtering the derivative term.
    * @param ilogger The logger this instance will log to.
    */
-  static IterativeMotorVelocityController
-  motorVelocity(MotorGroup imotor,
-                double ikP,
-                double ikD,
-                double ikF = 0,
-                double ikSF = 0,
-                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
-                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+  static IterativeMotorVelocityController motorVelocity(
+      MotorGroup imotor,
+      double ikP,
+      double ikD,
+      double ikF = 0,
+      double ikSF = 0,
+      std::unique_ptr<VelMath> ivelMath =
+          VelMathFactory::createPtr(imev5GreenTPR),
+      std::unique_ptr<Filter> iderivativeFilter =
+          std::make_unique<PassthroughFilter>(),
+      const std::shared_ptr<Logger>& ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -103,9 +110,9 @@ class IterativeControllerFactory {
    * @param imotor output motor
    * @param icontroller controller to use
    */
-  static IterativeMotorVelocityController
-  motorVelocity(Motor imotor,
-                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
+  static IterativeMotorVelocityController motorVelocity(
+      Motor imotor,
+      std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -113,8 +120,8 @@ class IterativeControllerFactory {
    * @param imotor output motor
    * @param icontroller controller to use
    */
-  static IterativeMotorVelocityController
-  motorVelocity(MotorGroup imotor,
-                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
+  static IterativeMotorVelocityController motorVelocity(
+      MotorGroup imotor,
+      std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 };
-} // namespace okapi
+}  // namespace okapi

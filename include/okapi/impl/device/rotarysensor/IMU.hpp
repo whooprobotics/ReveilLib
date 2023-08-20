@@ -11,16 +11,16 @@
 
 namespace okapi {
 enum class IMUAxes {
-  z, ///< Yaw Axis
-  y, ///< Pitch Axis
-  x  ///< Roll Axis
+  z,  ///< Yaw Axis
+  y,  ///< Pitch Axis
+  x   ///< Roll Axis
 };
 
 class IMU : public ContinuousRotarySensor {
-  public:
+ public:
   /**
-   * An inertial sensor on the given port. The IMU returns an angle about the selected axis in
-   * degrees.
+   * An inertial sensor on the given port. The IMU returns an angle about the
+   * selected axis in degrees.
    *
    * ```cpp
    * auto imuZ = IMU(1);
@@ -28,7 +28,8 @@ class IMU : public ContinuousRotarySensor {
    * ```
    *
    * @param iport The port number in the range ``[1, 21]``.
-   * @param iaxis The axis of the inertial sensor to measure, default `IMUAxes::z`.
+   * @param iaxis The axis of the inertial sensor to measure, default
+   * `IMUAxes::z`.
    */
   IMU(std::uint8_t iport, IMUAxes iaxis = IMUAxes::z);
 
@@ -40,13 +41,15 @@ class IMU : public ContinuousRotarySensor {
   double get() const override;
 
   /**
-   * Get the current sensor value remapped into the target range (``[-1800, 1800]`` by default).
+   * Get the current sensor value remapped into the target range (``[-1800,
+   * 1800]`` by default).
    *
    * @param iupperBound The upper bound of the range.
    * @param ilowerBound The lower bound of the range.
    * @return The remapped sensor value.
    */
-  double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const;
+  double getRemapped(double iupperBound = 1800,
+                     double ilowerBound = -1800) const;
 
   /**
    * Get the current acceleration along the configured axis.
@@ -73,16 +76,16 @@ class IMU : public ContinuousRotarySensor {
   std::int32_t reset(double inewAngle);
 
   /**
-   * Calibrate the IMU. Resets the rotation value to zero. Calibration is expected to take two
-   * seconds, but is bounded to five seconds.
+   * Calibrate the IMU. Resets the rotation value to zero. Calibration is
+   * expected to take two seconds, but is bounded to five seconds.
    *
    * @return ``1`` or ``PROS_ERR``.
    */
   std::int32_t calibrate();
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically called in
-   * another thread by the controller.
+   * Get the sensor value for use in a control loop. This method might be
+   * automatically called in another thread by the controller.
    *
    * @return The current sensor value or ``PROS_ERR``.
    */
@@ -93,17 +96,17 @@ class IMU : public ContinuousRotarySensor {
    */
   bool isCalibrating() const;
 
-  protected:
+ protected:
   std::uint8_t port;
   IMUAxes axis;
   double offset = 0;
 
   /**
-   * Get the current rotation about the configured axis. The internal offset is not accounted for
-   * or modified. This just reads from the sensor.
+   * Get the current rotation about the configured axis. The internal offset is
+   * not accounted for or modified. This just reads from the sensor.
    *
    * @return The current sensor value or ``PROS_ERR``.
    */
   double readAngle() const;
 };
-} // namespace okapi
+}  // namespace okapi

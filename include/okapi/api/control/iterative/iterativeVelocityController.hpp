@@ -9,5 +9,6 @@
 
 namespace okapi {
 template <typename Input, typename Output>
-class IterativeVelocityController : public IterativeController<Input, Output> {};
-} // namespace okapi
+class IterativeVelocityController : public IterativeController<Input, Output> {
+};
+}  // namespace okapi

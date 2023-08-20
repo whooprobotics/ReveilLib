@@ -11,11 +11,12 @@
 
 namespace okapi {
 class ADIGyro : public ContinuousRotarySensor {
-  public:
+ public:
   /**
-   * A gyroscope on the given ADI port. If the port has not previously been configured as a gyro,
-   * then the constructor will block for 1 second for calibration. The gyro measures in tenths of a
-   * degree, so there are ``3600`` measurement points per revolution.
+   * A gyroscope on the given ADI port. If the port has not previously been
+   * configured as a gyro, then the constructor will block for 1 second for
+   * calibration. The gyro measures in tenths of a degree, so there are ``3600``
+   * measurement points per revolution.
    *
    * ```cpp
    * auto gyro = ADIGyro('A');
@@ -27,20 +28,22 @@ class ADIGyro : public ContinuousRotarySensor {
   ADIGyro(std::uint8_t iport, double imultiplier = 1);
 
   /**
-   * A gyroscope on the given ADI port. If the port has not previously been configured as a gyro,
-   * then the constructor will block for 1 second for calibration. The gyro measures in tenths of a
-   * degree, so there are 3600 measurement points per revolution.
+   * A gyroscope on the given ADI port. If the port has not previously been
+   * configured as a gyro, then the constructor will block for 1 second for
+   * calibration. The gyro measures in tenths of a degree, so there are 3600
+   * measurement points per revolution.
    *
    * ```cpp
    * auto gyro = ADIGyro({1, 'A'}, 1);
    * ```
    *
-   * Note to developers: Keep the default value on imultiplier so that users get an error if they do
-   * ADIGyro({1, 'A'}). Without it, this calls the non-ext-adi constructor.
+   * Note to developers: Keep the default value on imultiplier so that users get
+   * an error if they do ADIGyro({1, 'A'}). Without it, this calls the
+   * non-ext-adi constructor.
    *
-   * @param iports The ports the gyro is plugged in to in the order ``{smart port, gyro port}``. The
-   * smart port is the smart port number (``[1, 21]``). The gyro port is the ADI port number (``[1,
-   * 8]``, ``[a, h]``, ``[A, H]``).
+   * @param iports The ports the gyro is plugged in to in the order ``{smart
+   * port, gyro port}``. The smart port is the smart port number (``[1, 21]``).
+   * The gyro port is the ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
   ADIGyro(std::pair<std::uint8_t, std::uint8_t> iports, double imultiplier = 1);
@@ -53,13 +56,15 @@ class ADIGyro : public ContinuousRotarySensor {
   double get() const override;
 
   /**
-   * Get the current sensor value remapped into the target range (``[-1800, 1800]`` by default).
+   * Get the current sensor value remapped into the target range (``[-1800,
+   * 1800]`` by default).
    *
    * @param iupperBound the upper bound of the range.
    * @param ilowerBound the lower bound of the range.
    * @return the remapped sensor value.
    */
-  double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const;
+  double getRemapped(double iupperBound = 1800,
+                     double ilowerBound = -1800) const;
 
   /**
    * Reset the sensor to zero.
@@ -69,14 +74,14 @@ class ADIGyro : public ContinuousRotarySensor {
   std::int32_t reset() override;
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically called in
-   * another thread by the controller.
+   * Get the sensor value for use in a control loop. This method might be
+   * automatically called in another thread by the controller.
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
   double controllerGet() override;
 
-  protected:
+ protected:
   pros::c::ext_adi_gyro_t gyro;
 };
-} // namespace okapi
+}  // namespace okapi

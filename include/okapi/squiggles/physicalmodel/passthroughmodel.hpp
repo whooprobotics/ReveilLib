@@ -11,7 +11,7 @@
 
 namespace squiggles {
 class PassthroughModel : public PhysicalModel {
-  public:
+ public:
   /**
    * Defines a Physical Model that imposes no constraints of its own.
    */
@@ -23,16 +23,14 @@ class PassthroughModel : public PhysicalModel {
     return Constraints(vel);
   };
 
-  std::vector<double>
-  linear_to_wheel_vels([[maybe_unused]] double lin_vel,
-                       [[maybe_unused]] double curvature) override {
+  std::vector<double> linear_to_wheel_vels(
+      [[maybe_unused]] double lin_vel,
+      [[maybe_unused]] double curvature) override {
     return std::vector<double>{};
   }
 
-  std::string to_string() const override {
-    return "PassthroughModel {}";
-  }
+  std::string to_string() const override { return "PassthroughModel {}"; }
 };
-} // namespace squiggles
+}  // namespace squiggles
 
 #endif

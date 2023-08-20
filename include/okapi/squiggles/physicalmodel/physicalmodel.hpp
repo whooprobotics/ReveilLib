@@ -12,7 +12,7 @@
 
 namespace squiggles {
 class PhysicalModel {
-  public:
+ public:
   /**
    * Calculate a set of stricter constraints for the path at the given state
    * than the general constraints based on the robot's kinematics.
@@ -23,8 +23,9 @@ class PhysicalModel {
    * @param vel The linear velocity at this state in the path in meters per
    * second.
    */
-  virtual Constraints
-  constraints(const Pose pose, double curvature, double vel) = 0;
+  virtual Constraints constraints(const Pose pose,
+                                  double curvature,
+                                  double vel) = 0;
 
   /**
    * Converts a linear velocity and desired curvature into the component for
@@ -38,6 +39,6 @@ class PhysicalModel {
 
   virtual std::string to_string() const = 0;
 };
-} // namespace squiggles
+}  // namespace squiggles
 
 #endif

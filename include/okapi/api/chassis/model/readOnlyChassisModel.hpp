@@ -5,17 +5,17 @@
  */
 #pragma once
 
-#include "okapi/api/coreProsAPI.hpp"
 #include <valarray>
+#include "okapi/api/coreProsAPI.hpp"
 
 namespace okapi {
 /**
- * A version of the ChassisModel that only supports read methods, such as querying sensor values.
- * This class does not let you write to motors, so it supports having multiple owners and as a
- * result copying is enabled.
+ * A version of the ChassisModel that only supports read methods, such as
+ * querying sensor values. This class does not let you write to motors, so it
+ * supports having multiple owners and as a result copying is enabled.
  */
 class ReadOnlyChassisModel {
-  public:
+ public:
   virtual ~ReadOnlyChassisModel() = default;
 
   /**
@@ -25,4 +25,4 @@ class ReadOnlyChassisModel {
    */
   virtual std::valarray<std::int32_t> getSensorVals() const = 0;
 };
-} // namespace okapi
+}  // namespace okapi

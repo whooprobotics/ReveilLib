@@ -10,7 +10,7 @@
 
 namespace okapi {
 class ADIButton : public ButtonBase {
-  public:
+ public:
   /**
    * A button in an ADI port.
    *
@@ -20,8 +20,8 @@ class ADIButton : public ButtonBase {
    * ```
    *
    * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
-   * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
-   * meaning default not pressed).
+   * @param iinverted Whether the button is inverted (``true`` meaning default
+   * pressed and ``false`` meaning default not pressed).
    */
   ADIButton(std::uint8_t iport, bool iinverted = false);
 
@@ -33,18 +33,20 @@ class ADIButton : public ButtonBase {
    * auto invertedBtn = ADIButton({1, 'A'}, true);
    * ```
    *
-   * @param iports The ports the button is plugged in to in the order ``{smart port, button port}``.
-   * The smart port is the smart port number (``[1, 21]``). The button port is the ADI port number
+   * @param iports The ports the button is plugged in to in the order ``{smart
+   * port, button port}``. The smart port is the smart port number (``[1,
+   * 21]``). The button port is the ADI port number
    * (``[1, 8]``, ``[a, h]``, ``[A, H]``).
-   * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
-   * meaning default not pressed).
+   * @param iinverted Whether the button is inverted (``true`` meaning default
+   * pressed and ``false`` meaning default not pressed).
    */
-  ADIButton(std::pair<std::uint8_t, std::uint8_t> iports, bool iinverted = false);
+  ADIButton(std::pair<std::uint8_t, std::uint8_t> iports,
+            bool iinverted = false);
 
-  protected:
+ protected:
   std::uint8_t smartPort;
   std::uint8_t port;
 
   virtual bool currentlyPressed() override;
 };
-} // namespace okapi
+}  // namespace okapi

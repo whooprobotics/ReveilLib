@@ -5,10 +5,11 @@
  */
 #pragma once
 
-#include "okapi/api/control/async/asyncController.hpp"
 #include <memory>
+#include "okapi/api/control/async/asyncController.hpp"
 
 namespace okapi {
 template <typename Input, typename Output>
-class AsyncVelocityController : virtual public AsyncController<Input, Output> {};
-} // namespace okapi
+class AsyncVelocityController : virtual public AsyncController<Input, Output> {
+};
+}  // namespace okapi

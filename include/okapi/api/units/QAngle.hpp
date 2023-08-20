@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,8 +9,8 @@
  */
 #pragma once
 
-#include "okapi/api/units/RQuantity.hpp"
 #include <cmath>
+#include "okapi/api/units/RQuantity.hpp"
 
 namespace okapi {
 QUANTITY_TYPE(0, 0, 0, 1, QAngle)
@@ -31,5 +31,5 @@ constexpr QAngle operator"" _deg(long double x) {
 constexpr QAngle operator"" _deg(unsigned long long int x) {
   return static_cast<double>(x) * degree;
 }
-} // namespace literals
-} // namespace okapi
+}  // namespace literals
+}  // namespace okapi
