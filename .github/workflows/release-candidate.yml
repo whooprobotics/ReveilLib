@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -18,14 +20,6 @@ jobs:
         with:
           packages: gcc-arm-none-eabi
           version: 1.3
-
-      - name: Set up PROS
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          cache: 'pip'
-      - run: pip install pros-cli
-
 
       - name: Build
         run: make template
