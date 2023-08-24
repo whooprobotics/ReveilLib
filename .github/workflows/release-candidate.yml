@@ -1,0 +1,30 @@
+name: Release candidates
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Build
+        run: make template
+
+      - name: Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ReveilLib ${{ github.ref }}
+          draft: false
+          prerelease: true
