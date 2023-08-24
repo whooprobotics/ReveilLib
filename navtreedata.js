@@ -25,8 +25,9 @@
 var NAVTREE =
 [
   [ "ReveilLib", "index.html", [
+    [ "Setting up the ReveilLib depot", "md_docs_2tutorials_2depot-setup.html", null ],
     [ "Code styling & standards for ReveilLib", "md_Style.html", [
-      [ "Capitalization", "md_Style.html#autotoc_md1", null ]
+      [ "Capitalization", "md_Style.html#autotoc_md2", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
