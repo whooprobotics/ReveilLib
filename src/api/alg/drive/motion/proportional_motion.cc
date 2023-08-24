@@ -1,6 +1,6 @@
 #include "rev/api/alg/drive/motion/proportional_motion.hh"
 #include "rev/api/unit/unit.hh"
-#include "rev/util/math.hh"
+#include "rev/util/mathutil.hh"
 
 #include <algorithm>
 #include <cmath>
@@ -24,7 +24,7 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
   // Scale down distance to just get the longitudinal component
   double err_y = cos(err_a) * distance_to_target;
 
-  double finalPower = k_p * err_y * sgn(power);
+  double finalPower = k_p * err_y * rev::sgn(power);
 
   finalPower = std::clamp(-power, finalPower, power);
 

@@ -7,5 +7,7 @@ namespace rev {
  * @return int
  */
 template <typename T>
-int sgn(T val);
+int sgn(T val) {
+  return (T(0) < val) - (val < T(0));
+}
 }  // namespace rev
