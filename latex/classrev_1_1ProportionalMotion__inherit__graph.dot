@@ -1,9 +1,0 @@
-digraph "rev::ProportionalMotion"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="rev::ProportionalMotion",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Motion class in which the outputs are proportional to longitudinal error."];
-  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node2 [label="rev::Motion",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classrev_1_1Motion.html",tooltip="Interface for generating raw motor powers."];
-}
