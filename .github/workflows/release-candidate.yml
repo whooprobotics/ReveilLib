@@ -17,7 +17,7 @@ jobs:
 
       - run: apt update
       - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi
-      - run: python3 -m pip install https://github.com/purduesigbots/pros-cli/releases/download/3.1.4/pros_cli_v5-3.1.4-py3-none-any.whl
+      - run: python3 -m pip install pros-cli
 
 
       - name: Build
