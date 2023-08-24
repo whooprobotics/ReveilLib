@@ -19,6 +19,13 @@ jobs:
           packages: gcc-arm-none-eabi
           version: 1.3
 
+      - name: Set up PROS
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - run: pip install pros-cli
+
 
       - name: Build
         run: make template
