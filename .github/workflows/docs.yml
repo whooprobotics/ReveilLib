@@ -32,6 +32,9 @@ jobs:
         doxyfile-path: "./Doxyfile" # default is ./Doxyfile
         # Working directory
         working-directory: "." # default is .
+
+    - name: Create depot
+      run: python3 build-depot.py > html/revup.json
     
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
