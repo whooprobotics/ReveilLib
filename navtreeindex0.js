@@ -49,7 +49,7 @@ var NAVTREEINDEX0 =
 "main_8h.html#ab1b081349029f8bf68a7f2086732e42b":[2,0,0,2,0],
 "main_8h.html#ae5817dbade24ea595c3ce938b34f9994":[2,0,0,2,1],
 "main_8h_source.html":[2,0,0,2],
-"math_8hh_source.html":[2,0,0,0,1,0],
+"mathutil_8hh_source.html":[2,0,0,0,1,0],
 "md_Style.html":[0],
 "md_Style.html#autotoc_md1":[0,0],
 "motion_8hh_source.html":[2,0,0,0,0,0,0,1,1],
