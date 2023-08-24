@@ -10,6 +10,7 @@ var annotated_dup =
       [ "OdometryState", "structrev_1_1OdometryState.html", null ],
       [ "PilonsCorrection", "classrev_1_1PilonsCorrection.html", "classrev_1_1PilonsCorrection" ],
       [ "Position", "structrev_1_1Position.html", null ],
+      [ "ProportionalMotion", "classrev_1_1ProportionalMotion.html", "classrev_1_1ProportionalMotion" ],
       [ "Velocity", "structrev_1_1Velocity.html", null ]
     ] ]
 ];

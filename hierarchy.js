@@ -6,7 +6,8 @@ var hierarchy =
       [ "rev::PilonsCorrection", "classrev_1_1PilonsCorrection.html", null ]
     ] ],
     [ "rev::Motion", "classrev_1_1Motion.html", [
-      [ "rev::ConstantMotion", "classrev_1_1ConstantMotion.html", null ]
+      [ "rev::ConstantMotion", "classrev_1_1ConstantMotion.html", null ],
+      [ "rev::ProportionalMotion", "classrev_1_1ProportionalMotion.html", null ]
     ] ],
     [ "rev::Odometry", "classrev_1_1Odometry.html", null ],
     [ "rev::OdometryState", "structrev_1_1OdometryState.html", null ],

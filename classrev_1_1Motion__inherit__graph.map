@@ -1,5 +1,7 @@
 <map id="rev::Motion" name="rev::Motion">
-<area shape="rect" id="Node000001" title="Interface for generating raw motor powers." alt="" coords="31,5,116,31"/>
+<area shape="rect" id="Node000001" title="Interface for generating raw motor powers." alt="" coords="115,5,200,31"/>
 <area shape="rect" id="Node000002" href="$classrev_1_1ConstantMotion.html" title="Motion class in which the outputs are of a constant power." alt="" coords="5,79,142,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,46,76,79,71,79,71,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,43,89,81,86,77,131,39"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1ProportionalMotion.html" title="Motion class in which the outputs are proportional to longitudinal error." alt="" coords="166,79,320,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,39,230,77,227,81,181,43"/>
 </map>
