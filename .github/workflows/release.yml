@@ -19,6 +19,8 @@ jobs:
       - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi
       - run: python3 -m pip install pros-cli
 
+      - name: Update version number
+        run: ./setversion.sh ${{ github.ref }}
 
       - name: Build
         run: make template
@@ -33,3 +35,14 @@ jobs:
           release_name: ReveilLib ${{ github.ref }}
           draft: false
           prerelease: false
+
+      - name: Upload Template to Release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./reveillib@${{ github.ref }}.zip
+          asset_name: reveillib@${{ github.ref }}.zip
+          asset_content_type: application/zip
