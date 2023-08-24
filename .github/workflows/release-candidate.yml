@@ -20,7 +20,7 @@ jobs:
       - run: python3 -m pip install pros-cli
 
       - name: Update version number
-        run: ./setversion.sh ${{ github.ref }}
+        run: ./setversion.sh ${{ github.ref_name }}
 
       - name: Build
         run: make template
@@ -34,7 +34,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ReveilLib ${{ github.ref }}
           draft: false
-          prerelease: false
+          prerelease: true
 
       - name: Upload Template to Release
         id: upload-release-asset

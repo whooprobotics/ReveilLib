@@ -20,7 +20,7 @@ jobs:
       - run: python3 -m pip install pros-cli
 
       - name: Update version number
-        run: ./setversion.sh ${{ github.ref }}
+        run: ./setversion.sh ${{ github.ref_name }}
 
       - name: Build
         run: make template
