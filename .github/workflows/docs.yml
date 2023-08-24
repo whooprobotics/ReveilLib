@@ -34,7 +34,7 @@ jobs:
         working-directory: "." # default is .
 
     - name: Create depot
-      run: python3 build-depot.py | tee ./html/revup.json
+      run: mkdir -p html && python3 build-depot.py | tee ./html/revup.json
     
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
