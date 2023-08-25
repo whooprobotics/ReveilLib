@@ -14,6 +14,12 @@ namespace rev {
  * geared motors, as 45in/s requires ~152rpm and the speed geared V4 motors are
  * capable of approximately 160rpm
  *
+ * It may also be worth considering using dependency injection to allow the
+ * user to completely replace the velocity selection calculation, but more
+ * research needs to be conducted to determine if this would be necessary. Such
+ * a solution may have a high performance impact for a small amount of (or no)
+ * gain. Another good solution may be a quadratic function.
+ *
  * For a V5 robot running 3.25" wheels in a skid steer configuration on blue
  * motors geared down by a ratio of 5:3, you can expect
  * 360rpm to be the reasonable max. This leaves you with a theoretical maximum
