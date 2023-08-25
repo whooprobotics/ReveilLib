@@ -8,7 +8,20 @@ namespace rev {
  * The target velocity is determined by a formula. For pilons, this formula was
  *
  * `45 * (1 - exp(0.07 * error))`, though they used some extra stuff such as a
- * dropEarly parameter
+ * dropEarly parameter. This formula will likely need tuning for other robots
+ * and for v5. It seems to assume a max velocity of about 45 inches per second,
+ * which is well within reason for a V4 X drive running 4" omni wheels on speed
+ * geared motors, as 45in/s requires ~152rpm and the speed geared V4 motors are
+ * capable of approximately 160rpm
+ *
+ * For a V5 robot running 3.25" wheels in a skid steer configuration on blue
+ * motors geared down by a ratio of 5:3, you can expect
+ * 360rpm to be the reasonable max. This leaves you with a theoretical maximum
+ * velocity of about 60 inches per second.
+ *
+ * As for the other constant, 0.07, the meaning of that one is less clear. It
+ * will likely require tuning in order to make it usable. We will call this one
+ * `k_v` for reference.
  *
  * The output power is then calculated as
  *
@@ -32,11 +45,17 @@ class CascadingMotion : public Motion {
    * @param ik_p The proportional constant for approaching the target velocity
    * @param ik_b The feed-forward constant for the target velocity
    */
-  explicit CascadingMotion(double ipower, double ik_p, double ik_b);
+  explicit CascadingMotion(double ipower,
+                           double ik_p,
+                           double ik_b,
+                           double max_v = 60,
+                           double k_v = 0.07);
 
  private:
   double power;
   double k_p;
   double k_b;
+  double max_v;
+  double k_v;
 };
 }  // namespace rev
