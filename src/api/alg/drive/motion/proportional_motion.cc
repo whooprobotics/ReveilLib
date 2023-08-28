@@ -1,5 +1,4 @@
 #include "rev/api/alg/drive/motion/proportional_motion.hh"
-#include "rev/api/unit/unit.hh"
 #include "rev/util/mathutil.hh"
 
 #include <algorithm>
