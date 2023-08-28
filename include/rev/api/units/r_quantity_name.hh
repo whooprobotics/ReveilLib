@@ -34,21 +34,21 @@ template <class QType> std::string getShortUnitName(QType q) {
   const std::unordered_map<std::type_index, std::unordered_map<double, const char *>> shortNameMap =
     {{typeid(meter),
       {
-        {meter.getValue(), "m"},
-        {decimeter.getValue(), "dm"},
-        {centimeter.getValue(), "cm"},
-        {millimeter.getValue(), "mm"},
-        {kilometer.getValue(), "km"},
-        {inch.getValue(), "in"},
-        {foot.getValue(), "ft"},
-        {yard.getValue(), "yd"},
-        {mile.getValue(), "mi"},
-        {tile.getValue(), "tile"},
+        {meter.get_value(), "m"},
+        {decimeter.get_value(), "dm"},
+        {centimeter.get_value(), "cm"},
+        {millimeter.get_value(), "mm"},
+        {kilometer.get_value(), "km"},
+        {inch.get_value(), "in"},
+        {foot.get_value(), "ft"},
+        {yard.get_value(), "yd"},
+        {mile.get_value(), "mi"},
+        {tile.get_value(), "tile"},
       }},
-     {typeid(degree), {{degree.getValue(), "deg"}, {radian.getValue(), "rad"}}}};
+     {typeid(degree), {{degree.get_value(), "deg"}, {radian.get_value(), "rad"}}}};
 
   try {
-    return shortNameMap.at(typeid(q)).at(q.getValue());
+    return shortNameMap.at(typeid(q)).at(q.get_value());
   } catch (const std::out_of_range &e) {
     throw std::domain_error(
       "You have requested the shortname of an unknown unit somewhere (likely odometry strings). "
