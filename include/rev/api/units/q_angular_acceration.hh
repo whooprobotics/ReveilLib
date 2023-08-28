@@ -13,19 +13,8 @@
  */
 #pragma once
 
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
-QUANTITY_TYPE(0, 0, -1, 0, QFrequency)
-
-constexpr QFrequency Hz(1.0);
-
-inline namespace literals {
-constexpr QFrequency operator"" _Hz(long double x) {
-  return QFrequency(x);
+QUANTITY_TYPE(0, 0, -2, 1, QAngularAcceleration)
 }
-constexpr QFrequency operator"" _Hz(unsigned long long int x) {
-  return QFrequency(static_cast<long double>(x));
-}
-} // namespace literals
-} // namespace rev

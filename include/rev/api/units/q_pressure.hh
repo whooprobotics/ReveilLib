@@ -13,10 +13,10 @@
  */
 #pragma once
 
-#include "rev/api/units/QAcceleration.hpp"
-#include "rev/api/units/QArea.hpp"
-#include "rev/api/units/QMass.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/q_acceleration.hh"
+#include "rev/api/units/q_area.hh"
+#include "rev/api/units/q_mass.hh"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(1, -1, -2, 0, QPressure)

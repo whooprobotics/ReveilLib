@@ -13,9 +13,9 @@
  */
 #pragma once
 
-#include "rev/api/units/QForce.hpp"
-#include "rev/api/units/QLength.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/q_force.hh"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(1, 2, -2, 0, QTorque)

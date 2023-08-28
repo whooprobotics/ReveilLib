@@ -13,28 +13,27 @@
  */
 #pragma once
 
-#include "rev/api/units/QLength.hpp"
-#include "rev/api/units/QTime.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/r_quantity.hh"
+#include <cmath>
 
 namespace rev {
-QUANTITY_TYPE(0, 1, -2, 0, QAcceleration)
+QUANTITY_TYPE(0, 0, 0, 1, QAngle)
 
-constexpr QAcceleration mps2 = meter / (second * second);
-constexpr QAcceleration G = 9.80665 * mps2;
+constexpr QAngle radian(1.0);
+constexpr QAngle degree = static_cast<double>(2_pi / 360.0) * radian;
 
 inline namespace literals {
-constexpr QAcceleration operator"" _mps2(long double x) {
-  return QAcceleration(x);
+constexpr QAngle operator"" _rad(long double x) {
+  return QAngle(x);
 }
-constexpr QAcceleration operator"" _mps2(unsigned long long int x) {
-  return QAcceleration(static_cast<double>(x));
+constexpr QAngle operator"" _rad(unsigned long long int x) {
+  return QAngle(static_cast<double>(x));
 }
-constexpr QAcceleration operator"" _G(long double x) {
-  return static_cast<double>(x) * G;
+constexpr QAngle operator"" _deg(long double x) {
+  return static_cast<double>(x) * degree;
 }
-constexpr QAcceleration operator"" _G(unsigned long long int x) {
-  return static_cast<double>(x) * G;
+constexpr QAngle operator"" _deg(unsigned long long int x) {
+  return static_cast<double>(x) * degree;
 }
 } // namespace literals
 } // namespace rev

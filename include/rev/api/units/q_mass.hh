@@ -13,7 +13,7 @@
  */
 #pragma once
 
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(1, 0, 0, 0, QMass)

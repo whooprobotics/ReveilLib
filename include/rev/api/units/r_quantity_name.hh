@@ -11,9 +11,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "rev/api/units/QAngle.hpp"
-#include "rev/api/units/QLength.hpp"
-#include "rev/api/units/QSpeed.hpp"
+#include "rev/api/units/q_angle.hh"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/units/q_speed.hh"
 #include <stdexcept>
 #include <typeindex>
 #include <unordered_map>

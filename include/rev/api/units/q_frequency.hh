@@ -13,27 +13,19 @@
  */
 #pragma once
 
-#include "rev/api/units/RQuantity.hpp"
-#include <cmath>
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
-QUANTITY_TYPE(0, 0, 0, 1, QAngle)
+QUANTITY_TYPE(0, 0, -1, 0, QFrequency)
 
-constexpr QAngle radian(1.0);
-constexpr QAngle degree = static_cast<double>(2_pi / 360.0) * radian;
+constexpr QFrequency Hz(1.0);
 
 inline namespace literals {
-constexpr QAngle operator"" _rad(long double x) {
-  return QAngle(x);
+constexpr QFrequency operator"" _Hz(long double x) {
+  return QFrequency(x);
 }
-constexpr QAngle operator"" _rad(unsigned long long int x) {
-  return QAngle(static_cast<double>(x));
-}
-constexpr QAngle operator"" _deg(long double x) {
-  return static_cast<double>(x) * degree;
-}
-constexpr QAngle operator"" _deg(unsigned long long int x) {
-  return static_cast<double>(x) * degree;
+constexpr QFrequency operator"" _Hz(unsigned long long int x) {
+  return QFrequency(static_cast<long double>(x));
 }
 } // namespace literals
 } // namespace rev

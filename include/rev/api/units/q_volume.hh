@@ -13,9 +13,9 @@
  */
 #pragma once
 
-#include "rev/api/units/QArea.hpp"
-#include "rev/api/units/QLength.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/q_area.hh"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(0, 3, 0, 0, QVolume)

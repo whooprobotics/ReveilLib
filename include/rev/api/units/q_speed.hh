@@ -13,9 +13,9 @@
  */
 #pragma once
 
-#include "rev/api/units/QLength.hpp"
-#include "rev/api/units/QTime.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/units/q_time.hh"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(0, 1, -1, 0, QSpeed)

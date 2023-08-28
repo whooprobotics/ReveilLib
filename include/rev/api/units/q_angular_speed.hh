@@ -13,10 +13,10 @@
  */
 #pragma once
 
-#include "rev/api/units/QAngle.hpp"
-#include "rev/api/units/QFrequency.hpp"
-#include "rev/api/units/QTime.hpp"
-#include "rev/api/units/RQuantity.hpp"
+#include "rev/api/units/q_angle.hh"
+#include "rev/api/units/q_frequency.hh"
+#include "rev/api/units/q_time.hh"
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(0, 0, -1, 1, QAngularSpeed)
