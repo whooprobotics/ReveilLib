@@ -13,18 +13,18 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
     rev::Position target_state) {
   // Calculate the absolute angle from the robot's facing direction to the
   // target point
-  Angle angle_to_target = atan2(target_state.x - current_state.pos.x,
+  QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
                                 target_state.y - current_state.pos.y);
   // Calculate the difference between where the robot is facing and that angle
-  double err_a = current_state.pos.facing - angle_to_target;
-  double distance_to_target =
-      sqrt(pow(target_state.x - current_state.pos.x, 2) +
-           pow(target_state.y - current_state.pos.y, 2));
+  QAngle err_a = current_state.pos.facing - angle_to_target;
+  QLength distance_to_target =
+      std::sqrt(std::pow(target_state.x.convert(inch) - current_state.pos.x.convert(inch), 2) +
+           std::pow(target_state.y.convert(inch) - current_state.pos.y.convert(inch), 2)) * inch;
 
   // Scale down distance to just get the longitudinal component
-  double err_y = cos(err_a) * distance_to_target;
+  QLength err_y = cos(err_a) * distance_to_target;
 
-  double finalPower = k_p * err_y * rev::sgn(power);
+  double finalPower = k_p * err_y.convert(inch) * rev::sgn(power);
 
   finalPower = std::clamp(-power, finalPower, power);
 
