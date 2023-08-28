@@ -16,7 +16,15 @@
 #include <cmath>
 #include <ratio>
 
+
 namespace rev {
+/**
+ * @brief Basic template class defining units
+ * 
+ * This implementation of units is taken from [OkapiLib](https://github.com/purduesigbots/okapilib), which in
+ * turn based it on Benjamin Jurke's work in 2015. His original blog post and code can be found at
+ * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
+*/
 template <typename MassDim, typename LengthDim, typename TimeDim, typename AngleDim>
 class RQuantity {
   public:
