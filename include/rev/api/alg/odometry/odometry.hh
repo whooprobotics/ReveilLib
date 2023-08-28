@@ -1,17 +1,21 @@
 #pragma once
-#include "rev/api/unit/unit.hh"
+#include "rev/api/units/r_quantity.hh"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/units/q_angle.hh"
+#include "rev/api/units/q_speed.hh"
+#include "rev/api/units/q_angular_speed.hh"
 
 namespace rev {
 struct Position {
-  Length x;
-  Length y;
-  Angle facing;
+  QLength x;
+  QLength y;
+  QAngle facing;
 };
 
 struct Velocity {
-  Speed xv;
-  Speed yv;
-  AngularSpeed angular;
+  QSpeed xv;
+  QSpeed yv;
+  QAngularSpeed angular;
 };
 
 struct OdometryState {
