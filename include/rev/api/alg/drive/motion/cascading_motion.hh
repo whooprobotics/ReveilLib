@@ -1,4 +1,5 @@
 #include "rev/api/alg/drive/motion/motion.hh"
+#include "rev/api/units/all_units.hh"
 
 namespace rev {
 /**
@@ -58,14 +59,14 @@ class CascadingMotion : public Motion {
   explicit CascadingMotion(double ipower,
                            double ik_p,
                            double ik_b,
-                           double imax_v = 60,
+                           QSpeed imax_v = 60 * inch / second,
                            double ik_v = 0.07);
 
  private:
   double power;
   double k_p;
   double k_b;
-  double max_v;
+  QSpeed max_v;
   double k_v;
 };
 }  // namespace rev
