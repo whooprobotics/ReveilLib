@@ -18,7 +18,9 @@ namespace rev {
  * user to completely replace the velocity selection calculation, but more
  * research needs to be conducted to determine if this would be necessary. Such
  * a solution may have a high performance impact for a small amount of (or no)
- * gain. Another good solution may be a quadratic function.
+ * gain. Another good solution may be a quadratic function. Regardless of the
+ * choice here, DI will always be available to a programmer who wishes to
+ * implement their own motion controller.
  *
  * For a V5 robot running 3.25" wheels in a skid steer configuration on blue
  * motors geared down by a ratio of 5:3, you can expect
@@ -50,12 +52,14 @@ class CascadingMotion : public Motion {
    * @param ipower The power to run this motion at
    * @param ik_p The proportional constant for approaching the target velocity
    * @param ik_b The feed-forward constant for the target velocity
+   * @param imax_v The maximum target velocity of the controller
+   * @param ik_v The `k_v` constant for the controller
    */
   explicit CascadingMotion(double ipower,
                            double ik_p,
                            double ik_b,
-                           double max_v = 60,
-                           double k_v = 0.07);
+                           double imax_v = 60,
+                           double ik_v = 0.07);
 
  private:
   double power;

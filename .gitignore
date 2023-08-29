@@ -7,8 +7,8 @@
 *.elf
 
 # Doxygen
-*.latex
-*.html
+latex/
+html/
 
 # PROS
 bin/
