@@ -9,7 +9,9 @@ rev::ProportionalMotion::ProportionalMotion(double ipower, double ik_p)
 
 std::tuple<double, double> rev::ProportionalMotion::gen_powers(
     rev::OdometryState current_state,
-    rev::Position target_state) {
+    rev::Position target_state,
+    Position start_state,
+    QLength drop_earlys) {
   // Calculate the absolute angle from the robot's facing direction to the
   // target point
   QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
