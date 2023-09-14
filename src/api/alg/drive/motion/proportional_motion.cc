@@ -28,7 +28,7 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
 
   double finalPower = k_p * err_y.convert(inch) * rev::sgn(power);
 
-  finalPower = std::clamp(finalPower, -power, power);
+  finalPower = std::clamp(finalPower, -std::abs(power), std::abs(power));
 
   return std::make_tuple(finalPower, finalPower);
 }
