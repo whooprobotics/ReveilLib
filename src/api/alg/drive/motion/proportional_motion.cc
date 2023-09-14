@@ -11,7 +11,7 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
     rev::OdometryState current_state,
     rev::Position target_state,
     Position start_state,
-    QLength drop_earlys) {
+    QLength drop_early) {
   // Calculate the absolute angle from the robot's facing direction to the
   // target point
   QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
@@ -23,11 +23,12 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
            std::pow(target_state.y.convert(inch) - current_state.pos.y.convert(inch), 2)) * inch;
 
   // Scale down distance to just get the longitudinal component
-  QLength err_y = cos(err_a) * distance_to_target;
+  // apply drop_early term
+  QLength err_y = cos(err_a) * (distance_to_target - drop_early);
 
   double finalPower = k_p * err_y.convert(inch) * rev::sgn(power);
 
-  finalPower = std::clamp(-power, finalPower, power);
+  finalPower = std::clamp(finalPower, -power, power);
 
   return std::make_tuple(finalPower, finalPower);
 }
