@@ -45,7 +45,9 @@ namespace rev {
 class CascadingMotion : public Motion {
  public:
   std::tuple<double, double> gen_powers(OdometryState current_state,
-                                        Position target_state) override;
+                                        Position target_state,
+                                        Position start_state,
+                                        QLength drop_early) override;
 
   /**
    * @brief Construct a new Cascading Motion controller
