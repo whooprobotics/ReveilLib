@@ -35,6 +35,8 @@ class PilonsCorrection : public Correction {
   std::tuple<double, double> apply_correction(
       OdometryState current_state,
       Position target_state,
+      Position start_state,
+      QLength drop_early,
       std::tuple<double, double> powers) override;
 
   /**

@@ -10,6 +10,8 @@ rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
 std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     rev::OdometryState current_state,
     rev::Position target_state,
+      Position start_state,
+      QLength drop_early,
     std::tuple<double, double> powers) {
   QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
                                 target_state.y - current_state.pos.y);
