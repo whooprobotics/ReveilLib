@@ -9,6 +9,8 @@ class AsyncRunner {
   AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
               uint32_t itdelta = 10);
 
+  ~AsyncRunner();
+
  private:
   std::shared_ptr<AsyncRunnable> controller;
   pros::Task thread;

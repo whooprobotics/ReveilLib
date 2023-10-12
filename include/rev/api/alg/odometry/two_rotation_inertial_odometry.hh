@@ -1,12 +1,14 @@
 #include "odometry.hh"
 #include "pros/imu.hpp"
 #include "pros/rotation.hpp"
+#include "rev/api/async/async_runnable.hh"
 namespace rev {
-class TwoRotationInertialOdometry : public Odometry {
+class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
  public:
   OdometryState get_state() override;
   void set_position(Position pos) override;
   void reset_position() override;
+  void step() override;
 
  private:
   pros::Rotation longitudinal_sensor;  // Sensor indicating forward motion.

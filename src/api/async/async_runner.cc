@@ -7,6 +7,11 @@ AsyncRunner::AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
   thread = pros::Task(run, this, "ReveilLib Task");
 }
 
+AsyncRunner::~AsyncRunner() {
+  // Exit the task when the runner is destroyed
+  thread.notify();
+}
+
 void AsyncRunner::run(void* context) {
   if (context)
     static_cast<AsyncRunner*>(context)->loop();
@@ -21,7 +26,8 @@ void AsyncRunner::run(void* context) {
  */
 void AsyncRunner::loop() {
   uint32_t last_time = pros::millis();
-  while (true) {
+  // Exit when this task gets notified
+  while (!pros::Task::notify_take(true, 0)) {
     controller->step();
 
     // delay_until is more accurate for reasons
