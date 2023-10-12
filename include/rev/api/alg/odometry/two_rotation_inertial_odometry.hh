@@ -37,7 +37,11 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   // Used for getting differences
   double longitude_ticks_last;
   double latitude_ticks_last;
+  // Only used for velocity calculation
+  double heading_ticks_last;
   // We call this init instead of last because it is used for absolutes
   double heading_ticks_init;
+  // Time of last call
+  int32_t time_last{-1};
 };
 };  // namespace rev
