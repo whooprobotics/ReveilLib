@@ -18,6 +18,10 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   void reset_position() override;
   void step() override;
 
+  TwoRotationInertialOdometry(pros::Rotation ilongitudinal_sensor,
+                              pros::Rotation ilateral_sensor,
+                              pros::Imu iinertial);
+
  private:
   pros::Rotation longitudinal_sensor;  // Sensor indicating forward motion.
                                        // Moving the robot forward should cause
@@ -29,5 +33,11 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
 
   pros::Mutex current_position_mutex;
   OdometryState current_position;
+
+  // Used for getting differences
+  double longitude_ticks_last;
+  double latitude_ticks_last;
+  // We call this init instead of last because it is used for absolutes
+  double heading_ticks_init;
 };
 };  // namespace rev

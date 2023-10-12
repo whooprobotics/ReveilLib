@@ -37,7 +37,9 @@ class Odometry {
    */
   virtual void set_position(Position pos) = 0;
   /**
-   * @brief Set the position to (0,0,0)
+   * @brief Set the position to (0,0)
+   *
+   * THIS WILL ALSO RESET HEADING, WHICH YOU MIGHT NOT WANT
    *
    */
   virtual void reset_position() = 0;
