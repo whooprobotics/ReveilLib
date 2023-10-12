@@ -28,6 +28,6 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   pros::Imu inertial;  // Inertial sensor from which the robot yaw will be read
 
   pros::Mutex current_position_mutex;
-  Position current_position;
+  OdometryState current_position;
 };
 };  // namespace rev

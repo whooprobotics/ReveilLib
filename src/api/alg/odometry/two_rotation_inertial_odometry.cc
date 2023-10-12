@@ -3,7 +3,7 @@
 namespace rev {
 OdometryState TwoRotationInertialOdometry::get_state() {
   current_position_mutex.take(20);
-  Position ret = current_position;
+  OdometryState ret = current_position;
   current_position_mutex.give();
   return ret;
 }
