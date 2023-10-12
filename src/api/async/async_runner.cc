@@ -3,13 +3,13 @@
 namespace rev {
 AsyncRunner::AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
                          uint32_t itdelta)
-    : controller(icontroller), tdelta(itdelta), thread(NULL) {
-  thread = pros::Task(run, this, "ReveilLib Task");
+    : controller(icontroller), tdelta(itdelta), thread(nullptr) {
+  thread = new pros::Task(run, this, "ReveilLib Task");
 }
 
 AsyncRunner::~AsyncRunner() {
   // Exit the task when the runner is destroyed
-  thread.notify();
+  thread->notify();
 }
 
 void AsyncRunner::run(void* context) {
