@@ -55,6 +55,7 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
 
   // Offset of the longitudinal wheel to the right of the center of the robot
   QLength longitudinal_wheel_offset;
+  // Likewise, for the lateral wheel backward from the center of rotation
   QLength lateral_wheel_offset;
 };
 };  // namespace rev

@@ -69,6 +69,67 @@ void TwoRotationInertialOdometry::step() {
   // Get global facing angle
   double facing = heading_ticks - heading_ticks_init;
 
+  // Early exit/skip iteration if no changes
+  if (d_longitudinal_ticks == 0.0 && d_latitude_ticks == 0.0 &&
+      d_heading_ticks == 0.0) {
+    current_position_mutex.give();
+    return;
+  }
+
+  // Raw translation values
+  QLength raw_fwd_translation =
+      d_longitudinal_ticks / 360 * 3.1415926535 * longitudinal_wheel_diameter;
+  QLength raw_right_translation =
+      d_latitude_ticks / 360 * 3.1415926535 * lateral_wheel_diameter;
+
+  // Adjusted local translation values
+  QLength local_off_lat, local_off_long;
+
+  // Normalize d_heading_ticks to [-180, 180] degrees
+  d_heading_ticks =
+      d_heading_ticks - 360 * std::floor((d_heading_ticks + 180) / 360);
+
+  // Calculate the local arc-adjusted translation values
+  if (d_heading_ticks != 0) {
+    double dht_radian = d_heading_ticks * degree.convert(radian);
+    double sindt2 = std::sin(dht_radian / 2);
+    local_off_lat = 2 * sindt2 *
+                    (raw_right_translation / dht_radian + lateral_wheel_offset);
+    local_off_long =
+        2 * sindt2 *
+        (raw_fwd_translation / dht_radian + longitudinal_wheel_offset);
+  } else {
+    local_off_lat = raw_right_translation;
+    local_off_long = raw_fwd_translation;
+  }
+
+  // Average angle
+  double avga = heading_ticks - d_heading_ticks;
+  avga - 360 * std::floor((avga + 180) / 360);
+
+  // Polar form for rotating
+  QLength polar_r = rev::sqrt(local_off_lat * local_off_lat +
+                              local_off_long * local_off_long);
+  QAngle polar_angle =
+      rev::atan2(local_off_long, local_off_lat) - avga * degree;
+
+  // global offsets
+  QLength dX = polar_r * sin(polar_angle);
+  QLength dY = polar_r * cos(polar_angle);
+
+  // vels
+  QSpeed vX = dX / (d_time * millisecond);
+  QSpeed vY = dY / (d_time * millisecond);
+  QAngularSpeed w = d_heading_ticks * degree / (d_time * millisecond);
+
+  // Update position information
+  current_position.pos.x += dX;
+  current_position.pos.y += dY;
+  current_position.pos.facing = facing * degree;
+  current_position.vel.xv = vX;
+  current_position.vel.yv = vY;
+  current_position.vel.angular = w;
+
   // Before exiting, release mutex
   current_position_mutex.give();
 }
