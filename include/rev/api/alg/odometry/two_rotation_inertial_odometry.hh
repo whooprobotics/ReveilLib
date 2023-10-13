@@ -20,7 +20,12 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
 
   TwoRotationInertialOdometry(pros::Rotation ilongitudinal_sensor,
                               pros::Rotation ilateral_sensor,
-                              pros::Imu iinertial);
+                              pros::Imu iinertial,
+                              QLength ilongitudinal_wheel_diameter = 3.25 *
+                                                                     inch,
+                              QLength ilateral_wheel_diameter = 3.25 * inch,
+                              QLength ilongitudinal_wheel_offset = 0 * inch,
+                              QLength ilateral_wheel_offset = 0 * inch);
 
  private:
   pros::Rotation longitudinal_sensor;  // Sensor indicating forward motion.
@@ -43,5 +48,13 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   double heading_ticks_init;
   // Time of last call
   int32_t time_last{-1};
+
+  // Wheel sizes
+  QLength longitudinal_wheel_diameter;
+  QLength lateral_wheel_diameter;
+
+  // Offset of the longitudinal wheel to the right of the center of the robot
+  QLength longitudinal_wheel_offset;
+  QLength lateral_wheel_offset;
 };
 };  // namespace rev

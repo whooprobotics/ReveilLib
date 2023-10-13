@@ -4,10 +4,18 @@ namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
     pros::Rotation ilongitudinal_sensor,
     pros::Rotation ilateral_sensor,
-    pros::Imu iinertial)
+    pros::Imu iinertial,
+    QLength ilongitudinal_wheel_diameter,
+    QLength ilateral_wheel_diameter,
+    QLength ilongitudinal_wheel_offset,
+    QLength ilateral_wheel_offset)
     : longitudinal_sensor(ilongitudinal_sensor),
       lateral_sensor(ilateral_sensor),
-      inertial(iinertial) {
+      inertial(iinertial),
+      longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),
+      lateral_wheel_diameter(ilateral_wheel_diameter),
+      longitudinal_wheel_offset(ilongitudinal_wheel_offset),
+      lateral_wheel_offset(ilateral_wheel_offset) {
   longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
   latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
   heading_ticks_init = inertial.get_heading();
@@ -49,11 +57,13 @@ void TwoRotationInertialOdometry::step() {
   // Get differences
   double d_longitudinal_ticks = longitude_ticks - longitude_ticks_last;
   double d_latitude_ticks = latitude_ticks - latitude_ticks_last;
+  double d_heading_ticks = heading_ticks - heading_ticks_last;
   int32_t d_time = time - time_last;
 
   // Update last ticks
   longitude_ticks_last = longitude_ticks;
   latitude_ticks_last = latitude_ticks;
+  heading_ticks_last = heading_ticks;
   time_last = time;
 
   // Get global facing angle
