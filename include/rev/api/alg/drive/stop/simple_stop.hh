@@ -30,6 +30,7 @@ class SimpleStop : public Stop {
                             Position target_state,
                             Position start_state,
                             QLength drop_early) override;
+  double get_coast_power() override;
 
  private:
   const QTime harsh_threshold;

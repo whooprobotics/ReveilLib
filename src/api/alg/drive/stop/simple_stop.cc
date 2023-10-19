@@ -39,4 +39,8 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
   return stop_state::GO;
 }
 
+double SimpleStop::get_coast_power() {
+  return coast_power;
+}
+
 }  // namespace rev

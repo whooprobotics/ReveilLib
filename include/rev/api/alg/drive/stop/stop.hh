@@ -12,6 +12,8 @@ class Stop {
                                     Position target_state,
                                     Position start_state,
                                     QLength drop_early);
+
+  virtual double get_coast_power();
 };
 
 }  // namespace rev
