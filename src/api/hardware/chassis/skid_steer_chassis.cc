@@ -23,4 +23,19 @@ void SkidSteerChassis::drive_arcade(double forward, double yaw) {
 
   drive_tank(forward + yaw, forward - yaw);
 }
+
+void SkidSteerChassis::set_brake_harsh() {
+  left->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
+  right->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
+}
+
+void SkidSteerChassis::set_brake_coast() {
+  left->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
+  right->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
+}
+
+void SkidSteerChassis::stop() {
+  left->brake();
+  right->brake();
+}
 }  // namespace rev

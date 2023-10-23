@@ -21,6 +21,19 @@ class SkidSteerChassis : public Chassis {
   void drive_tank(double leftv, double rightv) override;
   void drive_arcade(double forward, double yaw) override;
 
+  /**
+   * @brief Sets the brake types of all motors to brake
+  */
+  void set_brake_harsh() override;
+  /**
+   * @brief Sets the brake types of all motors to coast
+  */
+  void set_brake_coast() override;
+  /**
+   * @brief Stops all of the motors
+  */
+  void stop() override;
+
  private:
   pros::MotorGroup* left;
   pros::MotorGroup* right;
