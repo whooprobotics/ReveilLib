@@ -9,4 +9,12 @@ class Turn {
 public:
  virtual void turn_to_target_absolute(double max_Power, QAngle angle) = 0;
 };
+
+enum class TurnState{
+    INACTIVE,
+    FULLPOWER,
+    COAST,
+    BRAKE
+};
+
 }
