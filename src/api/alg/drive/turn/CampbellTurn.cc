@@ -1,13 +1,16 @@
 
 // You don't need a #pragma once here, because this isn't a header file and won't be included into anything
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
+#include "rev/api/alg/odometry/odometry.hh"
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method that is a member of the CampbellTurn class
-CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis, double ikP1, double ikP2) {
+CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry, double ikP1, double ikP2, int icontroller_state) {
 // Implement initialization stuff here, basically set up class member variables
 kP1 = ikP1;
 kP2 = ikP2;
+controller_state = icontroller_state;
 chassis = ichassis;
+odometry = iodometry;
 }
 void CampbellTurn::turn_to_target_absolute(double max_Power, QAngle angle) {
 // Implement the **NON-BLOCKING** turn to target absolute function
