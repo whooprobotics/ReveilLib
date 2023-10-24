@@ -2,6 +2,7 @@
 
 namespace rev {
 class Chassis {
+ public:
   /**
    * @brief Moves the robot
    *
