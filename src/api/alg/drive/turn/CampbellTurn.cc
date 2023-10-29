@@ -2,6 +2,7 @@
 // You don't need a #pragma once here, because this isn't a header file and won't be included into anything
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
 #include "rev/api/alg/odometry/odometry.hh"
+#include "api.h"
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method that is a member of the CampbellTurn class
 CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry, double ikP1, double ikP2) {
@@ -11,40 +12,49 @@ kP2 = ikP2; // was 0.05 in testing
 chassis = ichassis;
 odometry = iodometry;
 
-double angle_difference;
-double target_relative_original;
-double target_relative;
+
 
 
 }
 void CampbellTurn::turn_to_target_absolute(double imax_Power, QAngle iangle) {
 // Implement the **NON-BLOCKING** turn to target absolute function
-// This function should not wait for anything to happen, it should just set up variables and set the state or whatever and let the controller do its thing
-double coast_turn_power = 0.175; // 0.175 from testing
-int left_direction = 1;
-int right_direction = -1;
-double max_Power = imax_Power;
+// This function should not wait for anything to happen, it shoulmax_Powerd just set up variables and set the state or whatever and let the controller do its thing
+
+max_Power = imax_Power;
 QAngle angle_goal = iangle;
 controller_state = TurnState::FULLPOWER;
+angle_difference = angle_goal - odometry->get_state().pos.facing;
+target_relative_original = angle_difference - 360 * std::floor((angle_difference.convert(degree) + 180) / 360)*degree;
+target_relative = angle_difference - 360 * std::floor((angle_difference.convert(degree) + 180) / 360)*degree;
 
-//** NEED TO CHECK ANGLE DIFFERENCE AND UPDATE MOTOR DIRECTION
-}
+    if (angle_difference < 0*degree)
+    { // if direction is negative, flip directions
+        left_direction = -1;
+        right_direction = 1;
+    }
+    else{
+        left_direction = 1;
+        right_direction = -1;
+    }}
 void CampbellTurn::step() {
-    //OdometryState state = odometry->get_state();
+    OdometryState state = odometry->get_state();
 
     // Full power turn
     if (controller_state == TurnState::FULLPOWER){
-        //chassis->drive_tank(max_Power * left_direction * 1.0, max_Power * right_direction * 1.0);
+        chassis->drive_tank(left_direction * 1.0, max_Power * right_direction * 1.0);
     }
     // Low power turn
     else if (controller_state == TurnState::COAST)
     {
-        //chassis->drive_tank(left_direction * coast_turn_power, right_direction * coast_turn_power);
+        chassis->drive_tank(left_direction * coast_turn_power, right_direction * coast_turn_power);
     }
     // Activating hard brakes
     else if (controller_state == TurnState::BRAKE)
     {
-        /* BRAKE */
+        chassis->set_brake_harsh();
+        chassis->stop();
+        pros::delay(250);
+        chassis->set_brake_coast();
     }
     // Disable motors/no power (normal coast mode)
     else if (controller_state == TurnState::INACTIVE)
@@ -53,7 +63,17 @@ void CampbellTurn::step() {
     }
     
     // Check Current angle/angular velocity and set controller_state
-    
+    target_relative = angle_difference - 360 * std::floor((angle_difference.convert(degree) + 180) / 360)*degree;
+    if  (fabs(target_relative.convert(degree)) > fabs(odometry->get_state().vel.angular.convert(degree/second) * kP1) && controller_state == TurnState::FULLPOWER){
+        controller_state = TurnState::FULLPOWER;
+    }
+    else if  (fabs(target_relative.convert(degree)) > fabs(odometry->get_state().vel.angular.convert(degree/second) * kP2) && controller_state != TurnState::BRAKE){
+        controller_state = TurnState::COAST;
+    }
+    else{
+        controller_state = TurnState::BRAKE;
+    }
+
     
 // Implement the actual controller logic
 // This should basically behave as a "state transition" function

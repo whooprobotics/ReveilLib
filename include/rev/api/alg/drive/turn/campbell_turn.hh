@@ -9,9 +9,10 @@
 namespace rev {
 class CampbellTurn : public Turn, public AsyncRunnable { // Rename this if you want
 public:
- CampbellTurn(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry, double ikP1, double iKp2); // Constructor function
+ CampbellTurn(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry, double ikP1, double ikP2); // Constructor function
  void turn_to_target_absolute(double max_Power, QAngle angle) override; // You need one of these for each virtual method in your interface
  void step() override; // This is also needed because it is an Async thing
+ 
 private:
  std::shared_ptr<Chassis> chassis;
  std::shared_ptr<Odometry> odometry;
@@ -19,7 +20,14 @@ private:
  // A good example would be to put your kP1 and kP2 values here too
  double kP1;
  double kP2;
+ double max_Power = 0;
  TurnState controller_state{INACTIVE};
+ QAngle angle_difference;
+ QAngle target_relative_original;
+ QAngle target_relative;
+ double coast_turn_power = 0.175; // 0.175 from testing
+ int left_direction = 0;
+ int right_direction = 0;
  // If you do that, you will also need to add them to your constructor signature so you can set them in the constructor
  // It would also be a good idea to have an int or something to store the current state of the controller here. You'll see why in a minute
 
