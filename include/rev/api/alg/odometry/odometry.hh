@@ -24,6 +24,7 @@ struct OdometryState {
 };
 
 class Odometry {
+  public:
   /**
    * @brief Get the current position and velocity of the robot
    *
