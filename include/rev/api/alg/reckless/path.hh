@@ -19,5 +19,7 @@ struct RecklessPathSegment {
 
 struct RecklessPath {
     std::vector<RecklessPathSegment> segments;
+
+    RecklessPath() {}
 };
 }
