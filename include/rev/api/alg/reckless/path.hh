@@ -9,9 +9,9 @@
 
 namespace rev {
 struct RecklessPathSegment {
-    std::unique_ptr<Motion> motion;
-    std::unique_ptr<Correction> correction;
-    std::unique_ptr<Stop> stop;
+    std::shared_ptr<Motion> motion;
+    std::shared_ptr<Correction> correction;
+    std::shared_ptr<Stop> stop;
 
     Position target_point;
     QLength drop_early;
@@ -20,6 +20,8 @@ struct RecklessPathSegment {
 struct RecklessPath {
     std::vector<RecklessPathSegment> segments;
 
-    RecklessPath() {}
+    RecklessPath() {
+        segments = std::vector<RecklessPathSegment>();
+    }
 };
 }
