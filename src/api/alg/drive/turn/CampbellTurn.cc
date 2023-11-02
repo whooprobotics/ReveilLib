@@ -53,14 +53,22 @@ void CampbellTurn::step() {
     {
         chassis->set_brake_harsh();
         chassis->stop();
-        pros::delay(250);
-        chassis->set_brake_coast();
+        if (brake_start_time == -1)
+            brake_start_time = pros::millis();
+        
+       // pros::delay(250); //pros::delay bad >:(
+        if (brake_start_time < pros::millis() - 250 ){ //250 ms until brake turns off
+            chassis->set_brake_coast();
+            controller_state = TurnState::INACTIVE; // set inactive and =-1 so it can be called again
+            brake_start_time = -1;
+        }
+        
     }
-    // Disable motors/no power (normal coast mode)
-    else if (controller_state == TurnState::INACTIVE)
-    {
-        chassis->drive_tank(0,0);
-    }
+    // Disable motors/no power (normal coast mode) // is bad -> can interfer with other code trying to manage chassis
+    // else if (controller_state == TurnState::INACTIVE)
+    // {
+    //     chassis->drive_tank(0,0);
+    // }
     
     // Check Current angle/angular velocity and set controller_state
     target_relative = angle_difference - 360 * std::floor((angle_difference.convert(degree) + 180) / 360)*degree;
