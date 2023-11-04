@@ -7,6 +7,11 @@
 #include "rev/api/hardware/chassis/chassis.hh"  // For chassis model
 
 namespace rev {
+/**
+ * @brief Class implementing Walker Campbell's turn algorithm under the Turn
+ * interface
+ *
+ */
 class CampbellTurn : public Turn,
                      public AsyncRunnable {  // Rename this if you want
  public:
