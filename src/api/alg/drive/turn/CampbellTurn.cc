@@ -18,13 +18,13 @@ CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis,
   chassis = ichassis;
   odometry = iodometry;
 }
-void CampbellTurn::turn_to_target_absolute(double imax_Power, QAngle iangle) {
+void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
   // Implement the **NON-BLOCKING** turn to target absolute function
   // This function should not wait for anything to happen, it shoulmax_Powerd
   // just set up variables and set the state or whatever and let the controller
   // do its thing
 
-  max_Power = imax_Power;
+  max_power = imax_power;
   QAngle angle_goal = iangle;
   controller_state = TurnState::FULLPOWER;
   angle_difference = angle_goal - odometry->get_state().pos.facing;
@@ -50,7 +50,7 @@ void CampbellTurn::step() {
   // Full power turn
   if (controller_state == TurnState::FULLPOWER) {
     chassis->drive_tank(left_direction * 1.0,
-                        max_Power * right_direction * 1.0);
+                        max_power * right_direction * 1.0);
   }
   // Low power turn
   else if (controller_state == TurnState::COAST) {
@@ -59,14 +59,17 @@ void CampbellTurn::step() {
   }
   // Activating hard brakes
   else if (controller_state == TurnState::BRAKE) {
-    chassis->set_brake_harsh();
-    chassis->stop();
-    if (brake_start_time == -1)
+    // If we haven't started our braking, we need to get the current time and
+    // then start braking
+    if (brake_start_time == -1) {
       brake_start_time = pros::millis();
-
-    // pros::delay(250); //pros::delay bad >:(
+      chassis->set_brake_harsh();
+      chassis->stop();
+    }
+    // pros::delay(250); //pros::delay shouldn't be used in non-blocking
+    // functions
     if (brake_start_time <
-        pros::millis() - 250) {  // 250 ms until brake turns off
+        pros::millis() - 250) {  // Check if 250ms has elapsed
       chassis->set_brake_coast();
       controller_state = TurnState::INACTIVE;  // set inactive and =-1 so it can
                                                // be called again
@@ -84,18 +87,24 @@ void CampbellTurn::step() {
   target_relative =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+  // Remain in fullpower if we are currently in fullpower and we arent ready to
+  // advance
   if (fabs(target_relative.convert(degree)) >
           fabs(odometry->get_state().vel.angular.convert(degree / second) *
                kP1) &&
       controller_state == TurnState::FULLPOWER) {
     controller_state = TurnState::FULLPOWER;
-  } else if (fabs(target_relative.convert(degree)) >
-                 fabs(odometry->get_state().vel.angular.convert(degree /
-                                                                second) *
-                      kP2) &&
-             controller_state != TurnState::BRAKE) {
+  }
+  // Start slowdown if we are ready for that and we haven't started
+  // harsh-braking
+  else if (fabs(target_relative.convert(degree)) >
+               fabs(odometry->get_state().vel.angular.convert(degree / second) *
+                    kP2) &&
+           controller_state != TurnState::BRAKE) {
     controller_state = TurnState::COAST;
-  } else {
+  }
+  // Harsh-brake if we're at that point
+  else {
     controller_state = TurnState::BRAKE;
   }
 

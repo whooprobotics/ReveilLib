@@ -14,7 +14,7 @@ class CampbellTurn : public Turn,
                std::shared_ptr<Odometry> iodometry,
                double ikP1,
                double ikP2);  // Constructor function
-  void turn_to_target_absolute(double max_Power, QAngle angle)
+  void turn_to_target_absolute(double max_power, QAngle angle)
       override;  // You need one of these for each virtual method in your
                  // interface
   void step() override;  // This is also needed because it is an Async thing
@@ -27,7 +27,7 @@ class CampbellTurn : public Turn,
   // kP2 values here too
   double kP1;
   double kP2;
-  double max_Power = 0;
+  double max_power = 0;
   TurnState controller_state{TurnState::INACTIVE};
   QAngle angle_difference;
   QAngle target_relative_original;

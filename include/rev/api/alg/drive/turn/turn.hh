@@ -9,7 +9,7 @@ namespace rev {  // The namespace is just to separate all of the reveillib code
 //  namespace
 class Turn {
  public:
-  virtual void turn_to_target_absolute(double max_Power, QAngle angle) = 0;
+  virtual void turn_to_target_absolute(double max_power, QAngle angle) = 0;
 };
 
 enum class TurnState { INACTIVE, FULLPOWER, COAST, BRAKE };
