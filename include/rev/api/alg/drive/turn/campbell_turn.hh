@@ -19,9 +19,21 @@ class CampbellTurn : public Turn,
                std::shared_ptr<Odometry> iodometry,
                double ikP1,
                double ikP2);  // Constructor function
+
+  /**
+   * @brief Starts a turn towards an absolute heading
+   *
+   * @param max_power The maximum power the controller will output
+   * @param angle The absolute heading the controller will target
+   */
   void turn_to_target_absolute(double max_power, QAngle angle)
       override;  // You need one of these for each virtual method in your
                  // interface
+
+  /**
+   * @brief Steps the controller, for use with AsyncRunner.
+   *
+   */
   void step() override;  // This is also needed because it is an Async thing
 
  private:

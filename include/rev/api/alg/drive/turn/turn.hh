@@ -13,6 +13,12 @@ namespace rev {  // The namespace is just to separate all of the reveillib code
  */
 class Turn {
  public:
+  /**
+   * @brief Starts a turn towards an absolute heading
+   *
+   * @param max_power The maximum power the controller will output
+   * @param angle The absolute heading the controller will target
+   */
   virtual void turn_to_target_absolute(double max_power, QAngle angle) = 0;
 };
 
