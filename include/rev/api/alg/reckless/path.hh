@@ -22,5 +22,6 @@ struct RecklessPath {
   std::vector<RecklessPathSegment> segments;
 
   RecklessPath() { segments = std::vector<RecklessPathSegment>(); }
+  RecklessPath& with_segment(RecklessPathSegment segment);
 };
 }  // namespace rev

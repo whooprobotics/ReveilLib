@@ -125,4 +125,9 @@ bool Reckless::is_completed() {
 void Reckless::breakout() {
   status = RecklessStatus::DONE;
 }
+
+RecklessPath& RecklessPath::with_segment(RecklessPathSegment segment) {
+  segments.push_back(segment);
+  return *this;
+}
 }  // namespace rev
