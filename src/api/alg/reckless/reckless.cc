@@ -1,6 +1,19 @@
 #include "rev/api/alg/reckless/reckless.hh"
 namespace rev {
     void Reckless::step() {
+        if(is_completed()) // Don't step the controller if it is not running for obvious reasons
+            return;
+
+        // If we are out of steps to complete, don't try to complete a step
+        if(current_segment >= current_path.segments.size()) {
+            status = RecklessStatus::DONE;
+            return;
+        }
+
+        OdometryState current_state = odometry->get_state();
+
+        auto seg = current_path.segments.at(current_segment);
+        
         // TODO: define step function
     }
 
@@ -10,6 +23,7 @@ namespace rev {
     void Reckless::go(RecklessPath path) {
         if(!is_completed())
             breakout();
+        current_segment = 0;
         current_path = path;
         status = RecklessStatus::ACTIVE;
     }

@@ -46,8 +46,11 @@ class Reckless : public AsyncRunnable {
 
     private:
     std::shared_ptr<Chassis> chassis;
+    std::shared_ptr<Odometry> odometry;
     RecklessPath current_path;
     RecklessStatus status {RecklessStatus::DONE};
+
+    size_t current_segment {0};
 };
 }
 
