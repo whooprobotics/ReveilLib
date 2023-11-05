@@ -53,5 +53,6 @@ class Reckless : public AsyncRunnable {
 
   size_t current_segment{0};
   long long brake_time = -1;
+  double partial_progress{-1.0};
 };
 }  // namespace rev

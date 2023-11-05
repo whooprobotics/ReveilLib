@@ -9,6 +9,8 @@ void Reckless::step() {
   // If we are out of steps to complete, don't try to complete a step
   if (current_segment >= current_path.segments.size()) {
     status = RecklessStatus::DONE;
+    partial_progress = -1.0;
+    current_segment = 0;
     return;
   }
 
@@ -68,7 +70,20 @@ void Reckless::step() {
       // Safety, should never matter
       brake_time = -1;
       break;
-  }
+  }  // switch (current_stop_state) {
+
+  // Update progress
+  QLength csx = current_state.pos.x - seg.start_point.x;
+  QLength csy = current_state.pos.y - seg.start_point.y;
+
+  QLength tsx = seg.target_point.x - seg.start_point.x;
+  QLength tsy = seg.target_point.y - seg.start_point.y;
+
+  auto csts = csx * tsx + csy * tsy;
+  auto tsts = tsx * tsx + tsy * tsy;
+  Number current_segment_progress = csts / tsts;
+  partial_progress =
+      (double)current_segment + current_segment_progress.convert(number);
 }
 
 /**
@@ -96,8 +111,7 @@ RecklessStatus Reckless::get_status() {
  * invoked a harsh stop
  */
 double Reckless::progress() {
-  // TODO: Implement progress
-  return 0.0;
+  return partial_progress;
 }
 /**
  * This function returns true if the status is DONE, and false otherwise
