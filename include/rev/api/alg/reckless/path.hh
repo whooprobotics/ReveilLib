@@ -16,6 +16,19 @@ struct RecklessPathSegment {
   Position start_point;
   Position target_point;
   QLength drop_early;
+
+  RecklessPathSegment(std::shared_ptr<Motion> imotion,
+                      std::shared_ptr<Correction> icorrection,
+                      std::shared_ptr<Stop> istop,
+                      Position itarget_point,
+                      QLength idrop_early = 0 * inch)
+      : motion(imotion),
+        correction(icorrection),
+        stop(istop),
+        target_point(itarget_point),
+        drop_early(idrop_early) {
+    start_point = {0_in, 0_in, 0_deg};
+  }
 };
 
 struct RecklessPath {
