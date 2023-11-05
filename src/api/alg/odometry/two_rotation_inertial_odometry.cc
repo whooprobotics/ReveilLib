@@ -1,4 +1,7 @@
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
+#include "pros/error.h"
+#include <cerrno>
+#include <iostream>
 
 namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
@@ -49,6 +52,9 @@ void TwoRotationInertialOdometry::step() {
   double longitude_ticks = (double)(longitudinal_sensor.get_position()) / 100;
   double latitude_ticks = (double)(lateral_sensor.get_position()) / 100;
   double heading_ticks = inertial.get_heading();
+
+
+  if(std::isnan(heading_ticks)) heading_ticks = heading_ticks_last;
   int32_t time = pros::millis();
 
   // Take the mutex so we can make sure things don't get race conditioned
@@ -66,8 +72,24 @@ void TwoRotationInertialOdometry::step() {
   heading_ticks_last = heading_ticks;
   time_last = time;
 
+  if(heading_ticks == PROS_ERR_F) {
+    heading_ticks_last = 0;
+    current_position_mutex.give();
+    return;
+  }
+
   // Get global facing angle
   double facing = heading_ticks - heading_ticks_init;
+
+  // Handle NAN
+  if(std::isnan(d_heading_ticks))
+    d_heading_ticks = 0.0;
+  
+  if(std::isnan(d_longitudinal_ticks))
+    d_longitudinal_ticks = 0.0;
+
+  if(std::isnan(d_latitude_ticks))
+    d_latitude_ticks = 0.0;
 
   // Early exit/skip iteration if no changes
   if (d_longitudinal_ticks == 0.0 && d_latitude_ticks == 0.0 &&
