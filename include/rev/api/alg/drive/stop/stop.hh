@@ -4,7 +4,7 @@
 
 namespace rev {
 
-enum class stop_state { GO, COAST, BRAKE };
+enum class stop_state { GO, COAST, BRAKE, EXIT };
 
 class Stop {
  public:

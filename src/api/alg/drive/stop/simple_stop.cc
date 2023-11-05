@@ -27,7 +27,8 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
 
   // If we've passed the target, its stop time
   if (longitudinal_distance.get_value() < 0)
-    return stop_state::BRAKE;
+    return harsh_threshold.convert(second) > 0.01 ? stop_state::BRAKE
+                                                  : stop_state::EXIT;
 
   // Now for the other things
   if (longitudinal_speed * harsh_threshold >= longitudinal_distance)
