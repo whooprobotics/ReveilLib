@@ -54,7 +54,9 @@ void opcontrol() {
     AsyncRunner turn_runner (turnc);
 
     pros::delay(2000);
-    turnc->turn_to_target_absolute(0.7, 90_deg);
+    turnc->turn_to_target_absolute(0.7, -15_deg);
+    //pros::delay(2000);
+    turnc->turn_to_target_absolute(0.7, -30_deg);
 
     while(true) {
         //printf("loop\n");

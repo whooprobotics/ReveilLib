@@ -26,16 +26,21 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
 
   max_power = imax_power;
   angle_goal = iangle;
+
   angle_difference = angle_goal - odometry->get_state().pos.facing;
+
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+
+  angle_goal = odometry->get_state().pos.facing + target_relative_original;
+
   target_relative =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
   controller_state = TurnState::FULLPOWER;
 
-  if (angle_difference <
+  if (target_relative <
       0 * degree) {  // if direction is negative, flip directions
     left_direction = -1;
     right_direction = 1;
