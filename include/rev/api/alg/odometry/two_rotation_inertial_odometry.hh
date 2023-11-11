@@ -37,7 +37,7 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   pros::Imu inertial;  // Inertial sensor from which the robot yaw will be read
 
   pros::Mutex current_position_mutex;
-  OdometryState current_position;
+  OdometryState current_position {{0_in, 0_in, 0_deg}, {0_mps, 0_mps, 0_deg / second}};
 
   // Used for getting differences
   double longitude_ticks_last;
