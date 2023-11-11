@@ -17,6 +17,8 @@ pros::Rotation rgt (16, true);
 pros::Imu imu (14);
 pros::Controller controller (pros::controller_id_e_t::E_CONTROLLER_MASTER);
 
+rev::SkidSteerChassis chassis (leftd, rightd);
+
 pros::Motor test_motor (15);
 using namespace rev;
 
@@ -48,12 +50,17 @@ void opcontrol() {
 
     while(true) {
         //printf("loop\n");
-        auto pose = odom->get_state().pos;
-        std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in, " << pose.facing.convert(degree) << "deg" << std::endl;
+        //auto pose = odom->get_state().pos;
+        //std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in, " << pose.facing.convert(degree) << "deg" << std::endl;
 
-        if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
-            odom->set_position({215_in, 49_in, 16_deg});
+        //if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
+        //    odom->set_position({215_in, 49_in, 16_deg});
 
-        pros::delay(250);
+        chassis.drive_arcade(
+            (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_LEFT_Y)/100,
+            (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_RIGHT_X)/100
+        );
+
+        pros::delay(10);
     }
 }
