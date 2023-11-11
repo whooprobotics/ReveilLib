@@ -5,6 +5,13 @@
 
 //#include <iostream>
 
+// Slingo test
+// MotorGroup drive_left = {15, 18, -19, -20};
+// MotorGroup drive_right = {4, 6, -7, -9};
+
+pros::Motor_Group leftd ({15, 18, -19, -20});
+pros::Motor_Group rightd ({4, 6, -7, -9});
+
 pros::Rotation fwd (5);
 pros::Rotation rgt (16, true);
 pros::Imu imu (14);
@@ -42,6 +49,9 @@ void opcontrol() {
         //printf("loop\n");
         auto pose = odom->get_state().pos;
         std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in, " << pose.facing.convert(degree) << "deg" << std::endl;
+
+        if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
+            odom->set_position({215_in, 49_in, 16_deg});
 
         pros::delay(250);
     }

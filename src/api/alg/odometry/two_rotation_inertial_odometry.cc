@@ -127,7 +127,7 @@ void TwoRotationInertialOdometry::step() {
 
   // Average angle
   double avga = heading_ticks - d_heading_ticks;
-  avga - 360 * std::floor((avga + 180) / 360);
+  avga -= 360 * std::floor((avga + 180) / 360);
 
   // Polar form for rotating
   QLength polar_r = rev::sqrt(local_off_lat * local_off_lat +
@@ -143,6 +143,10 @@ void TwoRotationInertialOdometry::step() {
   QSpeed vX = dX / (d_time * millisecond);
   QSpeed vY = dY / (d_time * millisecond);
   QAngularSpeed w = d_heading_ticks * degree / (d_time * millisecond);
+
+
+  // Constrain facing to +-180 degrees
+  facing = facing - 360 * std::floor((facing + 180) / 360);
 
   // Update position information
   current_position.pos.x += dX;
