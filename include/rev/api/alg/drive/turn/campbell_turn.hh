@@ -53,6 +53,7 @@ class CampbellTurn : public Turn,
   int left_direction = 0;
   int right_direction = 0;
   int brake_start_time = -1;
+  QAngle angle_goal = 0_deg;
   // If you do that, you will also need to add them to your constructor
   // signature so you can set them in the constructor It would also be a good
   // idea to have an int or something to store the current state of the

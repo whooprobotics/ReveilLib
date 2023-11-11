@@ -2,6 +2,7 @@
 #include "rev/rev.hh"
 #include "rev/api/units/all_units.hh"
 #include "rev/api/async/async_runner.hh"
+#include "rev/api/alg/drive/turn/campbell_turn.hh"
 
 //#include <iostream>
 
@@ -17,7 +18,7 @@ pros::Rotation rgt (16, true);
 pros::Imu imu (14);
 pros::Controller controller (pros::controller_id_e_t::E_CONTROLLER_MASTER);
 
-rev::SkidSteerChassis chassis (leftd, rightd);
+std::shared_ptr<rev::SkidSteerChassis> chassis = std::make_shared<rev::SkidSteerChassis>(leftd, rightd);
 
 pros::Motor test_motor (15);
 using namespace rev;
@@ -45,8 +46,15 @@ void opcontrol() {
         0.5_in
     );
 
-    odom->set_position({215_in, 49_in, 16_deg});
+    //odom->set_position({215_in, 49_in, 16_deg});
     AsyncRunner odom_runner (odom);
+
+    std::shared_ptr<rev::CampbellTurn> turnc = std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
+
+    AsyncRunner turn_runner (turnc);
+
+    pros::delay(2000);
+    turnc->turn_to_target_absolute(0.7, 90_deg);
 
     while(true) {
         //printf("loop\n");
@@ -56,10 +64,10 @@ void opcontrol() {
         //if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
         //    odom->set_position({215_in, 49_in, 16_deg});
 
-        chassis.drive_arcade(
-            (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_LEFT_Y)/100,
-            (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_RIGHT_X)/100
-        );
+        //chassis->drive_arcade(
+        //    (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_LEFT_Y)/100,
+        //    (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_RIGHT_X)/100
+        //);
 
         pros::delay(10);
     }

@@ -25,7 +25,7 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
   // do its thing
 
   max_power = imax_power;
-  QAngle angle_goal = iangle;
+  angle_goal = iangle;
   angle_difference = angle_goal - odometry->get_state().pos.facing;
   target_relative_original =
       angle_difference -
@@ -37,11 +37,11 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
 
   if (angle_difference <
       0 * degree) {  // if direction is negative, flip directions
-    left_direction = 1;
-    right_direction = -1;
-  } else {
     left_direction = -1;
     right_direction = 1;
+  } else {
+    left_direction = 1;
+    right_direction = -1;
   }
 }
 void CampbellTurn::step() {
@@ -56,20 +56,20 @@ void CampbellTurn::step() {
   if (controller_state == TurnState::FULLPOWER) {
     chassis->drive_tank(max_power * left_direction,
                         max_power * right_direction);
-    printf("full power\n");
+    //printf("full power\n");
   }
   // Low power turn
   else if (controller_state == TurnState::COAST) {
     chassis->drive_tank(left_direction * coast_turn_power,
                         right_direction * coast_turn_power);
-    printf("Coast\n");
+    //printf("Coast\n");
   }
   // Activating hard brakes
   else if (controller_state == TurnState::BRAKE) {
     // If we haven't started our braking, we need to get the current time and
     // then start braking
     if (brake_start_time == -1) {
-      printf("start brake\n");
+      //printf("start brake\n");
       brake_start_time = pros::millis();
       chassis->set_brake_harsh();
       chassis->stop();
@@ -79,7 +79,7 @@ void CampbellTurn::step() {
     if (brake_start_time <
         pros::millis() - 250) {  // Check if 250ms has elapsed
       chassis->set_brake_coast();
-      printf("End brake\n");
+      //printf("End brake\n");
       controller_state = TurnState::INACTIVE;  // set inactive and =-1 so it can
                                                // be called again
       brake_start_time = -1;
@@ -91,6 +91,8 @@ void CampbellTurn::step() {
   // {
   //     chassis->drive_tank(0,0);
   // }
+
+  angle_difference = angle_goal - state.pos.facing;
 
   // Check Current angle/angular velocity and set controller_state
   target_relative =
@@ -106,23 +108,25 @@ void CampbellTurn::step() {
   //       printf("Setting fullpower\n");
   //   controller_state = TurnState::FULLPOWER;
   // }
-  printf("target_relative:%f\n",fabs(target_relative.convert(degree)));
-  printf("angular_velocity * k1 = %f \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
-                    kP1));
-   printf("angular_velocity * k2 = %f \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
-                    kP2));
+  //printf("target_relative:%f\n",fabs(target_relative.convert(degree)));
+  //printf("angular_velocity * k1 = %f \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
+                    //kP1));
+   //printf("angular_velocity * k2 = %f \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
+                    //kP2));
   // Start slowdown if we are ready for that and we haven't started
   // harsh-braking
-  if (fabs(target_relative.convert(degree)) >
+  if (fabs(target_relative.convert(degree)) <
                fabs(odometry->get_state().vel.angular.convert(degree / second) *
-                    kP2) &&
+                    kP1) &&
            controller_state != TurnState::BRAKE && controller_state != TurnState::COAST) {
-            printf("Setting coast\n");
+            //printf("Setting coast\n");
     controller_state = TurnState::COAST;
   }
   // Harsh-brake if we're at that point
-  else {
-    printf("Setting brake\n");
+  if (fabs(target_relative.convert(degree)) <
+               fabs(odometry->get_state().vel.angular.convert(degree / second) *
+                    kP2) && controller_state != TurnState::BRAKE) {
+    //printf("Setting brake\n");
     controller_state = TurnState::BRAKE;
   }
 
