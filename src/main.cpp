@@ -43,6 +43,7 @@ void opcontrol() {
         0.5_in
     );
 
+    odom->set_position({215_in, 49_in, 16_deg});
     AsyncRunner odom_runner (odom);
 
     while(true) {
