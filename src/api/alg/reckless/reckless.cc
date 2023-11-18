@@ -1,6 +1,8 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "pros/rtos.hpp"
 namespace rev {
+Reckless::Reckless(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry) : chassis(ichassis), odometry(iodometry) {}
+
 void Reckless::step() {
   if (is_completed())  // Don't step the controller if it is not running for
                        // obvious reasons
