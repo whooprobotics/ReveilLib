@@ -13,7 +13,7 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     Position start_state,
     QLength drop_early,
     std::tuple<double, double> powers) {
-  // Dot product shit
+  // Dot product properties are nice
   Number facingx = cos(current_state.pos.facing);
   Number facingy = sin(current_state.pos.facing);
 
@@ -21,11 +21,20 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   QLength tarposy = target_state.y - current_state.pos.y;
   QLength tarposabs = sqrt(tarposx * tarposx + tarposy * tarposy);
 
+  // Use <aob = a dot b / ||a||||b||
   Number cosang = (tarposx * facingx + tarposy * facingy) / tarposabs;
 
+  // Similarly find the angle using vector rejection dot product
+  // The unit vector 90 degrees greater than facing is (-y, x)
   QLength err_x = tarposy * facingx - tarposx * facingy;
 
+  // Invert cosine to get actual angle
   QAngle ang = acos(cosang);
+
+  // Account for if it is the other direction
+  // AKA if we... need to turn left
+  if (ang > 3.1415926535 / 2 * radian)
+    ang -= 3.1415926535 * radian;
 
   if (err_x < 0_m)
     ang = -ang;
