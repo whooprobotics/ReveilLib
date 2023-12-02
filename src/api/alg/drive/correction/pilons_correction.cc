@@ -13,14 +13,15 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
       Position start_state,
       QLength drop_early,
     std::tuple<double, double> powers) {
-  QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
-                                target_state.y - current_state.pos.y);
+  QAngle angle_to_target = atan2(target_state.y - current_state.pos.y, target_state.x - current_state.pos.x);
   // Find the x error (how far the target point is from the line the robot is
   // traveling along) This is a bit different from the PiLons
   QAngle err_a = current_state.pos.facing - angle_to_target;
   QLength distance_to_target =
-      std::sqrt(std::pow(target_state.x.convert(inch) - current_state.pos.x.convert(inch), 2) +
-           std::pow(target_state.y.convert(inch) - current_state.pos.y.convert(inch), 2)) * inch;
+      std::sqrt(
+        std::pow(target_state.x.convert(inch) - current_state.pos.x.convert(inch), 2) +
+        std::pow(target_state.y.convert(inch) - current_state.pos.y.convert(inch), 2)) 
+           * inch;
 
   // Use trig to find that other side. sin = opposite / hypotenuse, so opposite
   // = sin * hypotenuse

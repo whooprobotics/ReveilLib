@@ -1,6 +1,9 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "pros/rtos.hpp"
+#include "iostream"
 namespace rev {
+
+stop_state lsstate = stop_state::GO;
 Reckless::Reckless(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry) : chassis(ichassis), odometry(iodometry) {}
 
 void Reckless::step() {
@@ -10,9 +13,11 @@ void Reckless::step() {
 
   // If we are out of steps to complete, don't try to complete a step
   if (current_segment >= current_path.segments.size()) {
+    std::cout << "Completed motion with " << current_path.segments.size() << " segments" << std::endl;
     status = RecklessStatus::DONE;
     partial_progress = -1.0;
     current_segment = 0;
+    chassis->stop();
     return;
   }
 
@@ -25,15 +30,24 @@ void Reckless::step() {
   auto current_stop_state = seg.stop->get_stop_state(
       current_state, seg.target_point, seg.start_point, seg.drop_early);
 
+  if(current_stop_state != lsstate) {
+    std::cout << "State change occured to " << (current_stop_state == stop_state::GO ? "GO" : current_stop_state == stop_state::COAST ? "COAST" : "BRAKE") << std::endl;
+    lsstate = current_stop_state;
+  }
+
   switch (current_stop_state) {
     case stop_state::GO: {
-      auto [power_left, power_right] = seg.motion->gen_powers(
+      auto pows = seg.motion->gen_powers(
           current_state, seg.target_point, seg.start_point, seg.drop_early);
+      auto [power_left, power_right] = seg.correction->apply_correction(
+        current_state, seg.target_point, seg.start_point, seg.drop_early, pows
+      );
       chassis->drive_tank(power_left, power_right);
       // Safety, should never matter
       brake_time = -1;
       break;
     }
+    break;
     case stop_state::COAST: {
       double coast_power = seg.stop->get_coast_power();
       chassis->drive_tank(coast_power, coast_power);
@@ -41,6 +55,7 @@ void Reckless::step() {
       brake_time = -1;
       break;
     }
+    break;
     case stop_state::BRAKE: {
       // Check if we havent started braking yet
       if (brake_time == -1) {
@@ -60,6 +75,7 @@ void Reckless::step() {
       }
       break;
     }
+    break;
     // Just like brake but without the braking
     case stop_state::EXIT:
       chassis->set_brake_coast();
@@ -97,6 +113,7 @@ void Reckless::go(RecklessPath path) {
   current_segment = 0;
   current_path = path;
   status = RecklessStatus::ACTIVE;
+  std::cout << "Started motion with " << current_path.segments.size() << " segments" << std::endl;
 }
 
 /**

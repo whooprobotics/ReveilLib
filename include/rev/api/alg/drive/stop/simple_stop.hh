@@ -36,6 +36,7 @@ class SimpleStop : public Stop {
   const QTime harsh_threshold;
   const QTime coast_threshold;
   const double coast_power;
+  stop_state stop_state_last {stop_state::GO};
 };
 
 }  // namespace rev
