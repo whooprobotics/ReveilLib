@@ -76,21 +76,46 @@ void opcontrol() {
 
     reckless->go(RecklessPath().with_segment(
         RecklessPathSegment (
-            std::make_shared<ConstantMotion>(0.5),
-            std::make_shared<PilonsCorrection>(8, 0.5_in),
-            std::make_shared<SimpleStop>(0.3_s, 0.7_s, 0.2),
-            {2_ft, 2_ft, 0_deg}
+            std::make_shared<ConstantMotion>(-0.7),
+            std::make_shared<PilonsCorrection>(2, 0.5_in),
+            std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+            {-2_ft, 0_ft, 0_deg},
+            4_in
         )
 
-    ));
+    ).with_segment(
+        RecklessPathSegment (
+            std::make_shared<ConstantMotion>(-0.7),
+            std::make_shared<PilonsCorrection>(2, 0.5_in),
+            std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+            {-4_ft, -1_ft, 45_deg},
+            4_in
+        )
+    ).with_segment(
+        RecklessPathSegment (
+            std::make_shared<ConstantMotion>(-0.5),
+            std::make_shared<PilonsCorrection>(2, 0.5_in),
+            std::make_shared<SimpleStop>(0_s, 0.2_s, 0.3),
+            {-8_ft, -5_ft, 45_deg},
+            8_in
+        )
+    ).with_segment(
+        RecklessPathSegment (
+            std::make_shared<ConstantMotion>(-0.4),
+            std::make_shared<PilonsCorrection>(2, 0.5_in),
+            std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.2),
+            {-10_ft, -6_ft, 0_deg}
+        )
+    )
+    );
 
-    while(!reckless->is_completed()) pros::delay(20);
+    //while(!reckless->is_completed()) pros::delay(20);
     printf("Completed motion");
 
     while(true) {
         //printf("loop\n");
         auto pose = odom->get_state().pos;
-        std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in" << std::endl;
+        std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in," << pose.facing.convert(degree) << "deg" << std::endl;
 
         //if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
         //    odom->set_position({215_in, 49_in, 16_deg});

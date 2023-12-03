@@ -33,8 +33,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
   // Account for if it is the other direction
   // AKA if we... need to turn left
-  if (ang > 3.1415926535 / 2 * radian)
-    ang -= 3.1415926535 * radian;
+  //if (ang > 3.1415926535 / 2 * radian)
+  //  ang -= 3.1415926535 * radian;
 
   if (err_x < 0_m)
     ang = -ang;
