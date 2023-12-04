@@ -14,19 +14,35 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     QLength drop_early,
     std::tuple<double, double> powers) {
   // Dot product properties are nice
-  Number facingx = cos(current_state.pos.facing);
-  Number facingy = sin(current_state.pos.facing);
+  Number x_dot = cos(current_state.pos.facing);
+  Number y_dot = sin(current_state.pos.facing);
+
+  // Backwards driving handling
+  // If the final state is somewhere behind the start state, we need to invert the facing vector
+  Number xi_facing = cos(start_state.facing);
+  Number yi_facing = sin(start_state.facing);
+
+  // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
+  QLength initial_longitudinal_distance = xi_facing * (target_state.x - start_state.x) + yi_facing * (target_state.y - start_state.y);
+
+  // If its negative, we're goin backwards
+  if(initial_longitudinal_distance.get_value() < 0) {
+    x_dot = -x_dot;
+    y_dot = -y_dot;
+  }
+
+  
 
   QLength tarposx = target_state.x - current_state.pos.x;
   QLength tarposy = target_state.y - current_state.pos.y;
   QLength tarposabs = sqrt(tarposx * tarposx + tarposy * tarposy);
 
   // Use <aob = a dot b / ||a||||b||
-  Number cosang = (tarposx * facingx + tarposy * facingy) / tarposabs;
+  Number cosang = (tarposx * x_dot + tarposy * y_dot) / tarposabs;
 
   // Similarly find the angle using vector rejection dot product
   // The unit vector 90 degrees greater than facing is (-y, x)
-  QLength err_x = tarposy * facingx - tarposx * facingy;
+  QLength err_x = tarposy * x_dot - tarposx * y_dot;
 
   // Invert cosine to get actual angle
   QAngle ang = acos(cosang);

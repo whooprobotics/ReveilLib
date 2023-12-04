@@ -20,6 +20,21 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
   Number x_dot = cos(current_state.pos.facing);
   Number y_dot = sin(current_state.pos.facing);
 
+  // If the final state is somewhere behind the start state, we need to invert the facing vector
+  Number xi_facing = cos(start_state.facing);
+  Number yi_facing = sin(start_state.facing);
+
+  // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
+  QLength initial_longitudinal_distance = xi_facing * (target_state.x - start_state.x) + yi_facing * (target_state.y - start_state.y);
+
+  // If its negative, we're goin backwards
+  if(initial_longitudinal_distance.get_value() < 0) {
+    x_dot = -x_dot;
+    y_dot = -y_dot;
+  }
+  
+  // Now actually calculate the other stuff
+
   QLength longitudinal_distance =
       x_dot * x_distance + y_dot * y_distance - drop_early;
   QSpeed longitudinal_speed =

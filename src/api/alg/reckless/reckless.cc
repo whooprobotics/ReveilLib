@@ -49,7 +49,18 @@ void Reckless::step() {
     }
     break;
     case stop_state::COAST: {
+
+      // If the final state is somewhere behind the start state, we need to invert the facing vector
+      Number xi_facing = cos(seg.start_point.facing);
+      Number yi_facing = sin(seg.start_point.facing);
+
+      // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
+      QLength initial_longitudinal_distance = xi_facing * (seg.target_point.x - seg.start_point.x) + yi_facing * (seg.target_point.y - seg.start_point.y);
+
+      
       double coast_power = seg.stop->get_coast_power();
+      // If its negative, we're goin backwards
+      if(initial_longitudinal_distance.get_value() < 0) coast_power = -coast_power;
       chassis->drive_tank(coast_power, coast_power);
       // Safety, should never matter, just like Josh DeBerry
       brake_time = -1;
