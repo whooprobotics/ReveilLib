@@ -78,33 +78,18 @@ void opcontrol() {
         RecklessPathSegment (
             std::make_shared<ConstantMotion>(-0.7),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0_s, -0.2_s, -0.4),
+            std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
             {-2_ft, 0_ft, 0_deg},
-            4_in
+            8_in
         )
 
     ).with_segment(
         RecklessPathSegment (
             std::make_shared<ConstantMotion>(-0.7),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0_s, -0.2_s, -0.4),
+            std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
             {-4_ft, -1_ft, 45_deg},
-            4_in
-        )
-    ).with_segment(
-        RecklessPathSegment (
-            std::make_shared<ConstantMotion>(-0.5),
-            std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0_s, -0.2_s, -0.3),
-            {-8_ft, -5_ft, 45_deg},
-            8_in
-        )
-    ).with_segment(
-        RecklessPathSegment (
-            std::make_shared<ConstantMotion>(-0.4),
-            std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0.1_s, -0.2_s, -0.2),
-            {-10_ft, -6_ft, 0_deg}
+            0_in
         )
     )
     );
