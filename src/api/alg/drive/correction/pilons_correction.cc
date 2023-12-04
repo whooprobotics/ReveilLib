@@ -1,5 +1,6 @@
 #include "rev/api/alg/drive/correction/pilons_correction.hh"
 #include <cmath>
+#include <iostream>
 #include <tuple>
 #include "rev/api/units/q_angle.hh"
 #include "rev/api/units/q_length.hh"
@@ -25,13 +26,18 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
   QLength initial_longitudinal_distance = xi_facing * (target_state.x - start_state.x) + yi_facing * (target_state.y - start_state.y);
 
+
+  char sgn_go = 1;
+
   // If its negative, we're goin backwards
   if(initial_longitudinal_distance.get_value() < 0) {
     x_dot = -x_dot;
     y_dot = -y_dot;
+    sgn_go = -1;
+    //std::cout << "backwardsing" << std::endl;
   }
 
-  
+
 
   QLength tarposx = target_state.x - current_state.pos.x;
   QLength tarposy = target_state.y - current_state.pos.y;
@@ -47,6 +53,9 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   // Invert cosine to get actual angle
   QAngle ang = acos(cosang);
 
+  if(abs(ang) > 3.141592653/2 * radian)
+    std::cout << "Trying to turn too far, this is what you might call incorrect" << std::endl;
+
   // Account for if it is the other direction
   // AKA if we... need to turn left
   //if (ang > 3.1415926535 / 2 * radian)
@@ -55,10 +64,10 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   if (err_x < 0_m)
     ang = -ang;
 
-  char sgn_power = (std::get<0>(powers) + std::get<1>(powers)) >= 0 ? 1 : -1;
+  //char sgn_power = (std::get<0>(powers) + std::get<1>(powers)) >= 0 ? 1 : -1;
 
   double correction = abs(err_x) > abs(max_error)
-                          ? k_correction * ang.convert(radian) * sgn_power
+                          ? k_correction * ang.convert(radian) * sgn_go
                           : 0.0;
 
   if (correction > 0)
