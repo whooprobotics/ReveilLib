@@ -10,9 +10,14 @@ namespace rev {
 
 enum class RecklessStatus { ACTIVE, DONE };
 
+/**
+ * @brief High-speed chassis motion controller
+ *
+ */
 class Reckless : public AsyncRunnable {
  public:
-  Reckless(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> odometry);
+  Reckless(std::shared_ptr<Chassis> ichassis,
+           std::shared_ptr<Odometry> odometry);
   /**
    * The step function for the asyncrunnable. This is where the bulk of the
    * controller logic is

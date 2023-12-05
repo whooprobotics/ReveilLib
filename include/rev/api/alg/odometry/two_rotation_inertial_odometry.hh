@@ -5,6 +5,10 @@
 #include "pros/rtos.hpp"
 #include "rev/api/async/async_runnable.hh"
 namespace rev {
+/**
+ * @brief Odometry implementation using 2 tracking wheels and an inertial
+ *
+ */
 class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
  public:
   /**
@@ -38,7 +42,8 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   pros::Imu inertial;  // Inertial sensor from which the robot yaw will be read
 
   pros::Mutex current_position_mutex;
-  OdometryState current_position {{0_in, 0_in, 0_deg}, {0_mps, 0_mps, 0_deg / second}};
+  OdometryState current_position{{0_in, 0_in, 0_deg},
+                                 {0_mps, 0_mps, 0_deg / second}};
 
   // Used for getting differences
   double longitude_ticks_last;
