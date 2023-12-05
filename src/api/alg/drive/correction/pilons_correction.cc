@@ -107,8 +107,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
 
   double correction = abs(err_x) > abs(max_error)
-                          ? -k_correction * 
-                          (nearAngle(correct_angle, current_state.pos.facing) - current_state.pos.facing).get_value()
+                          ? k_correction * 
+                          (nearAngle(correct_angle, current_state.pos.facing) - current_state.pos.facing).get_value() * (isBackwards ? -1 : 1)
                           : 0.0;
 
   if (correction > 0)

@@ -91,16 +91,27 @@ void opcontrol() {
             {-4_ft, -1_ft, 45_deg},
             0_in
         )
+    ).with_segment(
+        RecklessPathSegment (
+            std::make_shared<ConstantMotion>(0.7),
+            std::make_shared<PilonsCorrection>(2, 0.5_in),
+            std::make_shared<SimpleStop>(0.07_s, 0.2_s, 0.4),
+            {0_ft, 0_ft, 0_deg},
+            0_in
+        )
+
     )
     );
 
     //while(!reckless->is_completed()) pros::delay(20);
     printf("Completed motion");
 
+    //reckless->go(RecklessPath());
+
     while(true) {
         //printf("loop\n");
         auto pose = odom->get_state().pos;
-        std::cout << pose.x.convert(inch) << "in, " << pose.y.convert(inch) << "in," << pose.facing.convert(degree) << "deg" << std::endl;
+        std::cout << pose.x.convert(foot) << "ft, " << pose.y.convert(foot) << "," << pose.facing.convert(degree) << "deg" << std::endl;
 
         //if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
         //    odom->set_position({215_in, 49_in, 16_deg});
