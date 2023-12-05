@@ -1,3 +1,4 @@
+#pragma once
 #include "odometry.hh"
 #include "pros/imu.hpp"
 #include "pros/rotation.hpp"
