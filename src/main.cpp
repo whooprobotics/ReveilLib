@@ -7,6 +7,7 @@
 #include "rev/api/alg/drive/motion/constant_motion.hh"
 #include "rev/api/alg/drive/motion/proportional_motion.hh"
 #include "rev/api/alg/drive/correction/pilons_correction.hh"
+#include "rev/api/alg/drive/motion/cascading_motion.hh"
 #include "rev/api/alg/drive/stop/simple_stop.hh"
 
 //#include <iostream>
@@ -75,18 +76,21 @@ void opcontrol() {
 
     pros::delay(2000);
 
+    const double kP = 0.0;
+    const double kB = 0.015;
+
     reckless->go(RecklessPath().with_segment(
         RecklessPathSegment (
-            std::make_shared<ProportionalMotion>(0.7, 0.3),
+            std::make_shared<CascadingMotion>(0.7, kP, kB, 60_in/second, 0.07),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+            std::make_shared<SimpleStop>(0_s, 0.3_s, 0.2),
             {-2_ft, 0_ft, 0_deg},
-            8_in
+            0_in
         )
 
     ).with_segment(
         RecklessPathSegment (
-            std::make_shared<ProportionalMotion>(0.7, 0.3),
+            std::make_shared<CascadingMotion>(0.7, kP, kB, 60_in/second, 0.07),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
             std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
             {-4_ft, -1_ft, 45_deg},
@@ -94,9 +98,9 @@ void opcontrol() {
         )
     ).with_segment(
         RecklessPathSegment (
-            std::make_shared<ProportionalMotion>(0.7, 0.3),
+            std::make_shared<CascadingMotion>(0.7, kP, kB, 60_in/second, 0.07),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
-            std::make_shared<SimpleStop>(0.07_s, 0.2_s, 0.4),
+            std::make_shared<SimpleStop>(0.075_s, 0.2_s, 0.4),
             {0_ft, 0_ft, 0_deg},
             0_in
         )
