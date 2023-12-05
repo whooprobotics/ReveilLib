@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classrev_1_1Chassis.html" title=" " alt="" coords="5,5,98,31"/>
+<area shape="rect" id="Node000000" href="$classrev_1_1AsyncRunnable.html" title=" " alt="" coords="5,55,141,80"/>
+<area shape="rect" id="Node000001" href="$classrev_1_1CampbellTurn.html" title="Class implementing Walker Campbell&#39;s turn algorithm under the Turn interface." alt="" coords="205,5,330,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="141,48,213,29,214,34,142,53"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1Reckless.html" title=" " alt="" coords="218,55,317,80"/>
+<area shape="poly" id="edge2_Node000000_Node000003" title=" " alt="" coords="156,65,217,65,217,70,156,70"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1TwoRotationInertialOdometry.html" title=" " alt="" coords="189,105,346,145"/>
+<area shape="poly" id="edge3_Node000000_Node000004" title=" " alt="" coords="135,83,197,101,195,106,133,88"/>
+<area shape="rect" id="Node000005" href="$classrev_1_1Odometry.html" title=" " alt="" coords="22,112,124,138"/>
+<area shape="poly" id="edge4_Node000005_Node000004" title=" " alt="" coords="139,122,188,122,188,128,139,128"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Turn.html" title="Interface for turn controllers." alt="" coords="37,5,109,31"/>
+<area shape="poly" id="edge5_Node000002_Node000001" title=" " alt="" coords="124,16,204,16,204,21,124,21"/>
 </map>

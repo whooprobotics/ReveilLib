@@ -1,0 +1,5 @@
+<map id="rev::CascadingMotion" name="rev::CascadingMotion">
+<area shape="rect" id="Node000001" title="Motion class in which the outputs attempt to approach a specific velocity." alt="" coords="5,79,151,105"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Motion.html" title="Interface for generating raw motor powers." alt="" coords="36,5,120,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,46,81,79,75,79,75,46"/>
+</map>

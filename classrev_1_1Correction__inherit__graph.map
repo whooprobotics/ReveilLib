@@ -1,7 +1,7 @@
 <map id="rev::Correction" name="rev::Correction">
 <area shape="rect" id="Node000001" title="Interface for correction algorithms." alt="" coords="91,5,196,31"/>
 <area shape="rect" id="Node000002" href="$classrev_1_1NoCorrection.html" title="Dummy class implementing Correction that does nothing." alt="" coords="5,79,127,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,43,81,81,77,77,118,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,44,81,81,77,77,117,40"/>
 <area shape="rect" id="Node000003" href="$classrev_1_1PilonsCorrection.html" title="Implements the PiLons Correction Algorithm used by team 5225A in VRC In The Zone." alt="" coords="151,79,291,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,39,210,77,206,81,165,43"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,40,210,77,206,81,166,44"/>
 </map>
