@@ -24,7 +24,7 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
 
   // Scale down distance to just get the longitudinal component
   // apply drop_early term
-  QLength err_y = cos(err_a) * (distance_to_target - drop_early);
+  QLength err_y = cos(err_a) * (distance_to_target) - sgn(cos(err_a).get_value()) * drop_early;
 
   double finalPower = k_p * err_y.convert(inch);
 
