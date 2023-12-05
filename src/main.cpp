@@ -5,6 +5,7 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
 #include "rev/api/alg/drive/motion/constant_motion.hh"
+#include "rev/api/alg/drive/motion/proportional_motion.hh"
 #include "rev/api/alg/drive/correction/pilons_correction.hh"
 #include "rev/api/alg/drive/stop/simple_stop.hh"
 
@@ -76,7 +77,7 @@ void opcontrol() {
 
     reckless->go(RecklessPath().with_segment(
         RecklessPathSegment (
-            std::make_shared<ConstantMotion>(-0.7),
+            std::make_shared<ProportionalMotion>(0.7, 0.3),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
             std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
             {-2_ft, 0_ft, 0_deg},
@@ -85,7 +86,7 @@ void opcontrol() {
 
     ).with_segment(
         RecklessPathSegment (
-            std::make_shared<ConstantMotion>(-0.7),
+            std::make_shared<ProportionalMotion>(0.7, 0.3),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
             std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
             {-4_ft, -1_ft, 45_deg},
@@ -93,7 +94,7 @@ void opcontrol() {
         )
     ).with_segment(
         RecklessPathSegment (
-            std::make_shared<ConstantMotion>(0.7),
+            std::make_shared<ProportionalMotion>(0.7, 0.3),
             std::make_shared<PilonsCorrection>(2, 0.5_in),
             std::make_shared<SimpleStop>(0.07_s, 0.2_s, 0.4),
             {0_ft, 0_ft, 0_deg},
