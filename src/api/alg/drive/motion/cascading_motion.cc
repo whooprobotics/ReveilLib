@@ -22,38 +22,6 @@ std::tuple<double, double> rev::CascadingMotion::gen_powers(
     QLength drop_early) {
   // Calculate the absolute angle from the robot's facing direction to the
   // target point
-  /*QAngle angle_to_target = atan2(target_state.y - current_state.pos.y,
-                                 target_state.x - current_state.pos.x);
-  // Calculate the difference between where the robot is facing and that angle
-  QAngle err_a = current_state.pos.facing - angle_to_target;
-  QLength distance_to_target =
-      std::sqrt(std::pow(target_state.x.convert(inch) -
-                             current_state.pos.x.convert(inch),
-                         2) +
-                std::pow(target_state.y.convert(inch) -
-                             current_state.pos.y.convert(inch),
-                         2)) *
-      inch;
-
-  // Scale down distance to just get the longitudinal component
-  // apply drop_early term
-  QLength err_y = cos(err_a) * (distance_to_target - drop_early);
-
-  bool isBackwards = false;
-  if(err_y < 0_in) {
-    err_y = abs(err_y);
-    isBackwards = true;
-  }
-
-
-  // Calculate target velocity
-  QSpeed v_target = max_v * (1 - exp(-k_v * err_y.convert(inch)));
-
-  if(isBackwards)
-    v_target = -v_target;*/
-
-  // Calculate the absolute angle from the robot's facing direction to the
-  // target point
   QAngle angle_to_target = atan2(target_state.y - current_state.pos.y,
                                  target_state.x - current_state.pos.x);
   // Calculate the difference between where the robot is facing and that angle

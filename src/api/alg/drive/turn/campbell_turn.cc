@@ -19,11 +19,6 @@ CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis,
   odometry = iodometry;
 }
 void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
-  // Implement the **NON-BLOCKING** turn to target absolute function
-  // This function should not wait for anything to happen, it shoulmax_Powerd
-  // just set up variables and set the state or whatever and let the controller
-  // do its thing
-
   max_power = imax_power;
   angle_goal = iangle;
 
