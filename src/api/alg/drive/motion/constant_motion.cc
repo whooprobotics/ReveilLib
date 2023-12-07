@@ -7,13 +7,15 @@ std::tuple<double, double> rev::ConstantMotion::gen_powers(
     rev::Position target_state,
     Position start_state,
     QLength drop_earlys) {
-
   Number xi_facing = cos(start_state.facing);
   Number yi_facing = sin(start_state.facing);
 
-  // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
-  QLength initial_longitudinal_distance = xi_facing * (target_state.x - start_state.x) + yi_facing * (target_state.y - start_state.y);
-
+  // Find dot product of initial facing and initial offset. If this dot product
+  // is negative, the target point is behind the robot and it needs to reverse
+  // to get there.
+  QLength initial_longitudinal_distance =
+      xi_facing * (target_state.x - start_state.x) +
+      yi_facing * (target_state.y - start_state.y);
 
   bool isBackwards = (initial_longitudinal_distance.get_value() < 0);
 

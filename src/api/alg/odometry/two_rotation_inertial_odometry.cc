@@ -1,7 +1,7 @@
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
-#include "pros/error.h"
 #include <cerrno>
 #include <iostream>
+#include "pros/error.h"
 
 namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
@@ -53,8 +53,8 @@ void TwoRotationInertialOdometry::step() {
   double latitude_ticks = (double)(lateral_sensor.get_position()) / 100;
   double heading_ticks = inertial.get_heading();
 
-
-  if(std::isnan(heading_ticks)) heading_ticks = heading_ticks_last;
+  if (std::isnan(heading_ticks))
+    heading_ticks = heading_ticks_last;
   int32_t time = pros::millis();
 
   // Take the mutex so we can make sure things don't get race conditioned
@@ -72,7 +72,7 @@ void TwoRotationInertialOdometry::step() {
   heading_ticks_last = heading_ticks;
   time_last = time;
 
-  if(heading_ticks == PROS_ERR_F) {
+  if (heading_ticks == PROS_ERR_F) {
     heading_ticks_last = 0;
     current_position_mutex.give();
     return;
@@ -82,13 +82,13 @@ void TwoRotationInertialOdometry::step() {
   double facing = heading_ticks - heading_ticks_init;
 
   // Handle NAN
-  if(std::isnan(d_heading_ticks))
+  if (std::isnan(d_heading_ticks))
     d_heading_ticks = 0.0;
-  
-  if(std::isnan(d_longitudinal_ticks))
+
+  if (std::isnan(d_longitudinal_ticks))
     d_longitudinal_ticks = 0.0;
 
-  if(std::isnan(d_latitude_ticks))
+  if (std::isnan(d_latitude_ticks))
     d_latitude_ticks = 0.0;
 
   // Early exit/skip iteration if no changes
@@ -143,7 +143,6 @@ void TwoRotationInertialOdometry::step() {
   QSpeed vX = dX / (d_time * millisecond);
   QSpeed vY = dY / (d_time * millisecond);
   QAngularSpeed w = d_heading_ticks * degree / (d_time * millisecond);
-
 
   // Constrain facing to +-180 degrees
   facing = facing - 360 * std::floor((facing + 180) / 360);

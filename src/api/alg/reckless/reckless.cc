@@ -1,10 +1,12 @@
 #include "rev/api/alg/reckless/reckless.hh"
-#include "pros/rtos.hpp"
 #include "iostream"
+#include "pros/rtos.hpp"
 namespace rev {
 
 stop_state lsstate = stop_state::GO;
-Reckless::Reckless(std::shared_ptr<Chassis> ichassis, std::shared_ptr<Odometry> iodometry) : chassis(ichassis), odometry(iodometry) {}
+Reckless::Reckless(std::shared_ptr<Chassis> ichassis,
+                   std::shared_ptr<Odometry> iodometry)
+    : chassis(ichassis), odometry(iodometry) {}
 
 void Reckless::step() {
   if (is_completed())  // Don't step the controller if it is not running for
@@ -13,7 +15,8 @@ void Reckless::step() {
 
   // If we are out of steps to complete, don't try to complete a step
   if (current_segment >= current_path.segments.size()) {
-    std::cout << "Completed motion with " << current_path.segments.size() << " segments" << std::endl;
+    std::cout << "Completed motion with " << current_path.segments.size()
+              << " segments" << std::endl;
     status = RecklessStatus::DONE;
     partial_progress = -1.0;
     current_segment = 0;
@@ -30,43 +33,49 @@ void Reckless::step() {
   auto current_stop_state = seg.stop->get_stop_state(
       current_state, seg.target_point, seg.start_point, seg.drop_early);
 
-  if(current_stop_state != lsstate) {
-    std::cout << "State change occured to " << (current_stop_state == stop_state::GO ? "GO" : current_stop_state == stop_state::COAST ? "COAST" : "BRAKE") << std::endl;
+  if (current_stop_state != lsstate) {
+    std::cout << "State change occured to "
+              << (current_stop_state == stop_state::GO      ? "GO"
+                  : current_stop_state == stop_state::COAST ? "COAST"
+                                                            : "BRAKE")
+              << std::endl;
     lsstate = current_stop_state;
   }
 
   switch (current_stop_state) {
     case stop_state::GO: {
-      auto pows = seg.motion->gen_powers(
-          current_state, seg.target_point, seg.start_point, seg.drop_early);
+      auto pows = seg.motion->gen_powers(current_state, seg.target_point,
+                                         seg.start_point, seg.drop_early);
       auto [power_left, power_right] = seg.correction->apply_correction(
-        current_state, seg.target_point, seg.start_point, seg.drop_early, pows
-      );
+          current_state, seg.target_point, seg.start_point, seg.drop_early,
+          pows);
       chassis->drive_tank(power_left, power_right);
       // Safety, should never matter
       brake_time = -1;
       break;
-    }
-    break;
+    } break;
     case stop_state::COAST: {
-
-      // If the final state is somewhere behind the start state, we need to invert the facing vector
+      // If the final state is somewhere behind the start state, we need to
+      // invert the facing vector
       Number xi_facing = cos(seg.start_point.facing);
       Number yi_facing = sin(seg.start_point.facing);
 
-      // Find dot product of initial facing and initial offset. If this dot product is negative, the target point is behind the robot and it needs to reverse to get there.
-      QLength initial_longitudinal_distance = xi_facing * (seg.target_point.x - seg.start_point.x) + yi_facing * (seg.target_point.y - seg.start_point.y);
+      // Find dot product of initial facing and initial offset. If this dot
+      // product is negative, the target point is behind the robot and it needs
+      // to reverse to get there.
+      QLength initial_longitudinal_distance =
+          xi_facing * (seg.target_point.x - seg.start_point.x) +
+          yi_facing * (seg.target_point.y - seg.start_point.y);
 
-      
       double coast_power = seg.stop->get_coast_power();
       // If its negative, we're goin backwards
-      if(initial_longitudinal_distance.get_value() < 0) coast_power = -coast_power;
+      if (initial_longitudinal_distance.get_value() < 0)
+        coast_power = -coast_power;
       chassis->drive_tank(coast_power, coast_power);
       // Safety, should never matter, just like Josh DeBerry
       brake_time = -1;
       break;
-    }
-    break;
+    } break;
     case stop_state::BRAKE: {
       // Check if we havent started braking yet
       if (brake_time == -1) {
@@ -85,8 +94,7 @@ void Reckless::step() {
               current_state.pos;
       }
       break;
-    }
-    break;
+    } break;
     // Just like brake but without the braking
     case stop_state::EXIT:
       chassis->set_brake_coast();
@@ -124,7 +132,8 @@ void Reckless::go(RecklessPath path) {
   current_segment = 0;
   current_path = path;
   status = RecklessStatus::ACTIVE;
-  std::cout << "Started motion with " << current_path.segments.size() << " segments" << std::endl;
+  std::cout << "Started motion with " << current_path.segments.size()
+            << " segments" << std::endl;
 }
 
 /**
