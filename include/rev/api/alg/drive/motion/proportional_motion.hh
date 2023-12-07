@@ -19,7 +19,9 @@ class ProportionalMotion : public Motion {
   /**
    * @brief Construct a new Proportional Motion object
    *
-   * @param ipower
+   * @param ipower The maximum power the controller will output
+   * @param ik_p A constant determining the power to be applied per inch from
+   * target
    */
   explicit ProportionalMotion(double ipower, double ik_p);
 

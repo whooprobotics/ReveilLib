@@ -18,7 +18,8 @@ class AsyncRunner {
  private:
   std::shared_ptr<AsyncRunnable> controller;
   pros::Task* thread;
-  uint32_t tdelta;  // Time to wait between iterations in millis
+  uint32_t tdelta;  // Controller will attempt to step once every `tdelta`
+                    // milliseconds
 
   // Helper function to launch thread
   static void run(void* context);
