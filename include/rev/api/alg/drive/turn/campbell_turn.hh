@@ -34,6 +34,14 @@ class CampbellTurn : public Turn,
    */
   void step() override;
 
+  /**
+   * @brief Tells if the controller is working or has completed its motion
+   *
+   * @return true if the controller is not doing anything
+   * @return false if the controller is still working
+   */
+  bool is_completed();
+
  private:
   std::shared_ptr<Chassis> chassis;
   std::shared_ptr<Odometry> odometry;

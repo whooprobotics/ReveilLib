@@ -140,4 +140,8 @@ void CampbellTurn::step() {
   // that is up to you
 }
 // You will need implementations for every method
+
+bool CampbellTurn::is_completed() {
+  return (controller_state == TurnState::INACTIVE);
+}
 };  // namespace rev
