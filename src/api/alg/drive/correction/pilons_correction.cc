@@ -50,9 +50,9 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   QLength tarposx = target_state.x - current_state.pos.x;
   QLength tarposy = target_state.y - current_state.pos.y;
 
-  // err_x is calculated in reference to initial pos angle, not current pos
-  // angle
-  QLength err_x = tarposx * xi_facing - tarposy * yi_facing;
+  // Find how far left or right the point we are heading toward is from the target point
+  QLength err_x = tarposx * yi_facing - tarposy * xi_facing - tan(ang) * (tarposx * xi_facing + tarposy * yi_facing);
+
 
   QAngle correct_angle = atan2(target_state.y - current_state.pos.y,
                                target_state.x - current_state.pos.x);
