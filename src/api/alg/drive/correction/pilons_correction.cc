@@ -63,7 +63,7 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   // Find how far left or right the point we are heading toward is from the
   // target point
   // TODO: Verify signs here
-  QLength target_error = tarposyi + tan(ang) * tarposxi;
+  QLength target_error = -tarposyi + tan(ang) * tarposxi;
 
   QAngle correct_angle = atan2(target_state.y - current_state.pos.y,
                                target_state.x - current_state.pos.x);
