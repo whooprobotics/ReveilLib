@@ -1,3 +1,4 @@
+#pragma once
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/units/all_units.hh"
 

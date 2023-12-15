@@ -1,8 +1,8 @@
 
 // You don't need a #pragma once here, because this isn't a header file and
 // won't be included into anything
-#include "api.h"
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
+#include "api.h"
 #include "rev/api/alg/odometry/odometry.hh"
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method
@@ -19,23 +19,23 @@ CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis,
   odometry = iodometry;
 }
 void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
-  // Implement the **NON-BLOCKING** turn to target absolute function
-  // This function should not wait for anything to happen, it shoulmax_Powerd
-  // just set up variables and set the state or whatever and let the controller
-  // do its thing
-
   max_power = imax_power;
-  QAngle angle_goal = iangle;
-  controller_state = TurnState::FULLPOWER;
+  angle_goal = iangle;
+
   angle_difference = angle_goal - odometry->get_state().pos.facing;
+
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+
+  angle_goal = odometry->get_state().pos.facing + target_relative_original;
+
   target_relative =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+  controller_state = TurnState::FULLPOWER;
 
-  if (angle_difference <
+  if (target_relative <
       0 * degree) {  // if direction is negative, flip directions
     left_direction = -1;
     right_direction = 1;
@@ -45,23 +45,30 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
   }
 }
 void CampbellTurn::step() {
+  if (controller_state == TurnState::INACTIVE) {
+    return;
+  }
+
   OdometryState state = odometry->get_state();
 
   // Full power turn
   if (controller_state == TurnState::FULLPOWER) {
-    chassis->drive_tank(left_direction * 1.0,
-                        max_power * right_direction * 1.0);
+    chassis->drive_tank(max_power * left_direction,
+                        max_power * right_direction);
+    // printf("full power\n");
   }
   // Low power turn
   else if (controller_state == TurnState::COAST) {
     chassis->drive_tank(left_direction * coast_turn_power,
                         right_direction * coast_turn_power);
+    // printf("Coast\n");
   }
   // Activating hard brakes
   else if (controller_state == TurnState::BRAKE) {
     // If we haven't started our braking, we need to get the current time and
     // then start braking
     if (brake_start_time == -1) {
+      // printf("start brake\n");
       brake_start_time = pros::millis();
       chassis->set_brake_harsh();
       chassis->stop();
@@ -71,6 +78,7 @@ void CampbellTurn::step() {
     if (brake_start_time <
         pros::millis() - 250) {  // Check if 250ms has elapsed
       chassis->set_brake_coast();
+      // printf("End brake\n");
       controller_state = TurnState::INACTIVE;  // set inactive and =-1 so it can
                                                // be called again
       brake_start_time = -1;
@@ -83,28 +91,45 @@ void CampbellTurn::step() {
   //     chassis->drive_tank(0,0);
   // }
 
+  angle_difference = angle_goal - state.pos.facing;
+
   // Check Current angle/angular velocity and set controller_state
   target_relative =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
   // Remain in fullpower if we are currently in fullpower and we arent ready to
   // advance
-  if (fabs(target_relative.convert(degree)) >
-          fabs(odometry->get_state().vel.angular.convert(degree / second) *
-               kP1) &&
-      controller_state == TurnState::FULLPOWER) {
-    controller_state = TurnState::FULLPOWER;
-  }
+  // If its already set to fullpower, dont need to set again
+  // if (fabs(target_relative.convert(degree)) >
+  //         fabs(odometry->get_state().vel.angular.convert(degree / second) *
+  //              kP1) &&
+  //     controller_state == TurnState::FULLPOWER) {
+  //       printf("Setting fullpower\n");
+  //   controller_state = TurnState::FULLPOWER;
+  // }
+  // printf("target_relative:%f\n",fabs(target_relative.convert(degree)));
+  // printf("angular_velocity * k1 = %f
+  // \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
+  // kP1));
+  // printf("angular_velocity * k2 = %f
+  // \n",fabs(odometry->get_state().vel.angular.convert(degree / second) *
+  // kP2));
   // Start slowdown if we are ready for that and we haven't started
   // harsh-braking
-  else if (fabs(target_relative.convert(degree)) >
-               fabs(odometry->get_state().vel.angular.convert(degree / second) *
-                    kP2) &&
-           controller_state != TurnState::BRAKE) {
+  if (fabs(target_relative.convert(degree)) <
+          fabs(odometry->get_state().vel.angular.convert(degree / second) *
+               kP1) &&
+      controller_state != TurnState::BRAKE &&
+      controller_state != TurnState::COAST) {
+    // printf("Setting coast\n");
     controller_state = TurnState::COAST;
   }
   // Harsh-brake if we're at that point
-  else {
+  if (fabs(target_relative.convert(degree)) <
+          fabs(odometry->get_state().vel.angular.convert(degree / second) *
+               kP2) &&
+      controller_state != TurnState::BRAKE) {
+    // printf("Setting brake\n");
     controller_state = TurnState::BRAKE;
   }
 
@@ -115,4 +140,8 @@ void CampbellTurn::step() {
   // that is up to you
 }
 // You will need implementations for every method
+
+bool CampbellTurn::is_completed() {
+  return (controller_state == TurnState::INACTIVE);
+}
 };  // namespace rev

@@ -6,6 +6,10 @@ namespace rev {
 
 enum class stop_state { GO, COAST, BRAKE, EXIT };
 
+/**
+ * @brief Interface for stop controllers
+ *
+ */
 class Stop {
  public:
   virtual stop_state get_stop_state(OdometryState current_state,
