@@ -97,12 +97,17 @@ $(document).ready(function(){initNavTree('classrev_1_1Stop.html',''); initResiza
   <div class="headertitle"><div class="title">rev::Stop Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for stop controllers.  
+ <a href="classrev_1_1Stop.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="stop_8hh_source.html">stop.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for rev::Stop:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Stop__inherit__graph.png" border="0" usemap="#arev_1_1Stop_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Stop_inherit__map" id="arev_1_1Stop_inherit__map">
-<area shape="rect" title=" " alt="" coords="25,5,98,31"/>
+<area shape="rect" title="Interface for stop controllers." alt="" coords="25,5,98,31"/>
 <area shape="rect" href="classrev_1_1SimpleStop.html" title="Stop controller implementing a simple stopping algorithm." alt="" coords="5,79,118,105"/>
 <area shape="poly" title=" " alt="" coords="64,46,64,79,59,79,59,46"/>
 </map>
@@ -110,13 +115,65 @@ Inheritance diagram for rev::Stop:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aabf139a58ed27e0bd535ac0d0a59361c" id="r_aabf139a58ed27e0bd535ac0d0a59361c"><td class="memItemLeft" align="right" valign="top"><a id="aabf139a58ed27e0bd535ac0d0a59361c" name="aabf139a58ed27e0bd535ac0d0a59361c"></a>
-<a class="el" href="classrev_1_1RQuantity.html">virtual</a> stop_state&#160;</td><td class="memItemRight" valign="bottom"><b>get_stop_state</b> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="el" href="classrev_1_1RQuantity.html">current_state</a>, <a class="el" href="structrev_1_1Position.html">Position</a> <a class="el" href="classrev_1_1RQuantity.html">target_state</a>, <a class="el" href="structrev_1_1Position.html">Position</a> <a class="el" href="classrev_1_1RQuantity.html">start_state</a>, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> drop_early)=0</td></tr>
+<tr class="memitem:aabf139a58ed27e0bd535ac0d0a59361c" id="r_aabf139a58ed27e0bd535ac0d0a59361c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> stop_state&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Stop.html#aabf139a58ed27e0bd535ac0d0a59361c">get_stop_state</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="el" href="classrev_1_1RQuantity.html">current_state</a>, <a class="el" href="structrev_1_1Position.html">Position</a> <a class="el" href="classrev_1_1RQuantity.html">target_state</a>, <a class="el" href="structrev_1_1Position.html">Position</a> <a class="el" href="classrev_1_1RQuantity.html">start_state</a>, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> drop_early)=0</td></tr>
 <tr class="separator:aabf139a58ed27e0bd535ac0d0a59361c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bfecd255ad46e6c5ef7395e40232779" id="r_a1bfecd255ad46e6c5ef7395e40232779"><td class="memItemLeft" align="right" valign="top"><a id="a1bfecd255ad46e6c5ef7395e40232779" name="a1bfecd255ad46e6c5ef7395e40232779"></a>
 <a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="classrev_1_1RQuantity.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_coast_power</b> ()=0</td></tr>
 <tr class="separator:a1bfecd255ad46e6c5ef7395e40232779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for stop controllers. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aabf139a58ed27e0bd535ac0d0a59361c" name="aabf139a58ed27e0bd535ac0d0a59361c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf139a58ed27e0bd535ac0d0a59361c">&#9670;&#160;</a></span>get_stop_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> stop_state rev::Stop::get_stop_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrev_1_1OdometryState.html">OdometryState</a>&#160;</td>
+          <td class="paramname"><em>current_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrev_1_1Position.html">Position</a>&#160;</td>
+          <td class="paramname"><em>target_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrev_1_1Position.html">Position</a>&#160;</td>
+          <td class="paramname"><em>start_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classrev_1_1RQuantity.html">QLength</a>&#160;</td>
+          <td class="paramname"><em>drop_early</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">rev::SimpleStop</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/rev/api/alg/drive/stop/<a class="el" href="stop_8hh_source.html">stop.hh</a></li>
 </ul>

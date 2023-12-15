@@ -1,7 +1,7 @@
 <map id="rev::TwoRotationInertialOdometry" name="rev::TwoRotationInertialOdometry">
-<area shape="rect" id="Node000001" title=" " alt="" coords="48,79,205,120"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1Odometry.html" title=" " alt="" coords="5,5,107,31"/>
+<area shape="rect" id="Node000001" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="48,79,205,120"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Odometry.html" title="Interface for odometry implementations." alt="" coords="5,5,107,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,41,111,77,107,80,75,45"/>
-<area shape="rect" id="Node000003" href="$classrev_1_1AsyncRunnable.html" title=" " alt="" coords="131,5,266,31"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="131,5,266,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,45,146,80,142,77,175,41"/>
 </map>

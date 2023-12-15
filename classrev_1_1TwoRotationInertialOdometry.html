@@ -97,15 +97,20 @@ $(document).ready(function(){initNavTree('classrev_1_1TwoRotationInertialOdometr
   <div class="headertitle"><div class="title">rev::TwoRotationInertialOdometry Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">Odometry</a> implementation using 2 tracking wheels and an inertial.  
+ <a href="classrev_1_1TwoRotationInertialOdometry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="two__rotation__inertial__odometry_8hh_source.html">two_rotation_inertial_odometry.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for rev::TwoRotationInertialOdometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1TwoRotationInertialOdometry__inherit__graph.png" border="0" usemap="#arev_1_1TwoRotationInertialOdometry_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1TwoRotationInertialOdometry_inherit__map" id="arev_1_1TwoRotationInertialOdometry_inherit__map">
-<area shape="rect" title=" " alt="" coords="48,79,205,120"/>
-<area shape="rect" href="classrev_1_1Odometry.html" title=" " alt="" coords="5,5,107,31"/>
+<area shape="rect" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="48,79,205,120"/>
+<area shape="rect" href="classrev_1_1Odometry.html" title="Interface for odometry implementations." alt="" coords="5,5,107,31"/>
 <area shape="poly" title=" " alt="" coords="79,41,111,77,107,80,75,45"/>
-<area shape="rect" href="classrev_1_1AsyncRunnable.html" title=" " alt="" coords="131,5,266,31"/>
+<area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="131,5,266,31"/>
 <area shape="poly" title=" " alt="" coords="179,45,146,80,142,77,175,41"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -114,10 +119,10 @@ Collaboration diagram for rev::TwoRotationInertialOdometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1TwoRotationInertialOdometry__coll__graph.png" border="0" usemap="#arev_1_1TwoRotationInertialOdometry_coll__map" alt="Collaboration graph"/></div>
 <map name="arev_1_1TwoRotationInertialOdometry_coll__map" id="arev_1_1TwoRotationInertialOdometry_coll__map">
-<area shape="rect" title=" " alt="" coords="48,79,205,120"/>
-<area shape="rect" href="classrev_1_1Odometry.html" title=" " alt="" coords="5,5,107,31"/>
+<area shape="rect" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="48,79,205,120"/>
+<area shape="rect" href="classrev_1_1Odometry.html" title="Interface for odometry implementations." alt="" coords="5,5,107,31"/>
 <area shape="poly" title=" " alt="" coords="79,41,111,77,107,80,75,45"/>
-<area shape="rect" href="classrev_1_1AsyncRunnable.html" title=" " alt="" coords="131,5,266,31"/>
+<area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="131,5,266,31"/>
 <area shape="poly" title=" " alt="" coords="179,45,146,80,142,77,175,41"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -140,7 +145,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TwoRotationInertialOdometry</b> (pros::Rotation <a class="el" href="classrev_1_1RQuantity.html">ilongitudinal_sensor</a>, pros::Rotation <a class="el" href="classrev_1_1RQuantity.html">ilateral_sensor</a>, pros::Imu <a class="el" href="classrev_1_1RQuantity.html">iinertial</a>, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> <a class="el" href="classrev_1_1RQuantity.html">ilongitudinal_wheel_diameter</a>=3.25 *inch, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> <a class="el" href="classrev_1_1RQuantity.html">ilateral_wheel_diameter</a>=3.25 *inch, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> <a class="el" href="classrev_1_1RQuantity.html">ilongitudinal_wheel_offset</a>=0 *inch, <a class="el" href="classrev_1_1RQuantity.html">QLength</a> <a class="el" href="classrev_1_1RQuantity.html">ilateral_wheel_offset</a>=0 *inch)</td></tr>
 <tr class="separator:a858da4976c0d6fefbb0208f2725de54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">Odometry</a> implementation using 2 tracking wheels and an inertial. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1b7e788cfda137ece5de9b72fc4d2a9a" name="a1b7e788cfda137ece5de9b72fc4d2a9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b7e788cfda137ece5de9b72fc4d2a9a">&#9670;&#160;</a></span>get_state()</h2>
 
@@ -166,7 +173,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Get the current position. </p>
 <p>The implementation of this is thread-safe</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1OdometryState.html" title="A structure packaging a velocity and position into one.">OdometryState</a> </dd></dl>
 
 <p>Implements <a class="el" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">rev::Odometry</a>.</p>
 

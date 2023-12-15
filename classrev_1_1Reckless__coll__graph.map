@@ -1,5 +1,5 @@
 <map id="rev::Reckless" name="rev::Reckless">
-<area shape="rect" id="Node000001" title=" " alt="" coords="23,79,123,105"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1AsyncRunnable.html" title=" " alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000001" title="High&#45;speed chassis motion controller." alt="" coords="23,79,123,105"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="5,5,141,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,46,76,79,70,79,70,46"/>
 </map>

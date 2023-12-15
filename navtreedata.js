@@ -26,8 +26,23 @@ var NAVTREE =
 [
   [ "ReveilLib", "index.html", [
     [ "Setting up the ReveilLib depot", "md_docs_2tutorials_2depot-setup.html", null ],
+    [ "Reckless Controller Usage Guide", "md_docs_2tutorials_2reckless.html", [
+      [ "Getting Started", "md_docs_2tutorials_2reckless.html#autotoc_md2", [
+        [ "Includes", "md_docs_2tutorials_2reckless.html#autotoc_md3", null ],
+        [ "Chassis", "md_docs_2tutorials_2reckless.html#autotoc_md4", null ],
+        [ "Odometry", "md_docs_2tutorials_2reckless.html#autotoc_md5", null ],
+        [ "Reckless controller", "md_docs_2tutorials_2reckless.html#autotoc_md6", null ]
+      ] ],
+      [ "Using the Reckless controller", "md_docs_2tutorials_2reckless.html#autotoc_md7", [
+        [ "Motion", "md_docs_2tutorials_2reckless.html#autotoc_md8", null ],
+        [ "Correction", "md_docs_2tutorials_2reckless.html#autotoc_md9", null ],
+        [ "Stopping", "md_docs_2tutorials_2reckless.html#autotoc_md10", null ],
+        [ "Target point", "md_docs_2tutorials_2reckless.html#autotoc_md11", null ],
+        [ "Early Drop", "md_docs_2tutorials_2reckless.html#autotoc_md12", null ]
+      ] ]
+    ] ],
     [ "Code styling & standards for ReveilLib", "md_Style.html", [
-      [ "Capitalization", "md_Style.html#autotoc_md2", null ]
+      [ "Capitalization", "md_Style.html#autotoc_md14", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

@@ -103,22 +103,18 @@ $(document).ready(function(){initNavTree('turn_8hh_source.html',''); initResizab
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;rev/api/units/all_units.hh&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>rev {  <span class="comment">// The namespace is just to separate all of the reveillib code</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>                 <span class="comment">// from</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// everything else, so we can make sure names dont conflict</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  As a general rule, everything thats part of reveillib will be in this</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  namespace</span></div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classrev_1_1Turn.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Turn.html">Turn</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">   22</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">turn_to_target_absolute</a>(<span class="keywordtype">double</span> max_power, QAngle angle) = 0;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>rev {</div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classrev_1_1Turn.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Turn.html">Turn</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">   18</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">turn_to_target_absolute</a>(<span class="keywordtype">double</span> max_power, QAngle angle) = 0;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
 </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">enum class</span> TurnState { INACTIVE, FULLPOWER, COAST, BRAKE };</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}  <span class="comment">// namespace rev</span></div>
-<div class="ttc" id="aclassrev_1_1Turn_html"><div class="ttname"><a href="classrev_1_1Turn.html">rev::Turn</a></div><div class="ttdoc">Interface for turn controllers.</div><div class="ttdef"><b>Definition</b> turn.hh:14</div></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">enum class</span> TurnState { INACTIVE, FULLPOWER, COAST, BRAKE };</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}  <span class="comment">// namespace rev</span></div>
+<div class="ttc" id="aclassrev_1_1Turn_html"><div class="ttname"><a href="classrev_1_1Turn.html">rev::Turn</a></div><div class="ttdoc">Interface for turn controllers.</div><div class="ttdef"><b>Definition</b> turn.hh:10</div></div>
 <div class="ttc" id="aclassrev_1_1Turn_html_a2e897aaf134ce9e6e71998e73fcda481"><div class="ttname"><a href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">rev::Turn::turn_to_target_absolute</a></div><div class="ttdeci">virtual void turn_to_target_absolute(double max_power, QAngle angle)=0</div><div class="ttdoc">Starts a turn towards an absolute heading.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

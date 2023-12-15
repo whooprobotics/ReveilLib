@@ -98,11 +98,16 @@ $(document).ready(function(){initNavTree('structrev_1_1RecklessPath.html',''); i
   <div class="headertitle"><div class="title">rev::RecklessPath Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Complete path for use with the <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> Controller.  
+ <a href="structrev_1_1RecklessPath.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="path_8hh_source.html">path.hh</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a21451123b7294ce499a7600161006bed" id="r_a21451123b7294ce499a7600161006bed"><td class="memItemLeft" align="right" valign="top"><a id="a21451123b7294ce499a7600161006bed" name="a21451123b7294ce499a7600161006bed"></a>
-<a class="el" href="structrev_1_1RecklessPath.html">RecklessPath</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>with_segment</b> (<a class="el" href="structrev_1_1RecklessPathSegment.html">RecklessPathSegment</a> <a class="el" href="classrev_1_1RQuantity.html">segment</a>)</td></tr>
+<tr class="memitem:a21451123b7294ce499a7600161006bed" id="r_a21451123b7294ce499a7600161006bed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrev_1_1RecklessPath.html">RecklessPath</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrev_1_1RecklessPath.html#a21451123b7294ce499a7600161006bed">with_segment</a> (<a class="el" href="structrev_1_1RecklessPathSegment.html">RecklessPathSegment</a> <a class="el" href="classrev_1_1RQuantity.html">segment</a>)</td></tr>
+<tr class="memdesc:a21451123b7294ce499a7600161006bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a segment to the path under construction.  <br /></td></tr>
 <tr class="separator:a21451123b7294ce499a7600161006bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -111,6 +116,36 @@ Public Attributes</h2></td></tr>
 std::vector&lt; <a class="el" href="structrev_1_1RecklessPathSegment.html">RecklessPathSegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>segments</b></td></tr>
 <tr class="separator:a7a701e2713e0ab2896130c4a867e742b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Complete path for use with the <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> Controller. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a21451123b7294ce499a7600161006bed" name="a21451123b7294ce499a7600161006bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21451123b7294ce499a7600161006bed">&#9670;&#160;</a></span>with_segment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrev_1_1RecklessPath.html">RecklessPath</a> &amp; rev::RecklessPath::with_segment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrev_1_1RecklessPathSegment.html">RecklessPathSegment</a>&#160;</td>
+          <td class="paramname"><em>segment</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a segment to the path under construction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">segment</td><td>The segment to add </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1RecklessPath.html" title="Complete path for use with the Reckless Controller.">RecklessPath</a>&amp; An ongoing path builder </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>include/rev/api/alg/reckless/<a class="el" href="path_8hh_source.html">path.hh</a></li>
 <li>src/api/alg/reckless/<b>reckless.cc</b></li>

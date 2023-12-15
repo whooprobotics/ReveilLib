@@ -1,5 +1,5 @@
 <map id="rev::Chassis" name="rev::Chassis">
-<area shape="rect" id="Node000001" title=" " alt="" coords="34,5,126,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1SkidSteerChassis.html" title=" " alt="" coords="5,79,155,105"/>
+<area shape="rect" id="Node000001" title="Interface for chassis objects." alt="" coords="34,5,126,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1SkidSteerChassis.html" title="Implementation of a skid&#45;steer chassis." alt="" coords="5,79,155,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,46,83,79,77,79,77,46"/>
 </map>

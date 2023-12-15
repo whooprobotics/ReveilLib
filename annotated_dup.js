@@ -16,7 +16,7 @@ var annotated_dup =
       [ "Position", "structrev_1_1Position.html", null ],
       [ "ProportionalMotion", "classrev_1_1ProportionalMotion.html", "classrev_1_1ProportionalMotion" ],
       [ "Reckless", "classrev_1_1Reckless.html", "classrev_1_1Reckless" ],
-      [ "RecklessPath", "structrev_1_1RecklessPath.html", null ],
+      [ "RecklessPath", "structrev_1_1RecklessPath.html", "structrev_1_1RecklessPath" ],
       [ "RecklessPathSegment", "structrev_1_1RecklessPathSegment.html", null ],
       [ "RQuantity", "classrev_1_1RQuantity.html", null ],
       [ "SimpleStop", "classrev_1_1SimpleStop.html", "classrev_1_1SimpleStop" ],

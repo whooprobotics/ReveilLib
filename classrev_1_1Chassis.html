@@ -97,13 +97,18 @@ $(document).ready(function(){initNavTree('classrev_1_1Chassis.html',''); initRes
   <div class="headertitle"><div class="title">rev::Chassis Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for chassis objects.  
+ <a href="classrev_1_1Chassis.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="chassis_8hh_source.html">chassis.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for rev::Chassis:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Chassis__inherit__graph.png" border="0" usemap="#arev_1_1Chassis_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Chassis_inherit__map" id="arev_1_1Chassis_inherit__map">
-<area shape="rect" title=" " alt="" coords="34,5,126,31"/>
-<area shape="rect" href="classrev_1_1SkidSteerChassis.html" title=" " alt="" coords="5,79,155,105"/>
+<area shape="rect" title="Interface for chassis objects." alt="" coords="34,5,126,31"/>
+<area shape="rect" href="classrev_1_1SkidSteerChassis.html" title="Implementation of a skid&#45;steer chassis." alt="" coords="5,79,155,105"/>
 <area shape="poly" title=" " alt="" coords="83,46,83,79,77,79,77,46"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -126,7 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9bcfe74ecd4641ea473eedcfa90d1025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops all of the motors.  <br /></td></tr>
 <tr class="separator:a9bcfe74ecd4641ea473eedcfa90d1025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for chassis objects. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a04e45a8669a3592429884b2f945e7afc" name="a04e45a8669a3592429884b2f945e7afc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04e45a8669a3592429884b2f945e7afc">&#9670;&#160;</a></span>drive_arcade()</h2>
 
@@ -165,7 +172,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">forward</td><td>From [-1.0, 1.0]. The forward component of the motion. </td></tr>
-    <tr><td class="paramname">yaw</td><td>From [-1.0, 1.0]. The clockwise component of the motion. </td></tr>
+    <tr><td class="paramname">yaw</td><td>From [-1.0, 1.0]. The yaw component of the motion. </td></tr>
   </table>
   </dd>
 </dl>

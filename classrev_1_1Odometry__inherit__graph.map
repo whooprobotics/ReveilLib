@@ -1,5 +1,5 @@
 <map id="rev::Odometry" name="rev::Odometry">
-<area shape="rect" id="Node000001" title=" " alt="" coords="33,5,135,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1TwoRotationInertialOdometry.html" title=" " alt="" coords="5,79,163,120"/>
+<area shape="rect" id="Node000001" title="Interface for odometry implementations." alt="" coords="33,5,135,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="5,79,163,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,46,87,79,81,79,81,46"/>
 </map>

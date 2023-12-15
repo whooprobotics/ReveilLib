@@ -110,7 +110,7 @@ Inheritance diagram for rev::CampbellTurn:</div>
 <area shape="rect" title="Class implementing Walker Campbell&#39;s turn algorithm under the Turn interface." alt="" coords="42,79,168,105"/>
 <area shape="rect" href="classrev_1_1Turn.html" title="Interface for turn controllers." alt="" coords="5,5,77,31"/>
 <area shape="poly" title=" " alt="" coords="64,40,96,77,92,80,60,44"/>
-<area shape="rect" href="classrev_1_1AsyncRunnable.html" title=" " alt="" coords="101,5,237,31"/>
+<area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="101,5,237,31"/>
 <area shape="poly" title=" " alt="" coords="150,44,118,80,114,77,146,40"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -122,7 +122,7 @@ Collaboration diagram for rev::CampbellTurn:</div>
 <area shape="rect" title="Class implementing Walker Campbell&#39;s turn algorithm under the Turn interface." alt="" coords="42,79,168,105"/>
 <area shape="rect" href="classrev_1_1Turn.html" title="Interface for turn controllers." alt="" coords="5,5,77,31"/>
 <area shape="poly" title=" " alt="" coords="64,40,96,77,92,80,60,44"/>
-<area shape="rect" href="classrev_1_1AsyncRunnable.html" title=" " alt="" coords="101,5,237,31"/>
+<area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="101,5,237,31"/>
 <area shape="poly" title=" " alt="" coords="150,44,118,80,114,77,146,40"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -136,12 +136,37 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac8dc791ea744f14e878278af41991e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a turn towards an absolute heading.  <br /></td></tr>
 <tr class="separator:ac8dc791ea744f14e878278af41991e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54b3752c6427caa691cca3d8d53ff386" id="r_a54b3752c6427caa691cca3d8d53ff386"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1CampbellTurn.html#a54b3752c6427caa691cca3d8d53ff386">step</a> () <a class="el" href="classrev_1_1RQuantity.html">override</a></td></tr>
-<tr class="memdesc:a54b3752c6427caa691cca3d8d53ff386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Steps the controller, for use with <a class="el" href="classrev_1_1AsyncRunner.html">AsyncRunner</a>.  <br /></td></tr>
+<tr class="memdesc:a54b3752c6427caa691cca3d8d53ff386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Steps the controller, for use with <a class="el" href="classrev_1_1AsyncRunner.html" title="Thread runner for AsyncRunnable.">AsyncRunner</a>.  <br /></td></tr>
 <tr class="separator:a54b3752c6427caa691cca3d8d53ff386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac335f4a76efe326fb65b017dceb44f6c" id="r_ac335f4a76efe326fb65b017dceb44f6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1CampbellTurn.html#ac335f4a76efe326fb65b017dceb44f6c">is_completed</a> ()</td></tr>
+<tr class="memdesc:ac335f4a76efe326fb65b017dceb44f6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells if the controller is working or has completed its motion.  <br /></td></tr>
+<tr class="separator:ac335f4a76efe326fb65b017dceb44f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class implementing Walker Campbell's turn algorithm under the <a class="el" href="classrev_1_1Turn.html" title="Interface for turn controllers.">Turn</a> interface. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac335f4a76efe326fb65b017dceb44f6c" name="ac335f4a76efe326fb65b017dceb44f6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac335f4a76efe326fb65b017dceb44f6c">&#9670;&#160;</a></span>is_completed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrev_1_1RQuantity.html">bool</a> rev::CampbellTurn::is_completed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tells if the controller is working or has completed its motion. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the controller is not doing anything </dd>
+<dd>
+false if the controller is still working </dd></dl>
+
+</div>
+</div>
 <a id="a54b3752c6427caa691cca3d8d53ff386" name="a54b3752c6427caa691cca3d8d53ff386"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a54b3752c6427caa691cca3d8d53ff386">&#9670;&#160;</a></span>step()</h2>
 
@@ -165,7 +190,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Steps the controller, for use with <a class="el" href="classrev_1_1AsyncRunner.html">AsyncRunner</a>. </p>
+<p>Steps the controller, for use with <a class="el" href="classrev_1_1AsyncRunner.html" title="Thread runner for AsyncRunnable.">AsyncRunner</a>. </p>
 
 <p>Implements <a class="el" href="classrev_1_1AsyncRunnable.html#a2d15b34694b56b1a015851ab9ad6beb8">rev::AsyncRunnable</a>.</p>
 

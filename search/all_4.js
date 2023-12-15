@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['for_20reveillib_0',['Code styling &amp; standards for ReveilLib',['../md_Style.html',1,'']]]
+  ['early_20drop_0',['Early Drop',['../md_docs_2tutorials_2reckless.html#autotoc_md12',1,'']]]
 ];

@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['reckless_0',['Reckless',['../classrev_1_1Reckless.html',1,'rev']]],
-  ['recklesspath_1',['RecklessPath',['../structrev_1_1RecklessPath.html',1,'rev']]],
-  ['recklesspathsegment_2',['RecklessPathSegment',['../structrev_1_1RecklessPathSegment.html',1,'rev']]],
-  ['reset_5fposition_3',['reset_position',['../classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a',1,'rev::Odometry::reset_position()'],['../classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc',1,'rev::TwoRotationInertialOdometry::reset_position()']]],
-  ['reveillib_4',['Code styling &amp; standards for ReveilLib',['../md_Style.html',1,'']]],
-  ['reveillib_20depot_5',['Setting up the ReveilLib depot',['../md_docs_2tutorials_2depot-setup.html',1,'']]],
-  ['rquantity_6',['RQuantity',['../classrev_1_1RQuantity.html',1,'rev']]]
+  ['pilonscorrection_0',['pilonscorrection',['../classrev_1_1PilonsCorrection.html',1,'rev::PilonsCorrection'],['../classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6',1,'rev::PilonsCorrection::PilonsCorrection()']]],
+  ['point_1',['Target point',['../md_docs_2tutorials_2reckless.html#autotoc_md11',1,'']]],
+  ['position_2',['Position',['../structrev_1_1Position.html',1,'rev']]],
+  ['progress_3',['progress',['../classrev_1_1Reckless.html#a8a08835f1ce3814dd2b5862426594377',1,'rev::Reckless']]],
+  ['proportionalmotion_4',['proportionalmotion',['../classrev_1_1ProportionalMotion.html',1,'rev::ProportionalMotion'],['../classrev_1_1ProportionalMotion.html#a7aa4ff18e9abea327ec0da865124a055',1,'rev::ProportionalMotion::ProportionalMotion()']]],
+  ['pros_5fuse_5fliterals_5',['PROS_USE_LITERALS',['../main_8h.html#ab1b081349029f8bf68a7f2086732e42b',1,'main.h']]],
+  ['pros_5fuse_5fsimple_5fnames_6',['PROS_USE_SIMPLE_NAMES',['../main_8h.html#ae5817dbade24ea595c3ce938b34f9994',1,'main.h']]]
 ];
