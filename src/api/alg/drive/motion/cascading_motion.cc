@@ -1,13 +1,21 @@
-#include "rev/api/alg/drive/motion/proportional_motion.hh"
+#include "rev/api/alg/drive/motion/cascading_motion.hh"
 #include "rev/util/mathutil.hh"
 
 #include <algorithm>
 #include <cmath>
 
-rev::ProportionalMotion::ProportionalMotion(double ipower, double ik_p)
-    : power(fabs(ipower)), k_p(ik_p) {}
+rev::CascadingMotion::CascadingMotion(double ipower,
+                                      double ik_p,
+                                      double ik_b,
+                                      QSpeed imax_v,
+                                      double ik_v)
+    : power(fabs(ipower)),
+      k_p(fabs(ik_p)),
+      k_b(fabs(ik_b)),
+      max_v(abs(imax_v)),
+      k_v(fabs(ik_v)) {}
 
-std::tuple<double, double> rev::ProportionalMotion::gen_powers(
+std::tuple<double, double> rev::CascadingMotion::gen_powers(
     rev::OdometryState current_state,
     rev::Position target_state,
     Position start_state,
@@ -18,6 +26,7 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
                                  target_state.x - current_state.pos.x);
   // Calculate the difference between where the robot is facing and that angle
   QAngle err_a = current_state.pos.facing - angle_to_target;
+
   QLength distance_to_target =
       std::sqrt(std::pow(target_state.x.convert(inch) -
                              current_state.pos.x.convert(inch),
@@ -32,9 +41,19 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
   QLength err_y = cos(err_a) *
                   (distance_to_target)-sgn(cos(err_a).get_value()) * drop_early;
 
-  double finalPower = k_p * err_y.convert(inch);
+  // Get longitudinal speed
+  // Its just the dot product of the velocity vector and the facing unit vector
+  QSpeed v = current_state.vel.xv * cos(current_state.pos.facing) +
+             current_state.vel.yv * sin(current_state.pos.facing);
 
-  finalPower = std::clamp(finalPower, -std::abs(power), std::abs(power));
+  // Calculate new target velocity
+  QSpeed v_target = max_v * (1 - exp(-k_v * abs(err_y).convert(inch))) *
+                    sgn(err_y.get_value());
+
+  double finalPower = k_p * (v_target - v).convert(inch / second) +
+                      v_target.convert(inch / second) * k_b;
+
+  finalPower = std::clamp(finalPower, -power, power);
 
   return std::make_tuple(finalPower, finalPower);
 }

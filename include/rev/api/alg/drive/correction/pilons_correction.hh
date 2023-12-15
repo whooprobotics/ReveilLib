@@ -1,7 +1,7 @@
 #pragma once
 
 #include "rev/api/alg/drive/correction/correction.hh"
-#include "rev/api/unit/unit.hh"
+#include "rev/api/units/q_length.hh"
 
 namespace rev {
 /**
@@ -35,6 +35,8 @@ class PilonsCorrection : public Correction {
   std::tuple<double, double> apply_correction(
       OdometryState current_state,
       Position target_state,
+      Position start_state,
+      QLength drop_early,
       std::tuple<double, double> powers) override;
 
   /**
@@ -44,11 +46,11 @@ class PilonsCorrection : public Correction {
    * but tuning is recommended.
    * @param imaxError The error threshold over which correction will be applied
    */
-  PilonsCorrection(double ik_correction, Length imax_error);
+  PilonsCorrection(double ik_correction, QLength imax_error);
 
  private:
   double k_correction;
-  Length max_error;
+  QLength max_error;
 };
 
 }  // namespace rev

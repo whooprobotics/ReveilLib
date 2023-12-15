@@ -7,8 +7,8 @@
 *.elf
 
 # Doxygen
-*.latex
-*.html
+latex/
+html/
 
 # PROS
 bin/
@@ -19,3 +19,6 @@ temp.log
 temp.errors
 *.ini
 .d/
+
+# This is a library
+src/main.cpp

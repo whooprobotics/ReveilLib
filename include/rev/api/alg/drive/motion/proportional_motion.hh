@@ -1,3 +1,4 @@
+#pragma once
 #include "rev/api/alg/drive/motion/motion.hh"
 
 namespace rev {
@@ -11,12 +12,16 @@ namespace rev {
 class ProportionalMotion : public Motion {
  public:
   std::tuple<double, double> gen_powers(OdometryState current_state,
-                                        Position target_state) override;
+                                        Position target_state,
+                                        Position start_state,
+                                        QLength drop_early) override;
 
   /**
    * @brief Construct a new Proportional Motion object
    *
-   * @param ipower
+   * @param ipower The maximum power the controller will output
+   * @param ik_p A constant determining the power to be applied per inch from
+   * target
    */
   explicit ProportionalMotion(double ipower, double ik_p);
 
