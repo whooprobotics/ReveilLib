@@ -23,6 +23,10 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     Position start_state,
     QLength drop_early,
     std::tuple<double, double> powers) {
+  // Backwards driving handling
+  // If the final state is somewhere behind the start state, we need to invert
+  // the facing vector
+
   // TODO: Find a more efficient way to calculate backwards drive handling
   Number xi_facing = cos(start_state.facing);
   Number yi_facing = sin(start_state.facing);
@@ -36,34 +40,19 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
   bool isBackwards = (initial_longitudinal_distance.get_value() < 0);
 
-  // Now that we know if the robot is driving backwards, lets find its angle
-  // This is the global line angle
-  QAngle raw_line_angle =
+  QAngle angle_to_target_from_start =
       atan2(target_state.y - start_state.y, target_state.x - start_state.x);
-
-  // This is the line angle, reversed if required, and then constrained to
-  // (start angle)\pm 180 degrees
-  QAngle start_line_angle =
-      nearAngle(raw_line_angle - (isBackwards ? PI * radian : 0 * radian),
-                start_state.facing);
-
-  // How far off the robot is from the start_line_angle
-  QAngle ang = current_state.pos.facing - start_line_angle;
+  QAngle pid_angle = nearAngle(
+      angle_to_target_from_start - (isBackwards ? PI * radian : 0 * radian),
+      current_state.pos.facing);
+  QAngle ang = angle_to_target_from_start - current_state.pos.facing;
 
   QLength tarposx = target_state.x - current_state.pos.x;
   QLength tarposy = target_state.y - current_state.pos.y;
 
-  // Transform into coordinates in the coordinate system established by the
-  // initial line angle
-  QLength tarposxi =
-      tarposx * cos(raw_line_angle) + tarposy * sin(raw_line_angle);
-  QLength tarposyi =
-      tarposx * -sin(raw_line_angle) + tarposy * cos(raw_line_angle);
-
-  // Find how far left or right the point we are heading toward is from the
-  // target point
-  // TODO: Verify signs here
-  QLength target_error = -tarposyi + tan(ang) * tarposxi;
+  // err_x is calculated in reference to initial pos angle, not current pos
+  // angle
+  QLength err_x = tarposx * xi_facing - tarposy * yi_facing;
 
   QAngle correct_angle = atan2(target_state.y - current_state.pos.y,
                                target_state.x - current_state.pos.x);
@@ -72,7 +61,7 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     correct_angle += PI * radian;
 
   double correction =
-      abs(target_error) > abs(max_error)
+      abs(err_x) > abs(max_error)
           ? k_correction *
                 (nearAngle(correct_angle, current_state.pos.facing) -
                  current_state.pos.facing)
