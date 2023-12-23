@@ -1,5 +1,15 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "pros/rtos.hpp"
+
+#ifdef OFF_ROBOT_TESTS
+#include <chrono>
+using namespace std::chrono;
+#define GET_TIME \
+  duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count()
+#else
+#define GET_TIME pros::millis()
+#endif
+
 namespace rev {
 void Reckless::step() {
   if (is_completed())  // Don't step the controller if it is not running for
@@ -44,10 +54,10 @@ void Reckless::step() {
       if (brake_time == -1) {
         chassis->set_brake_harsh();
         chassis->stop();
-        brake_time = pros::millis();
+        brake_time = GET_TIME;
       }
       // Check if enough time has elapsed to stop braking
-      else if (pros::millis() > brake_time + 250) {
+      else if (GET_TIME > brake_time + 250) {
         chassis->set_brake_coast();
         brake_time = -1;
         current_segment++;

@@ -19,3 +19,6 @@ temp.log
 temp.errors
 *.ini
 .d/
+
+# CMake Tests
+build/
