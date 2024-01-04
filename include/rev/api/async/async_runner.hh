@@ -7,7 +7,7 @@ typedef pros::Task rthread;
 #else
 #include <thread>
 #include "pros/rtos.hpp"
-typedef std::thread revthread;
+typedef std::thread rthread;
 #endif
 #include "rev/api/async/async_runnable.hh"
 namespace rev {
