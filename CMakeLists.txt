@@ -31,7 +31,7 @@ add_executable(ReveilLib
         src/api/alg/drive/correction/pilons_correction.cc
         src/api/alg/drive/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
-        test/drive_test.cc
+        test/template_test.cc
         test/off_robot_utils.cc
         )
 
