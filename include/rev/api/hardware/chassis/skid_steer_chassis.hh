@@ -4,6 +4,10 @@
 #include "rev/api/hardware/chassis/chassis.hh"
 
 namespace rev {
+/**
+ * @brief Implementation of a skid-steer chassis
+ *
+ */
 class SkidSteerChassis : public Chassis {
  public:
   /**
@@ -23,15 +27,15 @@ class SkidSteerChassis : public Chassis {
 
   /**
    * @brief Sets the brake types of all motors to brake
-  */
+   */
   void set_brake_harsh() override;
   /**
    * @brief Sets the brake types of all motors to coast
-  */
+   */
   void set_brake_coast() override;
   /**
    * @brief Stops all of the motors
-  */
+   */
   void stop() override;
 
  private:

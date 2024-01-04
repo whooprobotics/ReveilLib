@@ -22,3 +22,6 @@ temp.errors
 
 # CMake Tests
 build/
+
+# This is a library
+src/main.cpp

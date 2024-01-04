@@ -6,25 +6,42 @@
 #include "rev/api/units/r_quantity.hh"
 
 namespace rev {
+
+/**
+ * @brief A structure representing a position and facing direction
+ *
+ */
 struct Position {
   QLength x;
   QLength y;
   QAngle facing;
 };
 
+/**
+ * @brief A structure representing a velocity
+ *
+ */
 struct Velocity {
   QSpeed xv;
   QSpeed yv;
   QAngularSpeed angular;
 };
 
+/**
+ * @brief A structure packaging a velocity and position into one
+ *
+ */
 struct OdometryState {
   Position pos;
   Velocity vel;
 };
 
+/**
+ * @brief Interface for odometry implementations
+ *
+ */
 class Odometry {
-  public:
+ public:
   /**
    * @brief Get the current position and velocity of the robot
    *

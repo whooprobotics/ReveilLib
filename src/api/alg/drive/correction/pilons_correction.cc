@@ -1,8 +1,18 @@
 #include "rev/api/alg/drive/correction/pilons_correction.hh"
-#include "rev/api/units/q_length.hh"
-#include "rev/api/units/q_angle.hh"
 #include <cmath>
+#include <iostream>
 #include <tuple>
+#include "rev/api/units/q_angle.hh"
+#include "rev/api/units/q_length.hh"
+
+#define PI 3.1415926535
+// Helper function, stolen from Nick Mertin
+rev::QAngle nearAngle(rev::QAngle angle, rev::QAngle reference) {
+  return rev::radian *
+         (round((reference.get_value() - angle.get_value()) / (2 * PI)) *
+              (2 * PI) +
+          angle.get_value());
+}
 
 rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
     : k_correction(ikCorrection), max_error(imaxError) {}
@@ -10,40 +20,54 @@ rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
 std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     rev::OdometryState current_state,
     rev::Position target_state,
-      Position start_state,
-      QLength drop_early,
+    Position start_state,
+    QLength drop_early,
     std::tuple<double, double> powers) {
-  QAngle angle_to_target = atan2(target_state.x - current_state.pos.x,
-                                target_state.y - current_state.pos.y);
-  // Find the x error (how far the target point is from the line the robot is
-  // traveling along) This is a bit different from the PiLons
-  QAngle err_a = current_state.pos.facing - angle_to_target;
-  QLength distance_to_target =
-      std::sqrt(std::pow(target_state.x.convert(inch) - current_state.pos.x.convert(inch), 2) +
-           std::pow(target_state.y.convert(inch) - current_state.pos.y.convert(inch), 2)) * inch;
+  // Backwards driving handling
+  // If the final state is somewhere behind the start state, we need to invert
+  // the facing vector
 
-  // Use trig to find that other side. sin = opposite / hypotenuse, so opposite
-  // = sin * hypotenuse
-  QLength err_x = rev::sin(err_a) * distance_to_target;
+  // TODO: Find a more efficient way to calculate backwards drive handling
+  Number xi_facing = cos(start_state.facing);
+  Number yi_facing = sin(start_state.facing);
 
-  // Calculate power sign
-  char sgn_power = (std::get<0>(powers) + std::get<1>(powers)) >= 0 ? 1 : -1;
+  // Find dot product of initial facing and initial offset. If this dot product
+  // is negative, the target point is behind the robot and it needs to reverse
+  // to get there.
+  QLength initial_longitudinal_distance =
+      xi_facing * (target_state.x - start_state.x) +
+      yi_facing * (target_state.y - start_state.y);
 
-  // If driving in reverse, the angle to target is 180 degrees greater, or pi
-  // radians
-  if (sgn_power == -1)
-    angle_to_target += 3.141592653*radian;
+  bool isBackwards = (initial_longitudinal_distance.get_value() < 0);
 
-  // Find the absolute smallest angle difference between where the robot is
-  // facing and where the robot needs to face
-  QAngle correction_angle =
-      (std::round((current_state.pos.facing - angle_to_target).convert(radian) / (2 * 3.141592653)) *
-          (2 * 3.141592653) +
-      (angle_to_target - current_state.pos.facing).convert(radian)) * radian;
+  QAngle angle_to_target_from_start =
+      atan2(target_state.y - start_state.y, target_state.x - start_state.x);
+  QAngle pid_angle = nearAngle(
+      angle_to_target_from_start - (isBackwards ? PI * radian : 0 * radian),
+      current_state.pos.facing);
+  QAngle ang = angle_to_target_from_start - current_state.pos.facing;
 
-  // Calculate correction factor
+  QLength tarposx = target_state.x - current_state.pos.x;
+  QLength tarposy = target_state.y - current_state.pos.y;
+
+  // err_x is calculated in reference to initial pos angle, not current pos
+  // angle
+  QLength err_x = tarposx * xi_facing - tarposy * yi_facing;
+
+  QAngle correct_angle = atan2(target_state.y - current_state.pos.y,
+                               target_state.x - current_state.pos.x);
+
+  if (isBackwards)
+    correct_angle += PI * radian;
+
   double correction =
-      err_x > max_error ? k_correction * correction_angle.convert(radian) * sgn_power : 0.0;
+      abs(err_x) > abs(max_error)
+          ? k_correction *
+                (nearAngle(correct_angle, current_state.pos.facing) -
+                 current_state.pos.facing)
+                    .get_value() *
+                (isBackwards ? -1 : 1)
+          : 0.0;
 
   if (correction > 0)
     return std::make_tuple(std::get<0>(powers),

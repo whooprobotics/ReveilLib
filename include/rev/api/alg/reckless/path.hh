@@ -8,6 +8,11 @@
 #include "rev/api/alg/drive/stop/stop.hh"
 
 namespace rev {
+
+/**
+ * @brief Path segment for use with Reckless controller
+ *
+ */
 struct RecklessPathSegment {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
@@ -31,6 +36,10 @@ struct RecklessPathSegment {
   }
 };
 
+/**
+ * @brief Complete path for use with the Reckless Controller
+ *
+ */
 struct RecklessPath {
   std::vector<RecklessPathSegment> segments;
 

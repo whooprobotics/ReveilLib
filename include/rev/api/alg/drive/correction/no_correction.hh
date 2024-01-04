@@ -1,3 +1,4 @@
+#pragma once
 #include "rev/api/alg/drive/correction/correction.hh"
 
 namespace rev {

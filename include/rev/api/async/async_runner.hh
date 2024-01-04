@@ -11,6 +11,10 @@ typedef std::thread revthread;
 #endif
 #include "rev/api/async/async_runnable.hh"
 namespace rev {
+/**
+ * @brief Thread runner for AsyncRunnable
+ *
+ */
 class AsyncRunner {
  public:
   AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,

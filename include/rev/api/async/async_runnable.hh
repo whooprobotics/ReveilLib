@@ -1,5 +1,9 @@
 #pragma once
 namespace rev {
+/**
+ * @brief Interface for classes which should have associated threads
+ *
+ */
 class AsyncRunnable {
  public:
   /**
