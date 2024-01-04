@@ -5,15 +5,6 @@
 #include "api.h"
 #include "rev/api/alg/odometry/odometry.hh"
 
-#ifdef OFF_ROBOT_TESTS
-#include <chrono>
-using namespace std::chrono;
-#define GET_TIME \
-  duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count()
-#else
-#define GET_TIME pros::millis()
-#endif
-
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method
 // that is a member of the CampbellTurn class
@@ -85,7 +76,8 @@ void CampbellTurn::step() {
     }
     // pros::delay(250); //pros::delay shouldn't be used in non-blocking
     // functions
-    if (brake_start_time < GET_TIME - 250) {  // Check if 250ms has elapsed
+    if (brake_start_time <
+        pros::millis() - 250) {  // Check if 250ms has elapsed
       chassis->set_brake_coast();
       // printf("End brake\n");
       controller_state = TurnState::INACTIVE;  // set inactive and =-1 so it can
