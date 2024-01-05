@@ -4,6 +4,7 @@
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
 #include "api.h"
 #include "rev/api/alg/odometry/odometry.hh"
+
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method
 // that is a member of the CampbellTurn class

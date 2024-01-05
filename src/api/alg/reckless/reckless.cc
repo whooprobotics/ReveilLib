@@ -1,6 +1,7 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "iostream"
 #include "pros/rtos.hpp"
+
 namespace rev {
 
 stop_state lsstate = stop_state::GO;

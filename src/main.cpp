@@ -56,21 +56,22 @@ void opcontrol() {
 
   AsyncRunner reckless_runner(reckless);
 
-  std::shared_ptr<rev::CampbellTurn> turn = 
-    std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
+  std::shared_ptr<rev::CampbellTurn> turn =
+      std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
 
-    AsyncRunner turn_runner(turn);
+  AsyncRunner turn_runner(turn);
 
   pros::delay(2000);
 
   const double kP = 0.0;
   const double kB = 0.015;
 
-  //turn->turn_to_target_absolute(0.7, 45_deg);
+  turn->turn_to_target_absolute(0.7, 45_deg);
 
-  while(!turn->is_completed()) pros::delay(20);
+  while (!turn->is_completed())
+    pros::delay(20);
 
-  reckless->go(RecklessPath()
+  /*reckless->go(RecklessPath()
                    .with_segment(RecklessPathSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
@@ -92,12 +93,18 @@ void opcontrol() {
                        std::make_shared<SimpleStop>(0.075_s, 0.2_s, 0.4),
                        {0_ft, 0_ft, 0_deg}, 0_in)
 
-                                     ));
+                                     ));*/
 
   // while(!reckless->is_completed()) pros::delay(20);
   printf("Completed motion");
 
   // reckless->go(RecklessPath());
+
+  turn_runner.~AsyncRunner();  // Stop AsyncRunner
+
+  turn->turn_to_target_absolute(
+      0.7, 45_deg);  // Attempt another turn with AsyncRunner deleted, this
+                     // should fail
 
   while (true) {
     // printf("loop\n");

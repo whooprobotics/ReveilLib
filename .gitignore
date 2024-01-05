@@ -20,5 +20,8 @@ temp.errors
 *.ini
 .d/
 
+# CMake Tests
+build/
+
 # This is a library
 src/main.cpp
