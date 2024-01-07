@@ -35,6 +35,7 @@ add_executable(ReveilLib
         test/template_test.cc
         test/off_robot_utils.cc
         test/driftless_sim_test.cc
+        test/reckless_test.cc
         )
 
 # Link against gtest
