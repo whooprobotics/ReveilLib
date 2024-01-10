@@ -142,6 +142,11 @@ void CampbellTurn::step() {
 }
 // You will need implementations for every method
 
+void CampbellTurn::await() {
+  while (!is_completed())
+    pros::delay(10);
+}
+
 bool CampbellTurn::is_completed() {
   return (controller_state == TurnState::INACTIVE);
 }

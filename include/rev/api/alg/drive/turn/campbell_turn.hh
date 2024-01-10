@@ -3,6 +3,7 @@
 #include <memory>
 #include "rev/api/alg/drive/turn/turn.hh"
 #include "rev/api/alg/odometry/odometry.hh"
+#include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/chassis/chassis.hh"  // For chassis model
 
@@ -13,7 +14,8 @@ namespace rev {
  *
  */
 class CampbellTurn : public Turn,
-                     public AsyncRunnable {  // Rename this if you want
+                     public AsyncRunnable,
+                     public AsyncAwaitable {  // Rename this if you want
  public:
   CampbellTurn(std::shared_ptr<Chassis> ichassis,
                std::shared_ptr<Odometry> iodometry,
@@ -33,6 +35,12 @@ class CampbellTurn : public Turn,
    *
    */
   void step() override;
+
+  /**
+   * @brief Blocks until the current turn completes
+   *
+   */
+  void await() override;
 
   /**
    * @brief Tells if the controller is working or has completed its motion
