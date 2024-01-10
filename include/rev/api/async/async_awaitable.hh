@@ -12,6 +12,6 @@ class AsyncAwaitable {
    *
    */
   virtual void await() = 0;
-}
+};
 
 }  // namespace rev
