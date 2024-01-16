@@ -35,4 +35,15 @@ constexpr bool operator==(PointVector lhs, PointVector rhs) {
   return true;
 }
 
+// 2d vector absolute value, equivalent to distance from origin
+constexpr QLength abs(const PointVector lhs) {
+  return sqrt(lhs.x * lhs.x + lhs.y * lhs.y);
+}
+
+// Unitization function, unitizes to 1_m abs
+constexpr PointVector unitize(const PointVector lhs) {
+  Number kd = abs(lhs) / meter;
+  return PointVector{lhs.x / kd, lhs.y / kd};
+}
+
 }  // namespace rev
