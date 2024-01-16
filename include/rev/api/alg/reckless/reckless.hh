@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "rev/api/alg/reckless/path.hh"
+#include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/chassis/chassis.hh"
 
@@ -14,7 +15,7 @@ enum class RecklessStatus { ACTIVE, DONE };
  * @brief High-speed chassis motion controller
  *
  */
-class Reckless : public AsyncRunnable {
+class Reckless : public AsyncRunnable, public AsyncAwaitable {
  public:
   Reckless(std::shared_ptr<Chassis> ichassis,
            std::shared_ptr<Odometry> odometry);
@@ -23,6 +24,12 @@ class Reckless : public AsyncRunnable {
    * controller logic is
    */
   void step() override;
+
+  /**
+   * @brief Blocks until the motion is completed
+   *
+   */
+  void await() override;
 
   /**
    * This function starts the robot along a path
