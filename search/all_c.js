@@ -1,7 +1,7 @@
 var searchData=
 [
   ['reckless_0',['Reckless',['../classrev_1_1Reckless.html',1,'rev']]],
-  ['reckless_20controller_1',['reckless controller',['../md_docs_2tutorials_2reckless.html#autotoc_md6',1,'Reckless controller'],['../md_docs_2tutorials_2reckless.html#autotoc_md7',1,'Using the Reckless controller']]],
+  ['reckless_20controller_1',['Reckless controller',['../md_docs_2tutorials_2reckless.html#autotoc_md6',1,'Reckless controller'],['../md_docs_2tutorials_2reckless.html#autotoc_md7',1,'Using the Reckless controller']]],
   ['reckless_20controller_20usage_20guide_2',['Reckless Controller Usage Guide',['../md_docs_2tutorials_2reckless.html',1,'']]],
   ['recklesspath_3',['RecklessPath',['../structrev_1_1RecklessPath.html',1,'rev']]],
   ['recklesspathsegment_4',['RecklessPathSegment',['../structrev_1_1RecklessPathSegment.html',1,'rev']]],
