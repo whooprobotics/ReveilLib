@@ -25,6 +25,11 @@ constexpr QArea operator*(const PointVector& lhs, const PointVector& rhs) {
   return lhs.x * rhs.x + lhs.y * rhs.y;
 }
 
+// Scalar multiplication operator
+constexpr PointVector operator*(const Number& lhs, const PointVector& rhs) {
+  return {lhs * rhs.x, lhs * rhs.y};
+}
+
 constexpr bool operator==(PointVector lhs, PointVector rhs) {
   // Millimeter precision is enough here
   if (abs(lhs.x - rhs.x) > 1_mm)
@@ -44,6 +49,30 @@ constexpr QLength abs(const PointVector lhs) {
 constexpr PointVector unitize(const PointVector lhs) {
   Number kd = abs(lhs) / meter;
   return PointVector{lhs.x / kd, lhs.y / kd};
+}
+
+/**
+ * @brief Projects `lhs` onto `rhs`
+ *
+ * @param lhs The vector being projected
+ * @param rhs A vector in the direction lhs is being projected into
+ * @return PointVector The vector projection of `lhs` parallel to `rhs`
+ */
+constexpr PointVector projection(const PointVector lhs, const PointVector rhs) {
+  Number ratio = (lhs * rhs) / (rhs * rhs);
+  return ratio * rhs;
+}
+
+/**
+ * @brief Finds the vector rejection of `lhs` onto `rhs`
+ *
+ * @param lhs The vector being projected
+ * @param rhs The vector which `lhs` will be projected onto
+ * @return PointVector The vector projection of `lhs` orthogonal to `rhs`
+ */
+constexpr PointVector rejection(const PointVector lhs, const PointVector rhs) {
+  PointVector proj = projection(lhs, rhs);
+  return lhs - proj;
 }
 
 }  // namespace rev
