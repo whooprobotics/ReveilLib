@@ -25,7 +25,7 @@ std::tuple<double, double> rev::CascadingMotion::gen_powers(
   QAngle angle_to_target = atan2(target_state.y - current_state.pos.y,
                                  target_state.x - current_state.pos.x);
   // Calculate the difference between where the robot is facing and that angle
-  QAngle err_a = current_state.pos.facing - angle_to_target;
+  QAngle err_a = current_state.pos.theta - angle_to_target;
 
   QLength distance_to_target =
       std::sqrt(std::pow(target_state.x.convert(inch) -
@@ -43,8 +43,8 @@ std::tuple<double, double> rev::CascadingMotion::gen_powers(
 
   // Get longitudinal speed
   // Its just the dot product of the velocity vector and the facing unit vector
-  QSpeed v = current_state.vel.xv * cos(current_state.pos.facing) +
-             current_state.vel.yv * sin(current_state.pos.facing);
+  QSpeed v = current_state.vel.xv * cos(current_state.pos.theta) +
+             current_state.vel.yv * sin(current_state.pos.theta);
 
   // Calculate new target velocity
   QSpeed v_target = max_v * (1 - exp(-k_v * abs(err_y).convert(inch))) *

@@ -58,8 +58,8 @@ void Reckless::step() {
     case stop_state::COAST: {
       // If the final state is somewhere behind the start state, we need to
       // invert the facing vector
-      Number xi_facing = cos(seg.start_point.facing);
-      Number yi_facing = sin(seg.start_point.facing);
+      Number xi_facing = cos(seg.start_point.theta);
+      Number yi_facing = sin(seg.start_point.theta);
 
       // Find dot product of initial facing and initial offset. If this dot
       // product is negative, the target point is behind the robot and it needs

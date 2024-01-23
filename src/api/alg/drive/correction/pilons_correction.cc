@@ -28,8 +28,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   // the facing vector
 
   // TODO: Find a more efficient way to calculate backwards drive handling
-  Number xi_facing = cos(start_state.facing);
-  Number yi_facing = sin(start_state.facing);
+  Number xi_facing = cos(start_state.theta);
+  Number yi_facing = sin(start_state.theta);
 
   // Find dot product of initial facing and initial offset. If this dot product
   // is negative, the target point is behind the robot and it needs to reverse
@@ -44,8 +44,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
       atan2(target_state.y - start_state.y, target_state.x - start_state.x);
   QAngle pid_angle = nearAngle(
       angle_to_target_from_start - (isBackwards ? PI * radian : 0 * radian),
-      current_state.pos.facing);
-  QAngle ang = angle_to_target_from_start - current_state.pos.facing;
+      current_state.pos.theta);
+  QAngle ang = angle_to_target_from_start - current_state.pos.theta;
 
   QLength tarposx = target_state.x - current_state.pos.x;
   QLength tarposy = target_state.y - current_state.pos.y;
@@ -63,8 +63,8 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   double correction =
       abs(err_x) > abs(max_error)
           ? k_correction *
-                (nearAngle(correct_angle, current_state.pos.facing) -
-                 current_state.pos.facing)
+                (nearAngle(correct_angle, current_state.pos.theta) -
+                 current_state.pos.theta)
                     .get_value() *
                 (isBackwards ? -1 : 1)
           : 0.0;

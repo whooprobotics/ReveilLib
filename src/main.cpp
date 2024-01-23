@@ -110,7 +110,7 @@ void opcontrol() {
     // printf("loop\n");
     auto pose = odom->get_state().pos;
     std::cout << pose.x.convert(foot) << "ft, " << pose.y.convert(foot) << ","
-              << pose.facing.convert(degree) << "deg" << std::endl;
+              << pose.theta.convert(degree) << "deg" << std::endl;
 
     // if(controller.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A))
     //     odom->set_position({215_in, 49_in, 16_deg});

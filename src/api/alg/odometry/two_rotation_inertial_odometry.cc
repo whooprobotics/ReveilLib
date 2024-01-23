@@ -40,7 +40,7 @@ void TwoRotationInertialOdometry::set_position(Position pos) {
 
   longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
   latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
-  heading_ticks_init = inertial.get_heading() - pos.facing.convert(degree);
+  heading_ticks_init = inertial.get_heading() - pos.theta.convert(degree);
   time_last = pros::millis();
 
   current_position_mutex.give();
@@ -150,7 +150,7 @@ void TwoRotationInertialOdometry::step() {
   // Update position information
   current_position.pos.x += dX;
   current_position.pos.y += dY;
-  current_position.pos.facing = facing * degree;
+  current_position.pos.theta = facing * degree;
   current_position.vel.xv = vX;
   current_position.vel.yv = vY;
   current_position.vel.angular = w;
