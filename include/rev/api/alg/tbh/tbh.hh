@@ -6,11 +6,13 @@ namespace rev {
 
 class TBH_Controller : public AsyncRunnable {
  public:
-  TBH_Controller(pros::MotorGroup& imotor_group,
+  TBH_Controller(std::shared_ptr<pros::MotorGroup> imotor_group,
+                 std::shared_ptr<pros::Rotation> irotation_sensor,
                  double& ikI);  // Constructor function /
                                 // declare arguments..?
 
-  double step(double inewReading);  // for async
+  void step() override;  // for async //
+  // override -> makes the compiler give error if issue instead of runtime
 
   void setTarget(double itarget);
 
@@ -28,25 +30,15 @@ class TBH_Controller : public AsyncRunnable {
 
   double getError();
 
-  bool isSettled();
-
-  void setSampleTime(okapi::QTime isampleTime);  // ################## NEEDS THE
-                                                 // REVEIL VERSION..?
-
   void setOutputLimits(double imax, double imin);
 
   void setControllerSetTargetLimits(double itargetMax, double itargetMin);
 
   void reset();
 
-  void flipDisable();
-
-  void flipDisable(bool iisDisabled);
-
-  bool isDisabled();
-
  private:  // declare all variables
-  pros::MotorGroup* motor_group;
+  std::shared_ptr<pros::MotorGroup> motor_group;
+  std::shared_ptr<pros::Rotation> rotation_sensor;
   double kI;
 
   double error{0};
