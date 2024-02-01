@@ -7,11 +7,27 @@
 
 #define PI 3.1415926535
 // Helper function, stolen from Nick Mertin
-rev::QAngle nearAngle(rev::QAngle angle, rev::QAngle reference) {
+/**
+ * @brief Helper function which constrains angle to within 180 degrees of reference
+*/
+rev::QAngle near_circle(rev::QAngle angle, rev::QAngle reference) {
   return rev::radian *
          (round((reference.get_value() - angle.get_value()) / (2 * PI)) *
               (2 * PI) +
           angle.get_value());
+}
+
+/**
+ * @brief Helper function which constrains angle to within 90 degrees of reference
+ * 
+ * @param angle 
+ * @param reference 
+ * @return rev::QAngle 
+ */
+rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference) {
+  return rev::radian *
+    (round((reference.get_value() - angle.get_value()) / PI) *
+      PI + angle.get_value());
 }
 
 rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
@@ -23,7 +39,7 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     Position start_state,
     QLength drop_early,
     std::tuple<double, double> powers) {
-  // Backwards driving handling
+  /*/ Backwards driving handling
   // If the final state is somewhere behind the start state, we need to invert
   // the facing vector
 
@@ -42,7 +58,7 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
   QAngle angle_to_target_from_start =
       atan2(target_state.y - start_state.y, target_state.x - start_state.x);
-  QAngle pid_angle = nearAngle(
+  QAngle pid_angle = near_circle(
       angle_to_target_from_start - (isBackwards ? PI * radian : 0 * radian),
       current_state.pos.theta);
   QAngle ang = angle_to_target_from_start - current_state.pos.theta;
@@ -63,11 +79,30 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   double correction =
       abs(err_x) > abs(max_error)
           ? k_correction *
-                (nearAngle(correct_angle, current_state.pos.theta) -
+                (near_circle(correct_angle, current_state.pos.theta) -
                  current_state.pos.theta)
                     .get_value() *
                 (isBackwards ? -1 : 1)
-          : 0.0;
+          : 0.0;*/
+
+  // TODO: Refactor code
+  Pose pos_current = current_state.pos;
+
+  // Find the pose which is at target_state
+  Pose pos_final = target_state;
+  // but make this reference frame face directly away from the start state
+  pos_final.theta = atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
+
+  // If the robot starts facing more than 90 degrees from that, flip it to face towards the robot
+  pos_final.theta = near_semicircle(pos_final.theta, start_state.theta);
+
+  // Reframe the robots current position in reference to the target state
+  Pose error = pos_current.to_relative(pos_final);
+
+  // We use abs(error.x) because if the robot is in front of the target point, we still want it to apply correction to the same side of the drive
+  QAngle error_angle = atan2(error.y, abs(error.x));
+
+  double correction = abs(error.y) > abs(max_error) ? k_correction * error_angle.get_value() : 0.0;
 
   if (correction > 0)
     return std::make_tuple(std::get<0>(powers),
@@ -77,4 +112,5 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
                            std::get<1>(powers));
   else
     return powers;
+
 }
