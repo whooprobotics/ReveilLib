@@ -218,6 +218,15 @@ constexpr RQuantity<M, L, T, A> abs(const RQuantity<M, L, T, A>& rhs) {
   return RQuantity<M, L, T, A>(std::abs(rhs.get_value()));
 }
 
+// floor and ceil for Number
+constexpr Number ceil(const Number& rhs) {
+  return Number(std::ceil(rhs.get_value()));
+}
+
+constexpr Number floor(const Number& rhs) {
+  return Number(std::floor(rhs.get_value()));
+}
+
 template <typename R, typename M, typename L, typename T, typename A>
 constexpr RQuantity<std::ratio_multiply<M, R>,
                     std::ratio_multiply<L, R>,
