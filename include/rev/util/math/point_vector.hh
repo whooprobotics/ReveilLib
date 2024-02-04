@@ -103,6 +103,16 @@ constexpr PointVector unitize(const PointVector lhs) {
 }
 
 /**
+ * @brief Unit vector from angle function
+ *
+ * @param lhs The angle for which we are generating the unit vector
+ * @return constexpr PointVector A unit vector of length 1 meter
+ */
+constexpr PointVector unit_from_angle(const QAngle lhs) {
+  return PointVector{meter * cos(lhs), meter * sin(lhs)};
+}
+
+/**
  * @brief Projects `lhs` onto `rhs`
  *
  * @param lhs The vector being projected
