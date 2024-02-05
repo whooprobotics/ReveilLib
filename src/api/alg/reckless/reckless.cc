@@ -124,6 +124,13 @@ void Reckless::step() {
       (double)current_segment + current_segment_progress.convert(number);
 }
 
+void Reckless::await() {
+  // Technically we can make this lighter with a condition variable or semaphore
+  // but its not worth it in this case because its a very quick check
+  while (!is_completed())
+    pros::delay(10);
+}
+
 /**
  * This function starts the robot along a path
  */
