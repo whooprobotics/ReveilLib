@@ -99,10 +99,16 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   // Reframe the robots current position in reference to the target state
   Pose error = pos_current.to_relative(pos_final);
 
-  // We use abs(error.x) because if the robot is in front of the target point, we still want it to apply correction to the same side of the drive
-  QAngle error_angle = atan2(error.y, abs(error.x));
+  // The angle from the perspective of the target point
+  // We subtract from the facing angle so we have the actual error angle
+  QAngle error_angle = -error.theta + atan2(error.y, error.x);
 
-  double correction = abs(error.y) > abs(max_error) ? k_correction * error_angle.get_value() : 0.0;
+  error_angle = near_semicircle(error_angle, 0_deg);
+
+  double correction = abs(error.y + error.x * tan(error.theta)) > abs(max_error) ? k_correction * error_angle.get_value() : 0.0;
+
+  if(std::get<0>(powers) < 0)
+    correction = -correction;
 
   if (correction > 0)
     return std::make_tuple(std::get<0>(powers),
