@@ -34,9 +34,12 @@ void autonomous() {}
 void opcontrol() {
   // controller.print(0, 0, "furk");
   // test_motor.move_voltage(12000);
+  pros::delay(2000);
   std::shared_ptr<rev::TwoRotationInertialOdometry> odom =
       std::make_shared<rev::TwoRotationInertialOdometry>(
           fwd, rgt, imu, 2.09_in, 2.75_in, 4.75_in, 0.5_in);
+  
+  odom->set_position({1.5_ft, 10.5_ft, 135_deg});
 
   // odom->set_position({215_in, 49_in, 16_deg});
   AsyncRunner odom_runner(odom);
@@ -66,36 +69,29 @@ void opcontrol() {
   const double kP = 0.0;
   const double kB = 0.015;
 
-  turn->turn_to_target_absolute(0.7, 45_deg);
+  /*turn->turn_to_target_absolute(0.7, 45_deg);
 
   while (!turn->is_completed())
-    pros::delay(20);
+    pros::delay(20);*/
 
-  /*reckless->go(RecklessPath()
+  reckless->go(RecklessPath()
                    .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
+                       std::make_shared<CascadingMotion>(0.7, kP, kB,
+                                                         40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {2_ft, 0_ft, 0_deg}, 0_in)
+                       std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+                       {4_ft, 8_ft, 0_deg}, 0_in)
 
                                      )
                    .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
+                       std::make_shared<CascadingMotion>(0.7, kP, kB,
+                                                         40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {4_ft, 1_ft, 45_deg}, 0_in))
-                   .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0.075_s, 0.2_s, 0.4),
-                       {0_ft, 0_ft, 0_deg}, 0_in)
+                       {8_ft, 8_ft, 45_deg}, 0_in))
+                   );
 
-                                     ));*/
-
-  // while(!reckless->is_completed()) pros::delay(20);
+  while(!reckless->is_completed()) pros::delay(20);
   printf("Completed motion");
 
   // reckless->go(RecklessPath());
