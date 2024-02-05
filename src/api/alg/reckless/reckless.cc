@@ -132,6 +132,7 @@ void Reckless::go(RecklessPath path) {
     breakout();
   current_segment = 0;
   current_path = path;
+  current_path.segments.at(0).start_point = odometry->get_state().pos;
   status = RecklessStatus::ACTIVE;
   std::cout << "Started motion with " << current_path.segments.size()
             << " segments" << std::endl;
