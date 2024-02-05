@@ -4,6 +4,7 @@
 #include "rev/api/units/q_length.hh"
 #include "rev/api/units/q_speed.hh"
 #include "rev/api/units/r_quantity.hh"
+#include "rev/util/math/pose.hh"
 
 namespace rev {
 
@@ -11,11 +12,12 @@ namespace rev {
  * @brief A structure representing a position and facing direction
  *
  */
-struct Position {
-  QLength x;
-  QLength y;
-  QAngle facing;
-};
+// struct Position {
+//   QLength x;
+//   QLength y;
+//   QAngle facing;
+// };
+typedef struct Pose Position;
 
 /**
  * @brief A structure representing a velocity

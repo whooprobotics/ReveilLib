@@ -23,13 +23,13 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
   max_power = imax_power;
   angle_goal = iangle;
 
-  angle_difference = angle_goal - odometry->get_state().pos.facing;
+  angle_difference = angle_goal - odometry->get_state().pos.theta;
 
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
 
-  angle_goal = odometry->get_state().pos.facing + target_relative_original;
+  angle_goal = odometry->get_state().pos.theta + target_relative_original;
 
   target_relative =
       angle_difference -
@@ -92,7 +92,7 @@ void CampbellTurn::step() {
   //     chassis->drive_tank(0,0);
   // }
 
-  angle_difference = angle_goal - state.pos.facing;
+  angle_difference = angle_goal - state.pos.theta;
 
   // Check Current angle/angular velocity and set controller_state
   target_relative =

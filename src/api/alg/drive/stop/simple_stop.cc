@@ -17,13 +17,13 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
 
   // numbers are weird and x is sin here
   // If this starts bugging, this is the first thing we should check.
-  Number x_dot = cos(current_state.pos.facing);
-  Number y_dot = sin(current_state.pos.facing);
+  Number x_dot = cos(current_state.pos.theta);
+  Number y_dot = sin(current_state.pos.theta);
 
   // If the final state is somewhere behind the start state, we need to invert
   // the facing vector
-  Number xi_facing = cos(start_state.facing);
-  Number yi_facing = sin(start_state.facing);
+  Number xi_facing = cos(start_state.theta);
+  Number yi_facing = sin(start_state.theta);
 
   // Find dot product of initial facing and initial offset. If this dot product
   // is negative, the target point is behind the robot and it needs to reverse

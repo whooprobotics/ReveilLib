@@ -7,8 +7,8 @@ std::tuple<double, double> rev::ConstantMotion::gen_powers(
     rev::Position target_state,
     Position start_state,
     QLength drop_earlys) {
-  Number xi_facing = cos(start_state.facing);
-  Number yi_facing = sin(start_state.facing);
+  Number xi_facing = cos(start_state.theta);
+  Number yi_facing = sin(start_state.theta);
 
   // Find dot product of initial facing and initial offset. If this dot product
   // is negative, the target point is behind the robot and it needs to reverse
