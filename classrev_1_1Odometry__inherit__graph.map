@@ -1,5 +1,9 @@
 <map id="rev::Odometry" name="rev::Odometry">
-<area shape="rect" id="Node000001" title="Interface for odometry implementations." alt="" coords="33,5,135,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="5,79,163,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,46,87,79,81,79,81,46"/>
+<area shape="rect" id="Node000001" title="Interface for odometry implementations." alt="" coords="93,5,194,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1ChassisSim.html" title=" " alt="" coords="6,87,121,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,44,78,88,74,84,119,40"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="145,79,302,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,40,206,77,202,81,165,44"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1DriftlessSim.html" title=" " alt="" coords="5,168,122,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="66,128,66,167,61,167,61,128"/>
 </map>

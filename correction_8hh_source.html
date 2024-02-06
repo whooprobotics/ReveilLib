@@ -112,8 +112,8 @@ $(function(){initNavTree('correction_8hh_source.html',''); initResizable(); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classrev_1_1Correction.html#a6e7635a2eb59c2db1dffaf505e5305bc">   23</a></span>  <span class="keyword">virtual</span> std::tuple&lt;double, double&gt; <a class="code hl_function" href="classrev_1_1Correction.html#a6e7635a2eb59c2db1dffaf505e5305bc">apply_correction</a>(</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> target_state,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> start_state,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> target_state,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> start_state,</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      QLength drop_early,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      std::tuple&lt;double, double&gt; powers) = 0;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
@@ -121,8 +121,8 @@ $(function(){initNavTree('correction_8hh_source.html',''); initResizable(); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="aclassrev_1_1Correction_html"><div class="ttname"><a href="classrev_1_1Correction.html">rev::Correction</a></div><div class="ttdoc">Interface for correction algorithms.</div><div class="ttdef"><b>Definition</b> correction.hh:11</div></div>
 <div class="ttc" id="aclassrev_1_1Correction_html_a6e7635a2eb59c2db1dffaf505e5305bc"><div class="ttname"><a href="classrev_1_1Correction.html#a6e7635a2eb59c2db1dffaf505e5305bc">rev::Correction::apply_correction</a></div><div class="ttdeci">virtual std::tuple&lt; double, double &gt; apply_correction(OdometryState current_state, Position target_state, Position start_state, QLength drop_early, std::tuple&lt; double, double &gt; powers)=0</div><div class="ttdoc">Applies correction to the input.</div></div>
-<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:34</div></div>
-<div class="ttc" id="astructrev_1_1Position_html"><div class="ttname"><a href="structrev_1_1Position.html">rev::Position</a></div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:14</div></div>
+<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
+<div class="ttc" id="astructrev_1_1Pose_html"><div class="ttname"><a href="structrev_1_1Pose.html">rev::Pose</a></div><div class="ttdef"><b>Definition</b> pose.hh:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

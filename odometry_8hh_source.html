@@ -107,48 +107,48 @@ $(function(){initNavTree('odometry_8hh_source.html',''); initResizable(); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/units/q_length.hh&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rev/api/units/q_speed.hh&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;rev/api/units/r_quantity.hh&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span>rev {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structrev_1_1Position.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1Position.html">Position</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  QLength x;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  QLength y;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  QAngle facing;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;rev/util/math/pose.hh&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// struct Position {</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//   QLength x;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//   QLength y;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//   QAngle facing;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// };</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">typedef</span> <span class="keyword">struct </span>Pose Position;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structrev_1_1Velocity.html">   26</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1Velocity.html">Velocity</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  QSpeed xv;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  QSpeed yv;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  QAngularSpeed angular;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
 </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structrev_1_1Velocity.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1Velocity.html">Velocity</a> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  QSpeed xv;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  QSpeed yv;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  QAngularSpeed angular;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structrev_1_1OdometryState.html">   36</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> pos;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_struct" href="structrev_1_1Velocity.html">Velocity</a> vel;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structrev_1_1OdometryState.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> pos;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_struct" href="structrev_1_1Velocity.html">Velocity</a> vel;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html">   45</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Odometry.html">Odometry</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">   52</a></span>  <span class="keyword">virtual</span> <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="code hl_function" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">get_state</a>() = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">   58</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">set_position</a>(<a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> pos) = 0;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">   65</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">reset_position</a>() = 0;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Odometry.html">Odometry</a> {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">   50</a></span>  <span class="keyword">virtual</span> <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="code hl_function" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">get_state</a>() = 0;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">   56</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">set_position</a>(<a class="code hl_struct" href="structrev_1_1Position.html">Position</a> pos) = 0;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">   63</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">reset_position</a>() = 0;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
-</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}  <span class="comment">// namespace rev</span></div>
-<div class="ttc" id="aclassrev_1_1Odometry_html"><div class="ttname"><a href="classrev_1_1Odometry.html">rev::Odometry</a></div><div class="ttdoc">Interface for odometry implementations.</div><div class="ttdef"><b>Definition</b> odometry.hh:43</div></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}  <span class="comment">// namespace rev</span></div>
+<div class="ttc" id="aclassrev_1_1Odometry_html"><div class="ttname"><a href="classrev_1_1Odometry.html">rev::Odometry</a></div><div class="ttdoc">Interface for odometry implementations.</div><div class="ttdef"><b>Definition</b> odometry.hh:45</div></div>
 <div class="ttc" id="aclassrev_1_1Odometry_html_a113f45340e8c6c617816697219cd89b2"><div class="ttname"><a href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">rev::Odometry::get_state</a></div><div class="ttdeci">virtual OdometryState get_state()=0</div><div class="ttdoc">Get the current position and velocity of the robot.</div></div>
 <div class="ttc" id="aclassrev_1_1Odometry_html_a6526e22622433028e0914556058920b6"><div class="ttname"><a href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">rev::Odometry::set_position</a></div><div class="ttdeci">virtual void set_position(Position pos)=0</div><div class="ttdoc">Set the position of the controller.</div></div>
 <div class="ttc" id="aclassrev_1_1Odometry_html_acbe2e01144f6ebee320423b92b4d4a8a"><div class="ttname"><a href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">rev::Odometry::reset_position</a></div><div class="ttdeci">virtual void reset_position()=0</div><div class="ttdoc">Set the position to (0,0)</div></div>
-<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:34</div></div>
-<div class="ttc" id="astructrev_1_1Position_html"><div class="ttname"><a href="structrev_1_1Position.html">rev::Position</a></div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:14</div></div>
-<div class="ttc" id="astructrev_1_1Velocity_html"><div class="ttname"><a href="structrev_1_1Velocity.html">rev::Velocity</a></div><div class="ttdoc">A structure representing a velocity.</div><div class="ttdef"><b>Definition</b> odometry.hh:24</div></div>
+<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
+<div class="ttc" id="astructrev_1_1Pose_html"><div class="ttname"><a href="structrev_1_1Pose.html">rev::Pose</a></div><div class="ttdef"><b>Definition</b> pose.hh:6</div></div>
+<div class="ttc" id="astructrev_1_1Velocity_html"><div class="ttname"><a href="structrev_1_1Velocity.html">rev::Velocity</a></div><div class="ttdoc">A structure representing a velocity.</div><div class="ttdef"><b>Definition</b> odometry.hh:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

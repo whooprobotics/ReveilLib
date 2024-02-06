@@ -115,8 +115,8 @@ $(function(){initNavTree('simple__stop_8hh_source.html',''); initResizable(); })
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>             <span class="keywordtype">double</span> icoast_power);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  stop_state <a class="code hl_function" href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">get_stop_state</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                            <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> target_state,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                            <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> start_state,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                            <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> target_state,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                            <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> start_state,</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                            QLength drop_early) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">double</span> get_coast_power() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
@@ -133,8 +133,8 @@ $(function(){initNavTree('simple__stop_8hh_source.html',''); initResizable(); })
 <div class="ttc" id="aclassrev_1_1SimpleStop_html_a6f49d52e7d9ae73b407fbd0e0e09f485"><div class="ttname"><a href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">rev::SimpleStop::get_stop_state</a></div><div class="ttdeci">stop_state get_stop_state(OdometryState current_state, Position target_state, Position start_state, QLength drop_early) override</div><div class="ttdoc">Find the current stop state.</div><div class="ttdef"><b>Definition</b> simple_stop.cc:11</div></div>
 <div class="ttc" id="aclassrev_1_1SimpleStop_html_ab7b767a6128fe5648fcaecb728ad90c3"><div class="ttname"><a href="classrev_1_1SimpleStop.html#ab7b767a6128fe5648fcaecb728ad90c3">rev::SimpleStop::SimpleStop</a></div><div class="ttdeci">SimpleStop(QTime iharsh_threshold, QTime icoast_threshold, double icoast_power)</div><div class="ttdoc">Construct a new Simple Stop controller.</div><div class="ttdef"><b>Definition</b> simple_stop.cc:5</div></div>
 <div class="ttc" id="aclassrev_1_1Stop_html"><div class="ttname"><a href="classrev_1_1Stop.html">rev::Stop</a></div><div class="ttdoc">Interface for stop controllers.</div><div class="ttdef"><b>Definition</b> stop.hh:13</div></div>
-<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:34</div></div>
-<div class="ttc" id="astructrev_1_1Position_html"><div class="ttname"><a href="structrev_1_1Position.html">rev::Position</a></div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:14</div></div>
+<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
+<div class="ttc" id="astructrev_1_1Pose_html"><div class="ttname"><a href="structrev_1_1Pose.html">rev::Pose</a></div><div class="ttdef"><b>Definition</b> pose.hh:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

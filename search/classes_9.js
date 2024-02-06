@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['velocity_0',['Velocity',['../structrev_1_1Velocity.html',1,'rev']]]
+  ['turn_0',['Turn',['../classrev_1_1Turn.html',1,'rev']]],
+  ['tworotationinertialodometry_1',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev']]]
 ];

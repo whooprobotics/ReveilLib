@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['turn_0',['Turn',['../classrev_1_1Turn.html',1,'rev']]],
-  ['tworotationinertialodometry_1',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev']]]
+  ['simplestop_0',['SimpleStop',['../classrev_1_1SimpleStop.html',1,'rev']]],
+  ['skidsteerchassis_1',['SkidSteerChassis',['../classrev_1_1SkidSteerChassis.html',1,'rev']]],
+  ['stop_2',['Stop',['../classrev_1_1Stop.html',1,'rev']]]
 ];

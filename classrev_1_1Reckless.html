@@ -109,9 +109,11 @@ Inheritance diagram for rev::Reckless:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Reckless__inherit__graph.png" border="0" usemap="#arev_1_1Reckless_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Reckless_inherit__map" id="arev_1_1Reckless_inherit__map">
-<area shape="rect" title="High&#45;speed chassis motion controller." alt="" coords="23,79,123,105"/>
+<area shape="rect" title="High&#45;speed chassis motion controller." alt="" coords="103,79,203,105"/>
 <area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="5,5,141,31"/>
-<area shape="poly" title=" " alt="" coords="76,46,76,79,70,79,70,46"/>
+<area shape="poly" title=" " alt="" coords="100,39,141,77,138,81,96,43"/>
+<area shape="rect" href="classrev_1_1AsyncAwaitable.html" title="Interface for classes which have something that can be waited for." alt="" coords="165,5,304,31"/>
+<area shape="poly" title=" " alt="" coords="211,43,168,81,165,77,207,39"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -119,9 +121,11 @@ Collaboration diagram for rev::Reckless:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Reckless__coll__graph.png" border="0" usemap="#arev_1_1Reckless_coll__map" alt="Collaboration graph"/></div>
 <map name="arev_1_1Reckless_coll__map" id="arev_1_1Reckless_coll__map">
-<area shape="rect" title="High&#45;speed chassis motion controller." alt="" coords="23,79,123,105"/>
+<area shape="rect" title="High&#45;speed chassis motion controller." alt="" coords="103,79,203,105"/>
 <area shape="rect" href="classrev_1_1AsyncRunnable.html" title="Interface for classes which should have associated threads." alt="" coords="5,5,141,31"/>
-<area shape="poly" title=" " alt="" coords="76,46,76,79,70,79,70,46"/>
+<area shape="poly" title=" " alt="" coords="100,39,141,77,138,81,96,43"/>
+<area shape="rect" href="classrev_1_1AsyncAwaitable.html" title="Interface for classes which have something that can be waited for." alt="" coords="165,5,304,31"/>
+<area shape="poly" title=" " alt="" coords="211,43,168,81,165,77,207,39"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -132,6 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aff81d2695e48f0d943c31139181047c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bb13e2357ab22f12d60243f2fa0d552" id="r_a2bb13e2357ab22f12d60243f2fa0d552"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bb13e2357ab22f12d60243f2fa0d552">step</a> () <a class="el" href="classrev_1_1RQuantity.html">override</a></td></tr>
 <tr class="separator:a2bb13e2357ab22f12d60243f2fa0d552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9830c9dcb5f2f7a271103e03d82f67f3" id="r_a9830c9dcb5f2f7a271103e03d82f67f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9830c9dcb5f2f7a271103e03d82f67f3">await</a> () <a class="el" href="classrev_1_1RQuantity.html">override</a></td></tr>
+<tr class="memdesc:a9830c9dcb5f2f7a271103e03d82f67f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until the motion is completed.  <br /></td></tr>
+<tr class="separator:a9830c9dcb5f2f7a271103e03d82f67f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb44939304008acb11f0249067698b7d" id="r_aeb44939304008acb11f0249067698b7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb44939304008acb11f0249067698b7d">go</a> (<a class="el" href="structrev_1_1RecklessPath.html">RecklessPath</a> <a class="el" href="classrev_1_1RQuantity.html">path</a>)</td></tr>
 <tr class="separator:aeb44939304008acb11f0249067698b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad97df2c630feadfff50af62e01d7572f" id="r_ad97df2c630feadfff50af62e01d7572f"><td class="memItemLeft" align="right" valign="top">RecklessStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97df2c630feadfff50af62e01d7572f">get_status</a> ()</td></tr>
@@ -146,6 +153,35 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-speed chassis motion controller. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9830c9dcb5f2f7a271103e03d82f67f3" name="a9830c9dcb5f2f7a271103e03d82f67f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9830c9dcb5f2f7a271103e03d82f67f3">&#9670;&#160;</a></span>await()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrev_1_1RQuantity.html">void</a> rev::Reckless::await </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blocks until the motion is completed. </p>
+
+<p>Implements <a class="el" href="classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2">rev::AsyncAwaitable</a>.</p>
+
+</div>
+</div>
 <a id="ac024208d41885c83f2126c5759e736e8" name="ac024208d41885c83f2126c5759e736e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac024208d41885c83f2126c5759e736e8">&#9670;&#160;</a></span>breakout()</h2>
 

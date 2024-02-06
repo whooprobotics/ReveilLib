@@ -1,5 +1,9 @@
 <map id="rev::Chassis" name="rev::Chassis">
-<area shape="rect" id="Node000001" title="Interface for chassis objects." alt="" coords="34,5,126,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1SkidSteerChassis.html" title="Implementation of a skid&#45;steer chassis." alt="" coords="5,79,155,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,46,83,79,77,79,77,46"/>
+<area shape="rect" id="Node000001" title="Interface for chassis objects." alt="" coords="95,5,187,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1ChassisSim.html" title=" " alt="" coords="6,79,121,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,44,78,81,75,77,115,40"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1SkidSteerChassis.html" title="Implementation of a skid&#45;steer chassis." alt="" coords="145,79,294,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,40,208,77,205,81,163,43"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1DriftlessSim.html" title=" " alt="" coords="5,153,122,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="66,120,66,152,61,152,61,120"/>
 </map>

@@ -118,14 +118,14 @@ $(function(){initNavTree('path_8hh_source.html',''); initResizable(); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  std::shared_ptr&lt;Correction&gt; correction;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  std::shared_ptr&lt;Stop&gt; stop;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> start_point;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> target_point;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> start_point;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> target_point;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  QLength drop_early;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_struct" href="structrev_1_1RecklessPathSegment.html">RecklessPathSegment</a>(std::shared_ptr&lt;Motion&gt; imotion,</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                      std::shared_ptr&lt;Correction&gt; icorrection,</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                      std::shared_ptr&lt;Stop&gt; istop,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                      <a class="code hl_struct" href="structrev_1_1Position.html">Position</a> itarget_point,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                      <a class="code hl_struct" href="structrev_1_1Pose.html">Position</a> itarget_point,</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                      QLength idrop_early = 0 * inch)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      : motion(imotion),</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        correction(icorrection),</div>
@@ -146,10 +146,10 @@ $(function(){initNavTree('path_8hh_source.html',''); initResizable(); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
 </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// namespace rev</span></div>
-<div class="ttc" id="astructrev_1_1Position_html"><div class="ttname"><a href="structrev_1_1Position.html">rev::Position</a></div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:14</div></div>
+<div class="ttc" id="astructrev_1_1Pose_html"><div class="ttname"><a href="structrev_1_1Pose.html">rev::Pose</a></div><div class="ttdef"><b>Definition</b> pose.hh:6</div></div>
 <div class="ttc" id="astructrev_1_1RecklessPathSegment_html"><div class="ttname"><a href="structrev_1_1RecklessPathSegment.html">rev::RecklessPathSegment</a></div><div class="ttdoc">Path segment for use with Reckless controller.</div><div class="ttdef"><b>Definition</b> path.hh:16</div></div>
 <div class="ttc" id="astructrev_1_1RecklessPath_html"><div class="ttname"><a href="structrev_1_1RecklessPath.html">rev::RecklessPath</a></div><div class="ttdoc">Complete path for use with the Reckless Controller.</div><div class="ttdef"><b>Definition</b> path.hh:43</div></div>
-<div class="ttc" id="astructrev_1_1RecklessPath_html_a21451123b7294ce499a7600161006bed"><div class="ttname"><a href="structrev_1_1RecklessPath.html#a21451123b7294ce499a7600161006bed">rev::RecklessPath::with_segment</a></div><div class="ttdeci">RecklessPath &amp; with_segment(RecklessPathSegment segment)</div><div class="ttdoc">Add a segment to the path under construction.</div><div class="ttdef"><b>Definition</b> reckless.cc:175</div></div>
+<div class="ttc" id="astructrev_1_1RecklessPath_html_a21451123b7294ce499a7600161006bed"><div class="ttname"><a href="structrev_1_1RecklessPath.html#a21451123b7294ce499a7600161006bed">rev::RecklessPath::with_segment</a></div><div class="ttdeci">RecklessPath &amp; with_segment(RecklessPathSegment segment)</div><div class="ttdoc">Add a segment to the path under construction.</div><div class="ttdef"><b>Definition</b> reckless.cc:183</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

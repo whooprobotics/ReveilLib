@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classrev_1_1RQuantity.html" title="Basic template class defining units." alt="" coords="5,5,226,46"/>
+<area shape="rect" id="Node000000" href="$classrev_1_1Stop.html" title="Interface for stop controllers." alt="" coords="5,5,78,31"/>
+<area shape="rect" id="Node000001" href="$classrev_1_1SimpleStop.html" title="Stop controller implementing a simple stopping algorithm." alt="" coords="126,5,238,31"/>
+<area shape="poly" id="edge19_Node000000_Node000001" title=" " alt="" coords="93,16,125,16,125,21,93,21"/>
 </map>

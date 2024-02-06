@@ -109,9 +109,13 @@ Inheritance diagram for rev::Odometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Odometry__inherit__graph.png" border="0" usemap="#arev_1_1Odometry_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Odometry_inherit__map" id="arev_1_1Odometry_inherit__map">
-<area shape="rect" title="Interface for odometry implementations." alt="" coords="33,5,135,31"/>
-<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="5,79,163,120"/>
-<area shape="poly" title=" " alt="" coords="87,46,87,79,81,79,81,46"/>
+<area shape="rect" title="Interface for odometry implementations." alt="" coords="93,5,194,31"/>
+<area shape="rect" href="classrev_1_1ChassisSim.html" title=" " alt="" coords="6,87,121,112"/>
+<area shape="poly" title=" " alt="" coords="123,44,78,88,74,84,119,40"/>
+<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="145,79,302,120"/>
+<area shape="poly" title=" " alt="" coords="168,40,206,77,202,81,165,44"/>
+<area shape="rect" href="classrev_1_1DriftlessSim.html" title=" " alt="" coords="5,168,122,193"/>
+<area shape="poly" title=" " alt="" coords="66,128,66,167,61,167,61,128"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -120,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a113f45340e8c6c617816697219cd89b2" id="r_a113f45340e8c6c617816697219cd89b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="structrev_1_1OdometryState.html">OdometryState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a113f45340e8c6c617816697219cd89b2">get_state</a> ()=0</td></tr>
 <tr class="memdesc:a113f45340e8c6c617816697219cd89b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position and velocity of the robot.  <br /></td></tr>
 <tr class="separator:a113f45340e8c6c617816697219cd89b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6526e22622433028e0914556058920b6" id="r_a6526e22622433028e0914556058920b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6526e22622433028e0914556058920b6">set_position</a> (<a class="el" href="structrev_1_1Position.html">Position</a> pos)=0</td></tr>
+<tr class="memitem:a6526e22622433028e0914556058920b6" id="r_a6526e22622433028e0914556058920b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6526e22622433028e0914556058920b6">set_position</a> (<a class="el" href="structrev_1_1Pose.html">Position</a> pos)=0</td></tr>
 <tr class="memdesc:a6526e22622433028e0914556058920b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the position of the controller.  <br /></td></tr>
 <tr class="separator:a6526e22622433028e0914556058920b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbe2e01144f6ebee320423b92b4d4a8a" id="r_acbe2e01144f6ebee320423b92b4d4a8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="classrev_1_1RQuantity.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbe2e01144f6ebee320423b92b4d4a8a">reset_position</a> ()=0</td></tr>
@@ -156,7 +160,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current position and velocity of the robot. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1OdometryState.html" title="A structure packaging a velocity and position into one.">OdometryState</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>, and <a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>.</p>
 
 </div>
 </div>
@@ -186,7 +190,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the position to (0,0) </p>
 <p>THIS WILL ALSO RESET HEADING, WHICH YOU MIGHT NOT WANT </p>
 
-<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>, and <a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>.</p>
 
 </div>
 </div>
@@ -202,7 +206,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classrev_1_1RQuantity.html">virtual</a> <a class="el" href="classrev_1_1RQuantity.html">void</a> rev::Odometry::set_position </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structrev_1_1Position.html">Position</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structrev_1_1Pose.html">Position</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -221,7 +225,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>, and <a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>.</p>
 
 </div>
 </div>

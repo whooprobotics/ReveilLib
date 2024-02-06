@@ -97,6 +97,7 @@ $(function(){initNavTree('functions_func.html',''); initResizable(); });
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>apply_correction()&#160;:&#160;<a class="el" href="classrev_1_1Correction.html#a6e7635a2eb59c2db1dffaf505e5305bc">rev::Correction</a>, <a class="el" href="classrev_1_1NoCorrection.html#a3efdb8e4af23b5d70a7633f9596dc97c">rev::NoCorrection</a>, <a class="el" href="classrev_1_1PilonsCorrection.html#a9b7c4b1093a1f6690a0a4bb490dcc446">rev::PilonsCorrection</a></li>
+<li>await()&#160;:&#160;<a class="el" href="classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2">rev::AsyncAwaitable</a>, <a class="el" href="classrev_1_1CampbellTurn.html#a9cdc018c5d1ae3edd90aecf3b72725c9">rev::CampbellTurn</a>, <a class="el" href="classrev_1_1Reckless.html#a9830c9dcb5f2f7a271103e03d82f67f3">rev::Reckless</a></li>
 </ul>
 
 
@@ -112,14 +113,14 @@ $(function(){initNavTree('functions_func.html',''); initResizable(); });
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>drive_arcade()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a04e45a8669a3592429884b2f945e7afc">rev::Chassis</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#afd9579b870c54466c22a7283029385e0">rev::SkidSteerChassis</a></li>
-<li>drive_tank()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a2469a95d78cfccf6dca4c61d6d2960b3">rev::Chassis</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a4b51fd7a6eca2fcc383d5aa5bcb65bf3">rev::SkidSteerChassis</a></li>
+<li>drive_arcade()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a04e45a8669a3592429884b2f945e7afc">rev::Chassis</a>, <a class="el" href="classrev_1_1DriftlessSim.html#a47a7748fdbe117c55c53f70e8eac49c8">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#afd9579b870c54466c22a7283029385e0">rev::SkidSteerChassis</a></li>
+<li>drive_tank()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a2469a95d78cfccf6dca4c61d6d2960b3">rev::Chassis</a>, <a class="el" href="classrev_1_1DriftlessSim.html#a2fd863275cfc793c1493029a1e0e428f">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a4b51fd7a6eca2fcc383d5aa5bcb65bf3">rev::SkidSteerChassis</a></li>
 </ul>
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>gen_powers()&#160;:&#160;<a class="el" href="classrev_1_1CascadingMotion.html#a32c3ba913f3eae3c49ce5434b23f38de">rev::CascadingMotion</a>, <a class="el" href="classrev_1_1ConstantMotion.html#a0909713d729a39e8547b45e203ffdd80">rev::ConstantMotion</a>, <a class="el" href="classrev_1_1Motion.html#a22b5333ce68c7c0bb1b5facc41861580">rev::Motion</a>, <a class="el" href="classrev_1_1ProportionalMotion.html#aa333a104fca8807cd9c11ed4a57f8661">rev::ProportionalMotion</a></li>
-<li>get_state()&#160;:&#160;<a class="el" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a></li>
+<li>get_state()&#160;:&#160;<a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a></li>
 <li>get_status()&#160;:&#160;<a class="el" href="classrev_1_1Reckless.html#ad97df2c630feadfff50af62e01d7572f">rev::Reckless</a></li>
 <li>get_stop_state()&#160;:&#160;<a class="el" href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">rev::SimpleStop</a></li>
 <li>go()&#160;:&#160;<a class="el" href="classrev_1_1Reckless.html#aeb44939304008acb11f0249067698b7d">rev::Reckless</a></li>
@@ -139,22 +140,24 @@ $(function(){initNavTree('functions_func.html',''); initResizable(); });
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>reset_position()&#160;:&#160;<a class="el" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a></li>
+<li>reset_position()&#160;:&#160;<a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a></li>
 </ul>
 
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>set_brake_coast()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#ad638a497529e76fb870824193e4e5004">rev::Chassis</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a40e3af1603b354429276150ece739899">rev::SkidSteerChassis</a></li>
-<li>set_brake_harsh()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a3937194e841e28be18a64ecf91443a16">rev::Chassis</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a99e3aa7da9d582d7d5c804a9d6c9891e">rev::SkidSteerChassis</a></li>
-<li>set_position()&#160;:&#160;<a class="el" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a></li>
+<li>set_brake_coast()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#ad638a497529e76fb870824193e4e5004">rev::Chassis</a>, <a class="el" href="classrev_1_1DriftlessSim.html#a786e093376eab379dc3065e7b0987ef0">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a40e3af1603b354429276150ece739899">rev::SkidSteerChassis</a></li>
+<li>set_brake_harsh()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a3937194e841e28be18a64ecf91443a16">rev::Chassis</a>, <a class="el" href="classrev_1_1DriftlessSim.html#a8b4864797f30d17e0c85ae97c2acc775">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a99e3aa7da9d582d7d5c804a9d6c9891e">rev::SkidSteerChassis</a></li>
+<li>set_position()&#160;:&#160;<a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1Odometry.html#a6526e22622433028e0914556058920b6">rev::Odometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a></li>
 <li>SimpleStop()&#160;:&#160;<a class="el" href="classrev_1_1SimpleStop.html#ab7b767a6128fe5648fcaecb728ad90c3">rev::SimpleStop</a></li>
 <li>SkidSteerChassis()&#160;:&#160;<a class="el" href="classrev_1_1SkidSteerChassis.html#a46612682f415e40c0278535106d5d2d9">rev::SkidSteerChassis</a></li>
-<li>step()&#160;:&#160;<a class="el" href="classrev_1_1AsyncRunnable.html#a2d15b34694b56b1a015851ab9ad6beb8">rev::AsyncRunnable</a>, <a class="el" href="classrev_1_1CampbellTurn.html#a54b3752c6427caa691cca3d8d53ff386">rev::CampbellTurn</a>, <a class="el" href="classrev_1_1Reckless.html#a2bb13e2357ab22f12d60243f2fa0d552">rev::Reckless</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7ea176fa34cd913f09aef982e18d284e">rev::TwoRotationInertialOdometry</a></li>
-<li>stop()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a9bcfe74ecd4641ea473eedcfa90d1025">rev::Chassis</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a5d8f42f2c8223e08b3db32b50abeb270">rev::SkidSteerChassis</a></li>
+<li>step()&#160;:&#160;<a class="el" href="classrev_1_1AsyncRunnable.html#a2d15b34694b56b1a015851ab9ad6beb8">rev::AsyncRunnable</a>, <a class="el" href="classrev_1_1CampbellTurn.html#a54b3752c6427caa691cca3d8d53ff386">rev::CampbellTurn</a>, <a class="el" href="classrev_1_1DriftlessSim.html#a667a7dc609b52f5d7c639518049d7f8f">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1Reckless.html#a2bb13e2357ab22f12d60243f2fa0d552">rev::Reckless</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7ea176fa34cd913f09aef982e18d284e">rev::TwoRotationInertialOdometry</a></li>
+<li>stop()&#160;:&#160;<a class="el" href="classrev_1_1Chassis.html#a9bcfe74ecd4641ea473eedcfa90d1025">rev::Chassis</a>, <a class="el" href="classrev_1_1DriftlessSim.html#ade5db57dfa0022905d63f920d758571a">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1SkidSteerChassis.html#a5d8f42f2c8223e08b3db32b50abeb270">rev::SkidSteerChassis</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>to_absolute()&#160;:&#160;<a class="el" href="structrev_1_1Pose.html#a32ddc2a4f1bda3cdb0b54b27f1a1a770">rev::Pose</a></li>
+<li>to_relative()&#160;:&#160;<a class="el" href="structrev_1_1Pose.html#a9df1859ff4d1d087044e0b20256d2abe">rev::Pose</a></li>
 <li>turn_to_target_absolute()&#160;:&#160;<a class="el" href="classrev_1_1CampbellTurn.html#ac8dc791ea744f14e878278af41991e3a">rev::CampbellTurn</a>, <a class="el" href="classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481">rev::Turn</a></li>
 </ul>
 
