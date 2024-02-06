@@ -104,7 +104,7 @@ void DriftlessSim::step() {
                              radian * sin(facing_change / 2);
 
   // Average travel angle
-  QAngle travel_angle = state.pos.facing + facing_change / 2;
+  QAngle travel_angle = state.pos.theta + facing_change / 2;
 
   QLength dX = distance_traveled_line * cos(travel_angle);
   QLength dY = distance_traveled_line * sin(travel_angle);
@@ -112,7 +112,7 @@ void DriftlessSim::step() {
   // Update positions
   state.pos.x += dX;
   state.pos.y += dY;
-  state.pos.facing += facing_change;
+  state.pos.theta += facing_change;
 
   // Update velocities
   v_current = v_after;
