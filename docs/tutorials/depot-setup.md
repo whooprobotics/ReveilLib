@@ -28,8 +28,26 @@ pros c query --force-refresh
 
 This will set up the RevUp depot, allowing you to easily download and install ReveilLib.
 
+---
+**NOTE**
+
+In recent versions of PROS-cli, `pros c query` has been removed. Instead, you should instead use
+
+```sh
+pros c query-templates --force-refresh
+```
+
+---
+
 To use ReveilLib from the depot, just go into your project directory and run
 
 ```sh
 pros c apply reveillib
+```
+
+To update ReveilLib, refresh your template index and upgrade ReveilLib
+
+```sh
+pros c query-templates --force-refresh
+pros c upgrade reveillib
 ```
