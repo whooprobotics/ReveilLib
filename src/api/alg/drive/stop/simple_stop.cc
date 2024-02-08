@@ -14,10 +14,6 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,
                                       QLength drop_early) {
-  
-  Number x_dot = cos(current_state.pos.theta);
-  Number y_dot = sin(current_state.pos.theta);
-
   // Now actually calculate the other stuff
   // For now we will just assume latitudinal distance is negligible
   QSpeed longitudinal_speed =
