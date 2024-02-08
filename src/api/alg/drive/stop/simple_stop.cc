@@ -2,6 +2,8 @@
 
 namespace rev {
 
+rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference);
+
 SimpleStop::SimpleStop(QTime iharsh_threshold,
                        QTime icoast_threshold,
                        double icoast_power)
@@ -12,38 +14,27 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,
                                       QLength drop_early) {
-  QLength x_distance = target_state.x - current_state.pos.x;
-  QLength y_distance = target_state.y - current_state.pos.y;
-
-  // numbers are weird and x is sin here
-  // If this starts bugging, this is the first thing we should check.
+  
   Number x_dot = cos(current_state.pos.theta);
   Number y_dot = sin(current_state.pos.theta);
 
-  // If the final state is somewhere behind the start state, we need to invert
-  // the facing vector
-  Number xi_facing = cos(start_state.theta);
-  Number yi_facing = sin(start_state.theta);
-
-  // Find dot product of initial facing and initial offset. If this dot product
-  // is negative, the target point is behind the robot and it needs to reverse
-  // to get there.
-  QLength initial_longitudinal_distance =
-      xi_facing * (target_state.x - start_state.x) +
-      yi_facing * (target_state.y - start_state.y);
-
-  // If its negative, we're goin backwards
-  if (initial_longitudinal_distance.get_value() < 0) {
-    x_dot = -x_dot;
-    y_dot = -y_dot;
-  }
-
   // Now actually calculate the other stuff
-
-  QLength longitudinal_distance =
-      x_dot * x_distance + y_dot * y_distance - drop_early;
+  // For now we will just assume latitudinal distance is negligible
   QSpeed longitudinal_speed =
-      x_dot * current_state.vel.xv + y_dot * current_state.vel.yv;
+      sqrt(current_state.vel.xv * current_state.vel.xv + current_state.vel.yv * current_state.vel.yv);
+
+  Pose pos_current = current_state.pos;
+
+  // Find the pose which is at target_state
+  Pose pos_final = target_state;
+  // but make this reference frame face directly away from the start state
+  pos_final.theta = atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
+
+  // Reframe the robots current position in reference to the target state
+  // Because of the previous step, this should result in the starting longitudinal_distance being always (-d, 0)
+  Pose error = pos_current.to_relative(pos_final);
+
+  QLength longitudinal_distance = -error.x - drop_early;
 
   // Now for the other things
   if (abs(longitudinal_speed * harsh_threshold) >= abs(longitudinal_distance) ||
