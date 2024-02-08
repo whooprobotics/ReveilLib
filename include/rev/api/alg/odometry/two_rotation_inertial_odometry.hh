@@ -55,6 +55,8 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   // Time of last call
   int32_t time_last{-1};
 
+  bool is_initialized {false};
+
   // Wheel sizes
   QLength longitudinal_wheel_diameter;
   QLength lateral_wheel_diameter;
