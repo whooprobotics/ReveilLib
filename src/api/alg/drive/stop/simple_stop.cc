@@ -28,24 +28,27 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
 
   // Reframe the robots current position in reference to the target state
   // Because of the previous step, this should result in the starting longitudinal_distance being always (-d, 0)
+  // Successive errors should also be of the form (x, y), where x < 0 and y is small
   Pose error = pos_current.to_relative(pos_final);
 
   QLength longitudinal_distance = -error.x - drop_early;
 
-  // Now for the other things
-  if (abs(longitudinal_speed * harsh_threshold) >= abs(longitudinal_distance) ||
+  // Begin stopping the robot if we've passed the target
+  if (longitudinal_distance.get_value() < 0) {
+    stop_state_last = stop_state::BRAKE;
+    return harsh_threshold.convert(second) > 0.001 ? stop_state::BRAKE
+                                                  : stop_state::EXIT;
+  }
+
+  // Handle harsh stop
+  if (longitudinal_speed * harsh_threshold > longitudinal_distance ||
       stop_state_last == stop_state::BRAKE) {
     stop_state_last = stop_state::BRAKE;
     return stop_state::BRAKE;
   }
 
-  // If we've passed the target, its stop time
-  if (longitudinal_distance.get_value() < 0) {
-    stop_state_last = stop_state::BRAKE;
-    return harsh_threshold.convert(second) > 0.01 ? stop_state::BRAKE
-                                                  : stop_state::EXIT;
-  }
-  if (abs(longitudinal_speed * coast_threshold) >= abs(longitudinal_distance) ||
+  // Handle coast transition
+  if (longitudinal_speed * coast_threshold > longitudinal_distance ||
       stop_state_last == stop_state::COAST) {
     stop_state_last = stop_state::COAST;
     return stop_state::COAST;
