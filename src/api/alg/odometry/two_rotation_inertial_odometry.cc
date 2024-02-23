@@ -38,6 +38,8 @@ void TwoRotationInertialOdometry::set_position(Position pos) {
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
+  heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
+
   current_position_mutex.give();
 }
 void TwoRotationInertialOdometry::reset_position() {
