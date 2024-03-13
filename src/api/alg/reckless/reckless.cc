@@ -1,6 +1,7 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "iostream"
 #include "pros/rtos.hpp"
+
 namespace rev {
 
 stop_state lsstate = stop_state::GO;
@@ -57,8 +58,8 @@ void Reckless::step() {
     case stop_state::COAST: {
       // If the final state is somewhere behind the start state, we need to
       // invert the facing vector
-      Number xi_facing = cos(seg.start_point.facing);
-      Number yi_facing = sin(seg.start_point.facing);
+      Number xi_facing = cos(seg.start_point.theta);
+      Number yi_facing = sin(seg.start_point.theta);
 
       // Find dot product of initial facing and initial offset. If this dot
       // product is negative, the target point is behind the robot and it needs
@@ -123,6 +124,13 @@ void Reckless::step() {
       (double)current_segment + current_segment_progress.convert(number);
 }
 
+void Reckless::await() {
+  // Technically we can make this lighter with a condition variable or semaphore
+  // but its not worth it in this case because its a very quick check
+  while (!is_completed())
+    pros::delay(10);
+}
+
 /**
  * This function starts the robot along a path
  */
@@ -131,6 +139,7 @@ void Reckless::go(RecklessPath path) {
     breakout();
   current_segment = 0;
   current_path = path;
+  current_path.segments.at(0).start_point = odometry->get_state().pos;
   status = RecklessStatus::ACTIVE;
   std::cout << "Started motion with " << current_path.segments.size()
             << " segments" << std::endl;

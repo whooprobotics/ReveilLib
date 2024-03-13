@@ -4,6 +4,7 @@
 #include "rev/api/alg/drive/turn/campbell_turn.hh"
 #include "api.h"
 #include "rev/api/alg/odometry/odometry.hh"
+
 namespace rev {
 // The "CampbellTurn::" here just tells it that we are implementing a method
 // that is a member of the CampbellTurn class
@@ -22,13 +23,13 @@ void CampbellTurn::turn_to_target_absolute(double imax_power, QAngle iangle) {
   max_power = imax_power;
   angle_goal = iangle;
 
-  angle_difference = angle_goal - odometry->get_state().pos.facing;
+  angle_difference = angle_goal - odometry->get_state().pos.theta;
 
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
 
-  angle_goal = odometry->get_state().pos.facing + target_relative_original;
+  angle_goal = odometry->get_state().pos.theta + target_relative_original;
 
   target_relative =
       angle_difference -
@@ -91,7 +92,7 @@ void CampbellTurn::step() {
   //     chassis->drive_tank(0,0);
   // }
 
-  angle_difference = angle_goal - state.pos.facing;
+  angle_difference = angle_goal - state.pos.theta;
 
   // Check Current angle/angular velocity and set controller_state
   target_relative =
@@ -140,6 +141,11 @@ void CampbellTurn::step() {
   // that is up to you
 }
 // You will need implementations for every method
+
+void CampbellTurn::await() {
+  while (!is_completed())
+    pros::delay(10);
+}
 
 bool CampbellTurn::is_completed() {
   return (controller_state == TurnState::INACTIVE);

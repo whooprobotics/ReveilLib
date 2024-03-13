@@ -38,10 +38,7 @@ void TwoRotationInertialOdometry::set_position(Position pos) {
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
-  longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
-  latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
-  heading_ticks_init = inertial.get_heading() - pos.facing.convert(degree);
-  time_last = pros::millis();
+  heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
 
   current_position_mutex.give();
 }
@@ -53,8 +50,20 @@ void TwoRotationInertialOdometry::step() {
   double latitude_ticks = (double)(lateral_sensor.get_position()) / 100;
   double heading_ticks = inertial.get_heading();
 
-  if (std::isnan(heading_ticks))
-    heading_ticks = heading_ticks_last;
+  if (heading_ticks == PROS_ERR_F || inertial.is_calibrating()) {
+    return;
+  }
+
+  if(!is_initialized) {
+    longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
+    latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
+    heading_ticks_last = inertial.get_heading();
+    heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
+
+    is_initialized = true;
+    return;
+  }
+
   int32_t time = pros::millis();
 
   // Take the mutex so we can make sure things don't get race conditioned
@@ -73,17 +82,12 @@ void TwoRotationInertialOdometry::step() {
   time_last = time;
 
   if (heading_ticks == PROS_ERR_F) {
-    heading_ticks_last = 0;
     current_position_mutex.give();
     return;
   }
 
   // Get global facing angle
   double facing = heading_ticks - heading_ticks_init;
-
-  // Handle NAN
-  if (std::isnan(d_heading_ticks))
-    d_heading_ticks = 0.0;
 
   if (std::isnan(d_longitudinal_ticks))
     d_longitudinal_ticks = 0.0;
@@ -126,7 +130,7 @@ void TwoRotationInertialOdometry::step() {
   }
 
   // Average angle
-  double avga = heading_ticks - d_heading_ticks;
+  double avga = facing - 0.5 * d_heading_ticks;
   avga -= 360 * std::floor((avga + 180) / 360);
 
   // Polar form for rotating
@@ -150,7 +154,7 @@ void TwoRotationInertialOdometry::step() {
   // Update position information
   current_position.pos.x += dX;
   current_position.pos.y += dY;
-  current_position.pos.facing = facing * degree;
+  current_position.pos.theta = facing * degree;
   current_position.vel.xv = vX;
   current_position.vel.yv = vY;
   current_position.vel.angular = w;
