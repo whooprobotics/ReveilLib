@@ -2,63 +2,78 @@
 
 namespace rev {
 
+rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference);
+
 SimpleStop::SimpleStop(QTime iharsh_threshold,
                        QTime icoast_threshold,
                        double icoast_power)
     : harsh_threshold(iharsh_threshold),
       coast_threshold(icoast_threshold),
       coast_power(fabs(icoast_power)) {}
+
+SimpleStop::SimpleStop(QTime iharsh_threshold,
+                       QTime icoast_threshold,
+                       double icoast_power,
+                       QTime itimeout)
+    : harsh_threshold(iharsh_threshold),
+      coast_threshold(icoast_threshold),
+      coast_power(fabs(icoast_power)) {
+        timeout = (uint32_t)itimeout.convert(millisecond);
+      }
 stop_state SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,
                                       QLength drop_early) {
-  QLength x_distance = target_state.x - current_state.pos.x;
-  QLength y_distance = target_state.y - current_state.pos.y;
 
-  // numbers are weird and x is sin here
-  // If this starts bugging, this is the first thing we should check.
-  Number x_dot = cos(current_state.pos.theta);
-  Number y_dot = sin(current_state.pos.theta);
+  // Handle timeout if and only if timeout is set
+  if(timeout) {
+    // Only if the initialization time has been set by a previous loop
+    if(time_init) {
+        // Early exit if needed
+        if(pros::millis() > time_init + timeout) {
+          return stop_state::EXIT;
+        }
+    }
+    else {
+      time_init = pros::millis();
+    }
+  }
+                                  
+  // Now actually calculate the other stuff
+  // For now we will just assume latitudinal distance is negligible
+  QSpeed longitudinal_speed =
+      sqrt(current_state.vel.xv * current_state.vel.xv + current_state.vel.yv * current_state.vel.yv);
 
-  // If the final state is somewhere behind the start state, we need to invert
-  // the facing vector
-  Number xi_facing = cos(start_state.theta);
-  Number yi_facing = sin(start_state.theta);
+  Pose pos_current = current_state.pos;
 
-  // Find dot product of initial facing and initial offset. If this dot product
-  // is negative, the target point is behind the robot and it needs to reverse
-  // to get there.
-  QLength initial_longitudinal_distance =
-      xi_facing * (target_state.x - start_state.x) +
-      yi_facing * (target_state.y - start_state.y);
+  // Find the pose which is at target_state
+  Pose pos_final = target_state;
+  // but make this reference frame face directly away from the start state
+  pos_final.theta = atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
 
-  // If its negative, we're goin backwards
-  if (initial_longitudinal_distance.get_value() < 0) {
-    x_dot = -x_dot;
-    y_dot = -y_dot;
+  // Reframe the robots current position in reference to the target state
+  // Because of the previous step, this should result in the starting longitudinal_distance being always (-d, 0)
+  // Successive errors should also be of the form (x, y), where x < 0 and y is small
+  Pose error = pos_current.to_relative(pos_final);
+
+  QLength longitudinal_distance = -error.x - drop_early;
+
+  // Begin stopping the robot if we've passed the target
+  if (longitudinal_distance.get_value() < 0) {
+    stop_state_last = stop_state::BRAKE;
+    return harsh_threshold.convert(second) > 0.001 ? stop_state::BRAKE
+                                                  : stop_state::EXIT;
   }
 
-  // Now actually calculate the other stuff
-
-  QLength longitudinal_distance =
-      x_dot * x_distance + y_dot * y_distance - drop_early;
-  QSpeed longitudinal_speed =
-      x_dot * current_state.vel.xv + y_dot * current_state.vel.yv;
-
-  // Now for the other things
-  if (abs(longitudinal_speed * harsh_threshold) >= abs(longitudinal_distance) ||
+  // Handle harsh stop
+  if (longitudinal_speed * harsh_threshold > longitudinal_distance ||
       stop_state_last == stop_state::BRAKE) {
     stop_state_last = stop_state::BRAKE;
     return stop_state::BRAKE;
   }
 
-  // If we've passed the target, its stop time
-  if (longitudinal_distance.get_value() < 0) {
-    stop_state_last = stop_state::BRAKE;
-    return harsh_threshold.convert(second) > 0.01 ? stop_state::BRAKE
-                                                  : stop_state::EXIT;
-  }
-  if (abs(longitudinal_speed * coast_threshold) >= abs(longitudinal_distance) ||
+  // Handle coast transition
+  if (longitudinal_speed * coast_threshold > longitudinal_distance ||
       stop_state_last == stop_state::COAST) {
     stop_state_last = stop_state::COAST;
     return stop_state::COAST;

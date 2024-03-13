@@ -40,6 +40,7 @@ The TwoEncoderGyroOdometry system uses 3 sensors; an inertial and 2 rotation sen
 pros::Rotation fwd(5);        // Rotation sensor connected to the wheel measuring forward translation
 pros::Rotation rgt(16, true); // Rotation sensor connected to the wheel measuring rightward translation. 
                               // This one had to be reversed because of the way the sensor was mounted.
+                              // NOTE: Unlike motors, the PROS kernel requires you to use (port, true) syntax to initialize a reversed rotation sensor. If instead you try using (-port), it will not work.
 pros::Imu imu(14); // Inertial sensor
 ```
 

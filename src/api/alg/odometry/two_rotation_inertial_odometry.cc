@@ -38,14 +38,7 @@ void TwoRotationInertialOdometry::set_position(Position pos) {
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
-  while(inertial.is_calibrating())
-    pros::delay(20);
-
-  longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
-  latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
-  heading_ticks_last = inertial.get_heading();
-  heading_ticks_init = inertial.get_heading() - pos.theta.convert(degree);
-  time_last = pros::millis();
+  heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
 
   current_position_mutex.give();
 }
@@ -57,8 +50,20 @@ void TwoRotationInertialOdometry::step() {
   double latitude_ticks = (double)(lateral_sensor.get_position()) / 100;
   double heading_ticks = inertial.get_heading();
 
-  if (std::isnan(heading_ticks))
-    heading_ticks = heading_ticks_last;
+  if (heading_ticks == PROS_ERR_F || inertial.is_calibrating()) {
+    return;
+  }
+
+  if(!is_initialized) {
+    longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
+    latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
+    heading_ticks_last = inertial.get_heading();
+    heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
+
+    is_initialized = true;
+    return;
+  }
+
   int32_t time = pros::millis();
 
   // Take the mutex so we can make sure things don't get race conditioned
@@ -83,10 +88,6 @@ void TwoRotationInertialOdometry::step() {
 
   // Get global facing angle
   double facing = heading_ticks - heading_ticks_init;
-
-  // Handle NAN
-  if (std::isnan(d_heading_ticks))
-    d_heading_ticks = 0.0;
 
   if (std::isnan(d_longitudinal_ticks))
     d_longitudinal_ticks = 0.0;
