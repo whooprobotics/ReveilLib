@@ -17,12 +17,15 @@
 
 #ifndef OFF_ROBOT_TESTS
 #include "pros/apix.h"
-typedef pros::task_t BaseThread;
+//#include "api.h"
+#define BASE_THREAD_T pros::task_t
 #else
 #include <thread>
 #include "pros/rtos.hpp"
-typedef std::thread BaseThread;
+#define BASE_THREAD_T std::thread
 #endif
+
+#include <cstring>
 
 namespace rev {
 
@@ -45,8 +48,14 @@ namespace rev {
     CrossPlatformThread(void (*ptr)(void *),
                         void *params,
                         const char *const name = "ReveilLib Task") :
-                        thread(pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, name)), name(name)               
-    {};
+                        thread(
+                          pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, name)
+                        ),
+                        name(name)               
+    {
+      if(thread == NULL)
+        std::cout << std::strerror(errno) << std::endl;
+    };
 #else
 // Off-robot constructor
 CrossPlatformThread(void (*ptr)(void *),
@@ -66,7 +75,7 @@ CrossPlatformThread(void (*ptr)(void *),
     }
 
     private:
-    BaseThread thread;
+    BASE_THREAD_T thread;
     std::string name;
   };
 }
