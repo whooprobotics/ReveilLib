@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file cross_platform_thread.hh
  * @author Drew Deaton (blake.deaton@tamu.edu)
@@ -13,7 +15,6 @@
  * https://github.com/OkapiLib/OkapiLib/blob/master/include/okapi/api/coreProsAPI.hpp
  */
 
-namespace rev {
 #ifndef OFF_ROBOT_TESTS
 #include "pros/apix.h"
 typedef pros::task_t BaseThread;
@@ -22,6 +23,8 @@ typedef pros::task_t BaseThread;
 #include "pros/rtos.hpp"
 typedef std::thread BaseThread;
 #endif
+
+namespace rev {
 
   /**
    * @brief Wrapper class for easing use of threads on Windows, Linux, and Vex V5

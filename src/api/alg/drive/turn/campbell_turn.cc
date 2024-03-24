@@ -11,7 +11,7 @@ namespace rev {
 CampbellTurn::CampbellTurn(std::shared_ptr<Chassis> ichassis,
                            std::shared_ptr<Odometry> iodometry,
                            double ikP1,
-                           double ikP2) {
+                           double ikP2): AsyncRunnable("rev::CampbellTurn") {
   // Implement initialization stuff here, basically set up class member
   // variables
   kP1 = ikP1;  // was 0.2 in testing
