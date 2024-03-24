@@ -7,7 +7,7 @@ namespace rev {
 stop_state lsstate = stop_state::GO;
 Reckless::Reckless(std::shared_ptr<Chassis> ichassis,
                    std::shared_ptr<Odometry> iodometry)
-    : chassis(ichassis), odometry(iodometry) {}
+    : chassis(ichassis), odometry(iodometry), AsyncRunnable("rev::Reckless") {}
 
 void Reckless::step() {
   if (is_completed())  // Don't step the controller if it is not running for

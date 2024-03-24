@@ -7,8 +7,8 @@
 // MotorGroup drive_left = {15, 18, -19, -20};
 // MotorGroup drive_right = {4, 6, -7, -9};
 
-pros::Motor_Group leftd({15, 18, -19, -20});
-pros::Motor_Group rightd({4, 6, -7, -9});
+pros::Motor_Group leftd({-1, -2, -3, -4});
+pros::Motor_Group rightd({12, 13, 14, 15});
 
 pros::Rotation fwd(5);
 pros::Rotation rgt(16, true);

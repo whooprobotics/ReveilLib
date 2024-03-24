@@ -18,7 +18,8 @@ TwoRotationInertialOdometry::TwoRotationInertialOdometry(
       longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),
       lateral_wheel_diameter(ilateral_wheel_diameter),
       longitudinal_wheel_offset(ilongitudinal_wheel_offset),
-      lateral_wheel_offset(ilateral_wheel_offset) {
+      lateral_wheel_offset(ilateral_wheel_offset),
+      AsyncRunnable("rev::TwoRotationInertialOdometry") {
   longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
   latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
   heading_ticks_init = inertial.get_heading();

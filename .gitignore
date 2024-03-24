@@ -25,3 +25,6 @@ build/
 
 # This is a library
 src/main.cpp
+
+# templates
+reveillib@*
