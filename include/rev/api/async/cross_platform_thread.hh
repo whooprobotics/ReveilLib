@@ -67,10 +67,10 @@ CrossPlatformThread(void (*ptr)(void *),
 
     ~CrossPlatformThread() {
 #ifndef OFF_ROBOT_TESTS
-                        if(pros::c::task_get_state(thread) != pros::E_TASK_STATE_DELETED)
-                          pros::c::task_delete(thread);
+      if(pros::c::task_get_state(thread) != pros::E_TASK_STATE_DELETED)
+        pros::c::task_delete(thread);
 #else
-                        thread.join();
+      thread.join();
 #endif  
     }
 
