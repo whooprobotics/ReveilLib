@@ -15,23 +15,11 @@ namespace rev {
  * @brief Thread runner for AsyncRunnable
  *
  */
-class AsyncRunner {
+class [[deprecated("Replaced by AsyncRunnable.start_thread()")]] AsyncRunner {
  public:
   AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
               uint32_t itdelta = 10);
 
   ~AsyncRunner();
-
- private:
-  std::shared_ptr<AsyncRunnable> controller;
-  rthread* thread;
-  uint32_t tdelta;  // Time to wait between iterations in millis
-
-  bool active{true};
-
-  // Helper function to launch thread
-  static void run(void* context);
-
-  void loop();
 };
 }  // namespace rev

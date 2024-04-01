@@ -14,7 +14,8 @@ DriftlessSim::DriftlessSim(QSpeed iv_max,
       linear_decay_rate(ilinear_decay_rate),
       angular_decay_rate(iangular_decay_rate),
       linear_brake_decay_rate(ilinear_brake_decay_rate),
-      angular_brake_decay_rate(iangular_brake_decay_rate) {}
+      angular_brake_decay_rate(iangular_brake_decay_rate),
+      AsyncRunnable("rev::DriftlessSim") {}
 
 void DriftlessSim::drive_tank(double left, double right) {
   // If a power exceeds 1.0, scale both accordingly
