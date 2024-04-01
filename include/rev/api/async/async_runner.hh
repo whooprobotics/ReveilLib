@@ -15,8 +15,7 @@ namespace rev {
  * @brief Thread runner for AsyncRunnable
  *
  */
-[[deprecated("Replaced by AsyncRunnable.start_thread()")]]
-class AsyncRunner {
+class [[deprecated("Replaced by AsyncRunnable.start_thread()")]] AsyncRunner {
  public:
   AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
               uint32_t itdelta = 10);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <atomic>
+
 #include "rev/api/async/cross_platform_thread.hh"
 
 namespace rev {
@@ -23,7 +25,11 @@ class AsyncRunnable {
    * 
    */
   virtual void loop() {
-    while(true) {
+    while(!deleting.load(std::memory_order_acquire) 
+#ifndef OFF_ROBOT_TESTS
+      && !pros::c::task_notify_take(true, 0)
+#endif
+    ) {
       step();
       pros::delay(10);
     }
@@ -37,6 +43,10 @@ class AsyncRunnable {
   void start_thread() {
     if(!thread) {
       thread = new CrossPlatformThread(start_loop, this, task_name);
+#ifndef OFF_ROBOT_TESTS
+      pros::c::task_notify_when_deleting(pros::c::task_get_current(), thread, 1,
+                               pros::E_NOTIFY_ACTION_INCR);
+#endif
     }
   }
 
@@ -48,8 +58,15 @@ class AsyncRunnable {
     task_name = thread_name;
   }
 
+  ~AsyncRunnable() {
+    deleting.store(true, std::memory_order_release);
+    delete thread;
+  }
+
  protected:
   CrossPlatformThread* thread {nullptr};
+  
+  std::atomic_bool deleting{false};
   const char* task_name = "Rev Async Controller";
 };
 }  // namespace rev

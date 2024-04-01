@@ -74,6 +74,10 @@ CrossPlatformThread(void (*ptr)(void *),
 #endif  
     }
 
+    BASE_THREAD_T get_thread() {
+      return thread;
+    }
+
     private:
     BASE_THREAD_T thread;
     std::string name;
