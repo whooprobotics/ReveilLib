@@ -6,18 +6,24 @@ namespace rev {
  * @brief Algebraic data type for fancy return matching
  *
  */
-enum class SegmentStatusType { REMAIN, NEXT };
+enum class SegmentStatusType { DRIVE, BRAKE, NEXT };
 struct SegmentStatus {
   SegmentStatusType status;
   double power_left{0.};
   double power_right{0.};
 
-  static SegmentStatus remain(double ipower_left, double ipower_right) {
+  static SegmentStatus drive(double ipower_left, double ipower_right) {
     SegmentStatus status;
-    status.status = SegmentStatusType::REMAIN;
+    status.status = SegmentStatusType::DRIVE;
     status.power_left = ipower_left;
     status.power_right = ipower_right;
 
+    return status;
+  }
+
+  static SegmentStatus brake() {
+    SegmentStatus status;
+    status.status = SegmentStatusType::BRAKE;
     return status;
   }
 
