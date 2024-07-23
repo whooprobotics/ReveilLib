@@ -12,6 +12,13 @@ struct SegmentStatus {
   double power_left{0.};
   double power_right{0.};
 
+  /**
+   * @brief Return status for applying a pair of powers to the chassis
+   *
+   * @param ipower_left The power to apply to the left side of the chassis
+   * @param ipower_right The power to apply to the right side of the chassis
+   * @return SegmentStatus
+   */
   static SegmentStatus drive(double ipower_left, double ipower_right) {
     SegmentStatus status;
     status.status = SegmentStatusType::DRIVE;
@@ -19,6 +26,27 @@ struct SegmentStatus {
     status.power_right = ipower_right;
 
     return status;
+  }
+
+  /**
+   * @brief Return status for applying power to the chassis
+   *
+   * @param ipower A power to apply to both sides of the chassis
+   * @return SegmentStatus
+   */
+  static SegmentStatus drive(double ipower) { return drive(ipower, ipower); }
+
+  /**
+   * @brief Return status for applying a pair of powers to the chassis, as a
+   * tuple
+   *
+   * @param ipowers A tuple of powers to apply
+   * @return SegmentStatus
+   */
+  static SegmentStatus drive(std::tuple<double, double> ipowers) {
+    double left, right;
+    std::tie(left, right) = ipowers;
+    return drive(left, right);
   }
 
   static SegmentStatus brake() {
@@ -48,7 +76,7 @@ class RecklessSegment {
    * The intended use of this method is to perform any calculations that need to
    * happen at the start of a segment.
    */
-  virtual void init() = 0;
+  virtual void init(OdometryState initial_state) = 0;
 
   /**
    * @brief Calculate the next step
