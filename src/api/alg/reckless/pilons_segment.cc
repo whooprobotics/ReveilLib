@@ -19,12 +19,19 @@ SegmentStatus RecklessPathSegment::step(OdometryState current_state) {
       new_state == stop_state::BRAKE)
     return last_status = SegmentStatus::brake();
 
-  if (new_state == stop_state::COAST)
-    return last_status = SegmentStatus::drive(this->stop->get_coast_power(),
-                                              this->stop->get_coast_power());
-
   std::tuple<double, double> pows = this->motion->gen_powers(
       current_state, this->target_point, this->start_point, this->drop_early);
+
+  // Handle coasting if needed
+  if (new_state == stop_state::COAST) {
+    double power = this->stop->get_coast_power();
+    double left, right;
+    std::tie(left, right) = pows;
+    if (left + right < 0)
+      power *= -1;
+    return last_status = SegmentStatus::drive(power);
+  }
+  // Apply correction
   std::tuple<double, double> corrected_pows =
       this->correction->apply_correction(current_state, this->target_point,
                                          this->start_point, this->drop_early,
