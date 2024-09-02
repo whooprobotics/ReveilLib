@@ -79,6 +79,10 @@ void Reckless::await() {
     pros::delay(10);
 }
 
+bool Reckless::is_ready() {
+  return this->is_completed();
+}
+
 /**
  * This function starts the robot along a path
  */
