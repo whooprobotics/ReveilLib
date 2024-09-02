@@ -64,6 +64,8 @@ void Reckless::step() {
       // Safety, should never matter
       brake_time = -1;
       break;
+    case SegmentStatusType::DUMMY:
+      break;
   }  // switch (current_stop_state) {
 
   // TODO: figure out a way to update progress with the new segment format
