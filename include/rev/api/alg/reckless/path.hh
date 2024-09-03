@@ -16,7 +16,7 @@ namespace rev {
  * TODO: Rename this to be more reflective of what it is specifically, but not
  * until a major release.
  */
-struct RecklessPathSegment : public RecklessSegment {
+class RecklessPathSegment : public RecklessSegment {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
@@ -27,6 +27,7 @@ struct RecklessPathSegment : public RecklessSegment {
 
   SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
+ public:
   RecklessPathSegment(std::shared_ptr<Motion> imotion,
                       std::shared_ptr<Correction> icorrection,
                       std::shared_ptr<Stop> istop,
@@ -39,8 +40,6 @@ struct RecklessPathSegment : public RecklessSegment {
         drop_early(idrop_early) {
     start_point = {0_in, 0_in, 0_deg};
   }
-
- public:
   /**
    * @brief Initialize the path segment
    *

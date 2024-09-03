@@ -31,6 +31,7 @@ add_executable(ReveilLib
         src/api/alg/drive/correction/pilons_correction.cc
         src/api/alg/drive/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
+        src/api/alg/reckless/pilons_segment.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
         src/api/alg/reckless/call.cc
