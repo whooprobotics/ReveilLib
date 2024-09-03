@@ -26,13 +26,9 @@ TEST(Call, RecklessVerifications) {
 
   reckless->go(RecklessPath().with_segment(rev::Call(set_flag)));
 
-  EXPECT_TRUE(status_flag);
-
   while (!reckless->is_completed()) {
-    auto state = sim->get_state();
-    std::cout << state.pos.x.convert(inch) << "in, "
-              << state.pos.y.convert(inch) << "in" << std::endl;
-
     pros::delay(500);
   }
+
+  EXPECT_TRUE(status_flag);
 }
