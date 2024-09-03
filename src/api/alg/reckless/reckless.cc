@@ -127,15 +127,4 @@ void Reckless::breakout() {
   status = RecklessStatus::DONE;
 }
 
-/**
- * @brief Add a segment to the path under construction
- *
- * @param segment The segment to add
- * @return RecklessPath& An ongoing path builder
- */
-RecklessPath& RecklessPath::with_segment(RecklessPathSegment segment) {
-  segments.push_back(std::make_shared<RecklessPathSegment>(segment));
-  return *this;
-}
-
 }  // namespace rev

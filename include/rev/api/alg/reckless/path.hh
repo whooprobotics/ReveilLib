@@ -79,6 +79,18 @@ struct RecklessPath {
   std::vector<std::shared_ptr<RecklessSegment>> segments;
 
   RecklessPath() { segments = std::vector<std::shared_ptr<RecklessSegment>>(); }
-  RecklessPath& with_segment(RecklessPathSegment segment);
+  /**
+   * @brief Add a segment to the path under construction
+   *
+   * @param segment The segment to add
+   * @return RecklessPath& An ongoing path builder
+   */
+  template <typename T>
+  RecklessPath& with_segment(T segment) {
+    static_assert(std::is_base_of<RecklessSegment, T>::value,
+                  "with_segment parameter must implement RecklessSegment");
+    segments.push_back(std::make_shared<T>(segment));
+    return *this;
+  }
 };
 }  // namespace rev

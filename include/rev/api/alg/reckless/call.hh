@@ -1,3 +1,4 @@
+#pragma once
 #include <functional>
 #include "rev/api/alg/reckless/segment.hh"
 
