@@ -1,7 +1,7 @@
 #pragma once
 #include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/alg/drive/turn/turn.hh"
 #include "rev/api/alg/reckless/segment.hh"
+#include "rev/api/units/q_time.hh"
 
 namespace rev {
 
@@ -14,7 +14,9 @@ class RecklessTurnSegment : public RecklessSegment {
 
   public:
     RecklessTurnSegment(double imax_power, double icoast_power,
-                        QAngle iangle, double iharsh_coeff, double icoast_coeff);
+                        QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time);
+
+    enum class TurnState { FULLPOWER, COAST, BRAKE };
     
     void init(OdometryState initial_state);
 
@@ -27,14 +29,15 @@ class RecklessTurnSegment : public RecklessSegment {
     double harsh_coeff;
     double coast_coeff;
     double coast_power;
-    QAngle angle = 0_deg;
+    uint32_t brake_time;
+    QAngle angle_goal = 0_deg;
     QAngle angle_difference;
     QAngle target_relative_original;
     QAngle target_relative;
     int left_direction = 0;
     int right_direction = 0;
     int brake_start_time = -1;
-    TurnState controller_state{TurnState::INACTIVE};
+    TurnState controller_state{TurnState::FULLPOWER};
 };
 
 } // namespace rev
