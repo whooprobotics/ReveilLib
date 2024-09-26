@@ -41,29 +41,7 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
 
 SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
 
-  // ################## Return to Reckless controller robot movement on each step ##################
   OdometryState state = current_state;
-
-  // Full power turn
-  if (controller_state == TurnState::FULLPOWER) {
-    return SegmentStatus::drive(max_power * left_direction,
-                        max_power * right_direction);
-  }
-  // Low power turn
-  else if (controller_state == TurnState::COAST) {
-    return SegmentStatus::drive(left_direction * coast_power,
-                                right_direction * coast_power);
-  }
-  // Activating hard brakes
-  else if (controller_state == TurnState::BRAKE) {
-    if (brake_start_time == -1) {
-      brake_start_time = pros::millis();
-    } else if (brake_start_time < pros::millis() - brake_time) {  // Check if brake_time ms has elapsed
-      brake_start_time = -1; // reset for next run
-      return SegmentStatus::next(); // move onto next Segment
-    }
-    return SegmentStatus::brake();
-  }
 
   // #################### Determine Turn State ####################
 
@@ -91,6 +69,29 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
     // printf("Setting brake\n");
     controller_state = TurnState::BRAKE;
   }
+  
+  // ################## Return to Reckless controller robot movement on each step ##################
+  
+  switch(controller_state) {
+    case TurnState::COAST:
+      return SegmentStatus::drive(left_direction * coast_power,
+                                right_direction * coast_power);
+      break;
+    case TurnState::BRAKE:
+      if (brake_start_time == -1) {
+        brake_start_time = pros::millis();
+      } else if (brake_start_time < pros::millis() - brake_time) {  // Check if brake_time ms has elapsed
+        brake_start_time = -1; // reset for next run
+        return SegmentStatus::next(); // move onto next Segment
+      }
+      return SegmentStatus::brake();
+      break;
+    case TurnState::FULLPOWER:
+    default:
+      return SegmentStatus::drive(max_power * left_direction,
+                        max_power * right_direction);  
+  }
+
 }
 
 void RecklessTurnSegment::clean_up() {}
