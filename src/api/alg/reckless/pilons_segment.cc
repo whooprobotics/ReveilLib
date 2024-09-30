@@ -1,12 +1,13 @@
 #include "rev/api/alg/reckless/path.hh"
+#include "rev/api/alg/reckless/pilons_segment.hh"
 
 namespace rev {
 
-void RecklessPathSegment::init(OdometryState initial_state) {
+void PilonsSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
 }
 
-SegmentStatus RecklessPathSegment::step(OdometryState current_state) {
+SegmentStatus PilonsSegment::step(OdometryState current_state) {
   stop_state new_state = this->stop->get_stop_state(current_state, target_point,
                                                     start_point, drop_early);
 
@@ -39,6 +40,6 @@ SegmentStatus RecklessPathSegment::step(OdometryState current_state) {
   return SegmentStatus::drive(corrected_pows);
 }
 
-void RecklessPathSegment::clean_up() {}
+void PilonsSegment::clean_up() {}
 
 }  // namespace rev
