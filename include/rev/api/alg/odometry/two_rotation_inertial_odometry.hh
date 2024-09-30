@@ -1,9 +1,9 @@
 #pragma once
 #include "odometry.hh"
 #include "pros/imu.hpp"
-#include "pros/rotation.hpp"
 #include "pros/rtos.hpp"
 #include "rev/api/async/async_runnable.hh"
+#include "rev/api/hardware/devices/rotary_sensors.hh"
 namespace rev {
 /**
  * @brief Odometry implementation using 2 tracking wheels and an inertial
@@ -23,8 +23,8 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   void reset_position() override;
   void step() override;
 
-  TwoRotationInertialOdometry(pros::Rotation ilongitudinal_sensor,
-                              pros::Rotation ilateral_sensor,
+  TwoRotationInertialOdometry(std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
+                              std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
                               pros::Imu iinertial,
                               QLength ilongitudinal_wheel_diameter = 3.25 *
                                                                      inch,
@@ -33,10 +33,10 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
                               QLength ilateral_wheel_offset = 0 * inch);
 
  private:
-  pros::Rotation longitudinal_sensor;  // Sensor indicating forward motion.
+  std::shared_ptr<rev::ReadOnlyRotarySensor> longitudinal_sensor;  // Sensor indicating forward motion.
                                        // Moving the robot forward should cause
                                        // the position of this to increase.
-  pros::Rotation lateral_sensor;       // Sensor indicating motion to the right.
+  std::shared_ptr<rev::ReadOnlyRotarySensor> lateral_sensor;       // Sensor indicating motion to the right.
                                   // Moving the robot right should cause the
                                   // position of this to increase.
   pros::Imu inertial;  // Inertial sensor from which the robot yaw will be read

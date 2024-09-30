@@ -1,26 +1,27 @@
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include <cerrno>
-#include <iostream>
 #include "pros/error.h"
+#include "rev/api/hardware/devices/rotary_sensors.hh"
 
 namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
-    pros::Rotation ilongitudinal_sensor,
-    pros::Rotation ilateral_sensor,
+    std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
+    std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
     pros::Imu iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
     QLength ilongitudinal_wheel_offset,
     QLength ilateral_wheel_offset)
-    : longitudinal_sensor(ilongitudinal_sensor),
+    :
+      longitudinal_sensor(ilongitudinal_sensor),
       lateral_sensor(ilateral_sensor),
       inertial(iinertial),
       longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),
       lateral_wheel_diameter(ilateral_wheel_diameter),
       longitudinal_wheel_offset(ilongitudinal_wheel_offset),
       lateral_wheel_offset(ilateral_wheel_offset) {
-  longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
-  latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
+  longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
+  latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
   heading_ticks_init = inertial.get_heading();
   time_last = pros::millis();
 }
@@ -46,8 +47,8 @@ void TwoRotationInertialOdometry::reset_position() {
   this->set_position({0 * inch, 0 * inch, 0 * degree});
 }
 void TwoRotationInertialOdometry::step() {
-  double longitude_ticks = (double)(longitudinal_sensor.get_position()) / 100;
-  double latitude_ticks = (double)(lateral_sensor.get_position()) / 100;
+  double longitude_ticks = (double)(longitudinal_sensor->get_position()) / 100;
+  double latitude_ticks = (double)(lateral_sensor->get_position()) / 100;
   double heading_ticks = inertial.get_heading();
 
   if (heading_ticks == PROS_ERR_F || inertial.is_calibrating()) {
@@ -55,8 +56,8 @@ void TwoRotationInertialOdometry::step() {
   }
 
   if(!is_initialized) {
-    longitude_ticks_last = (double)(longitudinal_sensor.get_position()) / 100;
-    latitude_ticks_last = (double)(lateral_sensor.get_position()) / 100;
+    longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
+    latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
     heading_ticks_last = inertial.get_heading();
     heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
 

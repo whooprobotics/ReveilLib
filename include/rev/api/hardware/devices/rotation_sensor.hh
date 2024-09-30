@@ -4,6 +4,10 @@
 #include "rev/api/hardware/devices/rotary_sensors.hh"
 
 namespace rev {
+/**
+ * @brief Implementation of the Vex Rotation sensor under the ReadOnlyRotarySensor interface
+ *
+ */
 
 class RotationSensor : public ReadOnlyRotarySensor {
   public:
