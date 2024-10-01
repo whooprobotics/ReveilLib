@@ -1,4 +1,6 @@
 #include "main.h"
+#include <memory>
+#include "rev/api/alg/path_gen/bezier_curves.hh"
 #include "rev/rev.hh"
 
 //#include <iostream>
@@ -69,6 +71,8 @@ void opcontrol() {
   const double kP = 0.0;
   const double kB = 0.015;
 
+  
+
   /*turn->turn_to_target_absolute(0.7, 45_deg);
 
   while (!turn->is_completed())
@@ -88,7 +92,12 @@ void opcontrol() {
                                                          40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {8_ft, 8_ft, 45_deg}, 0_in))
+                       {8_ft, 8_ft, 45_deg}, 0_in)
+                       )
+                    .with_segment(BezierSegment(
+                        std::vector<PointVector>{{8_ft, 8_ft}, {9_ft, 9_ft}, {10_ft, 8_ft}},
+                        100)
+                    )
                    );
 
   while(!reckless->is_completed()) pros::delay(20);
