@@ -1,7 +1,6 @@
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include <cerrno>
 #include "pros/error.h"
-#include "rev/api/hardware/devices/rotary_sensors.hh"
 
 namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
@@ -12,8 +11,7 @@ TwoRotationInertialOdometry::TwoRotationInertialOdometry(
     QLength ilateral_wheel_diameter,
     QLength ilongitudinal_wheel_offset,
     QLength ilateral_wheel_offset)
-    :
-      longitudinal_sensor(ilongitudinal_sensor),
+    : longitudinal_sensor(ilongitudinal_sensor),
       lateral_sensor(ilateral_sensor),
       inertial(iinertial),
       longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),

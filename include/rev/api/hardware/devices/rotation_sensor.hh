@@ -13,7 +13,7 @@ class RotationSensor : public ReadOnlyRotarySensor {
   public:
     RotationSensor(pros::Rotation isensor);
 
-    double get_position();
+    double get_position() override;
 
   private:
     pros::Rotation sensor;

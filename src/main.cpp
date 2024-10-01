@@ -1,4 +1,6 @@
 #include "main.h"
+#include "rev/api/hardware/devices/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensor.hh"
 #include "rev/rev.hh"
 
 //#include <iostream>
@@ -10,8 +12,8 @@
 pros::Motor_Group leftd({15, 18, -19, -20});
 pros::Motor_Group rightd({4, 6, -7, -9});
 
-pros::Rotation fwd(5);
-pros::Rotation rgt(16, true);
+std::shared_ptr<rev::ReadOnlyRotarySensor> fwd = std::make_shared<rev::RotationSensor>(5);
+std::shared_ptr<rev::ReadOnlyRotarySensor> rgt = std::make_shared<rev::RotationSensor>(16);
 pros::Imu imu(14);
 pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);
 

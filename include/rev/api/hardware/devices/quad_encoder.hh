@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <cstdint>
 #include "pros/adi.hpp"
 #include "rev/api/hardware/devices/rotary_sensors.hh"
 
@@ -8,9 +9,9 @@ namespace rev {
 
 class QuadEncoder : public ReadOnlyRotarySensor {
   public:
-    QuadEncoder(pros::ADIEncoder isensor);
+    QuadEncoder(std::uint8_t top, std::uint8_t bottom, bool reverse);
 
-    double get_position();
+    double get_position() override;
 
   private:
     std::shared_ptr<pros::ADIEncoder> sensor;

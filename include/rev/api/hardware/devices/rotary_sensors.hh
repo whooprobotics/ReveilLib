@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdint>
 
 namespace rev {
 
@@ -9,7 +8,7 @@ class ReadOnlyRotarySensor {
    *
    */
   public:
-    virtual std::int32_t get_position() const = 0;
+    virtual double get_position() = 0;
 
 };
 
