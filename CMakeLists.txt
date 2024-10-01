@@ -27,6 +27,7 @@ add_executable(ReveilLib
         src/api/alg/drive/motion/proportional_motion.cc
         src/api/alg/drive/motion/constant_motion.cc
         src/api/alg/drive/turn/campbell_turn.cc
+        src/api/alg/reckless/turn_segment.cc
         src/api/alg/drive/stop/simple_stop.cc
         src/api/alg/drive/correction/pilons_correction.cc
         src/api/alg/drive/correction/no_correction.cc
@@ -43,6 +44,7 @@ add_executable(ReveilLib
         test/driftless_sim_test.cc
         test/reckless_test.cc
         test/reckless_call_test.cc
+        test/turn_segment_test.cc
         )
 
 # Link against gtest

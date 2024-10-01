@@ -2,6 +2,7 @@
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/units/q_time.hh"
+#include "rev/api/units/q_angle.hh"
 
 namespace rev {
 
