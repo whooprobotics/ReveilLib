@@ -46,6 +46,7 @@ void Reckless::step() {
         chassis->set_brake_harsh();
         chassis->stop();
         brake_time = pros::millis();
+        break;
       }
       // Check if enough time has elapsed to stop braking
       // If enough time has passed then it will just proceed as if it recieved a
