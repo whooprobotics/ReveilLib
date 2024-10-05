@@ -26,4 +26,13 @@ int sgn(T val) {
  */
 QLength calculate_radius(Position first_point, PointVector next_point);
 
+/**
+ * @brief Calculates the relative linear velocity of the inside part of the such that the angular velocities stay the same
+ *
+ *
+ *
+ *  @return double
+ */
+Number calculate_inside_ratio(QLength chassis_width, QLength arc_radius);
+
 }  // namespace rev

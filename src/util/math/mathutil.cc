@@ -1,7 +1,4 @@
 #include "rev/util/mathutil.hh"
-#include "rev/api/units/q_angle.hh"
-#include "rev/api/units/q_length.hh"
-#include "rev/util/math/point_vector.hh"
 
 namespace rev{
 
@@ -10,9 +7,9 @@ QLength calculate_radius(Position first_point, PointVector next_coords){
   PointVector first_coords = {first_point.x, first_point.y};
   PointVector midpoint_coords = {(first_coords.x + next_coords.x)/2.0, (first_coords.y + next_coords.y)/2.0};
 
-  RQuantity coords_heading_slope = (next_coords.y - first_coords.y) / (next_coords.x - first_coords.x);
-  RQuantity perp_bisector_slope = (-1.0)/coords_heading_slope;
-  RQuantity perp_heading = tan(current_heading + 90_deg);
+  Number coords_heading_slope = (next_coords.y - first_coords.y) / (next_coords.x - first_coords.x);
+  Number perp_bisector_slope = (-1.0)/coords_heading_slope;
+  Number perp_heading = tan(current_heading + 90_deg);
   
   PointVector center;
   center.x = (perp_heading * first_coords.x - perp_bisector_slope * midpoint_coords.x + midpoint_coords.y - first_coords.y)
@@ -23,6 +20,13 @@ QLength calculate_radius(Position first_point, PointVector next_coords){
   
   return radius;
 
+}
+
+Number calculate_inside_ratio(QLength chassis_width, QLength arc_radius){
+  QLength outside_wheels = arc_radius + (chassis_width/2.0);
+  QLength inside_wheels = arc_radius - (chassis_width/2.0);
+
+  return inside_wheels / outside_wheels;
 }
 
 }
