@@ -37,21 +37,21 @@ void Reckless::step() {
     case SegmentStatusType::DRIVE: {
       chassis->drive_tank(drive_state.power_left, drive_state.power_right);
       // Safety, should never matter
-      brake_time = -1;
+      brake_start_time = -1;
       break;
     } break;
     case SegmentStatusType::BRAKE:
       // Check if we havent started braking yet
-      if (brake_time == -1) {
+      if (brake_start_time == -1) {
         chassis->set_brake_harsh();
         chassis->stop();
-        brake_time = pros::millis();
+        brake_start_time = pros::millis();
         break;
       }
       // Check if enough time has elapsed to stop braking
       // If enough time has passed then it will just proceed as if it recieved a
       // NEXT
-      else if (pros::millis() <= brake_time + 250)
+      else if (pros::millis() <= brake_start_time + 250)
         break;
     // Just like brake but without the braking
     case SegmentStatusType::NEXT:
@@ -63,7 +63,7 @@ void Reckless::step() {
       if (current_segment < current_path.segments.size())
         current_path.segments.at(current_segment)->init(current_state);
       // Safety, should never matter
-      brake_time = -1;
+      brake_start_time = -1;
       break;
     case SegmentStatusType::DUMMY:
       break;
