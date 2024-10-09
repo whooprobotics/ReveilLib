@@ -150,4 +150,8 @@ void CampbellTurn::await() {
 bool CampbellTurn::is_completed() {
   return (controller_state == TurnState::INACTIVE);
 }
+
+bool CampbellTurn::is_ready() {
+  return this->is_completed();
+}
 };  // namespace rev

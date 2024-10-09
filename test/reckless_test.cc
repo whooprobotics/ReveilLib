@@ -19,7 +19,7 @@ TEST(Cascade, RecklessVerifications) {
   const double kB = 0.015;
 
   reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
@@ -27,13 +27,13 @@ TEST(Cascade, RecklessVerifications) {
                        {2_ft, 0_ft, 0_deg}, 0_in)
 
                                      )
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
                        {4_ft, 1_ft, 45_deg}, 0_in))
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),

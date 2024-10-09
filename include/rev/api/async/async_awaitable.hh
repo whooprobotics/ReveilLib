@@ -12,6 +12,12 @@ class AsyncAwaitable {
    *
    */
   virtual void await() = 0;
+
+  /**
+   * @brief Non-blocking status indicator
+   *
+   */
+  virtual bool is_ready() = 0;
 };
 
 }  // namespace rev

@@ -75,7 +75,7 @@ void opcontrol() {
     pros::delay(20);*/
 
   reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(0.7, kP, kB,
                                                          40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
@@ -83,7 +83,7 @@ void opcontrol() {
                        {4_ft, 8_ft, 0_deg}, 0_in)
 
                                      )
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(0.7, kP, kB,
                                                          40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),

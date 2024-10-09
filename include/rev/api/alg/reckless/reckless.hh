@@ -32,6 +32,12 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   void await() override;
 
   /**
+   * @brief Status indicator for awaitable.
+   *
+   */
+  bool is_ready() override;
+
+  /**
    * This function starts the robot along a path
    */
   void go(RecklessPath path);
@@ -65,7 +71,7 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   RecklessStatus status{RecklessStatus::DONE};
 
   size_t current_segment{0};
-  long long brake_time = -1;
+  long long brake_start_time = -1;
   double partial_progress{-1.0};
 };
 }  // namespace rev
