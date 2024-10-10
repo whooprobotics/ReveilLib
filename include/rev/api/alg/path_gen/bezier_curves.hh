@@ -4,6 +4,7 @@
 #include <vector>
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
+#include "rev/api/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/correction/correction.hh"
@@ -20,6 +21,10 @@ class BezierSegment : public RecklessSegment{
 
   Position start_point;
   std::vector<PointVector> path_points;
+  PointVector current_point;
+  std::size_t current_idx;
+  QLength tolerance;
+
   std::size_t resolution; 
   double t_value;
 
@@ -33,7 +38,7 @@ class BezierSegment : public RecklessSegment{
    *
    *
    */
-  BezierSegment(std::vector<PointVector>, std::size_t resolution = 100);
+  BezierSegment(std::vector<PointVector>, std::size_t resolution = 100, QLength tolerance = 1_in);
 
 
   void init(OdometryState initial_state) override;
