@@ -3,6 +3,7 @@
 #include "rev/api/units/q_angle.hh"
 #include "rev/api/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
+#include <tuple>
 namespace rev {
 /**
  * @brief Implementation of signum
@@ -21,10 +22,10 @@ int sgn(T val) {
  *
  * @param first_point Position, aka a PointVector plus a QAngle
  * @param next_point PointVector
- * @return double
+ * @return QLength and a bool of whether the inside wheels are the left wheels
  *
  */
-QLength calculate_radius(Position first_point, PointVector next_point);
+std::tuple<QLength, bool> calculate_radius(Position first_point, PointVector next_point);
 
 /**
  * @brief Calculates the relative linear velocity of the inside part of the such that the angular velocities stay the same

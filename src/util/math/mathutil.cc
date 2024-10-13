@@ -2,7 +2,7 @@
 
 namespace rev{
 
-QLength calculate_radius(Position first_point, PointVector next_coords){
+std::tuple<QLength, bool> calculate_radius(Position first_point, PointVector next_coords){
   QAngle current_heading = first_point.theta;
   PointVector first_coords = {first_point.x, first_point.y};
   PointVector midpoint_coords = {(first_coords.x + next_coords.x)/2.0, (first_coords.y + next_coords.y)/2.0};
@@ -17,8 +17,11 @@ QLength calculate_radius(Position first_point, PointVector next_coords){
   center.y = perp_bisector_slope * (center.x - midpoint_coords.x) + midpoint_coords.y;
   
   QLength radius = sqrt((center.x - first_coords.x)*(center.x - first_coords.x) + (center.y - first_coords.y)*(center.y - first_coords.y));
+
+  QAngle angle_to_center = atan2(center.y - first_coords.y, center.x - first_coords.x);
+  bool is_left_closer = (current_heading - angle_to_center < 0_deg);
   
-  return radius;
+  return std::make_tuple(radius, is_left_closer);
 
 }
 

@@ -9,6 +9,7 @@
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/util/mathutil.hh"
 
 
 namespace rev {
@@ -21,12 +22,18 @@ class BezierSegment : public RecklessSegment{
 
   Position start_point;
   std::vector<PointVector> path_points;
-  PointVector current_point;
+  PointVector target_point;
   std::size_t current_idx;
   QLength tolerance;
+  Position final_point;
+  QLength drop_early = 0_in;
 
   std::size_t resolution; 
   double t_value;
+
+  stop_state new_state;
+
+  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
  public:
   /**
