@@ -1,6 +1,5 @@
 #include "rev/api/alg/path_gen/bezier_curves.hh"
 
-
 namespace rev {
 
 BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance) {

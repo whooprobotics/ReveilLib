@@ -19,7 +19,7 @@ std::tuple<QLength, bool> calculate_radius(Position first_point, PointVector nex
   QLength radius = sqrt((center.x - first_coords.x)*(center.x - first_coords.x) + (center.y - first_coords.y)*(center.y - first_coords.y));
 
   QAngle angle_to_center = atan2(center.y - first_coords.y, center.x - first_coords.x);
-  bool is_left_closer = (current_heading - angle_to_center < 0_deg);
+  bool is_left_closer = (current_heading - angle_to_center < 180_deg);
   
   return std::make_tuple(radius, is_left_closer);
 
