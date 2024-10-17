@@ -1,4 +1,4 @@
-#include "rev/api/hardware/devices/mock_rotary_sensor.hh"
+#include "rev/api/hardware/devices/rotation_sensors/mock_rotary_sensor.hh"
 
 namespace rev {
 

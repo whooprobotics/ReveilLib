@@ -1,4 +1,4 @@
-#include "rev/api/hardware/devices/mock_quad_encoder.hh"
+#include "rev/api/hardware/devices/rotation_sensors/mock_quad_encoder.hh"
 
 namespace rev {
 

@@ -6,7 +6,7 @@ namespace rev {
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
     std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
     std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
-    pros::Imu iinertial,
+    std::shared_ptr<rev::Gyroscope> iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
     QLength ilongitudinal_wheel_offset,
@@ -20,7 +20,7 @@ TwoRotationInertialOdometry::TwoRotationInertialOdometry(
       lateral_wheel_offset(ilateral_wheel_offset) {
   longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
   latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
-  heading_ticks_init = inertial.get_heading();
+  heading_ticks_init = inertial->get_heading();
   time_last = pros::millis();
 }
 
@@ -37,7 +37,7 @@ void TwoRotationInertialOdometry::set_position(Position pos) {
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
-  heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
+  heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
 
   current_position_mutex.give();
 }
@@ -47,17 +47,17 @@ void TwoRotationInertialOdometry::reset_position() {
 void TwoRotationInertialOdometry::step() {
   double longitude_ticks = (double)(longitudinal_sensor->get_position()) / 100;
   double latitude_ticks = (double)(lateral_sensor->get_position()) / 100;
-  double heading_ticks = inertial.get_heading();
+  double heading_ticks = inertial->get_heading();
 
-  if (heading_ticks == PROS_ERR_F || inertial.is_calibrating()) {
+  if (heading_ticks == PROS_ERR_F || inertial->is_calibrating()) {
     return;
   }
 
   if(!is_initialized) {
     longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
     latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
-    heading_ticks_last = inertial.get_heading();
-    heading_ticks_init = inertial.get_heading() - current_position.pos.theta.convert(degree);
+    heading_ticks_last = inertial->get_heading();
+    heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
 
     is_initialized = true;
     return;

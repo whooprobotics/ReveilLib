@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pros/rotation.hpp"
-#include "rev/api/hardware/devices/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
 namespace rev {
 /**

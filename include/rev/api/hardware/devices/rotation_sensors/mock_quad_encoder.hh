@@ -1,12 +1,12 @@
 #pragma once
 
-#include "rev/api/hardware/devices/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
 namespace rev {
   
-class MockRotarySensor {
+class MockQuadEncoder {
   public:
-    MockRotarySensor(int reading);
+    MockQuadEncoder(int initial_reading);
     double get_position();
     int get_value();
     void increment();
