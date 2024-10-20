@@ -1,4 +1,5 @@
 #pragma once
+
 #include <cstddef>
 #include <memory>
 #include <vector>
@@ -40,12 +41,12 @@ class BezierSegment : public RecklessSegment{
    *
    * @brief Make a new Bezier Segment
    * 
-   * @param idfk i dont know whats happening
    *
    *
    *
+   * 
    */
-  BezierSegment(std::vector<PointVector>, std::size_t resolution = 100, QLength tolerance = 1_in);
+  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 100, QLength tolerance = 1_in);
 
 
   void init(OdometryState initial_state) override;
