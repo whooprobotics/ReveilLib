@@ -14,6 +14,10 @@ bool withinTolerance(QAngle currentAngle, QAngle goalAngle) {
   QAngle target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+  std::cout << "GOAL: " << goalAngle.convert(degree) << std::endl;
+  std::cout << "ANGLE: " << currentAngle.convert(degree) << std::endl;
+  std::cout << "Test Results: " << target_relative_original.convert(degree)
+            << std::endl;
   return (abs(target_relative_original) < tolerance);
 }
 
@@ -45,10 +49,26 @@ void angleTester(double max_power = 0.75,
   EXPECT_TRUE(withinTolerance(sim->get_state().pos.theta, angle));
 }
 
-TEST(TurnTests, TurnTest90) {
+TEST(TurnTests, TurnTest_90) {
   angleTester();
 }
 
-TEST(TurnTests, TurnTest360) {
+TEST(TurnTests, TurnTest_360) {
   angleTester(0.75, 0.3, 360_deg);
+}
+
+TEST(TurnTests, TurnTest_Neg_360) {
+  angleTester(0.75, 0.3, -360_deg);
+}
+
+TEST(TurnTests, TurnTest_Neg_45) {
+  angleTester(0.75, 0.3, -45_deg);
+}
+
+TEST(TurnTests, TurnTest_5) {
+  angleTester(0.75, 0.3, 5_deg);
+}
+
+TEST(TurnTests, TurnTest_400) {
+  angleTester(0.75, 0.3, 400_deg);
 }

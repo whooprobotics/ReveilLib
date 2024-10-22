@@ -55,6 +55,12 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
   // Remain in fullpower if we are currently in fullpower and we arent ready to
   // advance
 
+  // edge case test if already at angle (having trouble in google test :( )
+  if (controller_state == TurnState::FULLPOWER &&
+      fabs(target_relative.convert(degree)) < 5.0) {
+    SegmentStatus::next();
+  }
+
   // Start slowdown if we are ready for that and we haven't already started
   // harsh-braking
   if (fabs(target_relative.convert(degree)) <=
