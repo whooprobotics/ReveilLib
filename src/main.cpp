@@ -1,6 +1,6 @@
 #include "main.h"
-#include "rev/rev.hh"
 #include "rev/api/alg/reckless/turn_segment.hh"
+#include "rev/rev.hh"
 
 // #include <iostream>
 
@@ -8,18 +8,18 @@
 // MotorGroup drive_left = {15, 18, -19, -20};
 // MotorGroup drive_right = {4, 6, -7, -9};
 
-pros::Motor_Group leftd({15, 18, -19, -20});
-pros::Motor_Group rightd({4, 6, -7, -9});
+pros::Motor_Group leftd({-11, -12, -13, -18});
+pros::Motor_Group rightd({2,3, 5, 6});
 
 pros::Rotation fwd(5);
 pros::Rotation rgt(16, true);
-pros::Imu imu(14);
+pros::Imu imu(4);
 pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);
 
 std::shared_ptr<rev::SkidSteerChassis> chassis =
     std::make_shared<rev::SkidSteerChassis>(leftd, rightd);
 
-//pros::Motor test_motor(15);
+// pros::Motor test_motor(15);
 using namespace rev;
 
 void on_center_button() {}
@@ -78,11 +78,11 @@ void opcontrol() {
   //                      std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
   //                      {8_ft, 8_ft, 45_deg}, 0_in))
   //                  );
-  double max_power = 0.75;
+  double max_power = 0.5;
   double coast_power = 0.3;
   QAngle angle = 90_deg;
-  double harsh_coeff = 0.17;
-  double coast_coeff = 0.3;
+  double harsh_coeff = 0.5;
+  double coast_coeff = 1.4;
   QTime brake_time = 0.2_s;
   reckless->go(RecklessPath().with_segment(rev::RecklessTurnSegment(
       max_power, coast_power, angle, harsh_coeff, coast_coeff, brake_time)));
