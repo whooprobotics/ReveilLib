@@ -25,7 +25,7 @@ int sgn(T val) {
  * @return QLength and a bool of whether the inside wheels are the left wheels
  *
  */
-std::tuple<QLength, bool> calculate_radius(Position first_point, PointVector next_point);
+QLength calculate_radius(PointVector first_point, Position current_pos, PointVector next_point);
 
 /**
  * @brief Calculates the relative linear velocity of the inside part of the such that the angular velocities stay the same

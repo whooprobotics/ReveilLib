@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <cstddef>
 #include <memory>
 #include <vector>
@@ -24,6 +25,7 @@ class BezierSegment : public RecklessSegment{
   Position start_point;
   std::vector<PointVector> path_points;
   PointVector target_point;
+  PointVector prev_point;
   std::size_t current_idx;
   QLength tolerance;
   Position final_point;
@@ -46,7 +48,7 @@ class BezierSegment : public RecklessSegment{
    *
    * 
    */
-  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 100, QLength tolerance = 1_in);
+  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 1_in);
 
 
   void init(OdometryState initial_state) override;

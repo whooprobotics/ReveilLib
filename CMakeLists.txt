@@ -32,7 +32,9 @@ add_executable(ReveilLib
         src/api/alg/drive/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
         src/api/alg/reckless/pilons_segment.cc
+        src/api/alg/path_gen/bezier_curves.cc
         src/util/math/pose.cc
+        src/util/math/mathutil.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
         src/api/alg/reckless/call.cc
         src/api/alg/reckless/await.cc
@@ -43,6 +45,7 @@ add_executable(ReveilLib
         test/driftless_sim_test.cc
         test/reckless_test.cc
         test/reckless_call_test.cc
+        test/bezier_test.cc
         )
 
 # Link against gtest

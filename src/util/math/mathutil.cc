@@ -2,27 +2,33 @@
 
 namespace rev{
 
-std::tuple<QLength, bool> calculate_radius(Position first_point, PointVector next_coords){
-  QAngle current_heading = first_point.theta;
-  PointVector first_coords = {first_point.x, first_point.y};
-  PointVector midpoint_coords = {(first_coords.x + next_coords.x)/2.0, (first_coords.y + next_coords.y)/2.0};
+QLength calculate_radius(PointVector first_point, Position current_pos, PointVector next_point) {
+    // Define the three points
+    PointVector A = {first_point.x, first_point.y};
+    PointVector B = {current_pos.x, current_pos.y};
+    PointVector C = {next_point.x, next_point.y};
 
-  Number coords_heading_slope = (next_coords.y - first_coords.y) / (next_coords.x - first_coords.x);
-  Number perp_bisector_slope = (-1.0)/coords_heading_slope;
-  Number perp_heading = tan(current_heading + 90_deg);
-  
-  PointVector center;
-  center.x = (perp_heading * first_coords.x - perp_bisector_slope * midpoint_coords.x + midpoint_coords.y - first_coords.y)
-             / (perp_heading - perp_bisector_slope);
-  center.y = perp_bisector_slope * (center.x - midpoint_coords.x) + midpoint_coords.y;
-  
-  QLength radius = sqrt((center.x - first_coords.x)*(center.x - first_coords.x) + (center.y - first_coords.y)*(center.y - first_coords.y));
+    // Ok so curvature = 2*area / (product of side lengths)
 
-  QAngle angle_to_center = atan2(center.y - first_coords.y, center.x - first_coords.x);
-  bool is_left_closer = (current_heading - angle_to_center < 180_deg);
-  
-  return std::make_tuple(radius, is_left_closer);
+    // Calculate side lengths
+    QLength AB = sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y));
+    QLength BC = sqrt((C.x - B.x) * (C.x - B.x) + (C.y - B.y) * (C.y - B.y));
+    QLength CA = sqrt((A.x - C.x) * (A.x - C.x) + (A.y - C.y) * (A.y - C.y));
 
+    // If any side lengths are 0, then curvature has a division by 0 so is undef, and radius would be 0
+    if (AB == 0_ft || BC == 0_ft || CA == 0_ft) return 0_ft;
+
+    // Calculate the area of the triangle using the determinant method
+    QArea area = 0.5 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y));
+
+    // Calculate curvature (kappa = 2 * area / (AB * BC * CA))
+    RQuantity curvature = (2 * area) / (AB * BC * CA); // curvature is an inverse length
+    RQuantity zero_inverse_length = 0_in / (1_in * 1_in); // This is really sketchy lmao
+
+    // if curvature is 0, basically a straight line so put very high number for radius so the 'circular' path is basically straight
+    if (curvature == zero_inverse_length) return 1000_ft;
+
+    return 1/curvature;
 }
 
 Number calculate_inside_ratio(QLength chassis_width, QLength arc_radius){

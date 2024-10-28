@@ -48,6 +48,10 @@ constexpr QArea operator*(const PointVector& lhs, const PointVector& rhs) {
   return lhs.x * rhs.x + lhs.y * rhs.y;
 }
 
+constexpr PointVector operator*(const double lhs, const PointVector& rhs) {
+  return PointVector{rhs.x * lhs, rhs.y * lhs};
+}
+
 /**
  * @brief 2D vector scalar multiplication operator
  *

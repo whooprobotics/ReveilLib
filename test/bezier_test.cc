@@ -4,25 +4,31 @@
 #include "rev/api/async/async_runner.hh"
 #include "rev/rev.hh"
 #include "rev/api/alg/path_gen/bezier_curves.hh"
+#include <iostream>
+using std::cout, std::endl;
 
 TEST(Bezier, BezierVerifications){
+  cout << "Beginning" << endl;
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
                                             20_Hz, 20_Hz);
 
   AsyncRunner simrunner1(sim);
+  cout << "Made simrunner" << endl;
 
   std::shared_ptr<rev::Reckless> reckless =
       std::make_shared<Reckless>(sim, sim);
-  
-  AsyncRunner reckless_runner(reckless);
+  cout << "Made reckless" << endl;
 
-  PointVector p1 {0_in, 0_in};
-  PointVector p2 {2_in, 2_in};
-  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}};
+  AsyncRunner reckless_runner(reckless);
+  cout << "Made reckless runner" << endl;
+
+  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
+  cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
                    .with_segment(BezierSegment(path_points)));
+  cout << "Made it go" << endl;
 
   while (!reckless->is_completed()) {
     auto state = sim->get_state();

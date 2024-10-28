@@ -1,5 +1,6 @@
 #include "rev/api/alg/path_gen/bezier_curves.hh"
 
+using std::cout, std::endl;
 namespace rev {
 
 BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance) {
@@ -11,24 +12,42 @@ BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t r
 void BezierSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
   this->current_idx = 0;
+  std::cout << "AT BEGINNING OF INIT" << std::endl;
 
-  for (std::size_t t = 0; t < this->resolution; ++t){
-    t_value = (double) t / resolution;
-    for (std::size_t layer = 1; layer < this->path_points.size(); ++layer){
-      for (std::size_t idx = 0; layer + idx < this->path_points.size(); ++idx){
-        this->path_points[idx].x = (1 - t_value) * this->path_points[idx].x + t_value * this->path_points[idx + 1].x;
-        this->path_points[idx].y = (1 - t_value) * this->path_points[idx].y + t_value * this->path_points[idx + 1].y;
+  std::vector<PointVector> final_points; // Vector to store final interpolated points
+
+  for (std::size_t t = 0; t < this->resolution; ++t) {
+    double t_value = static_cast<double>(t) / (this->resolution - 1);
+    std::vector<PointVector> temp_points = this->path_points; // Initialize temp_points with path_points
+
+    for (std::size_t layer = 1; layer < this->path_points.size(); ++layer) {
+      for (std::size_t idx = 0; idx + layer < this->path_points.size(); ++idx) {
+        cout << t << "    " << idx << "   " << layer << "            "
+         << temp_points[idx].x.convert(foot)
+         << "    " << temp_points[idx + 1].x.convert(foot) << endl;
+
+        temp_points[idx] = (1-t_value) * temp_points[idx] + t_value * temp_points[idx + 1];
+
+        cout << t << "    " << idx << "   " << layer << "            "
+         << temp_points[idx].x.convert(foot)
+         << "    " << temp_points[idx + 1].x.convert(foot) << endl;
+        
+        cout << endl;
+
       }
     }
+
+    final_points.push_back(temp_points[0]);
+    cout << "FINAL   " << temp_points[0].x.convert(foot) << endl;;
   }
 
 }
 
 
-std::tuple<double, double> calculate_powers(Position current_point, PointVector target_point){
+std::tuple<double, double> calculate_powers(PointVector first_point, Position current_pos, PointVector target_point){
   QLength radius;
   bool left_side_is_inner;
-  std::tie(radius, left_side_is_inner) = calculate_radius(current_point, target_point);
+  radius = calculate_radius(first_point, current_pos, target_point);
   double outer_power = 1.0;
   double inner_power = outer_power * calculate_inside_ratio(24_in, radius).get_value();
   return left_side_is_inner ? std::make_tuple(inner_power, outer_power):
@@ -52,6 +71,7 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
     return last_status = SegmentStatus::brake();                                              
 
   target_point = this->path_points[current_idx];
+  prev_point = this->path_points[current_idx-1];
 
   if (current_idx >= this->path_points.size()) return SegmentStatus::brake();
 
@@ -60,7 +80,7 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   if (distance < tolerance) ++current_idx;
 
-  std::tuple<double, double> pows = calculate_powers(current_state.pos, target_point);
+  std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
   return SegmentStatus::drive(pows);
 }
 
