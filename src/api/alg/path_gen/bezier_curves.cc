@@ -22,25 +22,11 @@ void BezierSegment::init(OdometryState initial_state) {
 
     for (std::size_t layer = 1; layer < this->path_points.size(); ++layer) {
       for (std::size_t idx = 0; idx + layer < this->path_points.size(); ++idx) {
-        cout << t << "    " << idx << "   " << layer << "            "
-         << temp_points[idx].x.convert(foot)
-         << "    " << temp_points[idx + 1].x.convert(foot) << endl;
-
         temp_points[idx] = (1-t_value) * temp_points[idx] + t_value * temp_points[idx + 1];
-
-        cout << t << "    " << idx << "   " << layer << "            "
-         << temp_points[idx].x.convert(foot)
-         << "    " << temp_points[idx + 1].x.convert(foot) << endl;
-        
-        cout << endl;
-
       }
     }
-
     final_points.push_back(temp_points[0]);
-    cout << "FINAL   " << temp_points[0].x.convert(foot) << endl;;
   }
-
 }
 
 
@@ -48,6 +34,7 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
   QLength radius;
   bool left_side_is_inner;
   radius = calculate_radius(first_point, current_pos, target_point);
+  cout << "Radius: " << radius.convert(foot) << endl;
   double outer_power = 1.0;
   double inner_power = outer_power * calculate_inside_ratio(24_in, radius).get_value();
   return left_side_is_inner ? std::make_tuple(inner_power, outer_power):
@@ -57,21 +44,35 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
 
 
 SegmentStatus BezierSegment::step(OdometryState current_state){
+  pros::delay(500);
+  cout << "AT BEGINNING OF STEP" << endl;
   PointVector last_point = this->path_points[this->path_points.size() - 1];
-  new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
-                                                    start_point, this->drop_early);
+  // cout << "0.5" << endl;
+  // cout << "last_point: " << last_point.x.convert(foot) << ", " << last_point.y.convert(foot) << endl;
+  // cout << start_point.x.convert(foot) << ", " << start_point.y.convert(foot) << endl;
+  // cout << drop_early.convert(foot) << endl;
+  // stop_state new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
+  //                                                   start_point, this->drop_early);
+
+  //cout << '1' << endl;
 
   // Prevent status from regressing
-  if (last_status.status == SegmentStatusType::NEXT ||
-      new_state == stop_state::EXIT)
-    return last_status = SegmentStatus::next();
+  // if (last_status.status == SegmentStatusType::NEXT ||
+  //     new_state == stop_state::EXIT)
+  //   return last_status = SegmentStatus::next();
 
-  if (last_status.status == SegmentStatusType::BRAKE ||
-      new_state == stop_state::BRAKE)
-    return last_status = SegmentStatus::brake();                                              
+  // if (last_status.status == SegmentStatusType::BRAKE ||
+  //     new_state == stop_state::BRAKE)
+  //   return last_status = SegmentStatus::brake();                                              
 
   target_point = this->path_points[current_idx];
   prev_point = this->path_points[current_idx-1];
+
+  cout << "Current Position" << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << ", " 
+       << current_state.pos.theta.convert(degree) << endl;
+  cout << "Target Point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
+  cout << "Prev Point: " << prev_point.x.convert(foot) << ", " << prev_point.y.convert(foot) << endl;
+  
 
   if (current_idx >= this->path_points.size()) return SegmentStatus::brake();
 
@@ -81,6 +82,7 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
   if (distance < tolerance) ++current_idx;
 
   std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
+  cout << "Powers: " << std::get<0>(pows) << ", " << std::get<1>(pows) << endl;
   return SegmentStatus::drive(pows);
 }
 

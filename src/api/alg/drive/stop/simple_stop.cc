@@ -24,20 +24,21 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,
                                       QLength drop_early) {
+  std::cout << "AT BEGINNING OF GET_STOP_STATE" << std::endl;                                      
 
-  // Handle timeout if and only if timeout is set
-  if(timeout) {
-    // Only if the initialization time has been set by a previous loop
-    if(time_init) {
-        // Early exit if needed
-        if(pros::millis() > time_init + timeout) {
-          return stop_state::EXIT;
-        }
-    }
-    else {
-      time_init = pros::millis();
-    }
-  }
+  // // Handle timeout if and only if timeout is set
+  // if(timeout) {
+  //   // Only if the initialization time has been set by a previous loop
+  //   if(time_init) {
+  //       // Early exit if needed
+  //       if(pros::millis() > time_init + timeout) {
+  //         return stop_state::EXIT;
+  //       }
+  //   }
+  //   else {
+  //     time_init = pros::millis();
+  //   }
+  // }
                                   
   // Now actually calculate the other stuff
   // For now we will just assume latitudinal distance is negligible
@@ -49,7 +50,9 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
   // Find the pose which is at target_state
   Pose pos_final = target_state;
   // but make this reference frame face directly away from the start state
+  std::cout << "0.6" << std::endl;
   pos_final.theta = atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
+  std::cout << "0.7" << std::endl;
 
   // Reframe the robots current position in reference to the target state
   // Because of the previous step, this should result in the starting longitudinal_distance being always (-d, 0)

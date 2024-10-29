@@ -16,7 +16,7 @@ QLength calculate_radius(PointVector first_point, Position current_pos, PointVec
     QLength CA = sqrt((A.x - C.x) * (A.x - C.x) + (A.y - C.y) * (A.y - C.y));
 
     // If any side lengths are 0, then curvature has a division by 0 so is undef, and radius would be 0
-    if (AB == 0_ft || BC == 0_ft || CA == 0_ft) return 0_ft;
+    if (AB == 0_ft || BC == 0_ft || CA == 0_ft) return 1000_ft;
 
     // Calculate the area of the triangle using the determinant method
     QArea area = 0.5 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y));
