@@ -19,7 +19,9 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       brake_time(ibrake_time.convert(millisecond)) {}
 
 void RecklessTurnSegment::init(OdometryState initial_state) {
+  angle_goal *= -1;
   angle_difference = angle_goal - initial_state.pos.theta;
+  
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
@@ -29,6 +31,7 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
   target_relative =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
+
   controller_state = TurnState::FULLPOWER;
 
   if (target_relative <

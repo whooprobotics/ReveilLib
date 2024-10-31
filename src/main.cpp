@@ -78,11 +78,11 @@ void opcontrol() {
   //                      std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
   //                      {8_ft, 8_ft, 45_deg}, 0_in))
   //                  );
-  double max_power = 0.5;
+  double max_power = 0.7;
   double coast_power = 0.3;
   QAngle angle = 90_deg;
-  double harsh_coeff = 0.5;
-  double coast_coeff = 1.4;
+  double harsh_coeff = 0.45;
+  double coast_coeff = 1.05;
   QTime brake_time = 0.2_s;
   reckless->go(RecklessPath().with_segment(rev::RecklessTurnSegment(
       max_power, coast_power, angle, harsh_coeff, coast_coeff, brake_time)));
