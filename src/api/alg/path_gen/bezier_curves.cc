@@ -4,19 +4,24 @@ using std::cout, std::endl;
 namespace rev {
 
 BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance, 
-                             std::shared_ptr<Stop> istop) {
+                             std::shared_ptr<Stop> istop, double ispeed, QLength approach_distance,
+                             double kpa, double kia, double kda){ 
   this->path_points = path_points;
   this->resolution = resolution;
   this->tolerance = tolerance;
   this->stop = istop;
+  this->last_point = path_points[path_points.size() - 1];
+  this->speed = ispeed;
+  this->approch_distance = approach_distance;
+  this->kpa = kpa;
+  this->kia = kia;
+  this->kda = kda;
 }
 
 void BezierSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
   this->current_idx = 0;
   std::cout << "AT BEGINNING OF INIT" << std::endl;
-
-  //std::vector<PointVector> bezier_points; // Vector to store final interpolated points
 
   for (std::size_t t = 0; t < this->resolution; ++t) {
     double t_value = static_cast<double>(t) / (this->resolution - 1);
@@ -43,7 +48,34 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
                               std::make_tuple(outer_power, inner_power);
 }
 
+std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point){
+  // ANGULAR PID
+  direction_vector = target_point - current_state.pos;
+  target_distance = sqrt(direction_vector.x * direction_vector.x + direction_vector.y * direction_vector.y);
+  target_heading = atan2(direction_vector.y, direction_vector.x);
 
+  angle_error = target_heading - current_state.pos.theta;
+  angle_integral += angle_error;
+  angle_derivative = angle_error - last_angle_error;
+  output_rotation = (kpa * angle_error + kia * angle_integral + kda * angle_derivative).convert(degree);
+  last_angle_error = angle_error;
+
+  // LINEAR PID
+  QLength distance_to_end = sqrt((current_state.pos.x - this->final_point.x)*(current_state.pos.x - this->final_point.x) + 
+                                 (current_state.pos.y - this->final_point.y)*(current_state.pos.y - this->final_point.y));
+  if (distance_to_end < approch_distance){
+    adjusted_linear_speed = speed * kpl;
+  }
+  else{
+    adjusted_linear_speed = speed;
+  }
+
+  left_speed = adjusted_linear_speed - output_rotation;
+  right_speed = adjusted_linear_speed + output_rotation;
+  return std::make_tuple(left_speed, right_speed);
+
+
+}
 
 SegmentStatus BezierSegment::step(OdometryState current_state){
   //pros::delay(500);
