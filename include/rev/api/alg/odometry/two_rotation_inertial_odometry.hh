@@ -43,7 +43,9 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
                                   // position of this to increase.
   std::shared_ptr<rev::Gyroscope> inertial;  // Inertial sensor from which the robot yaw will be read
 
+  #ifndef OFF_ROBOT_TESTS
   pros::Mutex current_position_mutex;
+  #endif
   OdometryState current_position{{0_in, 0_in, 0_deg},
                                  {0_mps, 0_mps, 0_deg / second}};
 

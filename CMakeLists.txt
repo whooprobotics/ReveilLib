@@ -33,8 +33,10 @@ add_executable(ReveilLib
         src/api/alg/reckless/reckless.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
-        src/api/hardware/devices/mock_rotary_sensor.cc
-        src/api/hardware/devices/mock_quad_encoder.cc
+        src/api/hardware/devices/rotation_sensors/mock_rotary_sensor.cc
+        src/api/hardware/devices/rotation_sensors/mock_quad_encoder.cc
+        src/api/hardware/devices/gyroscope/mock_imu.cc
+        src/api/alg/odometry/two_rotation_inertial_odometry.cc
         test/template_test.cc
         test/point_vector_test.cc
         test/off_robot_utils.cc

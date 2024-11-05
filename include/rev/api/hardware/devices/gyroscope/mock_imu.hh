@@ -1,9 +1,10 @@
 #pragma once
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 
 namespace rev {
 
-class MockImu : Gyroscope {
+class MockImu : public Gyroscope {
   public:
     MockImu(double initial_angle);
     double get_heading();

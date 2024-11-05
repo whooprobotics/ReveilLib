@@ -4,15 +4,16 @@
 
 namespace rev {
   
-class MockQuadEncoder {
+class MockQuadEncoder : public ReadOnlyRotarySensor {
   public:
     MockQuadEncoder(int initial_reading);
-    double get_position();
+    double get_position() override;
     int get_value();
     void increment();
     void decrement();
+    int get_looparounds();
   private:
     int value = 0;
+    int looparounds = 0;
 };
-
 } // namespace rev

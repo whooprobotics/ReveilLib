@@ -13,20 +13,10 @@ int MockRotarySensor::get_value() {
 }
 
 void MockRotarySensor::increment() {
-  if (value == 35999) {
-    value = 0;
-    return;
-  }
-  
   value++;
 }
 
 void MockRotarySensor::decrement() {
-  if (value == 0) {
-    value = 35999;
-    return;
-  }
-
   value--;
 }
 

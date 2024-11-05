@@ -9,61 +9,90 @@
 using namespace rev;
 using std::cout, std::endl;
 
-void quadencodertest() {  
+static void printOdomState(OdometryState state, std::shared_ptr<ReadOnlyRotarySensor> forward, std::shared_ptr<ReadOnlyRotarySensor> lateral) {
+  cout << "x: " << state.pos.x.convert(inch) << endl << "y: " << state.pos.y.convert(inch) << endl;
+  cout << "Forward value: " << forward->get_position() << "\tForward angle: " << forward->get_position() << endl;
+  cout << "Lateral value: " << lateral->get_position() << "\tLateral angle: " << lateral->get_position() << endl;
+}
+
+void quadencodertest(QLength wheel_diameter) {  
   std::shared_ptr<MockQuadEncoder> forward = std::make_shared<MockQuadEncoder>(0);
   std::shared_ptr<MockQuadEncoder> lateral = std::make_shared<MockQuadEncoder>(0);
-  rev::MockImu imu(0);
+  std::shared_ptr<MockImu> imu = std::make_shared<MockImu>(0);
+  std::shared_ptr<TwoRotationInertialOdometry> odom = std::make_shared<TwoRotationInertialOdometry>(forward, lateral, imu, wheel_diameter, wheel_diameter);
+  AsyncRunner odomRunner(odom);
+  OdometryState state = odom->get_state();
 
-  // TwoRotationInertialOdometry(forward, lateral, imu);
+  cout << "Initial state" << endl;
+  printOdomState(state, forward, lateral);
 
-  std::shared_ptr<AsyncRunner> odomRunner();
+  for(int i = 0; i < 10; i++) {
+    int val = rand() % 20000 + 1;
 
-  for(int i = 0; i < 100; i++) { forward->increment(); }
+    state = odom->get_state();
+    
+    QLength expected_pos = state.pos.x + (val / 8192.0 * 360 * degree / radian * (wheel_diameter / 2));
 
-  for(int i = 0; i < 900; i++) { lateral->increment(); }
+    cout << "Incrementing " << val << " ticks" << endl;
+    cout << "Expected val: " << expected_pos.convert(inch) << " inches" << endl;
 
-  for(int i = 0; i < 200; i++) { forward->decrement(); }
+    for(int i = 0; i < val; i++) {
+      forward->increment();
+      pros::delay(1);
+      cout << "i = " << i << "\tForward = " << forward->get_value() << "\tLooparounds = " << forward->get_looparounds() << endl;
+    }
 
-  for(int i = 0; i < 1100; i++) { lateral->decrement(); }
+    state = odom->get_state();
+
+    QLength actual_pos = state.pos.x;
+    cout << "Actual val: " << actual_pos.convert(inch) << " inches" << endl;
+
+    ASSERT_NEAR(expected_pos.convert(inch), state.pos.x.convert(inch), 0.01);
+  }
 }
 
-void rotationsensortest() {
-  MockRotarySensor forward(0);
-  MockRotarySensor lateral(0);
+void rotationsensortest(QLength wheel_diameter) {
+  std::shared_ptr<MockRotarySensor> forward = std::make_shared<MockRotarySensor>(0);
+  std::shared_ptr<MockRotarySensor> lateral = std::make_shared<MockRotarySensor>(0);
+  std::shared_ptr<MockImu> imu = std::make_shared<MockImu>(0);
+  std::shared_ptr<TwoRotationInertialOdometry> odom = std::make_shared<TwoRotationInertialOdometry>(forward, lateral, imu, wheel_diameter, wheel_diameter);
+  AsyncRunner odomRunner(odom);
+  OdometryState state = odom->get_state();
 
-  for(int i = 0; i < 100; i++) {
-    forward.increment();
+  cout << "Initial state" << endl;
+  printOdomState(state, forward, lateral);
+
+  for(int i = 0; i < 10; i++) {
+    int val = rand() % 20000 + 1;
+
+    state = odom->get_state();
+    
+    QLength expected_pos = state.pos.x + (val / 36000.0 * 360 * degree / radian * (wheel_diameter / 2));
+
+    cout << "Incrementing " << val << " ticks" << endl;
+    cout << "Expected val: " << expected_pos.convert(inch) << " inches" << endl;
+
+    for(int i = 0; i < val; i++) {
+      forward->increment();
+      pros::delay(1);
+      cout << "i = " << i << "\tForward = " << forward->get_value() << endl;
+    }
+
+    state = odom->get_state();
+
+    QLength actual_pos = state.pos.x;
+    cout << "Actual val: " << actual_pos.convert(inch) << " inches" << endl;
+
+    ASSERT_NEAR(expected_pos.convert(inch), state.pos.x.convert(inch), 0.01);
   }
-
-  ASSERT_NEAR(forward.get_value(), 100, 1);
-  ASSERT_NEAR(forward.get_position(), 1, 1.0/36000.0);
-
-  for(int i = 0; i < 900; i++) {
-    lateral.increment();
-  }
-
-  ASSERT_NEAR(lateral.get_value(), 900, 1);
-  ASSERT_NEAR(lateral.get_position(), 9, 1.0/36000.0);
-
-  for(int i = 0; i < 200; i++) {
-    forward.decrement();
-  }
-
-  ASSERT_NEAR(forward.get_value(), 35900, 1);
-  ASSERT_NEAR(forward.get_position(), 359, 1.0/36000.0);
-
-  for(int i = 0; i < 1100; i++) {
-    lateral.decrement();
-  }
-
-  ASSERT_NEAR(lateral.get_value(), 35800, 1);
-  ASSERT_NEAR(lateral.get_position(), 358, 1.0/36000.0);
 }
 
-TEST(OdomTests, QuadEncoderTest) {
-  quadencodertest();
-}
-
-// TEST(OdomTests, RotarySensorTest) {
-//   rotationsensortest();
+// TEST(OdomTests, QuadEncoderTest) {
+//   QLength wheel_diameter = 2.75_in;
+//   quadencodertest(wheel_diameter);
 // }
+
+TEST(OdomTests, RotarySensorTest) {
+  QLength wheel_diameter = 2.75_in;
+  rotationsensortest(wheel_diameter);
+}
