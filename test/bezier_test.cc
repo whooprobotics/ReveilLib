@@ -35,6 +35,6 @@ TEST(Bezier, BezierVerifications){
     std::cout << state.pos.x.convert(inch) << "in, "
               << state.pos.y.convert(inch) << "in" << std::endl;
 
-    pros::delay(500);
+    pros::delay(100);
   }
 }

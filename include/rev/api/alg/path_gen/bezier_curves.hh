@@ -33,6 +33,7 @@ class BezierSegment : public RecklessSegment{
   QLength tolerance;
   Position final_point;
   QLength drop_early = 0_in;
+  std::vector<PointVector> bezier_points;
 
   std::size_t resolution; 
   double t_value;
@@ -51,7 +52,7 @@ class BezierSegment : public RecklessSegment{
    *
    * 
    */
-  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 1_in,
+  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 2_in,
                 std::shared_ptr<Stop> istop = std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4));
 
 
