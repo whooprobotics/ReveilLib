@@ -32,6 +32,8 @@ QLength calculate_radius(PointVector first_point, Position current_pos, PointVec
 }
 
 Number calculate_inside_ratio(QLength chassis_width, QLength arc_radius){
+  if (arc_radius > 500_ft) return (1_ft)/(1_ft);
+  
   QLength outside_wheels = arc_radius + (chassis_width/2.0);
   QLength inside_wheels = arc_radius - (chassis_width/2.0);
 

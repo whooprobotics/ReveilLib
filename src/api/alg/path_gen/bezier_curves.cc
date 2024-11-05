@@ -46,7 +46,7 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
 
 
 SegmentStatus BezierSegment::step(OdometryState current_state){
-  //pros::delay(500);
+  pros::delay(500);
   cout << "AT BEGINNING OF STEP" << endl;
   PointVector last_point = this->path_points[this->path_points.size() - 1];
   cout << "current state " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
