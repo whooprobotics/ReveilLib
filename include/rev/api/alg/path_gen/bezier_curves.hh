@@ -13,6 +13,7 @@
 #include "rev/api/alg/drive/stop/stop.hh"
 #include "rev/util/mathutil.hh"
 #include "main.h"
+#include "rev/api/alg/drive/stop/simple_stop.hh"
 
 
 
@@ -50,7 +51,8 @@ class BezierSegment : public RecklessSegment{
    *
    * 
    */
-  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 1_in);
+  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 1_in,
+                std::shared_ptr<Stop> istop = std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4));
 
 
   void init(OdometryState initial_state) override;

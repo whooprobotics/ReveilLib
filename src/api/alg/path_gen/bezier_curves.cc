@@ -3,10 +3,12 @@
 using std::cout, std::endl;
 namespace rev {
 
-BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance) {
+BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance, 
+                             std::shared_ptr<Stop> istop) {
   this->path_points = path_points;
   this->resolution = resolution;
   this->tolerance = tolerance;
+  this->stop = istop;
 }
 
 void BezierSegment::init(OdometryState initial_state) {
@@ -44,31 +46,33 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
 
 
 SegmentStatus BezierSegment::step(OdometryState current_state){
-  pros::delay(500);
+  //pros::delay(500);
   cout << "AT BEGINNING OF STEP" << endl;
   PointVector last_point = this->path_points[this->path_points.size() - 1];
-  // cout << "0.5" << endl;
-  // cout << "last_point: " << last_point.x.convert(foot) << ", " << last_point.y.convert(foot) << endl;
-  // cout << start_point.x.convert(foot) << ", " << start_point.y.convert(foot) << endl;
-  // cout << drop_early.convert(foot) << endl;
-  // stop_state new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
-  //                                                   start_point, this->drop_early);
+  cout << "current state " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
+  cout << "last_point: " << last_point.x.convert(foot) << ", " << last_point.y.convert(foot) << endl;
+  cout << start_point.x.convert(foot) << ", " << start_point.y.convert(foot) << endl;
+  cout << drop_early.convert(foot) << endl;
+  new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
+                                                    start_point, this->drop_early);
 
-  //cout << '1' << endl;
+  cout << '1' << endl;
 
-  // Prevent status from regressing
-  // if (last_status.status == SegmentStatusType::NEXT ||
-  //     new_state == stop_state::EXIT)
-  //   return last_status = SegmentStatus::next();
+  //Prevent status from regressing
+  if (last_status.status == SegmentStatusType::NEXT ||
+      new_state == stop_state::EXIT)
+    return last_status = SegmentStatus::next();
 
-  // if (last_status.status == SegmentStatusType::BRAKE ||
-  //     new_state == stop_state::BRAKE)
-  //   return last_status = SegmentStatus::brake();                                              
+  if (last_status.status == SegmentStatusType::BRAKE ||
+      new_state == stop_state::BRAKE)
+    return last_status = SegmentStatus::brake();
+
+  cout << '2' << endl;                                              
 
   target_point = this->path_points[current_idx];
   prev_point = this->path_points[current_idx-1];
 
-  cout << "Current Position" << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << ", " 
+  cout << "Current Position: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << ", " 
        << current_state.pos.theta.convert(degree) << endl;
   cout << "Target Point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
   cout << "Prev Point: " << prev_point.x.convert(foot) << ", " << prev_point.y.convert(foot) << endl;
@@ -78,6 +82,8 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   QLength distance = sqrt((current_state.pos.x - target_point.x)*(current_state.pos.x - target_point.x) + 
                           (current_state.pos.y - target_point.y)*(current_state.pos.y - target_point.y));
+  
+  cout << "Distance: " << distance.convert(foot) << endl;
 
   if (distance < tolerance) ++current_idx;
 
