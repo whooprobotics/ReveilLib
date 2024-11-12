@@ -19,9 +19,10 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       brake_time(ibrake_time.convert(millisecond)) {}
 
 void RecklessTurnSegment::init(OdometryState initial_state) {
-  angle_goal *= -1;
+  // std::cout << "Initializing turn" << std::endl;
+  //  angle_goal *= -1;
   angle_difference = angle_goal - initial_state.pos.theta;
-  
+
   target_relative_original =
       angle_difference -
       360 * std::floor((angle_difference.convert(degree) + 180) / 360) * degree;
@@ -59,8 +60,8 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
   // advance
 
   // edge case test if already at angle (having trouble in google test )
-  if (controller_state == TurnState::FULLPOWER &&
-      fabs(target_relative.convert(degree)) < 5.0) {
+  if (fabs(target_relative_original.convert(degree)) < 5.0) {
+    // std::cout << "PASSED THE EDGE CASE :D" << std::endl;
     SegmentStatus::next();
   }
 
@@ -78,7 +79,6 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
           fabs(current_state.vel.angular.convert(degree / second) *
                harsh_coeff) &&
       controller_state != TurnState::BRAKE) {
-    // printf("Setting brake\n");
     controller_state = TurnState::BRAKE;
   }
 
@@ -95,9 +95,10 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
         brake_start_time = pros::millis();
       } else if (brake_start_time < pros::millis() - brake_time ||
                  fabs(current_state.vel.angular.convert(degree / second)) <=
-                     1) {              // Check if brake_time ms has elapsed
+                     0.25) {           // Check if brake_time ms has elapsed
         brake_start_time = -1;         // reset for next run
         return SegmentStatus::next();  // move onto next Segment
+        break;                         // Drew told me to
       }
       return SegmentStatus::brake();
       break;
