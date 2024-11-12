@@ -3,19 +3,23 @@
 using std::cout, std::endl;
 namespace rev {
 
-BezierSegment::BezierSegment(std::vector<PointVector> path_points, std::size_t resolution, QLength tolerance, 
-                             std::shared_ptr<Stop> istop, double ispeed, QLength approach_distance,
-                             double kpa, double kia, double kda){ 
+BezierSegment::BezierSegment(std::shared_ptr<Correction> icorrection,
+                             std::shared_ptr<Stop> istop,
+                             std::vector<PointVector> path_points,
+                             double ispeed,
+                             std::size_t resolution,
+                             QLength tolerance){
+  this->correction = icorrection;
   this->path_points = path_points;
   this->resolution = resolution;
   this->tolerance = tolerance;
   this->stop = istop;
   this->last_point = path_points[path_points.size() - 1];
   this->speed = ispeed;
-  this->approch_distance = approach_distance;
-  this->kpa = kpa;
-  this->kia = kia;
-  this->kda = kda;
+  // this->approach_distance = approach_distance;
+  // this->kpa = kpa;
+  // this->kia = kia;
+  // this->kda = kda;
 }
 
 void BezierSegment::init(OdometryState initial_state) {
@@ -48,34 +52,33 @@ std::tuple<double, double> calculate_powers(PointVector first_point, Position cu
                               std::make_tuple(outer_power, inner_power);
 }
 
-std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point){
-  // ANGULAR PID
-  direction_vector = target_point - current_state.pos;
-  target_distance = sqrt(direction_vector.x * direction_vector.x + direction_vector.y * direction_vector.y);
-  target_heading = atan2(direction_vector.y, direction_vector.x);
+// [[deprecated]]
+// std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point){
+//   // ANGULAR PID
+//   direction_vector = target_point - current_state.pos;
+//   target_distance = sqrt(direction_vector.x * direction_vector.x + direction_vector.y * direction_vector.y);
+//   target_heading = atan2(direction_vector.y, direction_vector.x);
 
-  angle_error = target_heading - current_state.pos.theta;
-  angle_integral += angle_error;
-  angle_derivative = angle_error - last_angle_error;
-  output_rotation = (kpa * angle_error + kia * angle_integral + kda * angle_derivative).convert(degree);
-  last_angle_error = angle_error;
+//   angle_error = target_heading - current_state.pos.theta;
+//   angle_integral += angle_error;
+//   angle_derivative = angle_error - last_angle_error;
+//   output_rotation = (kpa * angle_error + kia * angle_integral + kda * angle_derivative).convert(degree);
+//   last_angle_error = angle_error;
 
-  // LINEAR PID
-  QLength distance_to_end = sqrt((current_state.pos.x - this->final_point.x)*(current_state.pos.x - this->final_point.x) + 
-                                 (current_state.pos.y - this->final_point.y)*(current_state.pos.y - this->final_point.y));
-  if (distance_to_end < approch_distance){
-    adjusted_linear_speed = speed * kpl;
-  }
-  else{
-    adjusted_linear_speed = speed;
-  }
+//   // LINEAR PID
+//   QLength distance_to_end = sqrt((current_state.pos.x - this->final_point.x)*(current_state.pos.x - this->final_point.x) + 
+//                                  (current_state.pos.y - this->final_point.y)*(current_state.pos.y - this->final_point.y));
+//   if (distance_to_end < approach_distance){
+//     adjusted_linear_speed = speed * kpl;
+//   }
+//   else{
+//     adjusted_linear_speed = speed;
+//   }
 
-  left_speed = adjusted_linear_speed - output_rotation;
-  right_speed = adjusted_linear_speed + output_rotation;
-  return std::make_tuple(left_speed, right_speed);
-
-
-}
+//   left_speed = adjusted_linear_speed - output_rotation;
+//   right_speed = adjusted_linear_speed + output_rotation;
+//   return std::make_tuple(left_speed, right_speed);
+// }
 
 SegmentStatus BezierSegment::step(OdometryState current_state){
   //pros::delay(500);
@@ -103,8 +106,8 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   if (current_idx >= this->bezier_points.size()) return SegmentStatus::brake();
 
-  QLength distance = sqrt((current_state.pos.x - target_point.x)*(current_state.pos.x - target_point.x) + 
-                          (current_state.pos.y - target_point.y)*(current_state.pos.y - target_point.y));
+  Pose error = current_state.pos.to_relative({this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, 0_deg});
+  QLength distance = error.x; // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
   
   //cout << "Distance: " << distance.convert(foot) << endl;
 
@@ -116,15 +119,26 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   // cout << "Current Position: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << ", " 
   //      << current_state.pos.theta.convert(degree) << endl;
-  cout << "Target Point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
+  // cout << "Target Point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
   // cout << "Prev Point: " << prev_point.x.convert(foot) << ", " << prev_point.y.convert(foot) << endl;
   
 
-  
+  std::tuple<double, double> pows = std::make_tuple(this->speed, this->speed);
 
-  std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
-  //cout << "Powers: " << std::get<0>(pows) << ", " << std::get<1>(pows) << endl;
-  return SegmentStatus::drive(pows);
+  // cout << "Current state: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
+  // cout << "Target point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
+  // cout << "Start point: " << start_point.x.convert(foot) << ", " << start_point.y.convert(foot) << endl;
+  // cout << "Drop early: " << drop_early.convert(foot) << endl;
+  // cout << "Powers before correction: " << std::get<0>(pows) << ", " << std::get<1>(pows) << endl;
+
+  std::tuple<double, double> corrected_pows =
+      this->correction->apply_correction(current_state, {this->target_point.x, this->target_point.y, 0_deg},
+                                         this->start_point, this->drop_early,
+                                         pows);
+  //std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
+  //cout << "Powers: " << std::get<0>(corrected_pows) << ", " << std::get<1>(corrected_pows) << endl;
+  cout << "Current Point: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
+  return SegmentStatus::drive(corrected_pows);
 }
 
 void BezierSegment::clean_up() {}

@@ -27,7 +27,12 @@ TEST(Bezier, BezierVerifications){
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
-                   .with_segment(BezierSegment(path_points)));
+    .with_segment(BezierSegment(
+                      std::make_shared<PilonsCorrection>(2, 0.5_in),
+                      std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                      path_points,
+                      0.2,
+                      5)));
   cout << "Made it go" << endl;
 
   while (!reckless->is_completed()) {

@@ -46,22 +46,22 @@ class BezierSegment : public RecklessSegment{
   SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
   // Angle PID Stuff
-  PointVector direction_vector;
-  QLength target_distance;
-  QAngle target_heading;
-  QAngle angle_error;
-  QAngle angle_integral;
-  QAngle angle_derivative;
-  QAngle last_angle_error;
-  double output_rotation;
-  double kpa;
-  double kia;
-  double kda;
+  // PointVector direction_vector;
+  // QLength target_distance;
+  // QAngle target_heading;
+  // QAngle angle_error;
+  // QAngle angle_integral;
+  // QAngle angle_derivative;
+  // QAngle last_angle_error;
+  // double output_rotation;
+  // double kpa;
+  // double kia;
+  // double kda;
 
   // Linear PID Stuff
-  QLength approch_distance;
-  double adjusted_linear_speed;
-  double kpl;
+  //QLength approach_distance;
+  //double adjusted_linear_speed;
+  //double kpl;
 
   double left_speed;
   double right_speed;
@@ -76,15 +76,18 @@ class BezierSegment : public RecklessSegment{
    *
    * 
    */
-  BezierSegment(std::vector<PointVector> path_points, std::size_t resolution = 5, QLength tolerance = 2_in,
-                std::shared_ptr<Stop> istop = std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-                double ispeed = 10000,
-                QLength approach_distance = 6_in, double kpa = 0.1, double kia = 0.1, double kda = 0.1);
+  BezierSegment(std::shared_ptr<Correction> icorrection,
+                std::shared_ptr<Stop> istop,
+                std::vector<PointVector> path_points,
+                double ispeed = 0.7,
+                std::size_t resolution = 5,
+                QLength tolerance = 1_in
+                );
 
 
   void init(OdometryState initial_state) override;
 
-  std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point);
+  //std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point);
 
   SegmentStatus step(OdometryState current_state) override;
 
