@@ -11,7 +11,8 @@ BezierSegment::BezierSegment(std::shared_ptr<Correction> icorrection,
                              QLength tolerance){
   this->correction = icorrection;
   this->path_points = path_points;
-  this->resolution = resolution;
+  if (resolution == 0) this->resolution = path_points.size() * 3;
+  else this->resolution = resolution;
   this->tolerance = tolerance;
   this->stop = istop;
   this->last_point = path_points[path_points.size() - 1];
@@ -37,6 +38,11 @@ void BezierSegment::init(OdometryState initial_state) {
       }
     }
     this->bezier_points.push_back(temp_points[0]);
+  }
+
+  // print out bezier points
+  for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
+    cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(foot) << ", " << this->bezier_points[i].y.convert(foot) << endl;
   }
 }
 
@@ -115,6 +121,7 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   if (distance.convert(foot) < tolerance.convert(foot)){
     ++current_idx;
+    cout << "Current Index: " << current_idx << endl;
   }
 
   //cout << "Current Index: " << current_idx << endl;                           

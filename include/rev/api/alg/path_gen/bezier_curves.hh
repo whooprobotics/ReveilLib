@@ -80,7 +80,7 @@ class BezierSegment : public RecklessSegment{
                 std::shared_ptr<Stop> istop,
                 std::vector<PointVector> path_points,
                 double ispeed = 0.7,
-                std::size_t resolution = 5,
+                std::size_t resolution = 0,
                 QLength tolerance = 1_in
                 );
 
