@@ -107,11 +107,17 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
   if (current_idx >= this->bezier_points.size()) return SegmentStatus::brake();
 
   Pose error = current_state.pos.to_relative({this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, 0_deg});
-  QLength distance = error.x; // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
+  QLength distance = abs(error.x); // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
+  //cout << "Error: " << error.x.convert(foot) << ", " << error.y.convert(foot) << endl;
   
   //cout << "Distance: " << distance.convert(foot) << endl;
+  //cout << "Tolerance: " << tolerance.convert(foot) << endl;
 
-  if (distance < tolerance) ++current_idx;                                     
+  if (distance.convert(foot) < tolerance.convert(foot)){
+    ++current_idx;
+  }
+
+  //cout << "Current Index: " << current_idx << endl;                           
 
   target_point = this->bezier_points[current_idx];
   prev_point = this->bezier_points[current_idx-1];
@@ -137,7 +143,7 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
                                          pows);
   //std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
   //cout << "Powers: " << std::get<0>(corrected_pows) << ", " << std::get<1>(corrected_pows) << endl;
-  cout << "Current Point: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
+  //cout << "Current Point: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
   return SegmentStatus::drive(corrected_pows);
 }
 

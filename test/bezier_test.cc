@@ -31,8 +31,9 @@ TEST(Bezier, BezierVerifications){
                       std::make_shared<PilonsCorrection>(2, 0.5_in),
                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
                       path_points,
-                      0.2,
-                      5)));
+                      0.7,
+                      5,
+                      1_in)));
   cout << "Made it go" << endl;
 
   while (!reckless->is_completed()) {
