@@ -45,24 +45,6 @@ class BezierSegment : public RecklessSegment{
 
   SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
-  // Angle PID Stuff
-  // PointVector direction_vector;
-  // QLength target_distance;
-  // QAngle target_heading;
-  // QAngle angle_error;
-  // QAngle angle_integral;
-  // QAngle angle_derivative;
-  // QAngle last_angle_error;
-  // double output_rotation;
-  // double kpa;
-  // double kia;
-  // double kda;
-
-  // Linear PID Stuff
-  //QLength approach_distance;
-  //double adjusted_linear_speed;
-  //double kpl;
-
   double left_speed;
   double right_speed;
 
@@ -70,11 +52,16 @@ class BezierSegment : public RecklessSegment{
   /**
    *
    * @brief Make a new Bezier Segment
+   * @note O(p^2 * r) where p is the number of path points and r is the resolution
    * 
+   * @param icorrection The correction for pilons segment
+   * @param istop The stop for pilons segment
+   * @param path_points The points for the bezier curve
+   * @param ispeed The maximum speed, default is 70%
+   * @param resolution The resolution of the bezier curve, if left at 0 becomes length of path points times 3.
+   * It is important not to set the resolution too high as it can become too computationally intensive
+   * @param tolerance The lateral tolerance between each point on the bezier curve
    *
-   *
-   *
-   * 
    */
   BezierSegment(std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
@@ -84,11 +71,26 @@ class BezierSegment : public RecklessSegment{
                 QLength tolerance = 1_in
                 );
 
-
+  /**
+   * @brief Initialize the segment
+   * 
+   * @param initial_state The initial state of the robot
+   * @details This function computes points which will approximate a bezier curve of the given points.
+   * PilonsCorrection will be used to drive to each point generated
+   */
   void init(OdometryState initial_state) override;
 
-  //std::tuple<double, double> BezierSegment::bezier_PID(OdometryState current_state, PointVector target_point);
-
+  /**
+   * @brief Step function for the segment
+   * 
+   * @param current_state The current position of the robot
+   * @return SegmentStatus
+   * 
+   * @details This function will:
+   *   1. Check if the segment is completed
+   *   2. Index through the bezier points
+   *   3. Adjust the robot power with pilons correction
+   */
   SegmentStatus step(OdometryState current_state) override;
 
   void clean_up() override;
