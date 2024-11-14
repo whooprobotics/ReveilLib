@@ -72,6 +72,7 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
                coast_coeff) &&
       controller_state != TurnState::BRAKE &&
       controller_state != TurnState::COAST) {
+    // std::cout << "setting COAST" << std::endl;
     controller_state = TurnState::COAST;
   }
   // Harsh-brake if we're at that point
@@ -79,6 +80,7 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
           fabs(current_state.vel.angular.convert(degree / second) *
                harsh_coeff) &&
       controller_state != TurnState::BRAKE) {
+    // std::cout << "setting BRAKE" << std::endl;
     controller_state = TurnState::BRAKE;
   }
 
@@ -92,11 +94,13 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
       break;
     case TurnState::BRAKE:
       if (brake_start_time == -1) {
+        // std::cout << "started brake" << std::endl;
         brake_start_time = pros::millis();
       } else if (brake_start_time < pros::millis() - brake_time ||
                  fabs(current_state.vel.angular.convert(degree / second)) <=
-                     0.25) {           // Check if brake_time ms has elapsed
-        brake_start_time = -1;         // reset for next run
+                     0.25) {    // Check if brake_time ms has elapsed
+        brake_start_time = -1;  // reset for next run
+        // std::cout << "finishing turn" << std::endl;
         return SegmentStatus::next();  // move onto next Segment
         break;                         // Drew told me to
       }
