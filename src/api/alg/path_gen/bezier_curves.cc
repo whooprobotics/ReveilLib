@@ -122,8 +122,9 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
                                          this->start_point, this->drop_early,
                                          pows);
   //std::tuple<double, double> pows = calculate_powers(prev_point, current_state.pos, target_point);
-  //cout << "Powers: " << std::get<0>(corrected_pows) << ", " << std::get<1>(corrected_pows) << endl;
-  //cout << "Current Point: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
+  // cout << "Powers: " << std::get<0>(corrected_pows) << ", " << std::get<1>(corrected_pows) << endl;
+  // cout << "Current Point: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot)
+  //      << ", " << current_state.pos.theta.convert(degree)<< endl;
   return SegmentStatus::drive(corrected_pows);
 }
 
