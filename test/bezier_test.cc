@@ -7,43 +7,43 @@
 #include <iostream>
 using std::cout, std::endl;
 
-// TEST(Bezier, BezierVerification1){
-//   cout << "Beginning" << endl;
-//   using namespace rev;
-//   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
-//                                             20_Hz, 20_Hz);
+TEST(Bezier, BezierVerification1){
+  cout << "Beginning" << endl;
+  using namespace rev;
+  auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
+                                            20_Hz, 20_Hz);
 
-//   AsyncRunner simrunner1(sim);
-//   cout << "Made simrunner" << endl;
+  AsyncRunner simrunner1(sim);
+  cout << "Made simrunner" << endl;
 
-//   std::shared_ptr<rev::Reckless> reckless =
-//       std::make_shared<Reckless>(sim, sim);
-//   cout << "Made reckless" << endl;
+  std::shared_ptr<rev::Reckless> reckless =
+      std::make_shared<Reckless>(sim, sim);
+  cout << "Made reckless" << endl;
 
-//   AsyncRunner reckless_runner(reckless);
-//   cout << "Made reckless runner" << endl;
+  AsyncRunner reckless_runner(reckless);
+  cout << "Made reckless runner" << endl;
 
-//   std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
-//   cout << "Made path points" << endl;
+  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
+  cout << "Made path points" << endl;
 
-//   reckless->go(RecklessPath()
-//     .with_segment(BezierSegment(
-//                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-//                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-//                       path_points,
-//                       0.7,
-//                       5,
-//                       1_in)));
-//   cout << "Made it go" << endl;
+  reckless->go(RecklessPath()
+    .with_segment(BezierSegment(
+                      std::make_shared<PilonsCorrection>(2, 0.5_in),
+                      std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                      path_points,
+                      0.7,
+                      5,
+                      1_in)));
+  cout << "Made it go" << endl;
 
-//   while (!reckless->is_completed()) {
-//     auto state = sim->get_state();
-//     std::cout << state.pos.x.convert(inch) << "in, "
-//               << state.pos.y.convert(inch) << "in" << std::endl;
+  while (!reckless->is_completed()) {
+    auto state = sim->get_state();
+    std::cout << state.pos.x.convert(inch) << "in, "
+              << state.pos.y.convert(inch) << "in" << std::endl;
 
-//     pros::delay(100);
-//   }
-// }
+    pros::delay(100);
+  }
+}
 
 TEST(Bezier, BezierVerification2){
   cout << "Beginning" << endl;

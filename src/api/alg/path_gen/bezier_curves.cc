@@ -27,7 +27,7 @@ void BezierSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
   this->path_points.insert(this->path_points.begin(), this->start_point);
   this->current_idx = 0;
-  std::cout << "AT BEGINNING OF INIT" << std::endl;
+  // std::cout << "AT BEGINNING OF INIT" << std::endl;
 
   for (std::size_t t = 0; t < this->resolution; ++t) {
     double t_value = static_cast<double>(t) / (this->resolution - 1);
@@ -42,9 +42,9 @@ void BezierSegment::init(OdometryState initial_state) {
   }
 
   // print out bezier points REMOVE AFTER DEBUG
-  for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
-    cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(foot) << ", " << this->bezier_points[i].y.convert(foot) << endl;
-  }
+  // for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
+  //   cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(foot) << ", " << this->bezier_points[i].y.convert(foot) << endl;
+  // }
 }
 
 
