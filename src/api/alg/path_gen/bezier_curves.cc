@@ -111,6 +111,16 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   std::tuple<double, double> pows = std::make_tuple(this->speed, this->speed);
 
+  // Handle coasting if needed
+  if (new_state == stop_state::COAST) {
+    double power = this->stop->get_coast_power();
+    double left, right;
+    std::tie(left, right) = pows;
+    if (left + right < 0)
+      power *= -1;
+    return last_status = SegmentStatus::drive(power);
+  }
+
   // cout << "Current state: " << current_state.pos.x.convert(foot) << ", " << current_state.pos.y.convert(foot) << endl;
   // cout << "Target point: " << target_point.x.convert(foot) << ", " << target_point.y.convert(foot) << endl;
   // cout << "Start point: " << start_point.x.convert(foot) << ", " << start_point.y.convert(foot) << endl;
