@@ -11,11 +11,8 @@
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
-#include "rev/util/mathutil.hh"
 #include "main.h"
 #include "rev/api/alg/drive/stop/simple_stop.hh"
-
-
 
 namespace rev {
 
