@@ -21,12 +21,12 @@ bool withinTolerance(QAngle currentAngle, QAngle goalAngle) {
   return (abs(target_relative_original) < tolerance);
 }
 
-void angleTester(double max_power = 0.7,
+void angleTester(double max_power = 0.90,
                  double coast_power = 0.3,
                  QAngle angle = 90_deg,
-                 double harsh_coeff = 0.10,
-                 double coast_coeff = 0.5,
-                 QTime brake_time = 0.25_s) {
+                 double harsh_coeff = 0.015,
+                 double coast_coeff = 0.12,
+                 QTime brake_time = 0.2_s) {
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
                                             20_Hz, 20_Hz);
@@ -47,7 +47,7 @@ void angleTester(double max_power = 0.7,
               << angle.convert(degree) << " degrees" << std::endl;
     std::cout << sim->get_state().vel.angular.convert(degree / second)
               << " deg/s" << std::endl;
-    pros::delay(50);  // 10 for hard testing, 500 for typical
+    pros::delay(200);  // 10 for hard testing, 500 for typical
   }
   std::cout << sim->get_state().pos.theta.convert(degree) << std::endl;
   EXPECT_TRUE(withinTolerance(sim->get_state().pos.theta, angle));
@@ -58,59 +58,59 @@ TEST(TurnTests, TurnTest_90) {
 }
 
 TEST(TurnTests, TurnTest_45) {
-  angleTester(.70, 0.3, 45_deg);
+  angleTester(0.90, 0.3, 45_deg);
 }
 
 TEST(TurnTests, TurnTest_60) {
-  angleTester(.70, 0.3, 60_deg);
+  angleTester(0.90, 0.3, 60_deg);
 }
 
 TEST(TurnTests, TurnTest_120) {
-  angleTester(.70, 0.3, 120_deg);
+  angleTester(0.90, 0.3, 120_deg);
 }
 
 TEST(TurnTests, TurnTest_180) {
-  angleTester(.70, 0.3, 180_deg);
+  angleTester(0.90, 0.3, 180_deg);
 }
 
 TEST(TurnTests, TurnTest_360) {
-  angleTester(.70, 0.3, 360_deg);
+  angleTester(0.90, 0.3, 360_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_90) {
-  angleTester(.70, 0.3, -90_deg);
+  angleTester(0.90, 0.3, -90_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_45) {
-  angleTester(.70, 0.3, -45_deg);
+  angleTester(0.90, 0.3, -45_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_60) {
-  angleTester(.70, 0.3, -60_deg);
+  angleTester(0.90, 0.3, -60_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_120) {
-  angleTester(.70, 0.3, -120_deg);
+  angleTester(0.90, 0.3, -120_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_180) {
-  angleTester(.70, 0.3, -180_deg);
+  angleTester(0.90, 0.3, -180_deg);
 }
 
 TEST(TurnTests, TurnTest_Neg_360) {
-  angleTester(.70, 0.3, -360_deg);
+  angleTester(0.90, 0.3, -360_deg);
 }
 
 // Corner cases
 
 TEST(TurnTests, TurnTest_Tolerance) {
-  angleTester(.70, 0.3, tolerance);
+  angleTester(0.90, 0.3, tolerance);
 }
 
 TEST(TurnTests, TurnTest_400) {
-  angleTester(.70, 0.3, 400_deg);
+  angleTester(0.90, 0.3, 400_deg);
 }
 
 TEST(TurnTests, TurnTest_0) {
-  angleTester(.70, 0.3, 0_deg);
+  angleTester(0.90, 0.3, 0_deg);
 }
