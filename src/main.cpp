@@ -11,8 +11,8 @@
 pros::Motor_Group leftd({-11, -12, -13, -18});
 pros::Motor_Group rightd({2, 3, 5, 6});
 
-pros::Rotation fwd(1);
-pros::Rotation rgt(14, true);
+pros::Rotation fwd(1, true);
+pros::Rotation rgt(14);
 pros::Imu imu(4);
 pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);
 
@@ -40,7 +40,7 @@ void opcontrol() {
       std::make_shared<rev::TwoRotationInertialOdometry>(
           fwd, rgt, imu, 2.09_in, 2.75_in, 4.75_in, 0.5_in);
 
-  odom->set_position({1.5_ft, 10.5_ft, 135_deg});
+  //odom->set_position({1.5_ft, 10.5_ft, 135_deg});
 
   // odom->set_position({215_in, 49_in, 16_deg});
   AsyncRunner odom_runner(odom);
@@ -78,18 +78,24 @@ void opcontrol() {
   //                      std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
   //                      {8_ft, 8_ft, 45_deg}, 0_in))
   //                  );
-  double max_power = 0.4;
-  double coast_power = 0.15;
-  QAngle angle = -90_deg;
-  double harsh_coeff = 0.05;  // 0.492
-  double coast_coeff = .5;    // 1.068
-  QTime brake_time = 0.1_s;
+  double max_power = 0.9;
+  double coast_power = 0.25;
+  QAngle angle = 135_deg;
+  double harsh_coeff = 0.18;  // 0.492
+  double coast_coeff = 0.6;    // 1.068
+  QTime brake_time = 2.0_s;
   reckless->go(RecklessPath().with_segment(rev::RecklessTurnSegment(
       max_power, coast_power, angle, harsh_coeff, coast_coeff, brake_time)));
 
-  while (!reckless->is_completed())
-    pros::delay(20);
+  while (!reckless->is_completed()){
+    pros::delay(50);
+    std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
+    controller.print(0, 0, odom_str.c_str());
+  }
   printf("Completed motion");
+  pros::delay(2000);
+  std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
+  controller.print(0, 0, odom_str.c_str());
 
   // reckless->go(RecklessPath());
 
