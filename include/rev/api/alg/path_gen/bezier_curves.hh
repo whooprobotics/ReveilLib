@@ -23,12 +23,11 @@ class BezierSegment : public RecklessSegment{
   std::shared_ptr<Stop> stop;
   std::vector<PointVector> path_points;
   PointVector last_point;
-  double speed;
 
   std::vector<PointVector> bezier_points;
 
   Position start_point;
-  PointVector target_point;
+  Position target_point;
   PointVector prev_point;
   std::size_t current_idx = 1;
   QLength tolerance;
@@ -60,10 +59,10 @@ class BezierSegment : public RecklessSegment{
    * @param tolerance The lateral tolerance between each point on the bezier curve
    *
    */
-  BezierSegment(std::shared_ptr<Correction> icorrection,
+  BezierSegment(std::shared_ptr<Motion> imotion,
+                std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
                 std::vector<PointVector> path_points,
-                double ispeed = 0.7,
                 std::size_t resolution = 0,
                 QLength tolerance = 1_in
                 );

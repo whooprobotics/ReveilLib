@@ -85,10 +85,10 @@ void opcontrol() {
                     //    {4_ft, 4_ft, 0_deg}, 0_in)
                     //    )
                     .with_segment(BezierSegment(
+                        std::make_shared<CascadingMotion>(0.7, kP, kB, 40_in / second, 0.07),
                         std::make_shared<PilonsCorrection>(2, 0.5_in),
                         std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
                         std::vector<PointVector>{{0_ft, 0_ft}, {2_ft, 2_ft}, {4_ft, 4_ft}},
-                        0.7,
                         3
                         ))
                     );

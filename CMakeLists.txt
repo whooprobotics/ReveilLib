@@ -34,7 +34,6 @@ add_executable(ReveilLib
         src/api/alg/reckless/pilons_segment.cc
         src/api/alg/path_gen/bezier_curves.cc
         src/util/math/pose.cc
-        src/util/math/mathutil.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
         src/api/alg/reckless/call.cc
         src/api/alg/reckless/await.cc

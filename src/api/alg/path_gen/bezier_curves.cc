@@ -3,16 +3,16 @@
 using std::cout, std::endl;
 namespace rev {
 
-BezierSegment::BezierSegment(std::shared_ptr<Correction> icorrection,
+BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
+                             std::shared_ptr<Correction> icorrection,
                              std::shared_ptr<Stop> istop,
                              std::vector<PointVector> path_points,
-                             double ispeed,
                              std::size_t resolution,
                              QLength tolerance){
+  this->motion = imotion;
   this->correction = icorrection;
   this->stop = istop;
   this->path_points = path_points;
-  this->speed = ispeed;
   if (resolution == 0) this->resolution = path_points.size() * 3;
   else this->resolution = resolution;
   this->tolerance = tolerance;
@@ -35,6 +35,10 @@ void BezierSegment::init(OdometryState initial_state) {
       }
     }
     this->bezier_points.push_back(temp_points[0]);
+  }
+  //print out bezier points REMOVE AFTER DEBUG
+  for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
+    cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(inch) << ", " << this->bezier_points[i].y.convert(inch) << endl;
   }
 }
 
@@ -59,12 +63,15 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
 
   if (distance.convert(foot) < tolerance.convert(foot)){
     ++current_idx;
+    cout << "ERROR: " << error.x.convert(inch) << "in, " << error.y.convert(inch) << "in" << endl;
+    cout << "Index is now: " << current_idx << endl;
   }
 
-  target_point = this->bezier_points[current_idx];
+  target_point = {this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, current_state.pos.theta};
   prev_point = this->bezier_points[current_idx-1];
 
-  std::tuple<double, double> pows = std::make_tuple(this->speed, this->speed);
+  std::tuple<double, double> pows = this->motion->gen_powers(
+      current_state, target_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
   if (new_state == stop_state::COAST) {
@@ -77,9 +84,11 @@ SegmentStatus BezierSegment::step(OdometryState current_state){
   }
 
   std::tuple<double, double> corrected_pows =
-      this->correction->apply_correction(current_state, {this->target_point.x, this->target_point.y, 0_deg},
+      this->correction->apply_correction(current_state, {this->target_point.x, this->target_point.y, current_state.pos.theta},
                                          this->start_point, this->drop_early,
                                          pows);
+
+
   return SegmentStatus::drive(corrected_pows);
 }
 
