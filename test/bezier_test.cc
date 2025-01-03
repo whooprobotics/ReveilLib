@@ -47,7 +47,7 @@ TEST(Bezier, BezierVerification1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
+  std::vector<PointVector> path_points {{0_in, 0_in}, {-2_ft, 0_ft}, {-2_ft, -6_ft}};
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
@@ -56,8 +56,8 @@ TEST(Bezier, BezierVerification1){
                       std::make_shared<PilonsCorrection>(2, 0.5_in),
                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
                       path_points,
-                      5,
-                      1_in)));
+                      20
+                      )));
   cout << "Made it go" << endl;
 
   std::vector<PointVector> robor_points {};
@@ -69,7 +69,7 @@ TEST(Bezier, BezierVerification1){
     pros::delay(100);
   }
   // go plot stuff
-  std::vector<PointVector> bezier_points = generate_bezier_points(path_points, 5);
+  std::vector<PointVector> bezier_points = generate_bezier_points(path_points, 20);
   generate_plot(bezier_points, robor_points);
 
 }

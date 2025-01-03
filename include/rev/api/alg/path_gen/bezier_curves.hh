@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 #include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/alg/reckless/segment.hh"
+#include "rev/api/alg/pure_pursuit/pure_pursuit.hh"
 #include "rev/api/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
@@ -16,7 +16,7 @@
 
 namespace rev {
 
-class BezierSegment : public RecklessSegment{
+class BezierSegment : public PurePursuitSegment {
 
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
@@ -33,6 +33,8 @@ class BezierSegment : public RecklessSegment{
   QLength tolerance;
   Position final_point;
   QLength drop_early = 0_in;
+  QLength wheelbase;
+  QLength look_ahead_distance;
 
   std::size_t resolution; 
   double t_value;
@@ -64,7 +66,9 @@ class BezierSegment : public RecklessSegment{
                 std::shared_ptr<Stop> istop,
                 std::vector<PointVector> path_points,
                 std::size_t resolution = 0,
-                QLength tolerance = 1_in
+                QLength tolerance = 1_in,
+                QLength wheelbase = 13_in,
+                QLength look_ahead_distance = 1_ft
                 );
 
   /**

@@ -8,7 +8,11 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
                              std::shared_ptr<Stop> istop,
                              std::vector<PointVector> path_points,
                              std::size_t resolution,
-                             QLength tolerance){
+                             QLength tolerance,
+                             QLength wheelbase,
+                             QLength look_ahead_distance
+  ): PurePursuitSegment(imotion, icorrection, istop, path_points, look_ahead_distance, wheelbase, tolerance)                     
+  {
   this->motion = imotion;
   this->correction = icorrection;
   this->stop = istop;
@@ -16,6 +20,8 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
   if (resolution == 0) this->resolution = path_points.size() * 3;
   else this->resolution = resolution;
   this->tolerance = tolerance;
+  this->wheelbase = wheelbase;
+  this->look_ahead_distance = look_ahead_distance;
   
   this->last_point = path_points[path_points.size() - 1];
 }
