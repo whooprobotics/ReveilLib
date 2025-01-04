@@ -27,7 +27,10 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
 }
 
 void BezierSegment::init(OdometryState initial_state) {
-  this->start_point = initial_state.pos;
+}
+
+std::vector<PointVector> BezierSegment::generate_waypoints() {
+  //this->start_point = initial_state.pos;
   this->path_points.insert(this->path_points.begin(), this->start_point);
   this->current_idx = 0;
 
@@ -43,61 +46,61 @@ void BezierSegment::init(OdometryState initial_state) {
     this->bezier_points.push_back(temp_points[0]);
   }
   //print out bezier points REMOVE AFTER DEBUG
-  for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
-    cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(inch) << ", " << this->bezier_points[i].y.convert(inch) << endl;
-  }
+  // for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
+  //   cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(inch) << ", " << this->bezier_points[i].y.convert(inch) << endl;
+  //}
 }
 
-SegmentStatus BezierSegment::step(OdometryState current_state){
-  PointVector last_point = this->bezier_points[this->bezier_points.size() - 1];
-  new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
-                                                    start_point, this->drop_early);
+// SegmentStatus BezierSegment::step(OdometryState current_state){
+//   PointVector last_point = this->bezier_points[this->bezier_points.size() - 1];
+//   new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
+//                                                     start_point, this->drop_early);
 
-  //Prevent status from regressing
-  if (last_status.status == SegmentStatusType::NEXT ||
-      new_state == stop_state::EXIT)
-    return last_status = SegmentStatus::next();
+//   //Prevent status from regressing
+//   if (last_status.status == SegmentStatusType::NEXT ||
+//       new_state == stop_state::EXIT)
+//     return last_status = SegmentStatus::next();
 
-  if (last_status.status == SegmentStatusType::BRAKE ||
-      new_state == stop_state::BRAKE)
-    return last_status = SegmentStatus::brake();
+//   if (last_status.status == SegmentStatusType::BRAKE ||
+//       new_state == stop_state::BRAKE)
+//     return last_status = SegmentStatus::brake();
 
-  if (current_idx >= this->bezier_points.size()) return SegmentStatus::brake();
+//   if (current_idx >= this->bezier_points.size()) return SegmentStatus::brake();
 
-  Pose error = current_state.pos.to_relative({this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, 0_deg});
-  QLength distance = abs(error.x); // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
+//   Pose error = current_state.pos.to_relative({this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, 0_deg});
+//   QLength distance = abs(error.x); // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
 
-  if (distance.convert(foot) < tolerance.convert(foot)){
-    ++current_idx;
-    cout << "ERROR: " << error.x.convert(inch) << "in, " << error.y.convert(inch) << "in" << endl;
-    cout << "Index is now: " << current_idx << endl;
-  }
+//   if (distance.convert(foot) < tolerance.convert(foot)){
+//     ++current_idx;
+//     cout << "ERROR: " << error.x.convert(inch) << "in, " << error.y.convert(inch) << "in" << endl;
+//     cout << "Index is now: " << current_idx << endl;
+//   }
 
-  target_point = {this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, current_state.pos.theta};
-  prev_point = this->bezier_points[current_idx-1];
+//   target_point = {this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, current_state.pos.theta};
+//   prev_point = this->bezier_points[current_idx-1];
 
-  std::tuple<double, double> pows = this->motion->gen_powers(
-      current_state, target_point, this->start_point, this->drop_early);
+//   std::tuple<double, double> pows = this->motion->gen_powers(
+//       current_state, target_point, this->start_point, this->drop_early);
 
-  // Handle coasting if needed
-  if (new_state == stop_state::COAST) {
-    double power = this->stop->get_coast_power();
-    double left, right;
-    std::tie(left, right) = pows;
-    if (left + right < 0)
-      power *= -1;
-    return last_status = SegmentStatus::drive(power);
-  }
+//   // Handle coasting if needed
+//   if (new_state == stop_state::COAST) {
+//     double power = this->stop->get_coast_power();
+//     double left, right;
+//     std::tie(left, right) = pows;
+//     if (left + right < 0)
+//       power *= -1;
+//     return last_status = SegmentStatus::drive(power);
+//   }
 
-  std::tuple<double, double> corrected_pows =
-      this->correction->apply_correction(current_state, {this->target_point.x, this->target_point.y, current_state.pos.theta},
-                                         this->start_point, this->drop_early,
-                                         pows);
+//   std::tuple<double, double> corrected_pows =
+//       this->correction->apply_correction(current_state, {this->target_point.x, this->target_point.y, current_state.pos.theta},
+//                                          this->start_point, this->drop_early,
+//                                          pows);
 
 
-  return SegmentStatus::drive(corrected_pows);
-}
+//   return SegmentStatus::drive(corrected_pows);
+// }
 
-void BezierSegment::clean_up() {}
+// void BezierSegment::clean_up() {}
 
-}
+} // namespace rev

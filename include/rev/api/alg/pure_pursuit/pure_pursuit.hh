@@ -41,11 +41,6 @@ public:
     );
 
     /**
-     * @brief Destructor for Pure Pursuit Segment
-     */
-    virtual ~PurePursuitSegment();
-
-    /**
      * @brief Initialize the Pure Pursuit segment
      * 
      * @param initial_state The initial odometry state of the robot
@@ -65,12 +60,28 @@ public:
      */
     void clean_up() override;
 
+protected:
+    /**
+     * @brief Set the path waypoints
+     * 
+     * @param path_waypoints Vector of waypoints defining the path
+     */
+    void set_path(std::vector<PointVector> path_waypoints);
+
+    /**
+     * @brief Get the generated waypoints
+     * 
+     * @return std::vector<PointVector> Vector of waypoints
+     */
+    virtual std::vector<PointVector> generate_waypoints() = 0;
+
 private:
     std::shared_ptr<Motion> motion;
     std::shared_ptr<Correction> correction;
     std::shared_ptr<Stop> stop;
 
     std::vector<PointVector> path_points;
+    std::vector<PointVector> path_waypoints;
 
     QLength look_ahead_distance;
     QLength wheelbase;

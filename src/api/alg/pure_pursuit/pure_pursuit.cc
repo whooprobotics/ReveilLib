@@ -19,9 +19,6 @@ PurePursuitSegment::PurePursuitSegment(std::shared_ptr<Motion> imotion,
     current_idx(0)
     {}
 
-PurePursuitSegment::~PurePursuitSegment() {
-}
-
 PointVector PurePursuitSegment::findTargetPoint(const OdometryState& current_state) {
     QLength min_distance = 100_ft; // Initialize with a large value
     size_t target_idx = current_idx;
@@ -57,7 +54,7 @@ QLength PurePursuitSegment::calculateRemainingDistance(const OdometryState& curr
 }
 
 void PurePursuitSegment::init(OdometryState initial_state) {
-    // Reset the current index to the starting point
+    this->path_waypoints = generate_waypoints(); 
     current_idx = 0;
 }
 
