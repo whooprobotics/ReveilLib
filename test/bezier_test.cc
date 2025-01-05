@@ -11,8 +11,8 @@ using std::cout, std::endl;
 const double kP = 0.0;
 const double kB = 0.015;
 
-std::vector<PointVector> generate_bezier_points(std::vector<PointVector> path_points, std::size_t resolution){
-  std::vector<PointVector> bezier_points {};
+std::vector<PointVector> generate_path_waypoints(std::vector<PointVector> path_points, std::size_t resolution){
+  std::vector<PointVector> path_waypoints {};
   PointVector start_point = {0_in, 0_in};
   path_points.insert(path_points.begin(), start_point);
   std::size_t current_idx = 0;
@@ -26,9 +26,9 @@ std::vector<PointVector> generate_bezier_points(std::vector<PointVector> path_po
         temp_points[idx] = (1-t_value) * temp_points[idx] + t_value * temp_points[idx + 1];
       }
     }
-    bezier_points.push_back(temp_points[0]);
+    path_waypoints.push_back(temp_points[0]);
   }
-  return bezier_points;
+  return path_waypoints;
 }
 
 TEST(Bezier, BezierVerification1){
@@ -47,7 +47,7 @@ TEST(Bezier, BezierVerification1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {-2_ft, 0_ft}, {-2_ft, -6_ft}};
+  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
@@ -69,8 +69,8 @@ TEST(Bezier, BezierVerification1){
     pros::delay(100);
   }
   // go plot stuff
-  std::vector<PointVector> bezier_points = generate_bezier_points(path_points, 20);
-  generate_plot(bezier_points, robor_points);
+  std::vector<PointVector> path_waypoints = generate_path_waypoints(path_points, 20);
+  generate_plot(path_waypoints, robor_points);
 
 }
 

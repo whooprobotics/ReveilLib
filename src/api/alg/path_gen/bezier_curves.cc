@@ -11,7 +11,7 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
                              QLength tolerance,
                              QLength wheelbase,
                              QLength look_ahead_distance
-  ): PurePursuitSegment(imotion, icorrection, istop, path_points, look_ahead_distance, wheelbase, tolerance)                     
+  ): PurePursuitSegment(imotion, icorrection, istop, look_ahead_distance, wheelbase, tolerance)                     
   {
   this->motion = imotion;
   this->correction = icorrection;
@@ -27,11 +27,14 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
 }
 
 void BezierSegment::init(OdometryState initial_state) {
+  this->start_point = initial_state.pos;
+  path_waypoints = generate_waypoints();
+  this->current_idx = 0;
 }
 
 std::vector<PointVector> BezierSegment::generate_waypoints() {
   //this->start_point = initial_state.pos;
-  this->path_points.insert(this->path_points.begin(), this->start_point);
+  //this->path_points.insert(this->path_points.begin(), this->start_point);
   this->current_idx = 0;
 
   for (std::size_t t = 0; t < this->resolution; ++t) {
@@ -43,16 +46,18 @@ std::vector<PointVector> BezierSegment::generate_waypoints() {
         temp_points[idx] = (1-t_value) * temp_points[idx] + t_value * temp_points[idx + 1];
       }
     }
-    this->bezier_points.push_back(temp_points[0]);
+    this->path_waypoints.push_back(temp_points[0]);
   }
+
+  return this->path_waypoints;
   //print out bezier points REMOVE AFTER DEBUG
-  // for (std::size_t i = 0; i < this->bezier_points.size(); ++i){
-  //   cout << "Bezier Point " << i << ": " << this->bezier_points[i].x.convert(inch) << ", " << this->bezier_points[i].y.convert(inch) << endl;
+  // for (std::size_t i = 0; i < this->path_waypoints.size(); ++i){
+  //   cout << "Bezier Point " << i << ": " << this->path_waypoints[i].x.convert(inch) << ", " << this->path_waypoints[i].y.convert(inch) << endl;
   //}
 }
 
 // SegmentStatus BezierSegment::step(OdometryState current_state){
-//   PointVector last_point = this->bezier_points[this->bezier_points.size() - 1];
+//   PointVector last_point = this->path_waypoints[this->path_waypoints.size() - 1];
 //   new_state = this->stop->get_stop_state(current_state, {last_point.x, last_point.y, 0_deg},
 //                                                     start_point, this->drop_early);
 
@@ -65,9 +70,9 @@ std::vector<PointVector> BezierSegment::generate_waypoints() {
 //       new_state == stop_state::BRAKE)
 //     return last_status = SegmentStatus::brake();
 
-//   if (current_idx >= this->bezier_points.size()) return SegmentStatus::brake();
+//   if (current_idx >= this->path_waypoints.size()) return SegmentStatus::brake();
 
-//   Pose error = current_state.pos.to_relative({this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, 0_deg});
+//   Pose error = current_state.pos.to_relative({this->path_waypoints[current_idx].x, this->path_waypoints[current_idx].y, 0_deg});
 //   QLength distance = abs(error.x); // USE LATERAL DISTANCE CALCULATION TO AVOID CIRCLING
 
 //   if (distance.convert(foot) < tolerance.convert(foot)){
@@ -76,8 +81,8 @@ std::vector<PointVector> BezierSegment::generate_waypoints() {
 //     cout << "Index is now: " << current_idx << endl;
 //   }
 
-//   target_point = {this->bezier_points[current_idx].x, this->bezier_points[current_idx].y, current_state.pos.theta};
-//   prev_point = this->bezier_points[current_idx-1];
+//   target_point = {this->path_waypoints[current_idx].x, this->path_waypoints[current_idx].y, current_state.pos.theta};
+//   prev_point = this->path_waypoints[current_idx-1];
 
 //   std::tuple<double, double> pows = this->motion->gen_powers(
 //       current_state, target_point, this->start_point, this->drop_early);

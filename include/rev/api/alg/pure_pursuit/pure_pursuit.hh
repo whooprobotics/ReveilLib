@@ -34,8 +34,7 @@ public:
         std::shared_ptr<Motion> imotion,
         std::shared_ptr<Correction> icorrection,
         std::shared_ptr<Stop> istop,
-        std::vector<PointVector> path_points,
-        QLength look_ahead_distance = 1.0_ft,
+        QLength look_ahead_distance = 6_in,
         QLength wheelbase = 0.5_ft,             
         QLength tolerance = 1_in              
     );
@@ -75,13 +74,12 @@ protected:
      */
     virtual std::vector<PointVector> generate_waypoints() = 0;
 
+    std::vector<PointVector> path_waypoints;
+
 private:
     std::shared_ptr<Motion> motion;
     std::shared_ptr<Correction> correction;
-    std::shared_ptr<Stop> stop;
-
-    std::vector<PointVector> path_points;
-    std::vector<PointVector> path_waypoints;
+    std::shared_ptr<Stop> stop; 
 
     QLength look_ahead_distance;
     QLength wheelbase;
@@ -96,7 +94,7 @@ private:
      * @param current_state Current odometry state of the robot
      * @return PointVector The target point for Pure Pursuit
      */
-    PointVector findTargetPoint(const OdometryState& current_state);
+    PointVector find_target_point(OdometryState current_state);
 
     /**
      * @brief Calculate the remaining distance to the end of the path
@@ -104,7 +102,7 @@ private:
      * @param current_state Current odometry state of the robot
      * @return double Remaining distance in meters
      */
-    QLength calculateRemainingDistance(const OdometryState& current_state);
+    QLength calculate_remaining_distance(OdometryState current_state);
 };
 
 } // namespace rev

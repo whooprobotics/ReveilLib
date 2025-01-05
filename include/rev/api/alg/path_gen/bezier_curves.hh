@@ -63,8 +63,6 @@ private:
   std::vector<PointVector> path_points;
   PointVector last_point;
 
-  std::vector<PointVector> bezier_points;
-
   Position start_point;
   Position target_point;
   PointVector prev_point;
