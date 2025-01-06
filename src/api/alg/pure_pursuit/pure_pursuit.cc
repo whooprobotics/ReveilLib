@@ -5,19 +5,18 @@ namespace rev {
 PurePursuitSegment::PurePursuitSegment(std::shared_ptr<Motion> imotion,
                                        std::shared_ptr<Correction> icorrection,
                                        std::shared_ptr<Stop> istop,
-                                       QLength look_ahead_distance,
+                                       std::tuple<double, double, double> pid_constants,
                                        QLength wheelbase,
-                                       double ikp,
-                                       double iki,
-                                       double ikd):
+                                       QLength look_ahead_distance
+                                       ):
     motion(imotion),
     correction(icorrection),
     stop(istop),
     look_ahead_distance(look_ahead_distance),
     wheelbase(wheelbase),
-    kp(ikp),
-    ki(iki),
-    kd(ikd),
+    kp(std::get<0>(pid_constants)),
+    ki(std::get<1>(pid_constants)),
+    kd(std::get<2>(pid_constants)),
     current_idx(0)
     {}
 
@@ -114,12 +113,6 @@ SegmentStatus PurePursuitSegment::step(OdometryState current_state) {
 
     // Find the target point at the look-ahead distance
     PointVector target = find_target_point(current_state);
-
-    // If current_idx is out of bounds, stop the robot
-    if (current_idx >= path_waypoints.size()) {
-        std::cout << "PurePursuitSegment: Reached end of path. Initiating brake." << std::endl;
-        return SegmentStatus::brake();
-    }
 
     pows = motion->gen_powers(
             current_state,

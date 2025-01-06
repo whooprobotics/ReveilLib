@@ -34,12 +34,10 @@ public:
                 std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
                 std::vector<PointVector> path_points,
+                std::tuple<double, double, double> pid_constants,
+                QLength wheelbase,
                 std::size_t resolution = 0,
-                QLength wheelbase = 13_in,
-                QLength look_ahead_distance = 1_ft,
-                double ikp = 0.2,
-                double iki = 0.0,
-                double ikd = 0.0
+                QLength look_ahead_distance = 1_ft                
                 );
   
   /**

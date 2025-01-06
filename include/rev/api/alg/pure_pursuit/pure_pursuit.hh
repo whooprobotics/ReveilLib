@@ -26,6 +26,7 @@ public:
      * @param icorrection Shared pointer to Correction mechanism
      * @param istop Shared pointer to Stop mechanism
      * @param path_points Vector of waypoints defining the path
+     * @param pid_constants Tuple of PID constants (kP, kI, kD)
      * @param look_ahead_distance Look-ahead distance (L_d) for Pure Pursuit
      * @param wheelbase Wheelbase of the robot
      */
@@ -33,11 +34,9 @@ public:
         std::shared_ptr<Motion> imotion,
         std::shared_ptr<Correction> icorrection,
         std::shared_ptr<Stop> istop,
-        QLength look_ahead_distance,
+        std::tuple<double, double, double> pid_constants,
         QLength wheelbase,
-        double ikp,
-        double iki,
-        double ikd            
+        QLength look_ahead_distance               
     );
 
     /**

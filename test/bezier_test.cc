@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <vector>
+#include <tuple>
 #include "rev/api/hardware/chassis_sim/driftless_sim.hh"
 #include "rev/api/async/async_runner.hh"
 #include "rev/rev.hh"
@@ -10,6 +11,12 @@
 using std::cout, std::endl;
 const double kP = 0.0;
 const double kB = 0.015;
+
+const double bez_kp = 0.2;
+const double bez_ki = 0.0;
+const double bez_kd = 0.0;
+const std::tuple<double, double, double> pid_constants = {bez_kp, bez_ki, bez_kd};
+const QLength wheelbase = 13_in;
 
 std::vector<PointVector> generate_path_waypoints(std::vector<PointVector> path_points, std::size_t resolution){
   std::vector<PointVector> path_waypoints {};
@@ -47,7 +54,7 @@ TEST(Bezier, BezierVerification1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 0_ft}, {0_ft, 6_ft}, {6_ft, 6_ft}};
+  std::vector<PointVector> path_points {{0_in, 0_in}, {-2_ft, 0_ft}, {0_ft, 6_ft}, {-6_ft, 6_ft}};
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
@@ -56,6 +63,8 @@ TEST(Bezier, BezierVerification1){
                       std::make_shared<PilonsCorrection>(2, 0.5_in),
                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
                       path_points,
+                      pid_constants,
+                      wheelbase,
                       20
                       )));
   cout << "Made it go" << endl;
