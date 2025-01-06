@@ -51,7 +51,7 @@ QLength PurePursuitSegment::calculate_remaining_distance(OdometryState current_s
 }
 
 std::tuple<double, double> PurePursuitSegment::PID(OdometryState current_state, double base_power) {
-    // Calculate error in position (Euclidean distance to last_point)
+    // Calculate error in position
     QLength error_x = last_point.x - current_state.pos.x;
     QLength error_y = last_point.y - current_state.pos.y;
     QLength error = sqrt(square(error_x) + square(error_y));
@@ -146,7 +146,6 @@ SegmentStatus PurePursuitSegment::step(OdometryState current_state) {
 }
 
 void PurePursuitSegment::clean_up() {
-    // Clean-up implementation (if needed)
 }
 
 } // namespace rev

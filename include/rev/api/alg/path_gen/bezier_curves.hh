@@ -73,8 +73,6 @@ private:
   double left_speed;
   double right_speed;
 
-
-
 };
 
 }
