@@ -8,10 +8,12 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
                              std::shared_ptr<Stop> istop,
                              std::vector<PointVector> path_points,
                              std::size_t resolution,
-                             QLength tolerance,
                              QLength wheelbase,
-                             QLength look_ahead_distance
-  ): PurePursuitSegment(imotion, icorrection, istop, look_ahead_distance, wheelbase, tolerance)                     
+                             QLength look_ahead_distance,
+                             double ikp,
+                             double iki,
+                             double ikd
+  ): PurePursuitSegment(imotion, icorrection, istop, look_ahead_distance, wheelbase, ikp, iki, ikd)                     
   {
   this->motion = imotion;
   this->correction = icorrection;
@@ -19,22 +21,19 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
   this->path_points = path_points;
   if (resolution == 0) this->resolution = path_points.size() * 3;
   else this->resolution = resolution;
-  this->tolerance = tolerance;
   this->wheelbase = wheelbase;
   this->look_ahead_distance = look_ahead_distance;
-  
-  this->last_point = path_points[path_points.size() - 1];
 }
 
 void BezierSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
   path_waypoints = generate_waypoints();
   this->current_idx = 0;
+  this->last_point = this->path_waypoints.back();
 }
 
 std::vector<PointVector> BezierSegment::generate_waypoints() {
-  //this->start_point = initial_state.pos;
-  //this->path_points.insert(this->path_points.begin(), this->start_point);
+  this->path_points.insert(this->path_points.begin(), this->start_point);
   this->current_idx = 0;
 
   for (std::size_t t = 0; t < this->resolution; ++t) {
@@ -49,11 +48,15 @@ std::vector<PointVector> BezierSegment::generate_waypoints() {
     this->path_waypoints.push_back(temp_points[0]);
   }
 
-  return this->path_waypoints;
+
   //print out bezier points REMOVE AFTER DEBUG
-  // for (std::size_t i = 0; i < this->path_waypoints.size(); ++i){
-  //   cout << "Bezier Point " << i << ": " << this->path_waypoints[i].x.convert(inch) << ", " << this->path_waypoints[i].y.convert(inch) << endl;
-  //}
+  cout << "look ahead distance is: " << this->look_ahead_distance.convert(inch) << endl;
+  for (std::size_t i = 0; i < this->path_waypoints.size(); ++i){
+    cout << "Bezier Point " << i << ": " << this->path_waypoints[i].x.convert(inch) << ", " << this->path_waypoints[i].y.convert(inch) << endl;
+  }
+
+  return this->path_waypoints;
+  
 }
 
 // SegmentStatus BezierSegment::step(OdometryState current_state){

@@ -47,7 +47,7 @@ TEST(Bezier, BezierVerification1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 2_ft}, {4_ft, 4_ft}};
+  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 0_ft}, {0_ft, 6_ft}, {6_ft, 6_ft}};
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
@@ -61,7 +61,16 @@ TEST(Bezier, BezierVerification1){
   cout << "Made it go" << endl;
 
   std::vector<PointVector> robor_points {};
+  auto start_time = std::chrono::steady_clock::now();
+  auto timeout = std::chrono::seconds(20); // Set timeout duration
+
   while (!reckless->is_completed()) {
+    auto current_time = std::chrono::steady_clock::now();
+    if (current_time - start_time > timeout) {
+      std::cout << "Timeout reached, stopping the simulation." << std::endl;
+      break;
+    }
+
     auto state = sim->get_state();
     std::cout << state.pos.x.convert(inch) << "in, "
               << state.pos.y.convert(inch) << "in" << std::endl;

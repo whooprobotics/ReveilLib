@@ -62,7 +62,6 @@ int generate_plot(const std::vector<PointVector> ideal_path, const std::vector<P
     plot.drawCurve(xs1, ys1)
         .label("Ideal path")
         .lineColor("blue")  
-        .pointType(7)       
         .lineWidth(2)       
         .pointSize(2);
     
@@ -70,13 +69,20 @@ int generate_plot(const std::vector<PointVector> ideal_path, const std::vector<P
     plot.drawCurve(xs2, ys2)
         .label("Actual path")
         .lineColor("red")  
-        .pointType(7)       
         .lineWidth(2)       
         .pointSize(2);
+    
+    // Move the legend off of the actual graph
+    plot.legend()
+        .atOutsideBottom()
+        .displayHorizontal()
+        .displayExpandWidthBy(2);
 
     Figure fig = {{plot}};
     // Create canvas to hold figure
     Canvas canvas = {{fig}};
+
+    
 
     // Show the plot in a pop-up window
     canvas.show();      

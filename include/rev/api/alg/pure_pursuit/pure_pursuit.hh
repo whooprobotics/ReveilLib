@@ -28,15 +28,16 @@ public:
      * @param path_points Vector of waypoints defining the path
      * @param look_ahead_distance Look-ahead distance (L_d) for Pure Pursuit
      * @param wheelbase Wheelbase of the robot
-     * @param tolerance Lateral tolerance for path tracking
      */
     PurePursuitSegment(
         std::shared_ptr<Motion> imotion,
         std::shared_ptr<Correction> icorrection,
         std::shared_ptr<Stop> istop,
-        QLength look_ahead_distance = 6_in,
-        QLength wheelbase = 0.5_ft,             
-        QLength tolerance = 1_in              
+        QLength look_ahead_distance,
+        QLength wheelbase,
+        double ikp,
+        double iki,
+        double ikd            
     );
 
     /**
@@ -75,6 +76,9 @@ protected:
     virtual std::vector<PointVector> generate_waypoints() = 0;
 
     std::vector<PointVector> path_waypoints;
+    Pose start_point;
+    PointVector last_point;
+    size_t current_idx;
 
 private:
     std::shared_ptr<Motion> motion;
@@ -83,9 +87,22 @@ private:
 
     QLength look_ahead_distance;
     QLength wheelbase;
-    QLength tolerance;
+    
+    QLength drop_early = 0_in;
 
-    size_t current_idx;
+    stop_state new_state;
+
+    double kp;
+    double ki;
+    double kd;
+
+    double integral = 0;
+    double prev_error = 0;
+
+    std::tuple<double, double> pows;
+    std::tuple<double, double> corrected_pows;
+
+    SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
     // Helper methods
     /**
@@ -103,6 +120,14 @@ private:
      * @return double Remaining distance in meters
      */
     QLength calculate_remaining_distance(OdometryState current_state);
+
+    /**
+     * @brief PID controller for Pure Pursuit
+     * 
+     * @param current_state Current odometry state of the robot
+     * @return std::tuple<double, double> Tuple of left and right motor powers
+     */
+    std::tuple<double, double> PID(OdometryState current_state, double base_power);
 };
 
 } // namespace rev

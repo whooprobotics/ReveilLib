@@ -28,7 +28,6 @@ public:
    * @param path_points The points for the bezier curve
    * @param resolution The resolution of the bezier curve, if left at 0 becomes length of path points times 3.
    * It is important not to set the resolution too high as it can become too computationally intensive
-   * @param tolerance The lateral tolerance between each point on the bezier curve
    *
    */
   BezierSegment(std::shared_ptr<Motion> imotion,
@@ -36,9 +35,11 @@ public:
                 std::shared_ptr<Stop> istop,
                 std::vector<PointVector> path_points,
                 std::size_t resolution = 0,
-                QLength tolerance = 1_in,
                 QLength wheelbase = 13_in,
-                QLength look_ahead_distance = 1_ft
+                QLength look_ahead_distance = 1_ft,
+                double ikp = 0.2,
+                double iki = 0.0,
+                double ikd = 0.0
                 );
   
   /**
@@ -61,24 +62,15 @@ private:
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
   std::vector<PointVector> path_points;
-  PointVector last_point;
 
-  Position start_point;
   Position target_point;
-  PointVector prev_point;
-  std::size_t current_idx = 1;
-  QLength tolerance;
   Position final_point;
-  QLength drop_early = 0_in;
   QLength wheelbase;
   QLength look_ahead_distance;
 
   std::size_t resolution; 
   double t_value;
 
-  stop_state new_state;
-
-  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
   double left_speed;
   double right_speed;
