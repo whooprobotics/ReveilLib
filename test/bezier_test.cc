@@ -54,7 +54,7 @@ TEST(Bezier, BezierVerification1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {-2_ft, 0_ft}, {0_ft, 6_ft}, {-6_ft, 6_ft}};
+  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 0_ft}, {0_ft, -2_ft}, {-2_ft, 0_ft}, {-4_ft, 0_ft}};
   cout << "Made path points" << endl;
 
   reckless->go(RecklessPath()
@@ -65,7 +65,8 @@ TEST(Bezier, BezierVerification1){
                       path_points,
                       pid_constants,
                       wheelbase,
-                      20
+                      30,
+                      6_in
                       )));
   cout << "Made it go" << endl;
 

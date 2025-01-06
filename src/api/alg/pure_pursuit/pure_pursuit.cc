@@ -56,10 +56,18 @@ std::tuple<double, double> PurePursuitSegment::PID(OdometryState current_state, 
     QLength error_y = last_point.y - current_state.pos.y;
     QLength error = sqrt(square(error_x) + square(error_y));
     
-    // Calculate the angle to the final point
-    QAngle desired_theta = atan2(error_y, error_x);
-    QAngle current_theta = current_state.pos.theta; 
-    double angle_error = (desired_theta - current_theta).convert(radian);
+    // Calculate the angle to the final point (ALL ANGLES IN RADIANS)
+    double desired_theta = atan2(error_y, error_x).convert(radian);
+
+    if (base_power < 0) {
+        desired_theta += M_PI; // Reverse direction
+    }
+    // Normalize the desired_theta to [0, 2*pi]
+    while (desired_theta > 2 * M_PI) desired_theta -= 2 * M_PI;
+    while (desired_theta < 0) desired_theta += 2 * M_PI;
+
+    double current_theta = current_state.pos.theta.convert(radian); 
+    double angle_error = (desired_theta - current_theta);
     
     // Normalize the angle_error to [-pi, pi]
     while (angle_error > M_PI) angle_error -= 2 * M_PI;
@@ -79,14 +87,11 @@ std::tuple<double, double> PurePursuitSegment::PID(OdometryState current_state, 
     // Update prev_error
     prev_error = angle_error;
     
-    // Compute the steering correction
-    double steering_correction = P + I + D;
+    double correction = P + I + D;
     
-
-    double left_power = base_power + steering_correction;
-    double right_power = base_power - steering_correction;
+    double left_power = base_power + correction;
+    double right_power = base_power - correction;
     
-    // Clamp motor powers to valid range (e.g., -100 to 100)
     left_power = std::max(-100.0, std::min(100.0, left_power));
     right_power = std::max(-100.0, std::min(100.0, right_power));
     

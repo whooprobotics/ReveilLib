@@ -28,7 +28,7 @@ public:
    * @param path_points The points for the bezier curve
    * @param resolution The resolution of the bezier curve, if left at 0 becomes length of path points times 3.
    * It is important not to set the resolution too high as it can become too computationally intensive
-   *
+   * @param look_ahead_distance The look ahead distance for the pure pursuit algorithm (do not set below 3 inches)
    */
   BezierSegment(std::shared_ptr<Motion> imotion,
                 std::shared_ptr<Correction> icorrection,
@@ -37,7 +37,7 @@ public:
                 std::tuple<double, double, double> pid_constants,
                 QLength wheelbase,
                 std::size_t resolution = 0,
-                QLength look_ahead_distance = 1_ft                
+                QLength look_ahead_distance = 6_in                
                 );
   
   /**
