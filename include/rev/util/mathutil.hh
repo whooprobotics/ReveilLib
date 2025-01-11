@@ -1,9 +1,4 @@
 #pragma once
-#include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/units/q_angle.hh"
-#include "rev/api/units/q_length.hh"
-#include "rev/util/math/point_vector.hh"
-#include <tuple>
 namespace rev {
 /**
  * @brief Implementation of signum

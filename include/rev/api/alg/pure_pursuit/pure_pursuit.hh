@@ -1,9 +1,6 @@
 #pragma once
 
-#include <memory>
 #include <vector>
-#include <iostream>
-#include <cmath>
 
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/async/async_awaitable.hh"
@@ -44,7 +41,7 @@ public:
      * 
      * @param initial_state The initial odometry state of the robot
      */
-    void init(OdometryState initial_state) override;
+    virtual void init(OdometryState initial_state) override;
 
     /**
      * @brief Compute the next step in the Pure Pursuit segment
@@ -60,13 +57,6 @@ public:
     void clean_up() override;
 
 protected:
-    /**
-     * @brief Set the path waypoints
-     * 
-     * @param path_waypoints Vector of waypoints defining the path
-     */
-    void set_path(std::vector<PointVector> path_waypoints);
-
     /**
      * @brief Get the generated waypoints
      * 

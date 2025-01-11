@@ -13,20 +13,14 @@ BezierSegment::BezierSegment(std::shared_ptr<Motion> imotion,
                              QLength look_ahead_distance
                              
   ): PurePursuitSegment(imotion, icorrection, istop, pid_constants, wheelbase, look_ahead_distance)                     
-  {
-  this->motion = imotion;
-  this->correction = icorrection;
-  this->stop = istop;
+{
   this->path_points = path_points;
-  if (resolution == 0) this->resolution = path_points.size() * 3;
-  else this->resolution = resolution;
-  this->wheelbase = wheelbase;
-  this->look_ahead_distance = look_ahead_distance;
+  this->resolution = resolution == 0 ? resolution : path_points.size() * 3;
 }
 
 void BezierSegment::init(OdometryState initial_state) {
   this->start_point = initial_state.pos;
-  path_waypoints = generate_waypoints();
+  path_waypoints = this->generate_waypoints();
   this->current_idx = 0;
   this->last_point = this->path_waypoints.back();
 }
