@@ -48,8 +48,10 @@ add_executable(ReveilLib
         test/bezier_test.cc
         )
 
-# Link against gtest
-target_link_libraries(ReveilLib GTest::gtest_main)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+target_link_libraries(ReveilLib GTest::gtest_main ${OpenCV_LIBS})
 
 include(GoogleTest)
 gtest_discover_tests(ReveilLib)
