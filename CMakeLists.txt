@@ -46,6 +46,7 @@ add_executable(ReveilLib
         test/reckless_test.cc
         test/reckless_call_test.cc
         test/bezier_test.cc
+        test/opencv_test.cc
         )
 
 find_package(OpenCV REQUIRED)
