@@ -14,16 +14,16 @@
 
 using namespace rev;
 
-cv::Point top_left(23, 26);
-cv::Point top_right(471, 26);
-cv::Point bottom_left(23, 475);
-cv::Point bottom_right(471, 475);
+cv::Point top_left(23, 475);
+cv::Point top_right(471, 475);
+cv::Point bottom_left(23, 26);
+cv::Point bottom_right(471, 26);
 double field_width_pixels = 448; //471-23 and 475-26
 QLength field_width = 12_ft;
 
 cv::Point convert_to_cv(PointVector point){
     double x_pixels = point.x.convert(inch) / field_width.convert(inch) * field_width_pixels;
-    double y_pixels = point.y.convert(inch) / field_width.convert(inch) * field_width_pixels;
+    double y_pixels = -1* point.y.convert(inch) / field_width.convert(inch) * field_width_pixels;
     return cv::Point(x_pixels, y_pixels) + top_left;
 }
 

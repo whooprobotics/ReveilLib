@@ -30,7 +30,7 @@ void update_robor_points(std::shared_ptr<rev::Reckless> reckless, std::shared_pt
     }
 }
   
-TEST(OpenCVTest, basics){
+TEST(Autons, auton1){
   cout << "Beginning" << endl;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
                                             20_Hz, 20_Hz);
@@ -45,14 +45,25 @@ TEST(OpenCVTest, basics){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  std::vector<PointVector> path_points {{0_in, 0_in}, {2_ft, 0_ft}, {2_ft, 2_ft}, {4_ft, 2_ft}, {4_ft, 6_ft}};
+  // DRIVE TO START POINT
+  reckless->go(RecklessPath()
+                   .with_segment(RecklessPathSegment(
+                       std::make_shared<CascadingMotion>(1, kP, kB,
+                                                         60_in / second, 0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                       {1_ft, 3.5_ft, 0_deg}, 0_in)
+                                    ));
+
+  reckless->await();
+  // END OF DRIVING TO START
   
  reckless->go(RecklessPath()
     .with_segment(BezierSegment(
                std::make_shared<CascadingMotion>(0.7, kP, kB, 40_in / second, 0.07),
                       std::make_shared<PilonsCorrection>(2, 0.5_in),
                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                      path_points,
+                      std::vector<PointVector>{{1_ft, 3.5_ft}, {3_ft, 3.5_ft},{6_ft, 2_ft}}, 
                       pid_constants,
                       wheelbase,
                       30,
@@ -66,7 +77,7 @@ TEST(OpenCVTest, basics){
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {7_ft, 7_ft, 0_deg}, 0_in)
+                       {3_ft, 3_ft, 0_deg}, 0_in)
 
                                      )
                    .with_segment(RecklessPathSegment(
@@ -74,15 +85,8 @@ TEST(OpenCVTest, basics){
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {8_ft, 8_ft, 45_deg}, 0_in))
-                   .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0.075_s, 0.2_s, 0.4),
-                       {9_ft, 9_ft, 0_deg}, 0_in)
-
-                                     ));
+                       {0_ft, 0_ft, 45_deg}, 0_in))
+                );
 
 
 
