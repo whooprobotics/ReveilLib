@@ -17,8 +17,10 @@ Locate the `depots` key in the JSON file and then add the following depot:
         "last_remote_update": { "py/object": "datetime.datetime", "__reduce__": [{ "py/type": "datetime.datetime" }, ["B+cIGAwRHg4fRA=="]] },
         "update_frequency": { "py/reduce": [{ "py/type": "datetime.timedelta" }, { "py/tuple": [0, 60, 0] }] }
 
-}
+},
 ```
+
+And of course, don't forget the comma at the end!
 
 Once this is done, save the file and run 
 
