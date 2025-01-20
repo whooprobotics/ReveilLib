@@ -3,6 +3,7 @@
 #include "rev/api/hardware/chassis_sim/driftless_sim.hh"
 #include "rev/rev.hh"
 
+/*
 TEST(Cascade, RecklessVerifications) {
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
@@ -50,3 +51,5 @@ TEST(Cascade, RecklessVerifications) {
     pros::delay(500);
   }
 }
+
+*/

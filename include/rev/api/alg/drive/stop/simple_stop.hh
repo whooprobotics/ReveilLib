@@ -2,6 +2,7 @@
 
 #include "rev/api/alg/drive/stop/stop.hh"
 #include "pros/rtos.hpp"
+#include <iostream>
 
 namespace rev {
 
