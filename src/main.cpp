@@ -1,4 +1,5 @@
 #include "main.h"
+#include "rev/api/alg/reckless/path.hh"
 #include "rev/api/alg/reckless/turn_segment.hh"
 #include "rev/rev.hh"
 
@@ -80,22 +81,36 @@ void opcontrol() {
   //                  );
   double max_power = 0.9;
   double coast_power = 0.25;
-  QAngle angle = 135_deg;
+  QAngle angle = 45_deg;
   double harsh_coeff = 0.18;  // 0.492
   double coast_coeff = 0.6;    // 1.068
   QTime brake_time = 2.0_s;
-  reckless->go(RecklessPath().with_segment(rev::RecklessTurnSegment(
-      max_power, coast_power, angle, harsh_coeff, coast_coeff, brake_time)));
 
-  while (!reckless->is_completed()){
-    pros::delay(50);
-    std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
-    controller.print(0, 0, odom_str.c_str());
-  }
-  printf("Completed motion");
-  pros::delay(2000);
-  std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
-  controller.print(0, 0, odom_str.c_str());
+  
+  reckless->go(RecklessPath()
+  .with_segment(rev::RecklessTurnSegment(
+      max_power, coast_power, -90_deg, harsh_coeff, coast_coeff, brake_time))
+      .with_segment(rev::RecklessPathSegment(
+                       std::make_shared<CascadingMotion>(0.7, 0.2, 0.1,
+                                                         40_in / second,
+                                                         0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+                       {2_ft, -5_ft, 0_deg}, 0_in)
+
+                                     )
+                                     .with_segment(rev::RecklessTurnSegment(
+      max_power, coast_power, 180_deg, harsh_coeff, coast_coeff, brake_time)));
+
+  // while (!reckless->is_completed()){
+  //   pros::delay(50);
+  //   std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
+  //   controller.print(0, 0, odom_str.c_str());
+  // }
+  // printf("Completed motion");
+  // pros::delay(2000);
+  // std::string odom_str = "Angle: " + std::to_string(odom->get_state().pos.theta.convert(degree)) + ", deg/s: " + std::to_string(odom->get_state().vel.angular.convert(degree / second));
+  // controller.print(0, 0, odom_str.c_str());
 
   // reckless->go(RecklessPath());
 
@@ -121,4 +136,5 @@ void opcontrol() {
 
   //   pros::delay(250);
   // }
+  for(;;) pros::delay(20);
 }
