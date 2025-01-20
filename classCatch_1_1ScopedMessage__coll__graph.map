@@ -1,0 +1,9 @@
+<map id="Catch::ScopedMessage" name="Catch::ScopedMessage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="61,183,220,208"/>
+<area shape="rect" id="Node000002" href="$structCatch_1_1MessageInfo.html" title=" " alt="" coords="72,94,208,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,135,143,182,138,182,138,135"/>
+<area shape="rect" id="Node000003" href="$classCatch_1_1StringRef.html" title=" " alt="" coords="5,5,121,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,41,132,92,128,95,82,45"/>
+<area shape="rect" id="Node000004" href="$structCatch_1_1SourceLineInfo.html" title=" " alt="" coords="144,5,294,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="207,46,188,72,160,96,156,92,184,68,203,43"/>
+</map>

@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['pilonscorrection_0',['PilonsCorrection',['../classrev_1_1PilonsCorrection.html',1,'rev::PilonsCorrection'],['../classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6',1,'rev::PilonsCorrection::PilonsCorrection()']]],
-  ['point_1',['Target point',['../md_docs_2tutorials_2reckless.html#autotoc_md11',1,'']]],
-  ['pointvector_2',['PointVector',['../structrev_1_1PointVector.html',1,'rev']]],
-  ['pose_3',['Pose',['../structrev_1_1Pose.html',1,'rev']]],
-  ['progress_4',['progress',['../classrev_1_1Reckless.html#a8a08835f1ce3814dd2b5862426594377',1,'rev::Reckless']]],
-  ['proportionalmotion_5',['ProportionalMotion',['../classrev_1_1ProportionalMotion.html',1,'rev::ProportionalMotion'],['../classrev_1_1ProportionalMotion.html#a7aa4ff18e9abea327ec0da865124a055',1,'rev::ProportionalMotion::ProportionalMotion()']]],
-  ['pros_5fuse_5fliterals_6',['PROS_USE_LITERALS',['../main_8h.html#ab1b081349029f8bf68a7f2086732e42b',1,'main.h']]],
-  ['pros_5fuse_5fsimple_5fnames_7',['PROS_USE_SIMPLE_NAMES',['../main_8h.html#ae5817dbade24ea595c3ce938b34f9994',1,'main.h']]]
+  ['known_20issue_0',['Something is not working for me. Is it a known issue?',['../md_sciplot_2docs_2website_2faq.html#autotoc_md20',1,'']]],
+  ['known_20issues_1',['Known issues',['../md_sciplot_2docs_2website_2known__issues.html',1,'']]]
 ];

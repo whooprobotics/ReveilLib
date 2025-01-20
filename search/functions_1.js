@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['breakout_0',['breakout',['../classrev_1_1Reckless.html#ac024208d41885c83f2126c5759e736e8',1,'rev::Reckless']]]
+  ['back_0',['back',['../classsciplot_1_1DepthSpecsOf.html#a3ba81e295b83f765895986a4d60a22c7',1,'sciplot::DepthSpecsOf']]],
+  ['backvertical_1',['backVertical',['../classsciplot_1_1BorderSpecs.html#acf3744007b5e4cc359289ce4bf4920f3',1,'sciplot::BorderSpecs']]],
+  ['behind_2',['behind',['../classsciplot_1_1DepthSpecsOf.html#aa100dbd953045d801999e467a2dc7373',1,'sciplot::DepthSpecsOf']]],
+  ['below_3',['below',['../classsciplot_1_1FilledCurvesSpecsOf.html#ab54f95d450d062cf5b1d5e837cf02dc7',1,'sciplot::FilledCurvesSpecsOf']]],
+  ['beziersegment_4',['BezierSegment',['../classrev_1_1BezierSegment.html#ad294221b006a4f5b6302f618e3542974',1,'rev::BezierSegment']]],
+  ['border_5',['border',['../classsciplot_1_1Plot.html#a27abd28c59fda8dbbc3fbff30f70c19c',1,'sciplot::Plot']]],
+  ['borderhide_6',['borderHide',['../classsciplot_1_1FillSpecsOf.html#a96f7497bb5e54009fc34722f09a70e22',1,'sciplot::FillSpecsOf::borderHide()'],['../classsciplot_1_1FillStyleSpecs.html#af6e9426a980d4fa8bf475d392a85aa0c',1,'sciplot::FillStyleSpecs::borderHide()']]],
+  ['borderlinecolor_7',['borderLineColor',['../classsciplot_1_1FillSpecsOf.html#a1cb841030237f760647b78667bc4ff5c',1,'sciplot::FillSpecsOf::borderLineColor()'],['../classsciplot_1_1FillStyleSpecs.html#a3b975e5f2659ed1b49c11c5ba656ccaa',1,'sciplot::FillStyleSpecs::borderLineColor()']]],
+  ['borderlinewidth_8',['borderLineWidth',['../classsciplot_1_1FillSpecsOf.html#a3fc569b71cb1ff867a1a0bd5bc0e9a3d',1,'sciplot::FillSpecsOf::borderLineWidth()'],['../classsciplot_1_1FillStyleSpecs.html#a0977891ca3ef93da5e36c386983d8dab',1,'sciplot::FillStyleSpecs::borderLineWidth()']]],
+  ['bordershow_9',['borderShow',['../classsciplot_1_1FillSpecsOf.html#ac1a0f2708bebb38bd20daf5c644fa8d5',1,'sciplot::FillSpecsOf::borderShow()'],['../classsciplot_1_1FillStyleSpecs.html#a41c8815c2fb7cb807c872360469b4b91',1,'sciplot::FillStyleSpecs::borderShow()']]],
+  ['borderspecs_10',['BorderSpecs',['../classsciplot_1_1BorderSpecs.html#a1a8dd961832c05d67757377e34be9251',1,'sciplot::BorderSpecs']]],
+  ['bottom_11',['bottom',['../classsciplot_1_1BorderSpecs.html#a61e598456f16dd6ebd7e70fec89a5cdc',1,'sciplot::BorderSpecs']]],
+  ['bottomleftback_12',['bottomLeftBack',['../classsciplot_1_1BorderSpecs.html#a3d9294b2e8d9e9339f5eb25869cad325',1,'sciplot::BorderSpecs']]],
+  ['bottomleftfront_13',['bottomLeftFront',['../classsciplot_1_1BorderSpecs.html#aa1e0adc3facd8111ec07e35c0b1621df',1,'sciplot::BorderSpecs']]],
+  ['bottomrightback_14',['bottomRightBack',['../classsciplot_1_1BorderSpecs.html#a2d65c62c557b0891d686c258b71cd2d2',1,'sciplot::BorderSpecs']]],
+  ['bottomrightfront_15',['bottomRightFront',['../classsciplot_1_1BorderSpecs.html#ac0b38ee1cca3c17376e96e8624966024',1,'sciplot::BorderSpecs']]],
+  ['boxwidthabsolute_16',['boxWidthAbsolute',['../classsciplot_1_1Plot.html#aafa8ebb81d2dba61ae0a0d56b6634584',1,'sciplot::Plot']]],
+  ['boxwidthrelative_17',['boxWidthRelative',['../classsciplot_1_1Plot.html#a293bdeda3dd7333e2e36dea499d4ceaf',1,'sciplot::Plot']]],
+  ['breakout_18',['breakout',['../classrev_1_1Reckless.html#ac024208d41885c83f2126c5759e736e8',1,'rev::Reckless']]]
 ];

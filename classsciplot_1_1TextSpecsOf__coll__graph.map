@@ -1,0 +1,7 @@
+<map id="sciplot::TextSpecsOf&lt; DerivedSpecs &gt;" name="sciplot::TextSpecsOf&lt; DerivedSpecs &gt;">
+<area shape="rect" id="Node000001" title="The class used to attach text options to a type." alt="" coords="37,168,179,208"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1FontSpecsOf.html" title="The class used to attach font options to a type." alt="" coords="37,79,179,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,135,111,167,105,167,105,135"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1Specs.html" title="The base class for other specs classes (e.g., LineSpecsOf, DrawSpecs, BorderSpecs,..." alt="" coords="5,5,211,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,46,111,79,105,79,105,46"/>
+</map>

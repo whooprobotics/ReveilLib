@@ -1,0 +1,10 @@
+<map id="sciplot::BorderSpecs" name="sciplot::BorderSpecs">
+<area shape="rect" id="Node000001" title="The class used to specify options for plot border." alt="" coords="90,168,230,193"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1LineSpecsOf.html" title=" " alt="" coords="5,79,147,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,128,149,165,145,169,106,132"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="60,5,260,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,44,99,81,95,77,134,40"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1DepthSpecsOf.html" title=" " alt="" coords="170,79,320,120"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="186,40,226,77,222,81,182,44"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,132,175,169,171,165,211,128"/>
+</map>

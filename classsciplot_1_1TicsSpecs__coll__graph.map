@@ -1,0 +1,17 @@
+<map id="sciplot::TicsSpecs" name="sciplot::TicsSpecs">
+<area shape="rect" id="Node000001" title="The class used to specify options for tics." alt="" coords="856,78,983,104"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TicsSpecsBaseOf.html" title=" " alt="" coords="636,71,808,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="823,88,855,88,855,94,823,94"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="442,5,583,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="595,48,655,67,653,73,593,54"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="243,9,386,50"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="401,25,442,24,442,30,401,31"/>
+<area shape="rect" id="Node000005" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,78,192,104"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="160,71,242,47,244,52,162,76"/>
+<area shape="rect" id="Node000006" href="$classsciplot_1_1OffsetSpecsOf.html" title=" " alt="" coords="437,71,588,111"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="207,88,436,88,436,94,207,94"/>
+<area shape="rect" id="Node000007" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="240,128,389,169"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="165,106,240,126,238,131,164,111"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="604,88,636,88,636,94,604,94"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="404,141,493,133,588,120,642,109,643,115,589,126,494,138,405,146"/>
+</map>

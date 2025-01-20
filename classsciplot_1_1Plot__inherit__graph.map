@@ -1,0 +1,7 @@
+<map id="sciplot::Plot" name="sciplot::Plot">
+<area shape="rect" id="Node000001" title="The class used to create a plot containing graphical elements." alt="" coords="77,5,166,31"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1Plot2D.html" title="The class used to create a plot containing graphical elements." alt="" coords="5,79,110,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,44,70,80,66,77,99,40"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1Plot3D.html" title="The class used to create a plot containing graphical elements." alt="" coords="133,79,238,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,40,177,77,173,80,140,44"/>
+</map>

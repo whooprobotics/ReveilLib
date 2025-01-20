@@ -1,0 +1,16 @@
+<map id="sciplot::DrawSpecs" name="sciplot::DrawSpecs">
+<area shape="rect" id="Node000001" title="The class where options for the plotted element can be specified." alt="" coords="467,112,599,137"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1LineSpecsOf.html" title=" " alt="" coords="261,5,402,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,50,420,57,512,109,510,113,418,61,403,55"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,112,197,137"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,102,244,57,274,44,276,49,246,61,145,107"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1PointSpecsOf.html" title=" " alt="" coords="259,71,405,111"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="209,106,258,99,258,104,210,111"/>
+<area shape="rect" id="Node000005" href="$classsciplot_1_1FillSpecsOf.html" title=" " alt="" coords="265,136,398,177"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="213,137,265,144,264,150,212,142"/>
+<area shape="rect" id="Node000006" href="$classsciplot_1_1FilledCurvesSpecsOf.html" title=" " alt="" coords="245,201,419,242"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="146,142,246,186,276,198,274,203,244,191,144,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="421,103,467,111,466,116,420,108"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="413,141,466,132,467,137,414,146"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="403,192,418,186,509,135,512,140,420,191,406,197"/>
+</map>

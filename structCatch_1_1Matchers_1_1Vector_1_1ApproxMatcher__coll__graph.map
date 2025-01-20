@@ -1,0 +1,11 @@
+<map id="Catch::Matchers::Vector::ApproxMatcher&lt; T, AllocComp, AllocMatch &gt;" name="Catch::Matchers::Vector::ApproxMatcher&lt; T, AllocComp, AllocMatch &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="442,70,650,126"/>
+<area shape="rect" id="Node000002" href="$structCatch_1_1Matchers_1_1Impl_1_1MatcherBase.html" title=" " alt="" coords="207,37,353,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="369,68,442,79,442,85,368,74"/>
+<area shape="rect" id="Node000003" href="$classCatch_1_1Matchers_1_1Impl_1_1MatcherUntypedBase.html" title=" " alt="" coords="5,5,158,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,38,207,43,206,49,172,43"/>
+<area shape="rect" id="Node000004" href="$structCatch_1_1Matchers_1_1Impl_1_1MatcherMethod.html" title=" " alt="" coords="8,71,155,111"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="170,73,206,67,207,73,171,79"/>
+<area shape="rect" id="Node000005" href="$classCatch_1_1Detail_1_1Approx.html" title=" " alt="" coords="210,102,350,128"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="366,107,442,102,442,107,366,112"/>
+</map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['reset_5fposition_0',['reset_position',['../classrev_1_1Odometry.html#acbe2e01144f6ebee320423b92b4d4a8a',1,'rev::Odometry::reset_position()'],['../classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc',1,'rev::TwoRotationInertialOdometry::reset_position()'],['../classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1',1,'rev::DriftlessSim::reset_position()']]]
+  ['hide_0',['hide',['../classsciplot_1_1ShowSpecsOf.html#a318798b06bad56629ddd6f949fb167df',1,'sciplot::ShowSpecsOf']]],
+  ['histogramstylespecs_1',['HistogramStyleSpecs',['../classsciplot_1_1HistogramStyleSpecs.html#a94abbef6a31b8b4ae2d610269cced1b8',1,'sciplot::HistogramStyleSpecs']]]
 ];

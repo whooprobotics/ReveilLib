@@ -1,0 +1,9 @@
+<map id="sciplot::AxisLabelSpecs" name="sciplot::AxisLabelSpecs">
+<area shape="rect" id="Node000001" title="The specifications for an axis label (e.g., xlabel, ylabel, etc.)" alt="" coords="11,271,170,297"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="20,183,161,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,239,93,271,88,271,88,239"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="19,94,162,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,150,93,182,88,182,88,150"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,176,46"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,62,93,94,88,94,88,62"/>
+</map>

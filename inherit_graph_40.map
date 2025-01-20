@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classCatch_1_1NonCopyable.html" title=" " alt="" coords="5,80,144,106"/>
+<area shape="rect" id="Node000001" href="$structCatch_1_1AutoReg.html" title=" " alt="" coords="232,5,343,31"/>
+<area shape="poly" id="edge56_Node000000_Node000001" title=" " alt="" coords="115,71,191,40,230,28,232,33,193,45,117,76"/>
+<area shape="rect" id="Node000002" href="$structCatch_1_1IConfig.html" title=" " alt="" coords="237,55,338,80"/>
+<area shape="poly" id="edge57_Node000000_Node000002" title=" " alt="" coords="159,80,236,71,236,76,159,85"/>
+<area shape="rect" id="Node000003" href="$classCatch_1_1ReusableStringStream.html" title=" " alt="" coords="192,104,383,130"/>
+<area shape="poly" id="edge58_Node000000_Node000003" title=" " alt="" coords="160,100,192,103,191,109,159,105"/>
+<area shape="rect" id="Node000004" href="$classCatch_1_1Section.html" title=" " alt="" coords="235,153,340,179"/>
+<area shape="poly" id="edge59_Node000000_Node000004" title=" " alt="" coords="118,110,193,140,235,152,233,157,191,145,116,115"/>
+</map>

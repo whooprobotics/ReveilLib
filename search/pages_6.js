@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['the_20reveillib_20depot_0',['Setting up the ReveilLib depot',['../md_docs_2tutorials_2depot-setup.html',1,'']]]
+  ['known_20issues_0',['Known issues',['../md_sciplot_2docs_2website_2known__issues.html',1,'']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['setting_20up_20the_20reveillib_20depot_0',['Setting up the ReveilLib depot',['../md_docs_2tutorials_2depot-setup.html',1,'']]],
-  ['standards_20for_20reveillib_1',['Code styling &amp; standards for ReveilLib',['../md_Style.html',1,'']]],
-  ['styling_20standards_20for_20reveillib_2',['Code styling &amp; standards for ReveilLib',['../md_Style.html',1,'']]]
+  ['img_20logo_20svg_20alt_20sciplot_0',['&lt;img src=&quot;img/logo.svg&quot; alt=&quot;sciplot&quot;/&gt;',['../md_sciplot_2docs_2website_2index.html',1,'']]],
+  ['img_20src_20img_20logo_20svg_20alt_20sciplot_1',['&lt;img src=&quot;img/logo.svg&quot; alt=&quot;sciplot&quot;/&gt;',['../md_sciplot_2docs_2website_2index.html',1,'']]],
+  ['installation_2',['Installation',['../md_sciplot_2docs_2website_2installation.html',1,'']]],
+  ['issues_3',['Known issues',['../md_sciplot_2docs_2website_2known__issues.html',1,'']]]
 ];

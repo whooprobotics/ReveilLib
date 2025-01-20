@@ -1,0 +1,9 @@
+<map id="sciplot::TextSpecs" name="sciplot::TextSpecs">
+<area shape="rect" id="Node000001" title="The class used to specify text options." alt="" coords="35,256,162,282"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="28,168,169,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,224,101,256,96,256,96,224"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="27,79,170,120"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,135,101,167,96,167,96,135"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,192,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,46,101,79,96,79,96,46"/>
+</map>

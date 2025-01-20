@@ -1,0 +1,18 @@
+<map id="sciplot::LegendSpecs" name="sciplot::LegendSpecs">
+<area shape="rect" id="Node000001" title="The class used to specify options for legend." alt="" coords="656,112,802,137"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="463,5,604,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="597,50,610,57,706,109,703,113,607,61,595,55"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="263,9,406,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="421,25,462,24,462,30,421,31"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,114,210,140"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="152,105,284,48,286,53,154,110"/>
+<area shape="rect" id="Node000005" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="459,71,608,111"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="225,114,459,95,459,100,226,120"/>
+<area shape="rect" id="Node000006" href="$classsciplot_1_1TitleSpecsOf.html" title=" " alt="" coords="463,136,604,177"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="225,132,463,149,463,154,225,138"/>
+<area shape="rect" id="Node000007" href="$classsciplot_1_1FrameSpecsOf.html" title=" " alt="" coords="258,189,411,230"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="160,143,277,186,275,191,159,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="624,104,657,109,656,115,624,109"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="619,140,656,134,657,139,620,145"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="426,209,515,204,562,197,608,186,663,162,708,135,710,140,666,167,609,191,563,202,516,209,427,215"/>
+</map>

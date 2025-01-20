@@ -1,10 +1,18 @@
 var searchData=
 [
-  ['gen_5fpowers_0',['gen_powers',['../classrev_1_1CascadingMotion.html#a32c3ba913f3eae3c49ce5434b23f38de',1,'rev::CascadingMotion::gen_powers()'],['../classrev_1_1ConstantMotion.html#a0909713d729a39e8547b45e203ffdd80',1,'rev::ConstantMotion::gen_powers()'],['../classrev_1_1Motion.html#a22b5333ce68c7c0bb1b5facc41861580',1,'rev::Motion::gen_powers()'],['../classrev_1_1ProportionalMotion.html#aa333a104fca8807cd9c11ed4a57f8661',1,'rev::ProportionalMotion::gen_powers()']]],
-  ['get_5fstate_1',['get_state',['../classrev_1_1Odometry.html#a113f45340e8c6c617816697219cd89b2',1,'rev::Odometry::get_state()'],['../classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a',1,'rev::TwoRotationInertialOdometry::get_state()'],['../classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b',1,'rev::DriftlessSim::get_state()']]],
-  ['get_5fstatus_2',['get_status',['../classrev_1_1Reckless.html#ad97df2c630feadfff50af62e01d7572f',1,'rev::Reckless']]],
-  ['get_5fstop_5fstate_3',['get_stop_state',['../classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485',1,'rev::SimpleStop']]],
-  ['getting_20started_4',['Getting Started',['../md_docs_2tutorials_2reckless.html#autotoc_md2',1,'']]],
-  ['go_5',['go',['../classrev_1_1Reckless.html#aeb44939304008acb11f0249067698b7d',1,'rev::Reckless']]],
-  ['guide_6',['Reckless Controller Usage Guide',['../md_docs_2tutorials_2reckless.html',1,'']]]
+  ['early_20drop_0',['Early Drop',['../md_docs_2tutorials_2reckless.html#autotoc_md14',1,'']]],
+  ['empty_1',['empty',['../classsciplot_1_1FillStyleSpecs.html#a72ca2620c4eed7cff7307b98d96ba59f',1,'sciplot::FillStyleSpecs']]],
+  ['end_2',['end',['../classsciplot_1_1TicsSpecsMajor.html#a02114c41f7d3568aa255233e59d7e431',1,'sciplot::TicsSpecsMajor']]],
+  ['endswithmatcher_3',['EndsWithMatcher',['../structCatch_1_1Matchers_1_1StdString_1_1EndsWithMatcher.html',1,'Catch::Matchers::StdString']]],
+  ['enhanced_4',['enhanced',['../classsciplot_1_1TextSpecsOf.html#a6f80347620e89df3bd1b70f5099d6d4c',1,'sciplot::TextSpecsOf']]],
+  ['enuminfo_5',['EnumInfo',['../structCatch_1_1Detail_1_1EnumInfo.html',1,'Catch::Detail']]],
+  ['equalsmatcher_6',['EqualsMatcher',['../structCatch_1_1Matchers_1_1StdString_1_1EqualsMatcher.html',1,'Catch::Matchers::StdString::EqualsMatcher'],['../structCatch_1_1Matchers_1_1Vector_1_1EqualsMatcher.html',1,'Catch::Matchers::Vector::EqualsMatcher&lt; T, AllocComp, AllocMatch &gt;']]],
+  ['errorbars_7',['errorBars',['../classsciplot_1_1HistogramStyleSpecs.html#a21671d672916f45a87ce1faa43250de7',1,'sciplot::HistogramStyleSpecs']]],
+  ['errorbarswithgap_8',['errorBarsWithGap',['../classsciplot_1_1HistogramStyleSpecs.html#aebe75bf2d418a93c16b262433c3f7611',1,'sciplot::HistogramStyleSpecs']]],
+  ['errorbarswithlinewidth_9',['errorBarsWithLineWidth',['../classsciplot_1_1HistogramStyleSpecs.html#ab71b575552e8f14f89aa9f9fd30438f0',1,'sciplot::HistogramStyleSpecs']]],
+  ['errors_20when_20compiling_20for_20windows_10',['I get compiler errors when compiling for Windows',['../md_sciplot_2docs_2website_2known__issues.html#autotoc_md33',1,'']]],
+  ['exceptionmessagematcher_11',['ExceptionMessageMatcher',['../classCatch_1_1Matchers_1_1Exception_1_1ExceptionMessageMatcher.html',1,'Catch::Matchers::Exception']]],
+  ['exceptiontranslatorregistrar_12',['ExceptionTranslatorRegistrar',['../classCatch_1_1ExceptionTranslatorRegistrar.html',1,'Catch']]],
+  ['executing_20the_20application_13',['Building and Executing the Application',['..//github/workspace/sciplot/examples/cmake-project/README.md#autotoc_md55',1,'']]],
+  ['exprlhs_14',['ExprLhs',['../classCatch_1_1ExprLhs.html',1,'Catch']]]
 ];
