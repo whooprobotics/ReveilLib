@@ -30,7 +30,7 @@ void update_robor_points(std::shared_ptr<rev::Reckless> reckless, std::shared_pt
     }
 }
   
-TEST(Autons, auton1){
+TEST(Autons, sonic1){
   cout << "Beginning" << endl;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
                                             20_Hz, 20_Hz);
@@ -45,54 +45,85 @@ TEST(Autons, auton1){
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  // DRIVE TO START POINT
+  // DRIVE TO START POINT (0.25_ft, 5_ft, -45_deg)
   reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {1_ft, 3.5_ft, 0_deg}, 0_in)
+                       {0.25_ft, 5_ft, 0_deg}, 0_in)
                                     ));
 
   reckless->await();
+
+  // reckless->go(RecklessPath()                   /////////////////////////////TURN TO -45_deg
+  //                   .with_segment(CampbellTurn(
+  //                       std::make_shared<CascadingMotion>(1, kP, kB,
+  //                                                         60_in / second, 0.07),
+  //                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+  //                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+  //                       -45_deg,
+  //                       3_ft,
+  //                       0_deg,
+  //                       true)
+  //                                   ));
   // END OF DRIVING TO START
   
- reckless->go(RecklessPath()
-    .with_segment(BezierSegment(
-               std::make_shared<CascadingMotion>(0.7, kP, kB, 40_in / second, 0.07),
-                      std::make_shared<PilonsCorrection>(2, 0.5_in),
-                      std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                      std::vector<PointVector>{{1_ft, 3.5_ft}, {3_ft, 3.5_ft},{6_ft, 2_ft}}, 
-                      pid_constants,
-                      wheelbase,
-                      30,
-                      6_in
-                      )));
-  update_robor_points(reckless, sim);
+  // SPIN CONVEYOR
 
-  reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
+
+   reckless->go(RecklessPath()
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {3_ft, 3_ft, 0_deg}, 0_in)
+                       {1_ft, 4.5_ft, 0_deg}, 0_in))
+                    .with_segment(PilonsSegment(
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {2_ft, 6_ft, 0_deg}, 0_in))
+                    .with_segment(PilonsSegment(
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {3_ft, 7_ft, 0_deg}, 0_in))
+                      );
+  
+  update_robor_points(reckless, sim);
+  // Pick up mogo at ~progress = 2
+  //Start intakine when finished
+  
 
-                                     )
-                   .with_segment(RecklessPathSegment(
+   reckless->go(RecklessPath()
+                   .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {0_ft, 0_ft, 45_deg}, 0_in))
-                );
-
-
+                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                       {0.9_ft, 6.1_ft, 0_deg}, 0_in))
+                    .with_segment(PilonsSegment(
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {1_ft, 4.5_ft, 0_deg}, 0_in))
+                    .with_segment(PilonsSegment(
+                          std::make_shared<CascadingMotion>(1, kP, kB,
+                                                            60_in / second, 0.07),
+                          std::make_shared<PilonsCorrection>(2, 0.5_in),
+                          std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                          {4_ft, 2_ft, 0_deg}, 0_in)) // Needs to somehow intake top ring
+                      );
 
   update_robor_points(reckless, sim);
-  reckless->await();
+  // Start intaking at ~ progress = 1
 
+  //Turn to 180 deg
 
   display_robor_path(robor_points);
   
