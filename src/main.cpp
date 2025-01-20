@@ -77,29 +77,24 @@ void opcontrol() {
     pros::delay(20);*/
 
   reckless->go(RecklessPath()
-                    // .with_segment(RecklessPathSegment(
-                    //    std::make_shared<CascadingMotion>(0.7, kP, kB,
-                    //                                      40_in / second, 0.07),
-                    //    std::make_shared<PilonsCorrection>(2, 0.5_in),
-                    //    std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                    //    {4_ft, 4_ft, 0_deg}, 0_in)
-                    //    )
-                    .with_segment(BezierSegment(
-                        std::make_shared<CascadingMotion>(0.7, kP, kB, 40_in / second, 0.07),
-                        std::make_shared<PilonsCorrection>(2, 0.5_in),
-                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                        std::vector<PointVector>{{0_ft, 0_ft}, {2_ft, 2_ft}, {4_ft, 4_ft}},
-                        3
-                        ))
-                    );
+                   .with_segment(PilonsSegment(
+                       std::make_shared<CascadingMotion>(0.7, kP, kB,
+                                                         40_in / second, 0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+                       {4_ft, 8_ft, 0_deg}, 0_in)
 
-  while(!reckless->is_completed()) {
-    pros::delay(500);
-    std::string odom_str = "x: " + std::to_string(odom->get_state().pos.x.convert(foot)) + ", y: " + std::to_string(odom->get_state().pos.y.convert(foot)) + ", theta: " + std::to_string(odom->get_state().pos.theta.convert(degree));
-    controller.print(0, 0, odom_str.c_str());
-  }
-  reckless->await();
-  chassis->stop();
+                                     )
+                   .with_segment(PilonsSegment(
+                       std::make_shared<CascadingMotion>(0.7, kP, kB,
+                                                         40_in / second, 0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
+                       {8_ft, 8_ft, 45_deg}, 0_in))
+                   );
+
+  while(!reckless->is_completed()) pros::delay(20);
+  printf("Completed motion");
 
   // reckless->go(RecklessPath());
 
