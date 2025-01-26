@@ -19,13 +19,10 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       brake_time(ibrake_time.convert(millisecond)) {}
 
 void RecklessTurnSegment::init(OdometryState initial_state) {
-  std::cout << "Initializing turn" << std::endl;
   start_angle = initial_state.pos.theta;  // normalized (-180 to 180)
   start_angle = start_angle -
                 360 * std::floor((start_angle.convert(degree) + 180) / 360) *
                     degree;  // for google tests
-
-  std::cout << "Start angle: " << start_angle.convert(degree) << std::endl;
 
   // convert given goal to be normalized (-180 to 180)
   // will move the heading to MATCH this angle
@@ -33,20 +30,13 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
       angle_goal -
       360 * std::floor((angle_goal.convert(degree) + 180) / 360) * degree;
 
-  std::cout << "Standarized goal: " << angle_goal.convert(degree) << std::endl;
 
   angle_difference = angle_goal - initial_state.pos.theta;
-
-  std::cout << "angle_difference: " << angle_difference.convert(degree)
-            << std::endl;
 
   target_relative_original =
       (angle_difference.convert(degree) -
        360 * std::floor((angle_difference.convert(degree) + 180) / 360)) *
       degree;
-
-  std::cout << "target_relative_original: "
-            << target_relative_original.convert(degree) << std::endl;
 
   target_relative = target_relative_original;
 
@@ -56,11 +46,9 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
       0 * degree) {  // if direction is negative, flip directions
     left_direction = -1;
     right_direction = 1;
-    std::cout << "Right turn" << std::endl;
   } else {
     left_direction = 1;
     right_direction = -1;
-    std::cout << "Left turn" << std::endl;
   }
 }
 
@@ -89,7 +77,6 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
 
   // edge case test if already at angle (having trouble in google test )
   if (fabs(target_relative_original.convert(degree)) < 5.0) {
-    std::cout << "PASSED THE EDGE CASE :D" << std::endl;
     SegmentStatus::next();
   }
 
@@ -100,7 +87,6 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
                coast_coeff) &&
       controller_state != TurnState::BRAKE &&
       controller_state != TurnState::COAST) {
-    std::cout << "setting COAST" << std::endl;
     controller_state = TurnState::COAST;
   }
   // Harsh-brake if we're at that point
@@ -108,7 +94,6 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
           fabs(current_state.vel.angular.convert(degree / second) *
                harsh_coeff) &&
       controller_state != TurnState::BRAKE) {
-    std::cout << "setting BRAKE" << std::endl;
     controller_state = TurnState::BRAKE;
   }
 
@@ -122,13 +107,11 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
       break;
     case TurnState::BRAKE:
       if (brake_start_time == -1) {
-        std::cout << "started brake" << std::endl;
         brake_start_time = pros::millis();
       } else if (brake_start_time < pros::millis() - brake_time ||
                  fabs(current_state.vel.angular.convert(degree / second)) <=
                      0.25) {    // Check if brake_time ms has elapsed
         brake_start_time = -1;  // reset for next run
-        std::cout << "finishing turn" << std::endl;
         return SegmentStatus::next();  // move onto next Segment
         break;                         // Drew told me to
       }
