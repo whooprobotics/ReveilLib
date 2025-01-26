@@ -1,9 +1,9 @@
 #include "main.h"
-#include <memory>
-#include "rev/api/alg/path_gen/bezier_curves.hh"
+#include "rev/api/alg/reckless/path.hh"
+#include "rev/api/alg/reckless/turn_segment.hh"
 #include "rev/rev.hh"
 
-//#include <iostream>
+// #include <iostream>
 
 pros::Motor_Group leftd({-11, -12, -13, -18});
 pros::Motor_Group rightd({2, 3, 5, 6});
@@ -16,7 +16,7 @@ pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);
 std::shared_ptr<rev::SkidSteerChassis> chassis =
     std::make_shared<rev::SkidSteerChassis>(leftd, rightd);
 
-pros::Motor test_motor(15);
+// pros::Motor test_motor(15);
 using namespace rev;
 
 void on_center_button() {}
@@ -108,7 +108,7 @@ void opcontrol() {
                                                          40_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-                       {4_ft, 8_ft, 0_deg}, 0_in)
+                       {2_ft, -5_ft, 0_deg}, 0_in)
 
                                      )
                    .with_segment(PilonsSegment(
