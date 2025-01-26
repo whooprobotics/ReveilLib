@@ -18,6 +18,13 @@ struct RecklessPath {
   std::vector<std::shared_ptr<RecklessSegment>> segments;
 
   RecklessPath() { segments = std::vector<std::shared_ptr<RecklessSegment>>(); }
+  explicit RecklessPath(std::initializer_list<std::shared_ptr<RecklessSegment>> seg) {
+    segments = std::vector<std::shared_ptr<RecklessSegment>>();
+
+    for (auto& s : seg) {
+      segments.push_back(s);
+    }
+  }
   /**
    * @brief Add a segment to the path under construction
    *

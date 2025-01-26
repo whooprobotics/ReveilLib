@@ -76,7 +76,32 @@ void opcontrol() {
   while (!turn->is_completed())
     pros::delay(20);*/
 
-  
+  PilonsSegmentParams SLOW = {
+    std::make_shared<CascadingMotion>(0.4, kP, kB, 40_in / second, 0.07),
+    std::make_shared<PilonsCorrection>(2, 0.5_in),
+    std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+  };
+
+  PilonsSegmentParams MEDIUM = {
+        std::make_shared<CascadingMotion>(0.7, kP, kB, 60_in / second, 0.07),
+        std::make_shared<PilonsCorrection>(2, 0.5_in),
+        std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+  };
+
+  PilonsSegmentParams FAST = {
+      std::make_shared<CascadingMotion>(0.9, kP, kB, 80_in / second, 0.07),
+        std::make_shared<PilonsCorrection>(2, 0.5_in),
+        std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
+  };
+
+  // test new reckless syntax
+  reckless->go({
+      PilonsSegment::create(SLOW, {20_in, 0_in}),
+      PilonsSegment::create(MEDIUM, {20_in, 20_in, 90_deg}),
+      PilonsSegment::create(FAST, {0_in, 20_in}),
+      &PilonsSegment(SLOW, {0_in, 0_in})
+  });
+
   reckless->go(RecklessPath()
                    .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(0.7, kP, kB,
