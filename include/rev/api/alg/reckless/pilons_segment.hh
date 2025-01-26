@@ -3,6 +3,15 @@
 
 namespace rev{
 /**
+ * @brief Parameters for a PilonsSegment
+ */
+struct PilonsSegmentParams {
+  std::shared_ptr<Motion> motion;
+  std::shared_ptr<Correction> correction;
+  std::shared_ptr<Stop> stop;
+};
+
+/**
  * @brief Path segment for use with Reckless controller
  *
  * TODO: Rename this to be more reflective of what it is specifically, but not
@@ -32,6 +41,16 @@ class PilonsSegment : public RecklessSegment {
         drop_early(idrop_early) {
     start_point = {0_in, 0_in, 0_deg};
   }
+
+  PilonsSegment(PilonsSegmentParams iparams, Position itarget_point, QLength idrop_early = 0*inch) :
+        motion(iparams.motion),
+        correction(iparams.correction),
+        stop(iparams.stop),
+        target_point(itarget_point),
+        drop_early(idrop_early) {
+        start_point = {0_in, 0_in, 0_deg};
+  }
+
   /**
    * @brief Initialize the path segment
    *
@@ -61,5 +80,13 @@ class PilonsSegment : public RecklessSegment {
    * Executes immediately after a NEXT value is returned.
    */
   void clean_up() override;
+
+  std::shared_ptr<RecklessSegment> operator &() {
+        return std::shared_ptr<PilonsSegment>(this);
+  }
+
+  static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params, Position target_point, QLength drop_early = 0*inch) {
+    return std::make_shared<PilonsSegment>(params, target_point, drop_early);
+  }
 };
-}
+}// namespace rev
