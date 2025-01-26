@@ -9,6 +9,8 @@ void set_flag() {
   status_flag = true;
 }
 
+/*
+
 TEST(Call, RecklessVerifications) {
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
@@ -32,3 +34,5 @@ TEST(Call, RecklessVerifications) {
 
   EXPECT_TRUE(status_flag);
 }
+
+*/

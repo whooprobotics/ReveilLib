@@ -23,6 +23,10 @@
 
 // Reckless
 #include "rev/api/alg/reckless/path.hh"
+#include "rev/api/alg/reckless/call.hh"
+#include "rev/api/alg/reckless/await.hh"
+#include "rev/api/alg/reckless/pilons_segment.hh"
+#include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/alg/reckless/reckless.hh"
 
 // Chassis

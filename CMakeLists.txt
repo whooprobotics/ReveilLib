@@ -33,6 +33,9 @@ add_executable(ReveilLib
         src/api/alg/drive/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
         src/api/alg/reckless/pilons_segment.cc
+        src/api/alg/path_gen/bezier_curves.cc
+        src/api/alg/path_gen/straight_lines.cc
+        src/api/alg/pure_pursuit/pure_pursuit.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
         src/api/alg/reckless/call.cc
@@ -45,10 +48,15 @@ add_executable(ReveilLib
         test/reckless_test.cc
         test/reckless_call_test.cc
         test/turn_segment_test.cc
+        test/bezier_test.cc
+        test/straight_line_test.cc
+        test/opencv_test.cc
         )
 
-# Link against gtest
-target_link_libraries(ReveilLib GTest::gtest_main)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+target_link_libraries(ReveilLib GTest::gtest_main ${OpenCV_LIBS})
 
 include(GoogleTest)
 gtest_discover_tests(ReveilLib)
