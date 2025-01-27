@@ -4,7 +4,7 @@
 
 namespace rev {
 
-OpticalOdometry::OpticalOdometry(std::shared_ptr<OTOS> sensor, QLength ilongitudinal_offset, QLength ilateral_offset) : optical_sensor(sensor), longitudinal_offset(ilongitudinal_offset), lateral_offset(ilateral_offset) {
+OpticalOdometry::OpticalOdometry(std::shared_ptr<OTOS> sensor, QLength ilongitudinal_offset, QLength ilateral_offset) : optical_sensor(sensor){
   
 }
 
