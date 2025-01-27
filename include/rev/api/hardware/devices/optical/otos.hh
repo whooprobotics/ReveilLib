@@ -10,11 +10,12 @@ namespace rev {
 class OTOS {
   public:
     OTOS();
+    // Return position values
     double get_x();
     double get_y();
     double get_h();
+    // Get new values from sensor
     void update();
-    void reset();
 
   private:
     double x;

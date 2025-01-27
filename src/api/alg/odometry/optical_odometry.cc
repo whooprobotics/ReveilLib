@@ -29,13 +29,29 @@ void OpticalOdometry::reset_position() {
 }
 
 void OpticalOdometry::step() {  
-  optical_sensor->update();
+  optical_sensor->update(); // get new readings from the optical sensor
 
   current_position_mutex.take(TIMEOUT_MAX);
 
-  current_position.pos.x = optical_sensor->get_x() * inch;
-  current_position.pos.y = optical_sensor->get_y() * inch;
-  current_position.pos.theta = optical_sensor->get_h() * degree;
+  // update the OdometryState with the current sensor readings
+  sensor_reading.pos.x = optical_sensor->get_x() * inch;
+  sensor_reading.pos.y = optical_sensor->get_y() * inch;
+  sensor_reading.pos.theta = optical_sensor->get_h() * degree;
+
+  // calculate the difference in position in each dimension
+  x_diff = sensor_reading.pos.x - last_sensor_reading.pos.x;
+  y_diff = sensor_reading.pos.y - last_sensor_reading.pos.y;
+  h_diff = sensor_reading.pos.theta - last_sensor_reading.pos.theta;
+
+  // set the "last sensor reading" to the current one, for the next cycle of the step function
+  last_sensor_reading.pos.x = sensor_reading.pos.x;
+  last_sensor_reading.pos.y = sensor_reading.pos.y;
+  last_sensor_reading.pos.theta = sensor_reading.pos.theta;
+
+  // update the current position
+  current_position.pos.x += x_diff;
+  current_position.pos.y += y_diff;
+  current_position.pos.theta += h_diff;
 
   current_position_mutex.give();
 }

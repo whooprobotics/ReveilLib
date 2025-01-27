@@ -3,6 +3,8 @@
 using std::cin, std::string, std::getline;
 
 namespace rev {
+
+// initialize sensor readings to 0
 OTOS::OTOS() {
   x = 0;
   y = 0;
@@ -21,12 +23,7 @@ double OTOS::get_h() {
   return h;
 }
 
-void OTOS::reset() {
-  x = 0;
-  y = 0;
-  h = 0;
-}
-
+// reads in new sensor values from serial input
 void OTOS::update() {
   getline(cin, this->input);
   ss.str(input);
