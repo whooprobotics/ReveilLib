@@ -112,9 +112,9 @@ var NAVTREEINDEX =
 [
 "AxisLabelSpecs_8hpp_source.html",
 "classrev_1_1PilonsSegment.html#aa6b3b674d53d1016ade8b4c0b3abfabf",
-"classsciplot_1_1LineSpecs.html",
-"classsciplot_1_1TitleSpecsOf.html#a6184a57105fcd3e4dd37e89692b1b7bb",
-"structCatch_1_1StringMaker.html"
+"classsciplot_1_1LegendSpecs.html#adb3996158b6aa80957a2e14092598427",
+"classsciplot_1_1TitleSpecsOf.html",
+"structCatch_1_1SectionEndInfo.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

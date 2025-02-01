@@ -1,5 +1,10 @@
 var NAVTREEINDEX3 =
 {
+"classsciplot_1_1TitleSpecsOf.html":[11,0,2,45],
+"classsciplot_1_1TitleSpecsOf.html#a2f764fe2e97b180d03dcad0bee04e061":[11,0,2,45,4],
+"classsciplot_1_1TitleSpecsOf.html#a39ca32339f8d1a585747b0e7a81fd671":[11,0,2,45,9],
+"classsciplot_1_1TitleSpecsOf.html#a4f4f36ff68d595c36ab4eb537563fb98":[11,0,2,45,3],
+"classsciplot_1_1TitleSpecsOf.html#a561cfc3378f01d79a9b12e5f521ffc48":[11,0,2,45,8],
 "classsciplot_1_1TitleSpecsOf.html#a6184a57105fcd3e4dd37e89692b1b7bb":[11,0,2,45,7],
 "classsciplot_1_1TitleSpecsOf.html#a7bf5296c67022fc465abdb388f3ce225":[11,0,2,45,5],
 "classsciplot_1_1TitleSpecsOf.html#a823fd79d417d67e23d58827244ad4d1e":[11,0,2,45,10],
@@ -244,10 +249,5 @@ var NAVTREEINDEX3 =
 "structCatch_1_1RegistrarForTagAliases.html":[11,0,0,46],
 "structCatch_1_1ResultDisposition.html":[11,0,0,47],
 "structCatch_1_1ResultWas.html":[11,0,0,48],
-"structCatch_1_1RunTests.html":[11,0,0,50],
-"structCatch_1_1SectionEndInfo.html":[11,0,0,53],
-"structCatch_1_1SectionInfo.html":[11,0,0,54],
-"structCatch_1_1ShowDurations.html":[11,0,0,55],
-"structCatch_1_1SourceLineInfo.html":[11,0,0,57],
-"structCatch_1_1StreamEndStop.html":[11,0,0,58]
+"structCatch_1_1RunTests.html":[11,0,0,50]
 };

@@ -1,5 +1,10 @@
 var NAVTREEINDEX2 =
 {
+"classsciplot_1_1LegendSpecs.html#adb3996158b6aa80957a2e14092598427":[11,0,2,23,13],
+"classsciplot_1_1LegendSpecs.html#adc131ef57767edd284ad6bb15cc2dfca":[11,0,2,23,35],
+"classsciplot_1_1LegendSpecs.html#add24adde4c74849f6c5836f9182a681c":[11,0,2,23,16],
+"classsciplot_1_1LegendSpecs.html#af0927cbd3a98a25e3b183095bc690e71":[11,0,2,23,17],
+"classsciplot_1_1LegendSpecs.html#af7703326c4be0d7795f9fb85509d2e02":[11,0,2,23,27],
 "classsciplot_1_1LineSpecs.html":[11,0,2,24],
 "classsciplot_1_1LineSpecsOf.html":[11,0,2,25],
 "classsciplot_1_1LineSpecsOf.html#a036e099b3e91c64826cb2419b0b7b31a":[11,0,2,25,1],
@@ -244,10 +249,5 @@ var NAVTREEINDEX2 =
 "classsciplot_1_1TicsSpecsMinor.html#a74b578ebe97ad245a7f2918fd7887734":[11,0,2,43,1],
 "classsciplot_1_1TicsSpecsMinor.html#a9a64eddc90f23626feda07e5c7c1134a":[11,0,2,43,3],
 "classsciplot_1_1TicsSpecsMinor.html#ab6a425a49b145176252750aedf96f940":[11,0,2,43,2],
-"classsciplot_1_1TitleSpecs.html":[11,0,2,44],
-"classsciplot_1_1TitleSpecsOf.html":[11,0,2,45],
-"classsciplot_1_1TitleSpecsOf.html#a2f764fe2e97b180d03dcad0bee04e061":[11,0,2,45,4],
-"classsciplot_1_1TitleSpecsOf.html#a39ca32339f8d1a585747b0e7a81fd671":[11,0,2,45,9],
-"classsciplot_1_1TitleSpecsOf.html#a4f4f36ff68d595c36ab4eb537563fb98":[11,0,2,45,3],
-"classsciplot_1_1TitleSpecsOf.html#a561cfc3378f01d79a9b12e5f521ffc48":[11,0,2,45,8]
+"classsciplot_1_1TitleSpecs.html":[11,0,2,44]
 };

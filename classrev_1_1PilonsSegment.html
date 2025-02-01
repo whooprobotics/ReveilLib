@@ -100,6 +100,7 @@ $(function(){initNavTree('classrev_1_1PilonsSegment.html',''); initResizable(tru
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classrev_1_1PilonsSegment-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">rev::PilonsSegment Class Reference</div></div>
 </div><!--header-->
@@ -135,6 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aedf1ecdda5a1bfd38213c4de733c05ce" id="r_aedf1ecdda5a1bfd38213c4de733c05ce"><td class="memItemLeft" align="right" valign="top"><a id="aedf1ecdda5a1bfd38213c4de733c05ce" name="aedf1ecdda5a1bfd38213c4de733c05ce"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PilonsSegment</b> (std::shared_ptr&lt; <a class="el" href="classrev_1_1Motion.html">Motion</a> &gt; imotion, std::shared_ptr&lt; <a class="el" href="classrev_1_1Correction.html">Correction</a> &gt; icorrection, std::shared_ptr&lt; <a class="el" href="classrev_1_1Stop.html">Stop</a> &gt; istop, <a class="el" href="structrev_1_1Pose.html">Position</a> itarget_point, QLength idrop_early=0 *inch)</td></tr>
 <tr class="separator:aedf1ecdda5a1bfd38213c4de733c05ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7dc32b3b0b1681400e7a0ad42235b99" id="r_af7dc32b3b0b1681400e7a0ad42235b99"><td class="memItemLeft" align="right" valign="top"><a id="af7dc32b3b0b1681400e7a0ad42235b99" name="af7dc32b3b0b1681400e7a0ad42235b99"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PilonsSegment</b> (<a class="el" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> iparams, <a class="el" href="structrev_1_1Pose.html">Position</a> itarget_point, QLength idrop_early=0 *inch)</td></tr>
+<tr class="separator:af7dc32b3b0b1681400e7a0ad42235b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6b3b674d53d1016ade8b4c0b3abfabf" id="r_aa6b3b674d53d1016ade8b4c0b3abfabf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6b3b674d53d1016ade8b4c0b3abfabf">init</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state) override</td></tr>
 <tr class="memdesc:aa6b3b674d53d1016ade8b4c0b3abfabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the path segment.  <br /></td></tr>
 <tr class="separator:aa6b3b674d53d1016ade8b4c0b3abfabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +148,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e4bafaa3953ff236cddada61fdc3eb4" id="r_a7e4bafaa3953ff236cddada61fdc3eb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4bafaa3953ff236cddada61fdc3eb4">clean_up</a> () override</td></tr>
 <tr class="memdesc:a7e4bafaa3953ff236cddada61fdc3eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean-up.  <br /></td></tr>
 <tr class="separator:a7e4bafaa3953ff236cddada61fdc3eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1439c6d69fe58ce490849958f1116302" id="r_a1439c6d69fe58ce490849958f1116302"><td class="memItemLeft" align="right" valign="top"><a id="a1439c6d69fe58ce490849958f1116302" name="a1439c6d69fe58ce490849958f1116302"></a>
+std::shared_ptr&lt; <a class="el" href="classrev_1_1RecklessSegment.html">RecklessSegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;</b> ()</td></tr>
+<tr class="separator:a1439c6d69fe58ce490849958f1116302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad037a1d60401413f25e8da569e784ca6" id="r_ad037a1d60401413f25e8da569e784ca6"><td class="memItemLeft" align="right" valign="top"><a id="ad037a1d60401413f25e8da569e784ca6" name="ad037a1d60401413f25e8da569e784ca6"></a>
+static std::shared_ptr&lt; <a class="el" href="classrev_1_1PilonsSegment.html">PilonsSegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (<a class="el" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> params, <a class="el" href="structrev_1_1Pose.html">Position</a> target_point, QLength drop_early=0 *inch)</td></tr>
+<tr class="separator:ad037a1d60401413f25e8da569e784ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Path segment for use with <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> controller. </p>

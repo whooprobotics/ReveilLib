@@ -107,24 +107,29 @@ $(function(){initNavTree('pose_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>rev {</div>
 <div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structrev_1_1Pose.html">    6</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structrev_1_1Pose.html">    6</a></span><span class="keyword">struct </span>Pose : <span class="keyword">public</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  QAngle theta;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> <a class="code hl_function" href="structrev_1_1Pose.html#a9df1859ff4d1d087044e0b20256d2abe">to_relative</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> reference) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> <a class="code hl_function" href="structrev_1_1Pose.html#a32ddc2a4f1bda3cdb0b54b27f1a1a770">to_absolute</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> reference) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="keyword">constexpr</span> Pose(QLength x, QLength y) : <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{x, y}, theta(0_deg) {}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">constexpr</span> Pose(QLength x, QLength y, QAngle angle) : <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{x, y}, theta(angle) {}</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">constexpr</span> Pose(<span class="keyword">const</span> Pose&amp; other) : <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{other.x, other.y}, theta(other.theta) {}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keyword">constexpr</span> Pose() : <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{0_m, 0_m}, theta(0_deg) {}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  Pose <a class="code hl_function" href="structrev_1_1Pose.html#a9df1859ff4d1d087044e0b20256d2abe">to_relative</a>(<span class="keyword">const</span> Pose reference) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  Pose <a class="code hl_function" href="structrev_1_1Pose.html#a32ddc2a4f1bda3cdb0b54b27f1a1a770">to_absolute</a>(<span class="keyword">const</span> Pose reference) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> operator==(<a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> lhs, <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> rhs) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="comment">// 1 degree precision should be enough</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">if</span> (abs(lhs.theta - rhs.theta) &gt; 1_deg)</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordflow">return</span> ((<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>)lhs == (<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>)rhs);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}  <span class="comment">// namespace rev</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> operator==(<a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> lhs, <a class="code hl_struct" href="structrev_1_1Pose.html">Pose</a> rhs) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// 1 degree precision should be enough</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">if</span> (abs(lhs.theta - rhs.theta) &gt; 1_deg)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">return</span> ((<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>)lhs == (<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>)rhs);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="astructrev_1_1PointVector_html"><div class="ttname"><a href="structrev_1_1PointVector.html">rev::PointVector</a></div><div class="ttdoc">Structure representing a 2D vector on a plane.</div><div class="ttdef"><b>Definition</b> point_vector.hh:11</div></div>
 <div class="ttc" id="astructrev_1_1Pose_html"><div class="ttname"><a href="structrev_1_1Pose.html">rev::Pose</a></div><div class="ttdef"><b>Definition</b> pose.hh:6</div></div>
 <div class="ttc" id="astructrev_1_1Pose_html_a32ddc2a4f1bda3cdb0b54b27f1a1a770"><div class="ttname"><a href="structrev_1_1Pose.html#a32ddc2a4f1bda3cdb0b54b27f1a1a770">rev::Pose::to_absolute</a></div><div class="ttdeci">Pose to_absolute(const Pose reference) const</div><div class="ttdoc">Converts this (relative) pose to an absolute pose using the reference origin.</div><div class="ttdef"><b>Definition</b> pose.cc:33</div></div>

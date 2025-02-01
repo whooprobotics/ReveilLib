@@ -171,6 +171,7 @@ var hierarchy =
     ] ],
     [ "rev::OdometryState", "structrev_1_1OdometryState.html", null ],
     [ "Catch::Option< T >", "classCatch_1_1Option.html", null ],
+    [ "rev::PilonsSegmentParams", "structrev_1_1PilonsSegmentParams.html", null ],
     [ "sciplot::Plot", "classsciplot_1_1Plot.html", [
       [ "sciplot::Plot2D", "classsciplot_1_1Plot2D.html", null ],
       [ "sciplot::Plot3D", "classsciplot_1_1Plot3D.html", null ]
@@ -187,7 +188,8 @@ var hierarchy =
       [ "rev::PurePursuitSegment", "classrev_1_1PurePursuitSegment.html", [
         [ "rev::BezierSegment", "classrev_1_1BezierSegment.html", null ],
         [ "rev::StraightSegments", "classrev_1_1StraightSegments.html", null ]
-      ] ]
+      ] ],
+      [ "rev::RecklessTurnSegment", "classrev_1_1RecklessTurnSegment.html", null ]
     ] ],
     [ "Catch::RegistrarForTagAliases", "structCatch_1_1RegistrarForTagAliases.html", null ],
     [ "Catch::ResultDisposition", "structCatch_1_1ResultDisposition.html", null ],

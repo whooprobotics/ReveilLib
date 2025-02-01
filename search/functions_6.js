@@ -7,7 +7,7 @@ var searchData=
   ['get_5fstatus_4',['get_status',['../classrev_1_1Reckless.html#ad97df2c630feadfff50af62e01d7572f',1,'rev::Reckless']]],
   ['get_5fstop_5fstate_5',['get_stop_state',['../classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485',1,'rev::SimpleStop']]],
   ['gnuplot_6',['gnuplot',['../classsciplot_1_1Plot.html#a4fe83f38dc8db29c6c51b6fdcb96f71f',1,'sciplot::Plot']]],
-  ['go_7',['go',['../classrev_1_1Reckless.html#aeb44939304008acb11f0249067698b7d',1,'rev::Reckless']]],
+  ['go_7',['go',['../classrev_1_1Reckless.html#aeb44939304008acb11f0249067698b7d',1,'rev::Reckless::go(RecklessPath path)'],['../classrev_1_1Reckless.html#a573706f95a32899fbd8f3abb809be4a6',1,'rev::Reckless::go(std::initializer_list&lt; std::shared_ptr&lt; RecklessSegment &gt; &gt; path)']]],
   ['grid_8',['grid',['../classsciplot_1_1Plot.html#ae4d0091628c50ef526ea02b8548db11d',1,'sciplot::Plot']]],
   ['gridspecs_9',['GridSpecs',['../classsciplot_1_1GridSpecs.html#af5c356d42c2cb5e1cfb7cd92842004ea',1,'sciplot::GridSpecs']]],
   ['gridspecsbase_10',['GridSpecsBase',['../classsciplot_1_1GridSpecsBase.html#a0cb3170cb69aeef26f84f4648f609e97',1,'sciplot::GridSpecsBase']]]
