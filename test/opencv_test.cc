@@ -144,14 +144,14 @@ TEST(Autons, knuckles1){ //AWP-Simple Autonomous
   AsyncRunner reckless_runner(reckless);
   cout << "Made reckless runner" << endl;
 
-  // DRIVE TO START POINT (0.75_ft, 8_ft, -90_deg)
+  // DRIVE TO START POINT (0.75_ft, 7_ft, -90_deg)
   reckless->go(RecklessPath()
                    .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
                        std::make_shared<PilonsCorrection>(2, 0.5_in),
                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {0.75_ft, 8_ft, -90_deg}, 0_in)
+                       {0.75_ft, 7_ft, -90_deg}, 0_in)
                                     ));
   reckless->await();
 
@@ -172,6 +172,7 @@ TEST(Autons, knuckles1){ //AWP-Simple Autonomous
 
   update_robor_points(reckless, sim);
   // clamp mogo/ mogo rush @ progress = 1
+  // spin conveyor @ progress = 1.5
   // intake @ progress = 1.5 -> 2
   // spin conveyor @ progress = 2
 
@@ -190,6 +191,90 @@ TEST(Autons, knuckles1){ //AWP-Simple Autonomous
                         {3.75_ft, 9_ft, 45_deg}, 0_in))
                       );
   update_robor_points(reckless, sim);
+  // intake @ progress = 1.5 -> 2
+  // spin conveyor @ progress = 2
+
+  reckless->go(RecklessPath()
+                    .with_segment(PilonsSegment( //3.5 -> back up
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {3_ft, 8.75_ft, 90_deg}, 0_in))
+                    .with_segment(PilonsSegment( //4 -> bottom of ladder towards opposite positive corner
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {5.5_ft, 7_ft, 135_deg}, 0_in))
+                      );
+  update_robor_points(reckless, sim);
+
+  display_robor_path(robor_points);
+
+}
+
+TEST(Autons, knuckles2){ //AWP-Aggressive Autonomous
+  cout << "Beginning" << endl;
+  auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
+                                            20_Hz, 20_Hz);
+
+  AsyncRunner simrunner1(sim);
+  cout << "Made simrunner" << endl;
+
+  std::shared_ptr<rev::Reckless> reckless =
+      std::make_shared<Reckless>(sim, sim);
+  cout << "Made reckless" << endl;
+
+  AsyncRunner reckless_runner(reckless);
+  cout << "Made reckless runner" << endl;
+
+  // DRIVE TO START POINT (2_ft, 7_ft, -90_deg)
+  reckless->go(RecklessPath()
+                   .with_segment(PilonsSegment(
+                       std::make_shared<CascadingMotion>(1, kP, kB,
+                                                         60_in / second, 0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                       {2_ft, 7_ft, -90_deg}, 0_in)
+                                    ));
+  reckless->await();
+
+  reckless->go(RecklessPath()
+                   .with_segment(PilonsSegment( //1 -> rush middle mobile goal
+                       std::make_shared<CascadingMotion>(1, kP, kB,
+                                                         60_in / second, 0.07),
+                       std::make_shared<PilonsCorrection>(2, 0.5_in),
+                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                       {6_ft, 6_ft, -45_deg}, 0_in))
+                    .with_segment(PilonsSegment( //1.5 -> relocalize/backup towards alliance stake, change to path then turnsegment??
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {1_ft, 8_ft, 180_deg}, 0_in))
+                    .with_segment(PilonsSegment( //2 -> alliance stake
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {1_ft, 7_ft, 220_deg}, 0_in))
+                      );
+
+  update_robor_points(reckless, sim);
+  // clamp mogo/ mogo rush @ progress = 1
+  // extend ladybrown @ progress = 2
+
+  reckless->go(RecklessPath()
+                    .with_segment(PilonsSegment( //3 -> ring next to alliance mogo
+                        std::make_shared<CascadingMotion>(1, kP, kB,
+                                                          60_in / second, 0.07),
+                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+                        {3.75_ft, 9_ft, 45_deg}, 0_in))
+                      );
+  update_robor_points(reckless, sim);
+  // pull down ladybrown @ progress = 0
   // intake @ progress = 1.5 -> 2
   // spin conveyor @ progress = 2
 
