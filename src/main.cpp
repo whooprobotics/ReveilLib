@@ -35,8 +35,8 @@ void opcontrol() {
   // controller.print(0, 0, "furk");
   // test_motor.move_voltage(12000);
   pros::delay(2000);
-  std::shared_ptr<rev::TwoRotationInertialOdometry> odom =
-      std::make_shared<rev::TwoRotationInertialOdometry>(
+  std::shared_ptr<rev::TwoRotationInertialOdometry45Degrees> odom =
+      std::make_shared<rev::TwoRotationInertialOdometry45Degrees>(
           fwd, rgt, imu, 2.09_in, 2.75_in, 4.75_in, 0.5_in);
   
   odom->set_position({1.5_ft, 10.5_ft, 135_deg});

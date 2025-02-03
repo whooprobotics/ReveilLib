@@ -20,6 +20,7 @@
 // Odometry
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
+#include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
 
 // Reckless
 #include "rev/api/alg/reckless/path.hh"
