@@ -3,8 +3,7 @@
 #include "rev/api/hardware/chassis/skid_steer_chassis.hh"
 
 namespace rev {
-SkidSteerChassis::SkidSteerChassis(pros::MotorGroup& ileft,
-                                   pros::MotorGroup& iright)
+SkidSteerChassis::SkidSteerChassis(rev::AnyMotor& ileft, rev::AnyMotor& iright)
     : left(&ileft), right(&iright) {}
 
 void SkidSteerChassis::drive_tank(double leftv, double rightv) {
@@ -25,13 +24,13 @@ void SkidSteerChassis::drive_arcade(double forward, double yaw) {
 }
 
 void SkidSteerChassis::set_brake_harsh() {
-  left->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
-  right->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
+  left->set_brake_mode(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
+  right->set_brake_mode(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
 }
 
 void SkidSteerChassis::set_brake_coast() {
-  left->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
-  right->set_brake_modes(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
+  left->set_brake_mode(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
+  right->set_brake_mode(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
 }
 
 void SkidSteerChassis::stop() {

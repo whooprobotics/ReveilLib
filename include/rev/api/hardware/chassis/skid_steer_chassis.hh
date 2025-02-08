@@ -2,6 +2,7 @@
 
 #include "api.h"
 #include "rev/api/hardware/chassis/chassis.hh"
+#include "rev/api/hardware/motor/any_motor.hh"
 
 namespace rev {
 /**
@@ -20,7 +21,7 @@ class SkidSteerChassis : public Chassis {
    * positive voltage to these should cause the right side of the chassis to
    * move forward.
    */
-  SkidSteerChassis(pros::MotorGroup& ileft, pros::MotorGroup& iright);
+  SkidSteerChassis(rev::AnyMotor& ileft, rev::AnyMotor& iright);
 
   void drive_tank(double leftv, double rightv) override;
   void drive_arcade(double forward, double yaw) override;
@@ -39,7 +40,7 @@ class SkidSteerChassis : public Chassis {
   void stop() override;
 
  private:
-  pros::MotorGroup* left;
-  pros::MotorGroup* right;
+  rev::AnyMotor* left;
+  rev::AnyMotor* right;
 };
 }  // namespace rev
