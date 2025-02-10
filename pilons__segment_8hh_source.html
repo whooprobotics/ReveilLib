@@ -104,7 +104,7 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;rev/api/alg/reckless/path.hh&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>rev{</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a>{</div>
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structrev_1_1PilonsSegmentParams.html">    8</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  std::shared_ptr&lt;Motion&gt; motion;</div>
@@ -119,8 +119,8 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  std::shared_ptr&lt;Correction&gt; correction;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  std::shared_ptr&lt;Stop&gt; stop;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  Position start_point;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  Position target_point;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_point;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  QLength drop_early;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_struct" href="structrev_1_1SegmentStatus.html">SegmentStatus</a> last_status{<a class="code hl_function" href="structrev_1_1SegmentStatus.html#a2a65423386880f8a0f4127aa32561d0a">SegmentStatus::drive</a>(0, 0)};</div>
@@ -129,7 +129,7 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  PilonsSegment(std::shared_ptr&lt;Motion&gt; imotion,</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                      std::shared_ptr&lt;Correction&gt; icorrection,</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                      std::shared_ptr&lt;Stop&gt; istop,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                      Position itarget_point,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                      <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_point,</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                      QLength idrop_early = 0 * inch)</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      : motion(imotion),</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        correction(icorrection),</div>
@@ -139,7 +139,7 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    start_point = {0_in, 0_in, 0_deg};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  PilonsSegment(<a class="code hl_struct" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> iparams, Position itarget_point, QLength idrop_early = 0*inch) :</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  PilonsSegment(<a class="code hl_struct" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> iparams, <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_point, QLength idrop_early = 0*inch) :</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        motion(iparams.motion),</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        correction(iparams.correction),</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        stop(iparams.stop),</div>
@@ -158,7 +158,7 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> std::shared_ptr&lt;PilonsSegment&gt;(<span class="keyword">this</span>);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">static</span> std::shared_ptr&lt;PilonsSegment&gt; create(<a class="code hl_struct" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> params, Position target_point, QLength drop_early = 0*inch) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">static</span> std::shared_ptr&lt;PilonsSegment&gt; create(<a class="code hl_struct" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> params, <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point, QLength drop_early = 0*inch) {</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> std::make_shared&lt;PilonsSegment&gt;(params, target_point, drop_early);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
@@ -168,6 +168,8 @@ $(function(){initNavTree('pilons__segment_8hh_source.html',''); initResizable(tr
 <div class="ttc" id="aclassrev_1_1PilonsSegment_html_a7e4bafaa3953ff236cddada61fdc3eb4"><div class="ttname"><a href="classrev_1_1PilonsSegment.html#a7e4bafaa3953ff236cddada61fdc3eb4">rev::PilonsSegment::clean_up</a></div><div class="ttdeci">void clean_up() override</div><div class="ttdoc">Clean-up.</div><div class="ttdef"><b>Definition</b> pilons_segment.cc:43</div></div>
 <div class="ttc" id="aclassrev_1_1PilonsSegment_html_aa6b3b674d53d1016ade8b4c0b3abfabf"><div class="ttname"><a href="classrev_1_1PilonsSegment.html#aa6b3b674d53d1016ade8b4c0b3abfabf">rev::PilonsSegment::init</a></div><div class="ttdeci">void init(OdometryState initial_state) override</div><div class="ttdoc">Initialize the path segment.</div><div class="ttdef"><b>Definition</b> pilons_segment.cc:6</div></div>
 <div class="ttc" id="aclassrev_1_1RecklessSegment_html"><div class="ttname"><a href="classrev_1_1RecklessSegment.html">rev::RecklessSegment</a></div><div class="ttdoc">Interface for path segments to be used with the Reckless controller.</div><div class="ttdef"><b>Definition</b> segment.hh:76</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
 <div class="ttc" id="astructrev_1_1PilonsSegmentParams_html"><div class="ttname"><a href="structrev_1_1PilonsSegmentParams.html">rev::PilonsSegmentParams</a></div><div class="ttdoc">Parameters for a PilonsSegment.</div><div class="ttdef"><b>Definition</b> pilons_segment.hh:8</div></div>
 <div class="ttc" id="astructrev_1_1SegmentStatus_html"><div class="ttname"><a href="structrev_1_1SegmentStatus.html">rev::SegmentStatus</a></div><div class="ttdef"><b>Definition</b> segment.hh:11</div></div>

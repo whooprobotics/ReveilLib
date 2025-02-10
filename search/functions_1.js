@@ -18,5 +18,6 @@ var searchData=
   ['bottomrightfront_15',['bottomRightFront',['../classsciplot_1_1BorderSpecs.html#ac0b38ee1cca3c17376e96e8624966024',1,'sciplot::BorderSpecs']]],
   ['boxwidthabsolute_16',['boxWidthAbsolute',['../classsciplot_1_1Plot.html#aafa8ebb81d2dba61ae0a0d56b6634584',1,'sciplot::Plot']]],
   ['boxwidthrelative_17',['boxWidthRelative',['../classsciplot_1_1Plot.html#a293bdeda3dd7333e2e36dea499d4ceaf',1,'sciplot::Plot']]],
-  ['breakout_18',['breakout',['../classrev_1_1Reckless.html#ac024208d41885c83f2126c5759e736e8',1,'rev::Reckless']]]
+  ['brake_18',['brake',['../classrev_1_1AnyMotor.html#a249de5d2bb6eb6a6401d587a710d1228',1,'rev::AnyMotor::brake()'],['../classrev_1_1Motor.html#a5602a3560b3850ab8a543f3847c310e5',1,'rev::Motor::brake()'],['../classrev_1_1MotorGroup.html#a1099094f32b6a485fcbb5afbfe3cdaf3',1,'rev::MotorGroup::brake()']]],
+  ['breakout_19',['breakout',['../classrev_1_1Reckless.html#ac024208d41885c83f2126c5759e736e8',1,'rev::Reckless']]]
 ];

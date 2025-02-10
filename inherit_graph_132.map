@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,13,192,38"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1TitleSpecsOf.html" title=" " alt="" coords="240,5,381,46"/>
-<area shape="poly" id="edge178_Node000000_Node000001" title=" " alt="" coords="207,23,239,23,239,28,207,28"/>
-<area shape="rect" id="Node000002" href="$classsciplot_1_1TitleSpecs.html" title="The class used to specify title options." alt="" coords="429,13,556,38"/>
-<area shape="poly" id="edge179_Node000001_Node000002" title=" " alt="" coords="397,23,429,23,429,28,397,28"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,181,46"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="229,5,378,46"/>
+<area shape="poly" id="edge180_Node000000_Node000001" title=" " alt="" coords="196,23,229,23,229,28,196,28"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TicsSpecsMinor.html" title="The class used to specify options for minor tics of a specific axis." alt="" coords="426,13,585,38"/>
+<area shape="poly" id="edge181_Node000001_Node000002" title=" " alt="" coords="394,23,425,23,425,28,394,28"/>
 </map>

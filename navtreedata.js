@@ -87,6 +87,15 @@ var NAVTREE =
     [ "Code styling & standards for ReveilLib", "md_Style.html", [
       [ "Capitalization", "md_Style.html#autotoc_md60", null ]
     ] ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -111,10 +120,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AxisLabelSpecs_8hpp_source.html",
-"classrev_1_1PilonsSegment.html#aa6b3b674d53d1016ade8b4c0b3abfabf",
-"classsciplot_1_1LegendSpecs.html#adb3996158b6aa80957a2e14092598427",
-"classsciplot_1_1TitleSpecsOf.html",
-"structCatch_1_1SectionEndInfo.html"
+"classrev_1_1BezierSegment.html",
+"classrev_1_1RecklessTurnSegment.html#aebb8d5f2a10232fc17757756503e481b",
+"classsciplot_1_1LegendSpecs.html#aa1e77cfe8a475fb8376e02943bbc0803",
+"classsciplot_1_1TicsSpecsMinor.html",
+"structCatch_1_1IMutableContext.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

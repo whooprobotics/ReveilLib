@@ -107,7 +107,7 @@ $(function(){initNavTree('simple__stop_8hh_source.html',''); initResizable(true)
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;pros/rtos.hpp&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
 <div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classrev_1_1SimpleStop.html">   13</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1SimpleStop.html#ab7b767a6128fe5648fcaecb728ad90c3">SimpleStop</a> : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1Stop.html">Stop</a> {</div>
@@ -122,8 +122,8 @@ $(function(){initNavTree('simple__stop_8hh_source.html',''); initResizable(true)
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>             QTime itimeout);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  stop_state <a class="code hl_function" href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">get_stop_state</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                            Position target_state,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                            Position start_state,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                            <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_state,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                            <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_state,</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                            QLength drop_early) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordtype">double</span> get_coast_power() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
@@ -142,6 +142,8 @@ $(function(){initNavTree('simple__stop_8hh_source.html',''); initResizable(true)
 <div class="ttc" id="aclassrev_1_1SimpleStop_html_a6f49d52e7d9ae73b407fbd0e0e09f485"><div class="ttname"><a href="classrev_1_1SimpleStop.html#a6f49d52e7d9ae73b407fbd0e0e09f485">rev::SimpleStop::get_stop_state</a></div><div class="ttdeci">stop_state get_stop_state(OdometryState current_state, Position target_state, Position start_state, QLength drop_early) override</div><div class="ttdoc">Find the current stop state.</div><div class="ttdef"><b>Definition</b> simple_stop.cc:23</div></div>
 <div class="ttc" id="aclassrev_1_1SimpleStop_html_ab7b767a6128fe5648fcaecb728ad90c3"><div class="ttname"><a href="classrev_1_1SimpleStop.html#ab7b767a6128fe5648fcaecb728ad90c3">rev::SimpleStop::SimpleStop</a></div><div class="ttdeci">SimpleStop(QTime iharsh_threshold, QTime icoast_threshold, double icoast_power)</div><div class="ttdoc">Construct a new Simple Stop controller.</div><div class="ttdef"><b>Definition</b> simple_stop.cc:7</div></div>
 <div class="ttc" id="aclassrev_1_1Stop_html"><div class="ttname"><a href="classrev_1_1Stop.html">rev::Stop</a></div><div class="ttdoc">Interface for stop controllers.</div><div class="ttdef"><b>Definition</b> stop.hh:13</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

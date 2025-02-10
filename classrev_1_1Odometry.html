@@ -114,13 +114,15 @@ Inheritance diagram for rev::Odometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Odometry__inherit__graph.png" border="0" usemap="#arev_1_1Odometry_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Odometry_inherit__map" id="arev_1_1Odometry_inherit__map">
-<area shape="rect" title="Interface for odometry implementations." alt="" coords="93,5,194,31"/>
-<area shape="rect" href="classrev_1_1ChassisSim.html" title=" " alt="" coords="6,86,121,112"/>
-<area shape="poly" title=" " alt="" coords="123,44,78,88,74,84,119,40"/>
-<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="145,79,302,120"/>
-<area shape="poly" title=" " alt="" coords="168,40,206,77,202,81,165,44"/>
-<area shape="rect" href="classrev_1_1DriftlessSim.html" title=" " alt="" coords="5,168,122,193"/>
-<area shape="poly" title=" " alt="" coords="66,128,66,167,61,167,61,128"/>
+<area shape="rect" title="Interface for odometry implementations." alt="" coords="5,63,107,88"/>
+<area shape="rect" href="classrev_1_1ChassisSim.html" title=" " alt="" coords="176,5,291,31"/>
+<area shape="poly" title=" " alt="" coords="112,55,154,41,190,29,192,34,155,46,113,60"/>
+<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="155,55,312,96"/>
+<area shape="poly" title=" " alt="" coords="122,73,154,73,154,78,122,78"/>
+<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine..." alt="" coords="155,120,312,161"/>
+<area shape="poly" title=" " alt="" coords="108,92,177,117,175,122,106,97"/>
+<area shape="rect" href="classrev_1_1DriftlessSim.html" title=" " alt="" coords="360,5,476,31"/>
+<area shape="poly" title=" " alt="" coords="306,16,360,16,360,21,306,21"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -129,7 +131,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a113f45340e8c6c617816697219cd89b2" id="r_a113f45340e8c6c617816697219cd89b2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structrev_1_1OdometryState.html">OdometryState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a113f45340e8c6c617816697219cd89b2">get_state</a> ()=0</td></tr>
 <tr class="memdesc:a113f45340e8c6c617816697219cd89b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position and velocity of the robot.  <br /></td></tr>
 <tr class="separator:a113f45340e8c6c617816697219cd89b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6526e22622433028e0914556058920b6" id="r_a6526e22622433028e0914556058920b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6526e22622433028e0914556058920b6">set_position</a> (<a class="el" href="structrev_1_1Pose.html">Position</a> pos)=0</td></tr>
+<tr class="memitem:a6526e22622433028e0914556058920b6" id="r_a6526e22622433028e0914556058920b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6526e22622433028e0914556058920b6">set_position</a> (<a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> pos)=0</td></tr>
 <tr class="memdesc:a6526e22622433028e0914556058920b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the position of the controller.  <br /></td></tr>
 <tr class="separator:a6526e22622433028e0914556058920b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbe2e01144f6ebee320423b92b4d4a8a" id="r_acbe2e01144f6ebee320423b92b4d4a8a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbe2e01144f6ebee320423b92b4d4a8a">reset_position</a> ()=0</td></tr>
@@ -165,7 +167,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current position and velocity of the robot. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1OdometryState.html" title="A structure packaging a velocity and position into one.">OdometryState</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#abf6a2fa4aeb94c0bd0be804e6d6a4d2a">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>
@@ -195,7 +197,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the position to (0,0) </p>
 <p>THIS WILL ALSO RESET HEADING, WHICH YOU MIGHT NOT WANT </p>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#a1dfa56f5a266b48bb22929d9b1d01edc">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>
@@ -211,7 +213,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void rev::Odometry::set_position </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structrev_1_1Pose.html">Position</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -230,7 +232,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#aa7755e5da1b3c53d1e769797c398bde4">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>
@@ -242,7 +244,7 @@ Public Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>rev</b></li><li class="navelem"><a class="el" href="classrev_1_1Odometry.html">Odometry</a></li>
+    <li class="navelem"><a class="el" href="namespacerev.html">rev</a></li><li class="navelem"><a class="el" href="classrev_1_1Odometry.html">Odometry</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

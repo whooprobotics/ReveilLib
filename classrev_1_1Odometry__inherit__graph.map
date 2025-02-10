@@ -1,9 +1,11 @@
 <map id="rev::Odometry" name="rev::Odometry">
-<area shape="rect" id="Node000001" title="Interface for odometry implementations." alt="" coords="93,5,194,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1ChassisSim.html" title=" " alt="" coords="6,86,121,112"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,44,78,88,74,84,119,40"/>
-<area shape="rect" id="Node000004" href="$classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="145,79,302,120"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,40,206,77,202,81,165,44"/>
-<area shape="rect" id="Node000003" href="$classrev_1_1DriftlessSim.html" title=" " alt="" coords="5,168,122,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="66,128,66,167,61,167,61,128"/>
+<area shape="rect" id="Node000001" title="Interface for odometry implementations." alt="" coords="5,63,107,88"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1ChassisSim.html" title=" " alt="" coords="176,5,291,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,55,154,41,190,29,192,34,155,46,113,60"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="155,55,312,96"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="122,73,154,73,154,78,122,78"/>
+<area shape="rect" id="Node000005" href="$classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine..." alt="" coords="155,120,312,161"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="108,92,177,117,175,122,106,97"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1DriftlessSim.html" title=" " alt="" coords="360,5,476,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="306,16,360,16,360,21,306,21"/>
 </map>

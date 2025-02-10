@@ -117,7 +117,7 @@ $(function(){initNavTree('straight__lines_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="main_8h.html">main.h</a>&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;rev/api/alg/drive/stop/simple_stop.hh&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classrev_1_1StraightSegments.html">   19</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1StraightSegments.html#a3d68c9b197dab61e243abf601c412547">StraightSegments</a> : <span class="keyword">public</span> <a class="code hl_function" href="classrev_1_1PurePursuitSegment.html#a19ef48cfc971940e58cf2a6af549d56a">PurePursuitSegment</a> {</div>
@@ -143,8 +143,8 @@ $(function(){initNavTree('straight__lines_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  std::shared_ptr&lt;Stop&gt; stop;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  std::vector&lt;PointVector&gt; path_points;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  Position target_point;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  Position final_point;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> final_point;</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  QLength wheelbase;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  QLength look_ahead_distance;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
@@ -165,6 +165,8 @@ $(function(){initNavTree('straight__lines_8hh_source.html',''); initResizable(tr
 <div class="ttc" id="aclassrev_1_1StraightSegments_html_a37548592ae57a824000adce7b973385f"><div class="ttname"><a href="classrev_1_1StraightSegments.html#a37548592ae57a824000adce7b973385f">rev::StraightSegments::generate_waypoints</a></div><div class="ttdeci">std::vector&lt; PointVector &gt; generate_waypoints() override</div><div class="ttdoc">Generate the Bezier curve waypoints based on control points.</div><div class="ttdef"><b>Definition</b> straight_lines.cc:28</div></div>
 <div class="ttc" id="aclassrev_1_1StraightSegments_html_a3d68c9b197dab61e243abf601c412547"><div class="ttname"><a href="classrev_1_1StraightSegments.html#a3d68c9b197dab61e243abf601c412547">rev::StraightSegments::StraightSegments</a></div><div class="ttdeci">StraightSegments(std::shared_ptr&lt; Motion &gt; imotion, std::shared_ptr&lt; Correction &gt; icorrection, std::shared_ptr&lt; Stop &gt; istop, std::vector&lt; PointVector &gt; path_points, std::tuple&lt; double, double, double &gt; pid_constants, QLength wheelbase, std::size_t resolution=0, QLength look_ahead_distance=6_in)</div><div class="ttdoc">Make a new Straight Segment.</div><div class="ttdef"><b>Definition</b> straight_lines.cc:6</div></div>
 <div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

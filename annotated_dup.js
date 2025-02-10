@@ -162,7 +162,8 @@ var annotated_dup =
       [ "WaitForKeypress", "structCatch_1_1WaitForKeypress.html", null ],
       [ "WarnAbout", "structCatch_1_1WarnAbout.html", null ]
     ] ],
-    [ "rev", null, [
+    [ "rev", "namespacerev.html", [
+      [ "AnyMotor", "classrev_1_1AnyMotor.html", "classrev_1_1AnyMotor" ],
       [ "AsyncAwaitable", "classrev_1_1AsyncAwaitable.html", "classrev_1_1AsyncAwaitable" ],
       [ "AsyncRunnable", "classrev_1_1AsyncRunnable.html", "classrev_1_1AsyncRunnable" ],
       [ "AsyncRunner", "classrev_1_1AsyncRunner.html", null ],
@@ -177,6 +178,8 @@ var annotated_dup =
       [ "Correction", "classrev_1_1Correction.html", "classrev_1_1Correction" ],
       [ "DriftlessSim", "classrev_1_1DriftlessSim.html", "classrev_1_1DriftlessSim" ],
       [ "Motion", "classrev_1_1Motion.html", "classrev_1_1Motion" ],
+      [ "Motor", "classrev_1_1Motor.html", "classrev_1_1Motor" ],
+      [ "MotorGroup", "classrev_1_1MotorGroup.html", "classrev_1_1MotorGroup" ],
       [ "NoCorrection", "classrev_1_1NoCorrection.html", "classrev_1_1NoCorrection" ],
       [ "Odometry", "classrev_1_1Odometry.html", "classrev_1_1Odometry" ],
       [ "OdometryState", "structrev_1_1OdometryState.html", null ],
@@ -199,6 +202,7 @@ var annotated_dup =
       [ "StraightSegments", "classrev_1_1StraightSegments.html", "classrev_1_1StraightSegments" ],
       [ "Turn", "classrev_1_1Turn.html", "classrev_1_1Turn" ],
       [ "TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", "classrev_1_1TwoRotationInertialOdometry" ],
+      [ "TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", "classrev_1_1TwoRotationInertialOdometry45Degrees" ],
       [ "Velocity", "structrev_1_1Velocity.html", null ]
     ] ],
     [ "sciplot", null, [

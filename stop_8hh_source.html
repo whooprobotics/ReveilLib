@@ -105,7 +105,7 @@ $(function(){initNavTree('stop_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;rev/api/alg/odometry/odometry.hh&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">enum class</span> stop_state { GO, COAST, BRAKE, EXIT };</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
@@ -113,8 +113,8 @@ $(function(){initNavTree('stop_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classrev_1_1Stop.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Stop.html">Stop</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">virtual</span> stop_state get_stop_state(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                    Position target_state,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                                    Position start_state,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                    <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_state,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                                    <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_state,</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                                    QLength drop_early) = 0;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">virtual</span> <span class="keywordtype">double</span> get_coast_power() = 0;</div>
@@ -123,6 +123,8 @@ $(function(){initNavTree('stop_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="aclassrev_1_1Stop_html"><div class="ttname"><a href="classrev_1_1Stop.html">rev::Stop</a></div><div class="ttdoc">Interface for stop controllers.</div><div class="ttdef"><b>Definition</b> stop.hh:13</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

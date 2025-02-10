@@ -26,5 +26,6 @@ var searchData=
   ['totals_23',['Totals',['../structCatch_1_1Totals.html',1,'Catch']]],
   ['true_5fgiven_24',['true_given',['../structCatch_1_1true__given.html',1,'Catch']]],
   ['turn_25',['Turn',['../classrev_1_1Turn.html',1,'rev']]],
-  ['tworotationinertialodometry_26',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev']]]
+  ['tworotationinertialodometry_26',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev']]],
+  ['tworotationinertialodometry45degrees_27',['TwoRotationInertialOdometry45Degrees',['../classrev_1_1TwoRotationInertialOdometry45Degrees.html',1,'rev']]]
 ];

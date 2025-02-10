@@ -21,5 +21,7 @@ var searchData=
   ['messagebuilder_18',['MessageBuilder',['../structCatch_1_1MessageBuilder.html',1,'Catch']]],
   ['messageinfo_19',['MessageInfo',['../structCatch_1_1MessageInfo.html',1,'Catch']]],
   ['messagestream_20',['MessageStream',['../structCatch_1_1MessageStream.html',1,'Catch']]],
-  ['motion_21',['Motion',['../classrev_1_1Motion.html',1,'rev']]]
+  ['motion_21',['Motion',['../classrev_1_1Motion.html',1,'rev']]],
+  ['motor_22',['Motor',['../classrev_1_1Motor.html',1,'rev']]],
+  ['motorgroup_23',['MotorGroup',['../classrev_1_1MotorGroup.html',1,'rev']]]
 ];

@@ -110,7 +110,7 @@ $(function(){initNavTree('campbell__turn_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;rev/api/async/async_runnable.hh&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;rev/api/hardware/chassis/chassis.hh&quot;</span>  <span class="comment">// For chassis model</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classrev_1_1CampbellTurn.html">   16</a></span><span class="keyword">class </span>CampbellTurn : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1Turn.html">Turn</a>,</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                     <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1AsyncRunnable.html">AsyncRunnable</a>,</div>
@@ -137,7 +137,7 @@ $(function(){initNavTree('campbell__turn_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">double</span> kP1;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">double</span> kP2;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordtype">double</span> max_power = 0;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  TurnState controller_state{TurnState::INACTIVE};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_enumeration" href="namespacerev.html#a232a287f6ef841376c0d57a81f593061">TurnState</a> controller_state{TurnState::INACTIVE};</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  QAngle angle_difference;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  QAngle target_relative_original;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  QAngle target_relative;</div>
@@ -157,6 +157,8 @@ $(function(){initNavTree('campbell__turn_8hh_source.html',''); initResizable(tru
 <div class="ttc" id="aclassrev_1_1CampbellTurn_html_ac335f4a76efe326fb65b017dceb44f6c"><div class="ttname"><a href="classrev_1_1CampbellTurn.html#ac335f4a76efe326fb65b017dceb44f6c">rev::CampbellTurn::is_completed</a></div><div class="ttdeci">bool is_completed()</div><div class="ttdoc">Tells if the controller is working or has completed its motion.</div><div class="ttdef"><b>Definition</b> campbell_turn.cc:150</div></div>
 <div class="ttc" id="aclassrev_1_1CampbellTurn_html_ac8dc791ea744f14e878278af41991e3a"><div class="ttname"><a href="classrev_1_1CampbellTurn.html#ac8dc791ea744f14e878278af41991e3a">rev::CampbellTurn::turn_to_target_absolute</a></div><div class="ttdeci">void turn_to_target_absolute(double max_power, QAngle angle) override</div><div class="ttdoc">Starts a turn towards an absolute heading.</div><div class="ttdef"><b>Definition</b> campbell_turn.cc:22</div></div>
 <div class="ttc" id="aclassrev_1_1Turn_html"><div class="ttname"><a href="classrev_1_1Turn.html">rev::Turn</a></div><div class="ttdoc">Interface for turn controllers.</div><div class="ttdef"><b>Definition</b> turn.hh:10</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
+<div class="ttc" id="anamespacerev_html_a232a287f6ef841376c0d57a81f593061"><div class="ttname"><a href="namespacerev.html#a232a287f6ef841376c0d57a81f593061">rev::TurnState</a></div><div class="ttdeci">TurnState</div><div class="ttdoc">Possible turn controller states.</div><div class="ttdef"><b>Definition</b> turn.hh:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

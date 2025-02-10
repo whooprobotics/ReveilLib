@@ -1,6 +1,10 @@
 var hierarchy =
 [
     [ "sciplot::gnuplot::angle", "structsciplot_1_1gnuplot_1_1angle.html", null ],
+    [ "rev::AnyMotor", "classrev_1_1AnyMotor.html", [
+      [ "rev::Motor", "classrev_1_1Motor.html", null ],
+      [ "rev::MotorGroup", "classrev_1_1MotorGroup.html", null ]
+    ] ],
     [ "Approx", "classApprox.html", null ],
     [ "Catch::Detail::Approx", "classCatch_1_1Detail_1_1Approx.html", null ],
     [ "Catch::Generators::as< T >", "structCatch_1_1Generators_1_1as.html", null ],
@@ -15,7 +19,8 @@ var hierarchy =
       [ "rev::CampbellTurn", "classrev_1_1CampbellTurn.html", null ],
       [ "rev::DriftlessSim", "classrev_1_1DriftlessSim.html", null ],
       [ "rev::Reckless", "classrev_1_1Reckless.html", null ],
-      [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ]
+      [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ],
+      [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::AsyncRunner", "classrev_1_1AsyncRunner.html", null ],
     [ "Canvas", "classCanvas.html", null ],
@@ -167,7 +172,8 @@ var hierarchy =
     ] ],
     [ "rev::Odometry", "classrev_1_1Odometry.html", [
       [ "rev::ChassisSim", "classrev_1_1ChassisSim.html", null ],
-      [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ]
+      [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ],
+      [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::OdometryState", "structrev_1_1OdometryState.html", null ],
     [ "Catch::Option< T >", "classCatch_1_1Option.html", null ],

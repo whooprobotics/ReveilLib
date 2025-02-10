@@ -10,9 +10,13 @@ var searchData=
   ['offsetspecsof_3c_20ticsspecsmajor_20_3e_7',['OffsetSpecsOf&lt; TicsSpecsMajor &gt;',['../classsciplot_1_1OffsetSpecsOf.html',1,'sciplot']]],
   ['opaque_8',['opaque',['../classsciplot_1_1LegendSpecs.html#a149fe074b5f6b111eb6b1b95f49fac9c',1,'sciplot::LegendSpecs']]],
   ['operator_20std_3a_3astring_9',['string',['../classsciplot_1_1Specs.html#ae3dccb4a3311b4ba4d92a75bd0785956',1,'sciplot::Specs']]],
-  ['option_10',['Option',['../classCatch_1_1Option.html',1,'Catch']]],
-  ['origin_11',['origin',['../classsciplot_1_1LayoutSpecsOf.html#a3558b4bc61a5833af7ef91a5b8563901',1,'sciplot::LayoutSpecsOf']]],
-  ['outsidegraph_12',['outsideGraph',['../classsciplot_1_1TicsSpecsBaseOf.html#ad293e674c92c9ad4d572194e8cbbb63d',1,'sciplot::TicsSpecsBaseOf']]],
-  ['overload_13',['Overload',['../structsciplot_1_1Overload.html',1,'sciplot']]],
-  ['overview_14',['Overview',['..//github/workspace/sciplot/README.md#autotoc_md57',1,'']]]
+  ['operator_2a_10',['operator*',['../namespacerev.html#a780d8f94a89386effca9f7f718137dcc',1,'rev::operator*(const PointVector &amp;lhs, const PointVector &amp;rhs)'],['../namespacerev.html#ace15974f111020fdd77bb4390a9bc4e7',1,'rev::operator*(const double lhs, const PointVector &amp;rhs)'],['../namespacerev.html#af55d4bc766d94223b9957a41bae880f2',1,'rev::operator*(const Number &amp;lhs, const PointVector &amp;rhs)']]],
+  ['operator_2b_11',['operator+',['../namespacerev.html#aefe874af86f9888c9e852ed4f9575b07',1,'rev']]],
+  ['operator_2d_12',['operator-',['../namespacerev.html#aaf276f649b5d30d031132a96ef670996',1,'rev']]],
+  ['operator_3d_3d_13',['operator==',['../namespacerev.html#a82863fdef7301daaddc5840d803429a2',1,'rev']]],
+  ['option_14',['Option',['../classCatch_1_1Option.html',1,'Catch']]],
+  ['origin_15',['origin',['../classsciplot_1_1LayoutSpecsOf.html#a3558b4bc61a5833af7ef91a5b8563901',1,'sciplot::LayoutSpecsOf']]],
+  ['outsidegraph_16',['outsideGraph',['../classsciplot_1_1TicsSpecsBaseOf.html#ad293e674c92c9ad4d572194e8cbbb63d',1,'sciplot::TicsSpecsBaseOf']]],
+  ['overload_17',['Overload',['../structsciplot_1_1Overload.html',1,'sciplot']]],
+  ['overview_18',['Overview',['..//github/workspace/sciplot/README.md#autotoc_md57',1,'']]]
 ];
