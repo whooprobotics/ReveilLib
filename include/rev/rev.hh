@@ -14,8 +14,7 @@
 #include "rev/api/alg/drive/stop/stop.hh"
 
 // Turn
-#include "rev/api/alg/drive/turn/campbell_turn.hh"
-#include "rev/api/alg/drive/turn/turn.hh"
+#include "rev/api/alg/reckless/turn_segment.hh"
 
 // Odometry
 #include "rev/api/alg/odometry/odometry.hh"

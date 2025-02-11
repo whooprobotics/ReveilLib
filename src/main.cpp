@@ -57,11 +57,6 @@ void opcontrol() {
 
   AsyncRunner reckless_runner(reckless);
 
-  std::shared_ptr<rev::CampbellTurn> turn =
-      std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
-
-  AsyncRunner turn_runner(turn);
-
   pros::delay(2000);
 
   const double kP = 0.0;
