@@ -46,16 +46,16 @@ TEST(Autons, auton1){
   cout << "Made reckless runner" << endl;
 
   // DRIVE TO START POINT
-  reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {1_ft, 3.5_ft, 0_deg}, 0_in)
-                                    ));
+//   reckless->go(RecklessPath()
+//                    .with_segment(RecklessPathSegment(
+//                        std::make_shared<CascadingMotion>(1, kP, kB,
+//                                                          60_in / second, 0.07),
+//                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+//                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+//                        {1_ft, 3.5_ft, 0_deg}, 0_in)
+//                                     ));
 
-  reckless->await();
+//   reckless->await();
   // END OF DRIVING TO START
   
  reckless->go(RecklessPath()
@@ -71,22 +71,22 @@ TEST(Autons, auton1){
                       )));
   update_robor_points(reckless, sim);
 
-  reckless->go(RecklessPath()
-                   .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
-                       {3_ft, 3_ft, 0_deg}, 0_in)
+//   reckless->go(RecklessPath()
+//                    .with_segment(RecklessPathSegment(
+//                        std::make_shared<CascadingMotion>(1, kP, kB,
+//                                                          60_in / second, 0.07),
+//                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+//                        std::make_shared<SimpleStop>(0_s, 0.2_s, 0.4),
+//                        {3_ft, 3_ft, 0_deg}, 0_in)
 
-                                     )
-                   .with_segment(RecklessPathSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {0_ft, 0_ft, 45_deg}, 0_in))
-                );
+//                                      )
+//                    .with_segment(RecklessPathSegment(
+//                        std::make_shared<CascadingMotion>(1, kP, kB,
+//                                                          60_in / second, 0.07),
+//                        std::make_shared<PilonsCorrection>(2, 0.5_in),
+//                        std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
+//                        {0_ft, 0_ft, 45_deg}, 0_in))
+//                 );
 
 
 
