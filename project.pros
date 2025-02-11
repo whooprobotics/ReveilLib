@@ -308,8 +308,6 @@
         "version": "4.8.0"
       }
     },
-    "upload_options": {
-      "slot": 5
-    }
+    "upload_options": {}
   }
 }

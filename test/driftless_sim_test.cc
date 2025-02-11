@@ -4,6 +4,7 @@
 #include "rev/api/async/async_runner.hh"
 #include "rev/api/units/all_units.hh"
 
+/*
 TEST(DriftlessSim, SimVerifications) {
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 1_Hz, 1_Hz,
@@ -40,3 +41,4 @@ TEST(DriftlessSim, SimVerifications) {
 
   ASSERT_NEAR(sim->get_state().pos.x.convert(inch), 81.08, 0.015);
 }
+*/

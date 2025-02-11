@@ -1,3 +1,4 @@
+#pragma once
 namespace rev {
 /**
  * @brief Implementation of signum
@@ -10,4 +11,5 @@ template <typename T>
 int sgn(T val) {
   return (T(0) < val) - (val < T(0));
 }
+
 }  // namespace rev

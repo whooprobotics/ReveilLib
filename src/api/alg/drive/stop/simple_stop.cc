@@ -25,19 +25,19 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
                                       Position start_state,
                                       QLength drop_early) {
 
-  // Handle timeout if and only if timeout is set
-  if(timeout) {
-    // Only if the initialization time has been set by a previous loop
-    if(time_init) {
-        // Early exit if needed
-        if(pros::millis() > time_init + timeout) {
-          return stop_state::EXIT;
-        }
-    }
-    else {
-      time_init = pros::millis();
-    }
-  }
+  // // Handle timeout if and only if timeout is set
+  // if(timeout) {
+  //   // Only if the initialization time has been set by a previous loop
+  //   if(time_init) {
+  //       // Early exit if needed
+  //       if(pros::millis() > time_init + timeout) {
+  //         return stop_state::EXIT;
+  //       }
+  //   }
+  //   else {
+  //     time_init = pros::millis();
+  //   }
+  // }
                                   
   // Now actually calculate the other stuff
   // For now we will just assume latitudinal distance is negligible

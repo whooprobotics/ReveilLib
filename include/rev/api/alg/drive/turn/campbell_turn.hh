@@ -43,6 +43,12 @@ class CampbellTurn : public Turn,
   void await() override;
 
   /**
+   * @brief Status indicator for await()
+   *
+   */
+  bool is_ready() override;
+
+  /**
    * @brief Tells if the controller is working or has completed its motion
    *
    * @return true if the controller is not doing anything

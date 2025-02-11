@@ -25,3 +25,4 @@ build/
 
 # This is a library
 src/main.cpp
+reveillib@*

@@ -6,44 +6,37 @@
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/reckless/segment.hh"
 
 namespace rev {
-
-/**
- * @brief Path segment for use with Reckless controller
- *
- */
-struct RecklessPathSegment {
-  std::shared_ptr<Motion> motion;
-  std::shared_ptr<Correction> correction;
-  std::shared_ptr<Stop> stop;
-
-  Position start_point;
-  Position target_point;
-  QLength drop_early;
-
-  RecklessPathSegment(std::shared_ptr<Motion> imotion,
-                      std::shared_ptr<Correction> icorrection,
-                      std::shared_ptr<Stop> istop,
-                      Position itarget_point,
-                      QLength idrop_early = 0 * inch)
-      : motion(imotion),
-        correction(icorrection),
-        stop(istop),
-        target_point(itarget_point),
-        drop_early(idrop_early) {
-    start_point = {0_in, 0_in, 0_deg};
-  }
-};
 
 /**
  * @brief Complete path for use with the Reckless Controller
  *
  */
 struct RecklessPath {
-  std::vector<RecklessPathSegment> segments;
+  std::vector<std::shared_ptr<RecklessSegment>> segments;
 
-  RecklessPath() { segments = std::vector<RecklessPathSegment>(); }
-  RecklessPath& with_segment(RecklessPathSegment segment);
+  RecklessPath() { segments = std::vector<std::shared_ptr<RecklessSegment>>(); }
+  explicit RecklessPath(std::initializer_list<std::shared_ptr<RecklessSegment>> seg) {
+    segments = std::vector<std::shared_ptr<RecklessSegment>>();
+
+    for (auto& s : seg) {
+      segments.push_back(s);
+    }
+  }
+  /**
+   * @brief Add a segment to the path under construction
+   *
+   * @param segment The segment to add
+   * @return RecklessPath& An ongoing path builder
+   */
+  template <typename T>
+  RecklessPath& with_segment(T segment) {
+    static_assert(std::is_base_of<RecklessSegment, T>::value,
+                  "with_segment parameter must implement RecklessSegment");
+    segments.push_back(std::make_shared<T>(segment));
+    return *this;
+  }
 };
 }  // namespace rev

@@ -7,6 +7,9 @@ on:
     workflows: ["Release candidates", "Releases"]
     types:
       - completed
+  workflow_dispatch:
+    branches:
+      - '*'
 
 
   
