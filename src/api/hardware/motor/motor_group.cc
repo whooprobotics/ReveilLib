@@ -87,34 +87,40 @@ double rev::MotorGroup::get_position(void) const {
 std::int32_t rev::MotorGroup::set_zero_position(const double position) const {
   for (Motor m : motors)
     m.set_zero_position(position);
+  return 0;
 }
 
 std::int32_t rev::MotorGroup::tare_position(void) const {
   for (Motor m : motors)
     m.tare_position();
+  return 0;
 }
 
 std::int32_t rev::MotorGroup::set_brake_mode(
     const motor_brake_mode_e_t mode) const {
   for (Motor m : motors)
     m.set_brake_mode(mode);
+  return 0;
 }
 
 std::int32_t rev::MotorGroup::set_encoder_units(
     const motor_encoder_units_e_t units) const {
   for (Motor m : motors)
     m.set_encoder_units(units);
+  return 0;
 }
 
 std::int32_t rev::MotorGroup::set_gearing(
     const motor_gearset_e_t gearset) const {
   for (Motor m : motors)
     m.set_gearing(gearset);
+  return 0;
 }
 
 std::int32_t rev::MotorGroup::set_reversed(const bool reverse) {
   std::cout << "WARNING: set_reversed on rev::MotorGroup does not work"
             << std::endl;
+  return 1;
 }
 
 rev::motor_brake_mode_e_t rev::MotorGroup::get_brake_mode(void) const {
