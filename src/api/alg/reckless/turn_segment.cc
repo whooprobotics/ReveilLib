@@ -1,6 +1,5 @@
 #include "rev/api/alg/reckless/turn_segment.hh"
 #include "api.h"
-#include "rev/api/alg/drive/turn/turn.hh"
 #include "rev/api/units/q_time.hh"
 
 namespace rev {
@@ -29,7 +28,6 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
   angle_goal =
       angle_goal -
       360 * std::floor((angle_goal.convert(degree) + 180) / 360) * degree;
-
 
   angle_difference = angle_goal - initial_state.pos.theta;
 
@@ -110,8 +108,8 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
         brake_start_time = pros::millis();
       } else if (brake_start_time < pros::millis() - brake_time ||
                  fabs(current_state.vel.angular.convert(degree / second)) <=
-                     0.25) {    // Check if brake_time ms has elapsed
-        brake_start_time = -1;  // reset for next run
+                     0.25) {           // Check if brake_time ms has elapsed
+        brake_start_time = -1;         // reset for next run
         return SegmentStatus::next();  // move onto next Segment
         break;                         // Drew told me to
       }
