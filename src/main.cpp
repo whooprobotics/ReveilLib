@@ -1,6 +1,8 @@
 #include "main.h"
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/alg/reckless/turn_segment.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
 // #include <iostream>
