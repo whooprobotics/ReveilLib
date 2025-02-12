@@ -26,7 +26,6 @@ add_executable(ReveilLib
         src/api/alg/drive/motion/cascading_motion.cc
         src/api/alg/drive/motion/proportional_motion.cc
         src/api/alg/drive/motion/constant_motion.cc
-        src/api/alg/drive/turn/campbell_turn.cc
         src/api/alg/reckless/turn_segment.cc
         src/api/alg/drive/stop/simple_stop.cc
         src/api/alg/drive/correction/pilons_correction.cc
