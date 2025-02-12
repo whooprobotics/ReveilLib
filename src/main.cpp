@@ -1,6 +1,8 @@
 #include "main.h"
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/alg/reckless/turn_segment.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
 // #include <iostream>
@@ -56,11 +58,6 @@ void opcontrol() {
       std::make_shared<Reckless>(chassis, odom);
 
   AsyncRunner reckless_runner(reckless);
-
-  std::shared_ptr<rev::CampbellTurn> turn =
-      std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
-
-  AsyncRunner turn_runner(turn);
 
   pros::delay(2000);
 
