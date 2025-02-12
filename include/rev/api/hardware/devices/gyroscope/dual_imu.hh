@@ -4,11 +4,11 @@
 
 namespace rev {
 
-class DualImu : Gyroscope {
+class DualImu : public Gyroscope {
   public:
     DualImu(int port1, int port2);
-    double get_heading();
-    bool is_calibrating();
+    double get_heading() override;
+    bool is_calibrating() override;
   private:
     pros::Imu inertial1;
     pros::Imu inertial2;
