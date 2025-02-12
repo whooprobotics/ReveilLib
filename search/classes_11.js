@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['unaryexpr_0',['UnaryExpr',['../classCatch_1_1UnaryExpr.html',1,'Catch']]],
-  ['unorderedequalsmatcher_1',['UnorderedEqualsMatcher',['../structCatch_1_1Matchers_1_1Vector_1_1UnorderedEqualsMatcher.html',1,'Catch::Matchers::Vector']]],
-  ['usecolour_2',['UseColour',['../structCatch_1_1UseColour.html',1,'Catch']]]
+  ['takegenerator_0',['TakeGenerator',['../classCatch_1_1Generators_1_1TakeGenerator.html',1,'Catch::Generators']]],
+  ['testcase_1',['TestCase',['../classCatch_1_1TestCase.html',1,'Catch']]],
+  ['testcaseinfo_2',['TestCaseInfo',['../structCatch_1_1TestCaseInfo.html',1,'Catch']]],
+  ['testfailureexception_3',['TestFailureException',['../structCatch_1_1TestFailureException.html',1,'Catch']]],
+  ['testinvokerasmethod_4',['TestInvokerAsMethod',['../classCatch_1_1TestInvokerAsMethod.html',1,'Catch']]],
+  ['textspecs_5',['TextSpecs',['../classsciplot_1_1TextSpecs.html',1,'sciplot']]],
+  ['textspecsof_6',['TextSpecsOf',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['textspecsof_3c_20axislabelspecs_20_3e_7',['TextSpecsOf&lt; AxisLabelSpecs &gt;',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['textspecsof_3c_20legendspecs_20_3e_8',['TextSpecsOf&lt; LegendSpecs &gt;',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['textspecsof_3c_20textspecs_20_3e_9',['TextSpecsOf&lt; TextSpecs &gt;',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['textspecsof_3c_20ticsspecs_20_3e_10',['TextSpecsOf&lt; TicsSpecs &gt;',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['textspecsof_3c_20ticsspecsmajor_20_3e_11',['TextSpecsOf&lt; TicsSpecsMajor &gt;',['../classsciplot_1_1TextSpecsOf.html',1,'sciplot']]],
+  ['ticsspecs_12',['TicsSpecs',['../classsciplot_1_1TicsSpecs.html',1,'sciplot']]],
+  ['ticsspecsbaseof_13',['TicsSpecsBaseOf',['../classsciplot_1_1TicsSpecsBaseOf.html',1,'sciplot']]],
+  ['ticsspecsbaseof_3c_20ticsspecs_20_3e_14',['TicsSpecsBaseOf&lt; TicsSpecs &gt;',['../classsciplot_1_1TicsSpecsBaseOf.html',1,'sciplot']]],
+  ['ticsspecsbaseof_3c_20ticsspecsmajor_20_3e_15',['TicsSpecsBaseOf&lt; TicsSpecsMajor &gt;',['../classsciplot_1_1TicsSpecsBaseOf.html',1,'sciplot']]],
+  ['ticsspecsmajor_16',['TicsSpecsMajor',['../classsciplot_1_1TicsSpecsMajor.html',1,'sciplot']]],
+  ['ticsspecsminor_17',['TicsSpecsMinor',['../classsciplot_1_1TicsSpecsMinor.html',1,'sciplot']]],
+  ['timer_18',['Timer',['../classCatch_1_1Timer.html',1,'Catch']]],
+  ['titlespecs_19',['TitleSpecs',['../classsciplot_1_1TitleSpecs.html',1,'sciplot']]],
+  ['titlespecsof_20',['TitleSpecsOf',['../classsciplot_1_1TitleSpecsOf.html',1,'sciplot']]],
+  ['titlespecsof_3c_20legendspecs_20_3e_21',['TitleSpecsOf&lt; LegendSpecs &gt;',['../classsciplot_1_1TitleSpecsOf.html',1,'sciplot']]],
+  ['titlespecsof_3c_20titlespecs_20_3e_22',['TitleSpecsOf&lt; TitleSpecs &gt;',['../classsciplot_1_1TitleSpecsOf.html',1,'sciplot']]],
+  ['totals_23',['Totals',['../structCatch_1_1Totals.html',1,'Catch']]],
+  ['true_5fgiven_24',['true_given',['../structCatch_1_1true__given.html',1,'Catch']]],
+  ['tworotationinertialodometry_25',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev']]],
+  ['tworotationinertialodometry45degrees_26',['TwoRotationInertialOdometry45Degrees',['../classrev_1_1TwoRotationInertialOdometry45Degrees.html',1,'rev']]]
 ];

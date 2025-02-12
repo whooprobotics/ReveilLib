@@ -114,13 +114,15 @@ Inheritance diagram for rev::Odometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrev_1_1Odometry__inherit__graph.png" border="0" usemap="#arev_1_1Odometry_inherit__map" alt="Inheritance graph"/></div>
 <map name="arev_1_1Odometry_inherit__map" id="arev_1_1Odometry_inherit__map">
-<area shape="rect" title="Interface for odometry implementations." alt="" coords="5,63,107,88"/>
+<area shape="rect" title="Interface for odometry implementations." alt="" coords="5,84,107,110"/>
 <area shape="rect" href="classrev_1_1ChassisSim.html" title=" " alt="" coords="176,5,291,31"/>
-<area shape="poly" title=" " alt="" coords="112,55,154,41,190,29,192,34,155,46,113,60"/>
-<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="155,55,312,96"/>
-<area shape="poly" title=" " alt="" coords="122,73,154,73,154,78,122,78"/>
-<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine..." alt="" coords="155,120,312,161"/>
-<area shape="poly" title=" " alt="" coords="108,92,177,117,175,122,106,97"/>
+<area shape="poly" title=" " alt="" coords="90,73,154,40,182,29,184,34,156,45,92,78"/>
+<area shape="rect" href="classrev_1_1OpticalOdometry.html" title="Odometry implementation using optical odometry sensor." alt="" coords="162,55,304,80"/>
+<area shape="poly" title=" " alt="" coords="121,83,162,77,163,82,122,89"/>
+<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial." alt="" coords="155,104,312,145"/>
+<area shape="poly" title=" " alt="" coords="122,105,155,110,154,115,121,110"/>
+<area shape="rect" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine..." alt="" coords="155,170,312,210"/>
+<area shape="poly" title=" " alt="" coords="91,116,156,154,182,167,180,172,153,159,88,121"/>
 <area shape="rect" href="classrev_1_1DriftlessSim.html" title=" " alt="" coords="360,5,476,31"/>
 <area shape="poly" title=" " alt="" coords="306,16,360,16,360,21,306,21"/>
 </map>
@@ -167,7 +169,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current position and velocity of the robot. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structrev_1_1OdometryState.html" title="A structure packaging a velocity and position into one.">OdometryState</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#abf6a2fa4aeb94c0bd0be804e6d6a4d2a">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a846d88456d0544412995c2842acaa79b">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1OpticalOdometry.html#a6c0a096a0275cb7660d89df964d019a5">rev::OpticalOdometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#abf6a2fa4aeb94c0bd0be804e6d6a4d2a">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a1b7e788cfda137ece5de9b72fc4d2a9a">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>
@@ -197,7 +199,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the position to (0,0) </p>
 <p>THIS WILL ALSO RESET HEADING, WHICH YOU MIGHT NOT WANT </p>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#a1dfa56f5a266b48bb22929d9b1d01edc">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a84ee5a9acc9489b4cb9e1aa3db352cf1">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1OpticalOdometry.html#a497a9526c68b184d06c65ba883849790">rev::OpticalOdometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#a1dfa56f5a266b48bb22929d9b1d01edc">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#a7df17c493df505ae0c32ff64bc14ddbc">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>
@@ -232,7 +234,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#aa7755e5da1b3c53d1e769797c398bde4">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>.</p>
+<p>Implemented in <a class="el" href="classrev_1_1DriftlessSim.html#a4bae6d520855dfe8dee8ad152293f8cd">rev::DriftlessSim</a>, <a class="el" href="classrev_1_1OpticalOdometry.html#a167ed700786a833e3910a37b9592d264">rev::OpticalOdometry</a>, <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html#aa7755e5da1b3c53d1e769797c398bde4">rev::TwoRotationInertialOdometry45Degrees</a>, and <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html#acce1bd6cf974036c98e77267c89e18e0">rev::TwoRotationInertialOdometry</a>.</p>
 
 </div>
 </div>

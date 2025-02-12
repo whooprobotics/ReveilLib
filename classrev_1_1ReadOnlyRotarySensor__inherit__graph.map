@@ -1,0 +1,11 @@
+<map id="rev::ReadOnlyRotarySensor" name="rev::ReadOnlyRotarySensor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,434,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1MockQuadEncoder.html" title=" " alt="" coords="5,79,161,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,38,128,81,127,76,285,33"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1MockRotarySensor.html" title=" " alt="" coords="185,79,341,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="321,43,278,81,275,77,317,39"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1QuadEncoder.html" title=" " alt="" coords="365,79,489,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="372,39,415,77,411,81,368,44"/>
+<area shape="rect" id="Node000005" href="$classrev_1_1RotationSensor.html" title="Implementation of the Vex Rotation sensor under the ReadOnlyRotarySensor interface." alt="" coords="513,79,648,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="400,33,541,76,539,81,398,38"/>
+</map>

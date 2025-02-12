@@ -1,5 +1,16 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,165,46"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1FillStyleSpecs.html" title="The class used to attach color or pattern fill options to a type." alt="" coords="213,13,361,38"/>
-<area shape="poly" id="edge129_Node000000_Node000001" title=" " alt="" coords="180,23,213,23,213,28,180,28"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,112,197,137"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1FillSpecsOf.html" title=" " alt="" coords="265,5,398,46"/>
+<area shape="poly" id="edge123_Node000000_Node000001" title=" " alt="" coords="143,102,244,57,274,44,276,49,246,61,145,107"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1FilledCurvesSpecsOf.html" title=" " alt="" coords="245,71,419,111"/>
+<area shape="poly" id="edge125_Node000000_Node000003" title=" " alt="" coords="209,106,244,101,245,106,210,111"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1LineSpecsOf.html" title=" " alt="" coords="261,136,402,177"/>
+<area shape="poly" id="edge127_Node000000_Node000004" title=" " alt="" coords="213,137,261,144,260,149,212,142"/>
+<area shape="rect" id="Node000005" href="$classsciplot_1_1PointSpecsOf.html" title=" " alt="" coords="259,201,405,242"/>
+<area shape="poly" id="edge129_Node000000_Node000005" title=" " alt="" coords="146,142,246,186,276,198,274,203,244,191,144,147"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1DrawSpecs.html" title="The class where options for the plotted element can be specified." alt="" coords="467,112,599,137"/>
+<area shape="poly" id="edge124_Node000001_Node000002" title=" " alt="" coords="406,50,420,57,512,109,510,113,418,61,403,55"/>
+<area shape="poly" id="edge126_Node000003_Node000002" title=" " alt="" coords="435,105,467,111,466,116,434,111"/>
+<area shape="poly" id="edge128_Node000004_Node000002" title=" " alt="" coords="417,140,466,132,467,137,418,145"/>
+<area shape="poly" id="edge130_Node000005_Node000002" title=" " alt="" coords="403,192,418,186,509,135,512,140,420,191,406,197"/>
 </map>

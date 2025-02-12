@@ -1,7 +1,8 @@
 <map id="src/api/hardware" name="src/api/hardware">
 <area shape="rect" id="node2" href="dir_72567470bb1deb971f58356f0da3e20b.html" title="chassis" alt="" coords="136,63,202,89"/>
 <area shape="rect" id="node3" href="dir_247c4f8948d65f605db8d36369ec4908.html" title="chassis_sim" alt="" coords="226,63,320,89"/>
-<area shape="rect" id="node4" href="dir_f89509311c5a68f60a0f6b987bbdeda0.html" title="motor" alt="" coords="345,63,399,89"/>
-<area shape="rect" id="clust2" href="dir_640b7d582fb32606a0ac56c576d5d00b.html" alt="" coords="27,52,409,99"/>
-<area shape="rect" id="clust1" href="dir_da61e3e9a357748887e3ca8d7c5a0c16.html" title="api" alt="" coords="16,16,420,110"/>
+<area shape="rect" id="node4" href="dir_fe5ed10dcffeab82817754ecfbc3a408.html" title="devices" alt="" coords="344,63,410,89"/>
+<area shape="rect" id="node5" href="dir_f89509311c5a68f60a0f6b987bbdeda0.html" title="motor" alt="" coords="434,63,488,89"/>
+<area shape="rect" id="clust2" href="dir_640b7d582fb32606a0ac56c576d5d00b.html" alt="" coords="27,52,499,99"/>
+<area shape="rect" id="clust1" href="dir_da61e3e9a357748887e3ca8d7c5a0c16.html" title="api" alt="" coords="16,16,509,110"/>
 </map>

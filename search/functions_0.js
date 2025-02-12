@@ -32,6 +32,6 @@ var searchData=
   ['automatic_29',['automatic',['../classsciplot_1_1TicsSpecsMajor.html#ad7d449ebc874229f0a8b6a3e8e575fcf',1,'sciplot::TicsSpecsMajor::automatic()'],['../classsciplot_1_1TicsSpecsMinor.html#a74b578ebe97ad245a7f2918fd7887734',1,'sciplot::TicsSpecsMinor::automatic()']]],
   ['autonomous_30',['autonomous',['../main_8h.html#a2df3d06bc5bced154da27fce393f991f',1,'main.cpp']]],
   ['await_31',['Await',['../classrev_1_1Await.html#a5c56f25dc19156f80eb99579339795d7',1,'rev::Await']]],
-  ['await_32',['await',['../classrev_1_1CampbellTurn.html#a9cdc018c5d1ae3edd90aecf3b72725c9',1,'rev::CampbellTurn::await()'],['../classrev_1_1Reckless.html#a9830c9dcb5f2f7a271103e03d82f67f3',1,'rev::Reckless::await()'],['../classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2',1,'rev::AsyncAwaitable::await()']]],
+  ['await_32',['await',['../classrev_1_1Reckless.html#a9830c9dcb5f2f7a271103e03d82f67f3',1,'rev::Reckless::await()'],['../classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2',1,'rev::AsyncAwaitable::await()']]],
   ['axislabelspecs_33',['AxisLabelSpecs',['../classsciplot_1_1AxisLabelSpecs.html#ad72233f39695e8dc7f648beaaee93580',1,'sciplot::AxisLabelSpecs']]]
 ];

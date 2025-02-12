@@ -1,0 +1,6 @@
+<map id="rev::Imu" name="rev::Imu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,79,93,105"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Gyroscope.html" title=" " alt="" coords="5,5,113,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,46,55,78,49,79,48,46"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="70,46,69,79,63,78,65,46"/>
+</map>

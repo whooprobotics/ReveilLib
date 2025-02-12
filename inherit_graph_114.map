@@ -1,31 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title="The base class for other specs classes (e.g., LineSpecsOf, DrawSpecs, BorderSpecs,..." alt="" coords="5,340,211,365"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1DepthSpecsOf.html" title="The class used to attach depth options to a type." alt="" coords="271,5,421,46"/>
-<area shape="poly" id="edge102_Node000000_Node000001" title=" " alt="" coords="114,324,131,268,160,197,201,123,227,88,257,57,275,44,278,49,260,61,231,91,206,126,164,200,136,270,119,325"/>
-<area shape="rect" id="Node000002" href="$classsciplot_1_1FillSpecsOf.html" title="The class used to attach color or pattern fill options to a type." alt="" coords="279,71,412,111"/>
-<area shape="poly" id="edge103_Node000000_Node000002" title=" " alt="" coords="118,324,139,280,169,227,209,171,257,122,277,109,280,114,260,126,213,174,174,229,143,283,123,326"/>
-<area shape="rect" id="Node000003" href="$classsciplot_1_1FilledCurvesSpecsOf.html" title="The class used to set options for the gnuplot filledcurve functionality." alt="" coords="259,136,433,177"/>
-<area shape="poly" id="edge104_Node000000_Node000003" title=" " alt="" coords="125,325,179,258,216,220,257,187,280,175,282,179,260,192,220,224,183,261,129,328"/>
-<area shape="rect" id="Node000004" href="$classsciplot_1_1FontSpecsOf.html" title="The class used to attach font options to a type." alt="" coords="275,201,417,242"/>
-<area shape="poly" id="edge105_Node000000_Node000004" title=" " alt="" coords="138,328,192,291,257,253,284,240,287,245,260,257,195,295,141,332"/>
-<area shape="rect" id="Node000009" href="$classsciplot_1_1FrameSpecsOf.html" title="The class used to attach frame options to a type." alt="" coords="269,267,422,307"/>
-<area shape="poly" id="edge108_Node000000_Node000009" title=" " alt="" coords="171,332,268,305,270,311,173,337"/>
-<area shape="rect" id="Node000010" href="$classsciplot_1_1LayoutSpecsOf.html" title="The class used to attach layout options to a type." alt="" coords="268,332,424,373"/>
-<area shape="poly" id="edge109_Node000000_Node000010" title=" " alt="" coords="226,350,268,350,268,355,226,355"/>
-<area shape="rect" id="Node000011" href="$classsciplot_1_1LineSpecsOf.html" title="The class used to attach line options to a type." alt="" coords="275,397,416,438"/>
-<area shape="poly" id="edge110_Node000000_Node000011" title=" " alt="" coords="173,367,275,396,274,401,171,372"/>
-<area shape="rect" id="Node000007" href="$classsciplot_1_1OffsetSpecsOf.html" title="The class used to attach offset options to a type." alt="" coords="481,455,632,495"/>
-<area shape="poly" id="edge111_Node000000_Node000007" title=" " alt="" coords="137,373,191,413,225,432,260,447,316,462,374,471,481,476,481,481,374,476,315,467,258,452,222,437,189,417,134,378"/>
-<area shape="rect" id="Node000012" href="$classsciplot_1_1PointSpecsOf.html" title="The class used to attach point options to a type." alt="" coords="273,512,419,553"/>
-<area shape="poly" id="edge113_Node000000_Node000012" title=" " alt="" coords="132,375,187,432,223,463,260,491,292,509,290,514,257,496,219,467,184,436,129,379"/>
-<area shape="rect" id="Node000008" href="$classsciplot_1_1ShowSpecsOf.html" title="The class used to attach visibility options to a type." alt="" coords="482,544,631,585"/>
-<area shape="poly" id="edge114_Node000000_Node000008" title=" " alt="" coords="121,379,140,422,170,474,209,524,233,545,260,562,286,573,314,581,372,588,430,587,481,580,482,585,430,592,372,594,313,586,285,578,257,567,230,549,206,527,165,477,136,425,117,381"/>
-<area shape="rect" id="Node000013" href="$classsciplot_1_1TitleSpecsOf.html" title="The class used to attach title options to a type." alt="" coords="275,627,416,667"/>
-<area shape="poly" id="edge116_Node000000_Node000013" title=" " alt="" coords="121,379,141,427,171,487,211,550,234,580,260,606,287,624,284,628,257,610,230,583,206,553,166,490,136,429,116,381"/>
-<area shape="rect" id="Node000005" href="$classsciplot_1_1TextSpecsOf.html" title="The class used to attach text options to a type." alt="" coords="486,296,627,337"/>
-<area shape="poly" id="edge106_Node000004_Node000005" title=" " alt="" coords="418,246,434,253,517,293,515,298,432,257,416,251"/>
-<area shape="rect" id="Node000006" href="$classsciplot_1_1TicsSpecsBaseOf.html" title="The class used to attach common tic options to a type that also specifies tic options." alt="" coords="680,455,852,495"/>
-<area shape="poly" id="edge107_Node000005_Node000006" title=" " alt="" coords="599,344,739,452,736,456,595,348"/>
-<area shape="poly" id="edge112_Node000007_Node000006" title=" " alt="" coords="648,472,680,472,680,478,648,478"/>
-<area shape="poly" id="edge115_Node000008_Node000006" title=" " alt="" coords="619,535,715,494,717,498,621,540"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,176,46"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="224,5,366,46"/>
+<area shape="poly" id="edge99_Node000000_Node000001" title=" " alt="" coords="191,23,224,23,224,28,191,28"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="414,5,555,46"/>
+<area shape="poly" id="edge100_Node000001_Node000002" title=" " alt="" coords="382,23,413,23,413,28,382,28"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1AxisLabelSpecs.html" title="The specifications for an axis label (e.g., xlabel, ylabel, etc.)" alt="" coords="603,13,763,38"/>
+<area shape="poly" id="edge101_Node000002_Node000003" title=" " alt="" coords="571,23,603,23,603,28,571,28"/>
 </map>

@@ -76,7 +76,7 @@ var searchData=
   ['autonomous_73',['autonomous',['../main_8h.html#a2df3d06bc5bced154da27fce393f991f',1,'main.cpp']]],
   ['autoreg_74',['AutoReg',['../structCatch_1_1AutoReg.html',1,'Catch']]],
   ['await_75',['Await',['../classrev_1_1Await.html',1,'rev::Await'],['../classrev_1_1Await.html#a5c56f25dc19156f80eb99579339795d7',1,'rev::Await::Await()']]],
-  ['await_76',['await',['../classrev_1_1CampbellTurn.html#a9cdc018c5d1ae3edd90aecf3b72725c9',1,'rev::CampbellTurn::await()'],['../classrev_1_1Reckless.html#a9830c9dcb5f2f7a271103e03d82f67f3',1,'rev::Reckless::await()'],['../classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2',1,'rev::AsyncAwaitable::await()']]],
+  ['await_76',['await',['../classrev_1_1Reckless.html#a9830c9dcb5f2f7a271103e03d82f67f3',1,'rev::Reckless::await()'],['../classrev_1_1AsyncAwaitable.html#aaa4e499f42373c38d43d0320e7ff6dd2',1,'rev::AsyncAwaitable::await()']]],
   ['axes_77',['Using logarithmic axes',['../md_sciplot_2docs_2website_2tutorials.html#autotoc_md41',1,'']]],
   ['axislabelspecs_78',['AxisLabelSpecs',['../classsciplot_1_1AxisLabelSpecs.html',1,'sciplot::AxisLabelSpecs'],['../classsciplot_1_1AxisLabelSpecs.html#ad72233f39695e8dc7f648beaaee93580',1,'sciplot::AxisLabelSpecs::AxisLabelSpecs()']]]
 ];

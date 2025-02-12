@@ -6,5 +6,6 @@ var searchData=
   ['generatorwrapper_3',['GeneratorWrapper',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['generatorwrapper_3c_20u_20_3e_4',['GeneratorWrapper&lt; U &gt;',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['gridspecs_5',['GridSpecs',['../classsciplot_1_1GridSpecs.html',1,'sciplot']]],
-  ['gridspecsbase_6',['GridSpecsBase',['../classsciplot_1_1GridSpecsBase.html',1,'sciplot']]]
+  ['gridspecsbase_6',['GridSpecsBase',['../classsciplot_1_1GridSpecsBase.html',1,'sciplot']]],
+  ['gyroscope_7',['Gyroscope',['../classrev_1_1Gyroscope.html',1,'rev']]]
 ];

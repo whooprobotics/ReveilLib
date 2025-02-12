@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['zlabel_0',['zlabel',['../classsciplot_1_1Plot3D.html#a262e605492438e85f5cc771c4279aefb',1,'sciplot::Plot3D']]],
-  ['zrange_1',['zrange',['../classsciplot_1_1Plot3D.html#abe5db7e4b49b4ee600c77cc11fef31f5',1,'sciplot::Plot3D']]],
-  ['ztics_2',['ztics',['../classsciplot_1_1Plot.html#a4b36b8c417222ce843d22be3fe5285bc',1,'sciplot::Plot::ztics()'],['../classsciplot_1_1GridSpecs.html#a1c2fce933741e5f5e217de21332ce9ac',1,'sciplot::GridSpecs::ztics()']]],
-  ['zticsmajor_3',['zticsMajor',['../classsciplot_1_1Plot.html#a98ce2a8968f66666be4ac6862426314e',1,'sciplot::Plot::zticsMajor()'],['../classsciplot_1_1GridSpecs.html#af22f8b867c6d290e0e599e19bd7d2f97',1,'sciplot::GridSpecs::zticsMajor()']]],
-  ['zticsminor_4',['zticsMinor',['../classsciplot_1_1Plot.html#a2ab77bc5cf59ba01f96f87f897ce588e',1,'sciplot::Plot::zticsMinor()'],['../classsciplot_1_1GridSpecs.html#a027d2ed5c4c9438d2257635891aabf8e',1,'sciplot::GridSpecs::zticsMinor()']]]
+  ['ylabel_0',['ylabel',['../classsciplot_1_1Plot.html#a2581b01b067c68d2b16b94123b09c115',1,'sciplot::Plot']]],
+  ['yrange_1',['yrange',['../classsciplot_1_1Plot.html#ad3a0ed782e898a9796a2deb14de7c5d8',1,'sciplot::Plot']]],
+  ['ytics_2',['ytics',['../classsciplot_1_1Plot.html#a023221d3fd8119847168b9c838dd796a',1,'sciplot::Plot::ytics()'],['../classsciplot_1_1DrawSpecs.html#a629e13a585c0f9db977c5632973574d2',1,'sciplot::DrawSpecs::ytics()'],['../classsciplot_1_1GridSpecs.html#adc264a0b20972f43775f654783091527',1,'sciplot::GridSpecs::ytics()']]],
+  ['yticsmajorleft_3',['yticsMajorLeft',['../classsciplot_1_1Plot.html#a10dd037c22aa677a89e83165d1e03a0a',1,'sciplot::Plot::yticsMajorLeft()'],['../classsciplot_1_1GridSpecs.html#a8436bb04bb671d06eb2df700adcb4bef',1,'sciplot::GridSpecs::yticsMajorLeft()']]],
+  ['yticsmajorright_4',['yticsMajorRight',['../classsciplot_1_1Plot.html#a09c9229a81adeb26fdecc8d4c7a68eed',1,'sciplot::Plot::yticsMajorRight()'],['../classsciplot_1_1GridSpecs.html#aa96a317a45225286d20c3b34e756248d',1,'sciplot::GridSpecs::yticsMajorRight()']]],
+  ['yticsminorleft_5',['yticsMinorLeft',['../classsciplot_1_1Plot.html#a5ee4337896a95180c655746af7d03108',1,'sciplot::Plot::yticsMinorLeft()'],['../classsciplot_1_1GridSpecs.html#a0a4daea622cf3bcab537c79e821ca75c',1,'sciplot::GridSpecs::yticsMinorLeft()']]],
+  ['yticsminorright_6',['yticsMinorRight',['../classsciplot_1_1Plot.html#a0fd5b24ebb0c503e4256d43232277fcc',1,'sciplot::Plot::yticsMinorRight()'],['../classsciplot_1_1GridSpecs.html#ad6413b38ab6a2d627ed5e3043c28c700',1,'sciplot::GridSpecs::yticsMinorRight()']]]
 ];

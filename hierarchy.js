@@ -12,12 +12,11 @@ var hierarchy =
     [ "Catch::AssertionInfo", "structCatch_1_1AssertionInfo.html", null ],
     [ "Catch::AssertionReaction", "structCatch_1_1AssertionReaction.html", null ],
     [ "rev::AsyncAwaitable", "classrev_1_1AsyncAwaitable.html", [
-      [ "rev::CampbellTurn", "classrev_1_1CampbellTurn.html", null ],
       [ "rev::Reckless", "classrev_1_1Reckless.html", null ]
     ] ],
     [ "rev::AsyncRunnable", "classrev_1_1AsyncRunnable.html", [
-      [ "rev::CampbellTurn", "classrev_1_1CampbellTurn.html", null ],
       [ "rev::DriftlessSim", "classrev_1_1DriftlessSim.html", null ],
+      [ "rev::OpticalOdometry", "classrev_1_1OpticalOdometry.html", null ],
       [ "rev::Reckless", "classrev_1_1Reckless.html", null ],
       [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ],
       [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
@@ -80,6 +79,12 @@ var hierarchy =
       ] ]
     ] ],
     [ "Catch::Generators::GeneratorWrapper< T >", "classCatch_1_1Generators_1_1GeneratorWrapper.html", null ],
+    [ "rev::Gyroscope", "classrev_1_1Gyroscope.html", [
+      [ "rev::DualImu", "classrev_1_1DualImu.html", null ],
+      [ "rev::Imu", "classrev_1_1Imu.html", null ],
+      [ "rev::Imu", "classrev_1_1Imu.html", null ],
+      [ "rev::MockImu", "classrev_1_1MockImu.html", null ]
+    ] ],
     [ "Catch::IContext", "structCatch_1_1IContext.html", [
       [ "Catch::IMutableContext", "structCatch_1_1IMutableContext.html", null ]
     ] ],
@@ -172,11 +177,13 @@ var hierarchy =
     ] ],
     [ "rev::Odometry", "classrev_1_1Odometry.html", [
       [ "rev::ChassisSim", "classrev_1_1ChassisSim.html", null ],
+      [ "rev::OpticalOdometry", "classrev_1_1OpticalOdometry.html", null ],
       [ "rev::TwoRotationInertialOdometry", "classrev_1_1TwoRotationInertialOdometry.html", null ],
       [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::OdometryState", "structrev_1_1OdometryState.html", null ],
     [ "Catch::Option< T >", "classCatch_1_1Option.html", null ],
+    [ "rev::OTOS", "classrev_1_1OTOS.html", null ],
     [ "rev::PilonsSegmentParams", "structrev_1_1PilonsSegmentParams.html", null ],
     [ "sciplot::Plot", "classsciplot_1_1Plot.html", [
       [ "sciplot::Plot2D", "classsciplot_1_1Plot2D.html", null ],
@@ -185,6 +192,12 @@ var hierarchy =
     [ "Catch::pluralise", "structCatch_1_1pluralise.html", null ],
     [ "rev::PointVector", "structrev_1_1PointVector.html", [
       [ "rev::Pose", "structrev_1_1Pose.html", null ]
+    ] ],
+    [ "rev::ReadOnlyRotarySensor", "classrev_1_1ReadOnlyRotarySensor.html", [
+      [ "rev::MockQuadEncoder", "classrev_1_1MockQuadEncoder.html", null ],
+      [ "rev::MockRotarySensor", "classrev_1_1MockRotarySensor.html", null ],
+      [ "rev::QuadEncoder", "classrev_1_1QuadEncoder.html", null ],
+      [ "rev::RotationSensor", "classrev_1_1RotationSensor.html", null ]
     ] ],
     [ "rev::RecklessPath", "structrev_1_1RecklessPath.html", null ],
     [ "rev::RecklessSegment", "classrev_1_1RecklessSegment.html", [
@@ -437,9 +450,6 @@ var hierarchy =
     ] ],
     [ "Ts...", null, [
       [ "sciplot::Overload< Ts >", "structsciplot_1_1Overload.html", null ]
-    ] ],
-    [ "rev::Turn", "classrev_1_1Turn.html", [
-      [ "rev::CampbellTurn", "classrev_1_1CampbellTurn.html", null ]
     ] ],
     [ "Catch::UseColour", "structCatch_1_1UseColour.html", null ],
     [ "rev::Velocity", "structrev_1_1Velocity.html", null ],

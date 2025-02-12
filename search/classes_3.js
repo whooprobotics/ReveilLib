@@ -7,5 +7,6 @@ var searchData=
   ['depthspecsof_3c_20depthspecs_20_3e_4',['DepthSpecsOf&lt; DepthSpecs &gt;',['../classsciplot_1_1DepthSpecsOf.html',1,'sciplot']]],
   ['depthspecsof_3c_20gridspecsbase_20_3e_5',['DepthSpecsOf&lt; GridSpecsBase &gt;',['../classsciplot_1_1DepthSpecsOf.html',1,'sciplot']]],
   ['drawspecs_6',['DrawSpecs',['../classsciplot_1_1DrawSpecs.html',1,'sciplot']]],
-  ['driftlesssim_7',['DriftlessSim',['../classrev_1_1DriftlessSim.html',1,'rev']]]
+  ['driftlesssim_7',['DriftlessSim',['../classrev_1_1DriftlessSim.html',1,'rev']]],
+  ['dualimu_8',['DualImu',['../classrev_1_1DualImu.html',1,'rev']]]
 ];

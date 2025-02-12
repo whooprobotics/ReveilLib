@@ -41,7 +41,7 @@ var NAVTREEINDEX0 =
 "Vec_8hpp_source.html":[13,0,1,1,14],
 "all__units_8hh_source.html":[13,0,0,0,0,3,0],
 "annotated.html":[12,0],
-"any__motor_8hh_source.html":[13,0,0,0,0,2,2,0],
+"any__motor_8hh_source.html":[13,0,0,0,0,2,3,0],
 "api_8h.html":[13,0,0,1],
 "api_8h_source.html":[13,0,0,1],
 "async__awaitable_8hh_source.html":[13,0,0,0,0,1,0],
@@ -50,7 +50,6 @@ var NAVTREEINDEX0 =
 "await_8hh_source.html":[13,0,0,0,0,0,4,0],
 "bezier__curves_8hh_source.html":[13,0,0,0,0,0,2,0],
 "call_8hh_source.html":[13,0,0,0,0,0,4,1],
-"campbell__turn_8hh_source.html":[13,0,0,0,0,0,0,3,0],
 "cascading__motion_8hh_source.html":[13,0,0,0,0,0,0,1,0],
 "catch_8hpp_source.html":[13,0,1,2,1],
 "chassis_8hh_source.html":[13,0,0,0,0,2,0,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classrev_1_1Await.html#a836585fca1cb2fc763c74d6ee04a9dc4":[11,0,0,4,3],
 "classrev_1_1Await.html#a836585fca1cb2fc763c74d6ee04a9dc4":[12,0,1,4,3],
 "classrev_1_1Await.html#aafbf1d27a9f6584d38d4bd4878855137":[11,0,0,4,1],
-"classrev_1_1Await.html#aafbf1d27a9f6584d38d4bd4878855137":[12,0,1,4,1]
+"classrev_1_1Await.html#aafbf1d27a9f6584d38d4bd4878855137":[12,0,1,4,1],
+"classrev_1_1BezierSegment.html":[11,0,0,5]
 };

@@ -1,7 +1,5 @@
 <map id="rev::AsyncAwaitable" name="rev::AsyncAwaitable">
-<area shape="rect" id="Node000001" title="Interface for classes which have something that can be waited for." alt="" coords="67,5,205,31"/>
-<area shape="rect" id="Node000002" href="$classrev_1_1CampbellTurn.html" title="Class implementing Walker Campbell&#39;s turn algorithm under the Turn interface." alt="" coords="5,79,131,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,44,81,80,78,77,112,40"/>
-<area shape="rect" id="Node000003" href="$classrev_1_1Reckless.html" title="High&#45;speed chassis motion controller." alt="" coords="154,79,254,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,40,194,77,191,80,156,44"/>
+<area shape="rect" id="Node000001" title="Interface for classes which have something that can be waited for." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Reckless.html" title="High&#45;speed chassis motion controller." alt="" coords="25,79,124,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,46,77,79,72,79,72,46"/>
 </map>

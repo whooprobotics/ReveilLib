@@ -30,6 +30,5 @@ var searchData=
   ['topleftfront_27',['topLeftFront',['../classsciplot_1_1BorderSpecs.html#a4f44366e66a00ff84b5613637064f546',1,'sciplot::BorderSpecs']]],
   ['toprightback_28',['topRightBack',['../classsciplot_1_1BorderSpecs.html#a263bdc1f64a347da0c71ad80f17aee58',1,'sciplot::BorderSpecs']]],
   ['toprightfront_29',['topRightFront',['../classsciplot_1_1BorderSpecs.html#a3059ae846a0fcf1593633b4b60d5bc4b',1,'sciplot::BorderSpecs']]],
-  ['transparent_30',['transparent',['../classsciplot_1_1FillStyleSpecs.html#a1c5d5f8ed838a6646f2aaad13db3b244',1,'sciplot::FillStyleSpecs::transparent()'],['../classsciplot_1_1LegendSpecs.html#a5fbefa9e83bbce3dd51ef5225eb8ee7b',1,'sciplot::LegendSpecs::transparent()']]],
-  ['turn_5fto_5ftarget_5fabsolute_31',['turn_to_target_absolute',['../classrev_1_1CampbellTurn.html#ac8dc791ea744f14e878278af41991e3a',1,'rev::CampbellTurn::turn_to_target_absolute()'],['../classrev_1_1Turn.html#a2e897aaf134ce9e6e71998e73fcda481',1,'rev::Turn::turn_to_target_absolute()']]]
+  ['transparent_30',['transparent',['../classsciplot_1_1FillStyleSpecs.html#a1c5d5f8ed838a6646f2aaad13db3b244',1,'sciplot::FillStyleSpecs::transparent()'],['../classsciplot_1_1LegendSpecs.html#a5fbefa9e83bbce3dd51ef5225eb8ee7b',1,'sciplot::LegendSpecs::transparent()']]]
 ];
