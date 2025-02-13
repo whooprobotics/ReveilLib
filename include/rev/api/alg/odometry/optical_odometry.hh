@@ -23,7 +23,7 @@ class OpticalOdometry : public Odometry, public AsyncRunnable {
      */
     OdometryState get_state() override;
     void set_position(Position pos) override;
-    void reset_position() override;
+    void reset_position() override; // Resets current position to (0, 0, 0)
     void step() override;
 
     OpticalOdometry(std::shared_ptr<OTOS> sensor, QLength ilongitudinal_offset, QLength ilateral_offset);

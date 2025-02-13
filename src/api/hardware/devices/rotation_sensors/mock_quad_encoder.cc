@@ -2,37 +2,22 @@
 
 namespace rev {
 
-MockQuadEncoder::MockQuadEncoder(int initial_reading) : value(initial_reading) {}
+MockQuadEncoder::MockQuadEncoder(int initial_reading, int res) : value(initial_reading), resolution(res) {}
 
 double MockQuadEncoder::get_position() {
-  return (double) (value * 360.0 / 8192.0) + (looparounds * 360.0);
+  return (double) (value * 360.0 / resolution); // Converts ticks to degrees rotated
 }
 
 int MockQuadEncoder::get_value() {
-  return value + (looparounds * 8192);
+  return value;
 }
 
 void MockQuadEncoder::increment() {
-  if (value == 8191) {
-    looparounds++;
-    value = 0;
-    return;
-  }
-
   value++;
 }
 
 void MockQuadEncoder::decrement() {
-  if (value == 0) {
-    looparounds--;
-    value = 8191;
-    return;
-  }
   value--;
-}
-
-int MockQuadEncoder::get_looparounds() {
-  return looparounds;
 }
 
 } // namespace rev

@@ -12,8 +12,7 @@ namespace rev {
 class RotationSensor : public ReadOnlyRotarySensor {
   public:
     RotationSensor(std::uint8_t port, const bool reverse_flag);
-
-    double get_position() override;
+    double get_position() override; // Returns degrees the sensor has rotated
 
   private:
     pros::Rotation sensor;

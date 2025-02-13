@@ -13,8 +13,8 @@ class OTOS {
     double get_x();
     double get_y();
     double get_h();
-    void update();
-    void reset();
+    void reset(); // Resets position to (0, 0, 0)
+    void update(); // Gets new values from sensor
 
   private:
     double x;
