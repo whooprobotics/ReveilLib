@@ -6,7 +6,7 @@ QuadEncoder::QuadEncoder(std::uint8_t top, std::uint8_t bottom, const bool rever
 
 double QuadEncoder::get_position() {
   
-  return (double) sensor->get_value() * 360.0 / 8192.0;
+  return (double) sensor.get_value() * 360.0 / 8192.0;
 }
 
 } // namespace rev
