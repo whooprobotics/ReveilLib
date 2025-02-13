@@ -19,8 +19,8 @@ TwoRotationInertialOdometry45Degrees::TwoRotationInertialOdometry45Degrees(
       lateral_wheel_diameter(ilateral_wheel_diameter),
       longitudinal_wheel_offset(ilongitudinal_wheel_offset),
       lateral_wheel_offset(ilateral_wheel_offset) {
-  longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
-  latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
+  longitude_ticks_last = (double)(longitudinal_sensor->get_position());
+  latitude_ticks_last = (double)(lateral_sensor->get_position());
   heading_ticks_init = inertial->get_heading();
   time_last = pros::millis();
 }
@@ -46,11 +46,8 @@ void TwoRotationInertialOdometry45Degrees::reset_position() {
   this->set_position({0 * inch, 0 * inch, 0 * degree});
 }
 void TwoRotationInertialOdometry45Degrees::step() {
-
-  // Conversion constant that makes calculation easier to read later
-  double const convert_const =((std::sqrt(2))) / 3.1415926535 *360;
-  double longitude_ticks = (double)(longitudinal_sensor->get_position()) / 100;
-  double latitude_ticks = (double)(lateral_sensor->get_position()) / 100;
+  double longitude_ticks = (double)longitudinal_sensor->get_position();
+  double latitude_ticks = (double)lateral_sensor->get_position();
   double heading_ticks = inertial->get_heading();
 
   if (heading_ticks == PROS_ERR_F || inertial->is_calibrating()) {
@@ -58,8 +55,8 @@ void TwoRotationInertialOdometry45Degrees::step() {
   }
 
   if(!is_initialized) {
-    longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
-    latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
+    longitude_ticks_last = (double)(longitudinal_sensor->get_position());
+    latitude_ticks_last = (double)(lateral_sensor->get_position());
     heading_ticks_last = inertial->get_heading();
     heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
 
@@ -112,8 +109,10 @@ void TwoRotationInertialOdometry45Degrees::step() {
   //     d_latitude_ticks / 360 * 3.1415926535 * lateral_wheel_diameter;
 
   //translation calculation adjusted for 45 degrees
-  QLength raw_fwd_translation = -((d_longitudinal_ticks + d_latitude_ticks)/ convert_const) * longitudinal_wheel_diameter;
-  QLength raw_side_translation = ((d_longitudinal_ticks - d_latitude_ticks)/ convert_const) * lateral_wheel_diameter;
+  QLength raw_fr_translation = d_longitudinal_ticks * 3.141592653 / 360 * longitudinal_wheel_diameter;
+  QLength raw_fl_translation = d_latitude_ticks * 3.141592653 / 360 * lateral_wheel_diameter;
+  QLength raw_fwd_translation = (raw_fr_translation + raw_fl_translation) / std::sqrt(2);
+  QLength raw_side_translation = (raw_fr_translation - raw_fl_translation) / std::sqrt(2);
   // Adjusted local translation values
   QLength local_off_lat, local_off_long;
 
