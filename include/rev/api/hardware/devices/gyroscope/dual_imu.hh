@@ -1,6 +1,7 @@
 #pragma once
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 #include "pros/imu.hpp"
+#include <algorithm>
 
 namespace rev {
 
