@@ -20,6 +20,7 @@
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
+#include "rev/api/alg/odometry/optical_odometry.hh"
 
 // Reckless
 #include "rev/api/alg/reckless/await.hh"
@@ -44,3 +45,9 @@
 #include "rev/api/hardware/motor/any_motor.hh"
 #include "rev/api/hardware/motor/motor.hh"
 #include "rev/api/hardware/motor/motor_group.hh"
+
+// Devices
+#include "rev/api/hardware/devices/gyroscope/dual_imu.hh"
+#include "rev/api/hardware/devices/optical/otos.hh"
+#include "rev/api/hardware/devices/rotation_sensors/quad_encoder.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
