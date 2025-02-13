@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/units/q_time.hh"
@@ -25,6 +26,15 @@ class RecklessTurnSegment : public RecklessSegment {
 
     void clean_up();
 
+    std::shared_ptr<RecklessSegment> operator &() {
+          return std::shared_ptr<RecklessTurnSegment>(this);
+    }
+
+    static std::shared_ptr<RecklessTurnSegment> create(double imax_power, double icoast_power,
+                        QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time) {
+      return std::make_shared<RecklessTurnSegment>(imax_power, icoast_power, iangle, iharsh_coeff, icoast_coeff, ibrake_time);
+    }
+
   private:
     double max_power;
     double harsh_coeff;
@@ -41,5 +51,7 @@ class RecklessTurnSegment : public RecklessSegment {
     int brake_start_time = -1;
     TurnState controller_state{TurnState::FULLPOWER};
 };
+
+using TurnSegment = RecklessTurnSegment;
 
 } // namespace rev
