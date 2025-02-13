@@ -14,10 +14,7 @@ class QuadEncoder : public ReadOnlyRotarySensor {
     double get_position() override;
 
   private:
-    std::shared_ptr<pros::ADIEncoder> sensor;
-    int looparounds = 0;
-    int previous_ticks = 0;
-
+    pros::ADIEncoder sensor;
 };
 
 } // namespace rev
