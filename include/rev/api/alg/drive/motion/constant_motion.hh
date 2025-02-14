@@ -1,6 +1,6 @@
 #pragma once
-#include "rev/api/alg/drive/motion/motion.hh"
 #include <memory>
+#include "rev/api/alg/drive/motion/motion.hh"
 
 namespace rev {
 /**
@@ -23,8 +23,8 @@ class ConstantMotion : public Motion {
    */
   explicit ConstantMotion(double ipower);
 
-  std::shared_ptr<ConstantMotion> operator &() {
-        return std::shared_ptr<ConstantMotion>(this);
+  std::shared_ptr<ConstantMotion> operator&() {
+    return std::shared_ptr<ConstantMotion>(this);
   }
 
  private:

@@ -5,12 +5,13 @@
 namespace rev {
 
 class Imu : Gyroscope {
-  public:
-    Imu(int port);
-    double get_position();
-    bool is_calibrating();
-  private:
-    pros::Imu inertial;
+ public:
+  Imu(int port);
+  double get_position();
+  bool is_calibrating();
+
+ private:
+  pros::Imu inertial;
 };
 
-} // namespace rev
+}  // namespace rev

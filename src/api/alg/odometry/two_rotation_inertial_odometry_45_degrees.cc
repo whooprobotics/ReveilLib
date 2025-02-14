@@ -38,7 +38,8 @@ void TwoRotationInertialOdometry45Degrees::set_position(Position pos) {
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
-  heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
+  heading_ticks_init =
+      inertial->get_heading() - current_position.pos.theta.convert(degree);
 
   current_position_mutex.give();
 }
@@ -54,11 +55,12 @@ void TwoRotationInertialOdometry45Degrees::step() {
     return;
   }
 
-  if(!is_initialized) {
+  if (!is_initialized) {
     longitude_ticks_last = (double)(longitudinal_sensor->get_position());
     latitude_ticks_last = (double)(lateral_sensor->get_position());
     heading_ticks_last = inertial->get_heading();
-    heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
+    heading_ticks_init =
+        inertial->get_heading() - current_position.pos.theta.convert(degree);
 
     is_initialized = true;
     return;
@@ -104,15 +106,20 @@ void TwoRotationInertialOdometry45Degrees::step() {
 
   // Raw translation values
   // QLength raw_fwd_translation =
-  //     d_longitudinal_ticks / 360 * 3.1415926535 * longitudinal_wheel_diameter;
+  //     d_longitudinal_ticks / 360 * 3.1415926535 *
+  //     longitudinal_wheel_diameter;
   // QLength raw_right_translation =
   //     d_latitude_ticks / 360 * 3.1415926535 * lateral_wheel_diameter;
 
-  //translation calculation adjusted for 45 degrees
-  QLength raw_fr_translation = d_longitudinal_ticks * 3.141592653 / 360 * longitudinal_wheel_diameter;
-  QLength raw_fl_translation = d_latitude_ticks * 3.141592653 / 360 * lateral_wheel_diameter;
-  QLength raw_fwd_translation = (raw_fr_translation + raw_fl_translation) / std::sqrt(2);
-  QLength raw_side_translation = (raw_fr_translation - raw_fl_translation) / std::sqrt(2);
+  // translation calculation adjusted for 45 degrees
+  QLength raw_fr_translation =
+      d_longitudinal_ticks * 3.141592653 / 360 * longitudinal_wheel_diameter;
+  QLength raw_fl_translation =
+      d_latitude_ticks * 3.141592653 / 360 * lateral_wheel_diameter;
+  QLength raw_fwd_translation =
+      (raw_fr_translation + raw_fl_translation) / std::sqrt(2);
+  QLength raw_side_translation =
+      (raw_fr_translation - raw_fl_translation) / std::sqrt(2);
   // Adjusted local translation values
   QLength local_off_lat, local_off_long;
 
@@ -124,8 +131,8 @@ void TwoRotationInertialOdometry45Degrees::step() {
   if (d_heading_ticks != 0) {
     double dht_radian = d_heading_ticks * degree.convert(radian);
     double sindt2 = std::sin(dht_radian / 2);
-    local_off_lat = 2 * sindt2 *
-                    (raw_side_translation / dht_radian + lateral_wheel_offset);
+    local_off_lat =
+        2 * sindt2 * (raw_side_translation / dht_radian + lateral_wheel_offset);
     local_off_long =
         2 * sindt2 *
         (raw_fwd_translation / dht_radian + longitudinal_wheel_offset);

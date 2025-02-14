@@ -4,9 +4,12 @@
 
 namespace rev {
 
-OpticalOdometry::OpticalOdometry(std::shared_ptr<OTOS> sensor, QLength ilongitudinal_offset, QLength ilateral_offset) : optical_sensor(sensor), longitudinal_offset(ilongitudinal_offset), lateral_offset(ilateral_offset) {
-  
-}
+OpticalOdometry::OpticalOdometry(std::shared_ptr<OTOS> sensor,
+                                 QLength ilongitudinal_offset,
+                                 QLength ilateral_offset)
+    : optical_sensor(sensor),
+      longitudinal_offset(ilongitudinal_offset),
+      lateral_offset(ilateral_offset) {}
 
 OdometryState OpticalOdometry::get_state() {
   current_position_mutex.take(TIMEOUT_MAX);
@@ -19,7 +22,8 @@ void OpticalOdometry::set_position(Position pos) {
   current_position_mutex.take(TIMEOUT_MAX);
 
   current_position.pos = pos;
-  current_position.vel = {0 * inch / second, 0 * inch / second, 0 * radian / second};
+  current_position.vel = {0 * inch / second, 0 * inch / second,
+                          0 * radian / second};
 
   current_position_mutex.give();
 }
@@ -28,7 +32,7 @@ void OpticalOdometry::reset_position() {
   this->set_position({0 * inch, 0 * inch, 0 * degree});
 }
 
-void OpticalOdometry::step() {  
+void OpticalOdometry::step() {
   optical_sensor->update();
 
   current_position_mutex.take(TIMEOUT_MAX);
@@ -40,4 +44,4 @@ void OpticalOdometry::step() {
   current_position_mutex.give();
 }
 
-} // namespace rev
+}  // namespace rev

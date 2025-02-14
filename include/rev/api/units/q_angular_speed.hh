@@ -1,7 +1,7 @@
 /*
- * This code is a modified version of OkapiLib's units library, which in turn is a modified version of
- * Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of OkapiLib's units library, which in turn is
+ * a modified version of Benjamin Jurke's work in 2015. You can read his blog
+ * post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * You can find the OkapiLib code this was taken from here:
@@ -23,7 +23,8 @@ QUANTITY_TYPE(0, 0, -1, 1, QAngularSpeed)
 
 constexpr QAngularSpeed radps = radian / second;
 constexpr QAngularSpeed rpm = (360 * degree) / minute;
-constexpr QAngularSpeed cps = (0.01 * degree) / second; // centidegree per second
+constexpr QAngularSpeed cps =
+    (0.01 * degree) / second;  // centidegree per second
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
@@ -39,5 +40,5 @@ constexpr QAngularSpeed operator"" _rpm(long double x) {
 constexpr QAngularSpeed operator"" _rpm(unsigned long long int x) {
   return static_cast<double>(x) * rpm;
 }
-} // namespace literals
-} // namespace rev
+}  // namespace literals
+}  // namespace rev

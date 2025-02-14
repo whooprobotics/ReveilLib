@@ -8,8 +8,9 @@
 #define PI 3.1415926535
 // Helper function, stolen from Nick Mertin
 /**
- * @brief Helper function which constrains angle to within 180 degrees of reference
-*/
+ * @brief Helper function which constrains angle to within 180 degrees of
+ * reference
+ */
 rev::QAngle near_circle(rev::QAngle angle, rev::QAngle reference) {
   return rev::radian *
          (round((reference.get_value() - angle.get_value()) / (2 * PI)) *
@@ -18,16 +19,17 @@ rev::QAngle near_circle(rev::QAngle angle, rev::QAngle reference) {
 }
 
 /**
- * @brief Helper function which constrains angle to within 90 degrees of reference
- * 
- * @param angle 
- * @param reference 
- * @return rev::QAngle 
+ * @brief Helper function which constrains angle to within 90 degrees of
+ * reference
+ *
+ * @param angle
+ * @param reference
+ * @return rev::QAngle
  */
 rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference) {
   return rev::radian *
-    (round((reference.get_value() - angle.get_value()) / PI) *
-      PI + angle.get_value());
+         (round((reference.get_value() - angle.get_value()) / PI) * PI +
+          angle.get_value());
 }
 
 rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
@@ -39,15 +41,16 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
     Position start_state,
     QLength drop_early,
     std::tuple<double, double> powers) {
-  
   Pose pos_current = current_state.pos;
 
   // Find the pose which is at target_state
   Pose pos_final = target_state;
   // but make this reference frame face directly away from the start state
-  pos_final.theta = atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
+  pos_final.theta =
+      atan2(pos_final.y - start_state.y, pos_final.x - start_state.x);
 
-  // If the robot starts facing more than 90 degrees from that, flip it to face towards the robot
+  // If the robot starts facing more than 90 degrees from that, flip it to face
+  // towards the robot
   pos_final.theta = near_semicircle(pos_final.theta, start_state.theta);
 
   // Reframe the robots current position in reference to the target state
@@ -59,9 +62,11 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
 
   error_angle = near_semicircle(error_angle, 0_deg);
 
-  double correction = abs(error.y + error.x * tan(error.theta)) > abs(max_error) ? k_correction * error_angle.get_value() : 0.0;
+  double correction = abs(error.y + error.x * tan(error.theta)) > abs(max_error)
+                          ? k_correction * error_angle.get_value()
+                          : 0.0;
 
-  if(std::get<0>(powers) < 0)
+  if (std::get<0>(powers) < 0)
     correction = -correction;
 
   if (correction > 0)
@@ -72,5 +77,4 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
                            std::get<1>(powers));
   else
     return powers;
-
 }

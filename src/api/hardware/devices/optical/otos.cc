@@ -31,12 +31,14 @@ void OTOS::update() {
   getline(cin, this->input);
   ss.str(input);
 
-  while(getline(ss, token, ' ')) {
+  while (getline(ss, token, ' ')) {
     this->tokens.push_back(token);
   }
 
-  if (tokens.empty()) { return; }
-  
+  if (tokens.empty()) {
+    return;
+  }
+
   ss.clear();
 
   x = stod(tokens.at(0));
@@ -46,4 +48,4 @@ void OTOS::update() {
   tokens.clear();
 }
 
-} // namespace rev
+}  // namespace rev

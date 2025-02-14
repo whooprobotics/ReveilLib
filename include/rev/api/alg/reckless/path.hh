@@ -18,7 +18,8 @@ struct RecklessPath {
   std::vector<std::shared_ptr<RecklessSegment>> segments;
 
   RecklessPath() { segments = std::vector<std::shared_ptr<RecklessSegment>>(); }
-  explicit RecklessPath(std::initializer_list<std::shared_ptr<RecklessSegment>> seg) {
+  explicit RecklessPath(
+      std::initializer_list<std::shared_ptr<RecklessSegment>> seg) {
     segments = std::vector<std::shared_ptr<RecklessSegment>>();
 
     for (auto& s : seg) {

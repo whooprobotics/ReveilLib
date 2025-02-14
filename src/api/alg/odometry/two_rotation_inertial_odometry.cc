@@ -27,29 +27,30 @@ TwoRotationInertialOdometry::TwoRotationInertialOdometry(
 }
 
 OdometryState TwoRotationInertialOdometry::get_state() {
-  #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.take(TIMEOUT_MAX);
-  #endif
+#endif
   OdometryState ret = current_position;
-  #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.give();
-  #endif
+#endif
   return ret;
 }
 void TwoRotationInertialOdometry::set_position(Position pos) {
-  #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.take(TIMEOUT_MAX);
-  #endif
+#endif
 
   current_position.pos = pos;
   current_position.vel = {0 * inch / second, 0 * inch / second,
                           0 * radian / second};
 
-  heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
+  heading_ticks_init =
+      inertial->get_heading() - current_position.pos.theta.convert(degree);
 
-  #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.give();
-  #endif
+#endif
 }
 
 void TwoRotationInertialOdometry::reset_position() {
@@ -65,11 +66,12 @@ void TwoRotationInertialOdometry::step() {
     return;
   }
 
-  if(!is_initialized) {
+  if (!is_initialized) {
     longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
     latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
     heading_ticks_last = inertial->get_heading();
-    heading_ticks_init = inertial->get_heading() - current_position.pos.theta.convert(degree);
+    heading_ticks_init =
+        inertial->get_heading() - current_position.pos.theta.convert(degree);
 
     is_initialized = true;
     return;
@@ -77,10 +79,10 @@ void TwoRotationInertialOdometry::step() {
 
   int32_t time = pros::millis();
 
-  // Take the mutex so we can make sure things don't get race conditioned
-  #ifndef OFF_ROBOT_TESTS
+// Take the mutex so we can make sure things don't get race conditioned
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.take(TIMEOUT_MAX);
-  #endif
+#endif
 
   // Get differences
   double d_longitudinal_ticks = longitude_ticks - longitude_ticks_last;
@@ -95,9 +97,9 @@ void TwoRotationInertialOdometry::step() {
   time_last = time;
 
   if (heading_ticks == PROS_ERR_F) {
-    #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
     current_position_mutex.give();
-    #endif
+#endif
     return;
   }
 
@@ -113,9 +115,9 @@ void TwoRotationInertialOdometry::step() {
   // Early exit/skip iteration if no changes
   if (d_longitudinal_ticks == 0.0 && d_latitude_ticks == 0.0 &&
       d_heading_ticks == 0.0) {
-    #ifndef OFF_ROBOT_TESTS
+#ifndef OFF_ROBOT_TESTS
     current_position_mutex.give();
-    #endif
+#endif
     return;
   }
 
@@ -176,9 +178,9 @@ void TwoRotationInertialOdometry::step() {
   current_position.vel.yv = vY;
   current_position.vel.angular = w;
 
-  // Before exiting, release mutex
-  #ifndef OFF_ROBOT_TESTS
+// Before exiting, release mutex
+#ifndef OFF_ROBOT_TESTS
   current_position_mutex.give();
-  #endif
+#endif
 }
 }  // namespace rev

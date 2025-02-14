@@ -1,7 +1,7 @@
 #pragma once
+#include <memory>
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/units/all_units.hh"
-#include <memory>
 
 namespace rev {
 /**
@@ -66,8 +66,8 @@ class CascadingMotion : public Motion {
                            QSpeed imax_v = 60 * inch / second,
                            double ik_v = 0.07);
 
-  std::shared_ptr<CascadingMotion> operator &() {
-        return std::shared_ptr<CascadingMotion>(this);
+  std::shared_ptr<CascadingMotion> operator&() {
+    return std::shared_ptr<CascadingMotion>(this);
   }
 
  private:

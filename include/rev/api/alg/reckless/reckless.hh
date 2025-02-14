@@ -45,9 +45,9 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   /**
    * This function starts the robot along a path
    */
-    void go(std::initializer_list<std::shared_ptr<RecklessSegment>> path) {
-      go(RecklessPath(path));
-    }
+  void go(std::initializer_list<std::shared_ptr<RecklessSegment>> path) {
+    go(RecklessPath(path));
+  }
 
   /**
    * This function returns the current status of the controller

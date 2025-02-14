@@ -8,10 +8,12 @@
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 namespace rev {
 /**
- * @brief Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an inertial
+ * @brief Odometry implementation using 2 tracking wheels mounted at a 45 degree
+ * angle to each other and an inertial
  *
  */
-class TwoRotationInertialOdometry45Degrees : public Odometry, public AsyncRunnable {
+class TwoRotationInertialOdometry45Degrees : public Odometry,
+                                             public AsyncRunnable {
  public:
   /**
    * @brief Get the current position
@@ -25,23 +27,26 @@ class TwoRotationInertialOdometry45Degrees : public Odometry, public AsyncRunnab
   void reset_position() override;
   void step() override;
 
-  TwoRotationInertialOdometry45Degrees(std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
-                              std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
-                              std::shared_ptr<rev::Gyroscope> iinertial,
-                              QLength ilongitudinal_wheel_diameter = 3.25 *
-                                                                     inch,
-                              QLength ilateral_wheel_diameter = 3.25 * inch,
-                              QLength ilongitudinal_wheel_offset = 0 * inch,
-                              QLength ilateral_wheel_offset = 0 * inch);
+  TwoRotationInertialOdometry45Degrees(
+      std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
+      std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
+      std::shared_ptr<rev::Gyroscope> iinertial,
+      QLength ilongitudinal_wheel_diameter = 3.25 * inch,
+      QLength ilateral_wheel_diameter = 3.25 * inch,
+      QLength ilongitudinal_wheel_offset = 0 * inch,
+      QLength ilateral_wheel_offset = 0 * inch);
 
  private:
-  std::shared_ptr<rev::ReadOnlyRotarySensor> longitudinal_sensor;  // Sensor indicating forward motion.
-                                       // Moving the robot forward should cause
-                                       // the position of this to increase.
-  std::shared_ptr<rev::ReadOnlyRotarySensor> lateral_sensor;       // Sensor indicating motion to the right.
-                                  // Moving the robot right should cause the
-                                  // position of this to increase.
-  std::shared_ptr<rev::Gyroscope> inertial;  // Inertial sensor from which the robot yaw will be read
+  std::shared_ptr<rev::ReadOnlyRotarySensor>
+      longitudinal_sensor;  // Sensor indicating forward motion.
+                            // Moving the robot forward should cause
+                            // the position of this to increase.
+  std::shared_ptr<rev::ReadOnlyRotarySensor>
+      lateral_sensor;  // Sensor indicating motion to the right.
+                       // Moving the robot right should cause the
+                       // position of this to increase.
+  std::shared_ptr<rev::Gyroscope>
+      inertial;  // Inertial sensor from which the robot yaw will be read
 
   pros::Mutex current_position_mutex;
   OdometryState current_position{{0_in, 0_in, 0_deg},
@@ -57,7 +62,7 @@ class TwoRotationInertialOdometry45Degrees : public Odometry, public AsyncRunnab
   // Time of last call
   int32_t time_last{-1};
 
-  bool is_initialized {false};
+  bool is_initialized{false};
 
   // Wheel sizes
   QLength longitudinal_wheel_diameter;

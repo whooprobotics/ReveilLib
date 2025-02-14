@@ -1,6 +1,6 @@
 #pragma once
-#include "rev/api/alg/drive/correction/correction.hh"
 #include <memory>
+#include "rev/api/alg/drive/correction/correction.hh"
 
 namespace rev {
 
@@ -28,8 +28,8 @@ class NoCorrection : public Correction {
       QLength drop_early,
       std::tuple<double, double> powers) override;
 
-  std::shared_ptr<NoCorrection> operator &() {
-        return std::shared_ptr<NoCorrection>(this);
+  std::shared_ptr<NoCorrection> operator&() {
+    return std::shared_ptr<NoCorrection>(this);
   }
 };
 }  // namespace rev

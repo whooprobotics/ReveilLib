@@ -1,8 +1,8 @@
 #pragma once
 
-#include "rev/api/alg/drive/stop/stop.hh"
-#include "pros/rtos.hpp"
 #include <iostream>
+#include "pros/rtos.hpp"
+#include "rev/api/alg/drive/stop/stop.hh"
 
 namespace rev {
 
@@ -64,8 +64,8 @@ class SimpleStop : public Stop {
                             QLength drop_early) override;
   double get_coast_power() override;
 
-  std::shared_ptr<SimpleStop> operator &() {
-        return std::shared_ptr<SimpleStop>(this);
+  std::shared_ptr<SimpleStop> operator&() {
+    return std::shared_ptr<SimpleStop>(this);
   }
 
  private:
@@ -74,8 +74,8 @@ class SimpleStop : public Stop {
   const double coast_power;
   stop_state stop_state_last{stop_state::GO};
 
-  uint32_t time_init {0};
-  uint32_t timeout {0};
+  uint32_t time_init{0};
+  uint32_t timeout{0};
 };
 
 }  // namespace rev

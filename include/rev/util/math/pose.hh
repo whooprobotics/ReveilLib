@@ -7,8 +7,10 @@ struct Pose : public PointVector {
   QAngle theta;
 
   constexpr Pose(QLength x, QLength y) : PointVector{x, y}, theta(0_deg) {}
-  constexpr Pose(QLength x, QLength y, QAngle angle) : PointVector{x, y}, theta(angle) {}
-  constexpr Pose(const Pose& other) : PointVector{other.x, other.y}, theta(other.theta) {}
+  constexpr Pose(QLength x, QLength y, QAngle angle)
+      : PointVector{x, y}, theta(angle) {}
+  constexpr Pose(const Pose& other)
+      : PointVector{other.x, other.y}, theta(other.theta) {}
   constexpr Pose() : PointVector{0_m, 0_m}, theta(0_deg) {}
 
   /**

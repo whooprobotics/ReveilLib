@@ -1,7 +1,7 @@
 /*
- * This code is a modified version of OkapiLib's units library, which in turn is a modified version of
- * Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of OkapiLib's units library, which in turn is
+ * a modified version of Benjamin Jurke's work in 2015. You can read his blog
+ * post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * You can find the OkapiLib code this was taken from here:
@@ -43,5 +43,5 @@ constexpr QSpeed operator"" _miph(unsigned long long int x) {
 constexpr QSpeed operator"" _kmph(unsigned long long int x) {
   return static_cast<double>(x) * kilometer / hour;
 }
-} // namespace literals
-} // namespace rev
+}  // namespace literals
+}  // namespace rev

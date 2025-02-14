@@ -1,8 +1,8 @@
 #pragma once
 
+#include <memory>
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/units/q_length.hh"
-#include <memory>
 
 namespace rev {
 /**
@@ -49,8 +49,8 @@ class PilonsCorrection : public Correction {
    */
   PilonsCorrection(double ik_correction, QLength imax_error);
 
-  std::shared_ptr<PilonsCorrection> operator &() {
-        return std::shared_ptr<PilonsCorrection>(this);
+  std::shared_ptr<PilonsCorrection> operator&() {
+    return std::shared_ptr<PilonsCorrection>(this);
   }
 
  private:

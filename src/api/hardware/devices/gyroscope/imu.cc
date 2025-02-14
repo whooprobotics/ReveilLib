@@ -12,4 +12,4 @@ bool Imu::is_calibrating() {
   return inertial.is_calibrating();
 }
 
-} // namespace rev
+}  // namespace rev

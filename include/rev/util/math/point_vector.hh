@@ -50,7 +50,7 @@ constexpr QArea operator*(const PointVector& lhs, const PointVector& rhs) {
 
 /**
  * @brief 2D vector scalar multiplication operator with double instead of Number
- * 
+ *
  * @param lhs The scalar to multiply by
  * @param rhs The vector being multiplied
  * @return constexpr PointVector

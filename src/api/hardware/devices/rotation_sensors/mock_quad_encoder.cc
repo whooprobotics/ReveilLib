@@ -2,10 +2,11 @@
 
 namespace rev {
 
-MockQuadEncoder::MockQuadEncoder(int initial_reading) : value(initial_reading) {}
+MockQuadEncoder::MockQuadEncoder(int initial_reading)
+    : value(initial_reading) {}
 
 double MockQuadEncoder::get_position() {
-  return (double) (value * 360.0 / 8192.0) + (looparounds * 360.0);
+  return (double)(value * 360.0 / 8192.0) + (looparounds * 360.0);
 }
 
 int MockQuadEncoder::get_value() {
@@ -35,4 +36,4 @@ int MockQuadEncoder::get_looparounds() {
   return looparounds;
 }
 
-} // namespace rev
+}  // namespace rev

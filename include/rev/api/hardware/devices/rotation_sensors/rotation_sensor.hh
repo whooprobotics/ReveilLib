@@ -5,19 +5,19 @@
 
 namespace rev {
 /**
- * @brief Implementation of the Vex Rotation sensor under the ReadOnlyRotarySensor interface
+ * @brief Implementation of the Vex Rotation sensor under the
+ * ReadOnlyRotarySensor interface
  *
  */
 
 class RotationSensor : public ReadOnlyRotarySensor {
-  public:
-    RotationSensor(std::uint8_t port, const bool reverse_flag);
+ public:
+  RotationSensor(std::uint8_t port, const bool reverse_flag);
 
-    double get_position() override;
+  double get_position() override;
 
-  private:
-    pros::Rotation sensor;
-
+ private:
+  pros::Rotation sensor;
 };
 
-} // namespace rev
+}  // namespace rev

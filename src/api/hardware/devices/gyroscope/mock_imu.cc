@@ -16,4 +16,4 @@ bool MockImu::is_calibrating() {
   return false;
 }
 
-} // namespace rev
+}  // namespace rev

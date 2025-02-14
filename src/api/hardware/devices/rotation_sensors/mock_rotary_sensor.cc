@@ -2,10 +2,11 @@
 
 namespace rev {
 
-MockRotarySensor::MockRotarySensor(int initial_reading) : value(initial_reading) {}
+MockRotarySensor::MockRotarySensor(int initial_reading)
+    : value(initial_reading) {}
 
 double MockRotarySensor::get_position() {
-  return (double) value / 100;
+  return (double)value / 100;
 }
 
 int MockRotarySensor::get_value() {
@@ -20,4 +21,4 @@ void MockRotarySensor::decrement() {
   value--;
 }
 
-} // namespace rev
+}  // namespace rev
