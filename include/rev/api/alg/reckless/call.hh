@@ -48,6 +48,8 @@ class Call : public RecklessSegment {
    */
   void clean_up() override;
 
+  double progress() override { return 0; }
+
  private:
   std::function<void(void)> callback;
 };

@@ -3,7 +3,6 @@
 #include "rev/api/hardware/chassis_sim/driftless_sim.hh"
 #include "rev/rev.hh"
 
-/*
 TEST(Cascade, RecklessVerifications) {
   using namespace rev;
   auto sim = std::make_shared<DriftlessSim>(60_in / second, 200_rpm, 5_Hz, 5_Hz,
@@ -28,12 +27,9 @@ TEST(Cascade, RecklessVerifications) {
                        {2_ft, 0_ft, 0_deg}, 0_in)
 
                                      )
-                   .with_segment(PilonsSegment(
-                       std::make_shared<CascadingMotion>(1, kP, kB,
-                                                         60_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {4_ft, 1_ft, 45_deg}, 0_in))
+                   .with_segment(Call([]() {
+                     std::cout << "2nd segment called" << std::endl;
+                   }))
                    .with_segment(PilonsSegment(
                        std::make_shared<CascadingMotion>(1, kP, kB,
                                                          60_in / second, 0.07),
@@ -51,5 +47,3 @@ TEST(Cascade, RecklessVerifications) {
     pros::delay(500);
   }
 }
-
-*/

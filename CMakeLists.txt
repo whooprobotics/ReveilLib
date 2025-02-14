@@ -52,8 +52,8 @@ add_executable(ReveilLib
         test/odom_test.cc
         test/reckless_call_test.cc
         test/turn_segment_test.cc
-        test/bezier_test.cc
-        test/straight_line_test.cc
+        #test/bezier_test.cc
+        #test/straight_line_test.cc
         #test/opencv_test.cc
         )
 

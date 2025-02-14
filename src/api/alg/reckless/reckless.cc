@@ -29,9 +29,9 @@ void Reckless::step() {
 
   auto seg = current_path.segments.at(current_segment);
 
-  // TODO: define step function
-
   SegmentStatus drive_state = seg->step(current_state);
+
+  partial_progress = (double)current_segment + seg->progress();
 
   switch (drive_state.status) {
     case SegmentStatusType::DRIVE: {

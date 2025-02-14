@@ -1,7 +1,7 @@
 #pragma once
 #include "rev/api/alg/reckless/path.hh"
 
-namespace rev{
+namespace rev {
 /**
  * @brief Parameters for a PilonsSegment
  */
@@ -26,14 +26,16 @@ class PilonsSegment : public RecklessSegment {
   Position target_point;
   QLength drop_early;
 
+  double part_progress{0.0};
+
   SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
  public:
   PilonsSegment(std::shared_ptr<Motion> imotion,
-                      std::shared_ptr<Correction> icorrection,
-                      std::shared_ptr<Stop> istop,
-                      Position itarget_point,
-                      QLength idrop_early = 0 * inch)
+                std::shared_ptr<Correction> icorrection,
+                std::shared_ptr<Stop> istop,
+                Position itarget_point,
+                QLength idrop_early = 0 * inch)
       : motion(imotion),
         correction(icorrection),
         stop(istop),
@@ -42,13 +44,15 @@ class PilonsSegment : public RecklessSegment {
     start_point = {0_in, 0_in, 0_deg};
   }
 
-  PilonsSegment(PilonsSegmentParams iparams, Position itarget_point, QLength idrop_early = 0*inch) :
-        motion(iparams.motion),
+  PilonsSegment(PilonsSegmentParams iparams,
+                Position itarget_point,
+                QLength idrop_early = 0 * inch)
+      : motion(iparams.motion),
         correction(iparams.correction),
         stop(iparams.stop),
         target_point(itarget_point),
         drop_early(idrop_early) {
-        start_point = {0_in, 0_in, 0_deg};
+    start_point = {0_in, 0_in, 0_deg};
   }
 
   /**
@@ -81,12 +85,16 @@ class PilonsSegment : public RecklessSegment {
    */
   void clean_up() override;
 
-  std::shared_ptr<RecklessSegment> operator &() {
-        return std::shared_ptr<PilonsSegment>(this);
+  double progress() override;
+
+  std::shared_ptr<RecklessSegment> operator&() {
+    return std::shared_ptr<PilonsSegment>(this);
   }
 
-  static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params, Position target_point, QLength drop_early = 0*inch) {
+  static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params,
+                                               Position target_point,
+                                               QLength drop_early = 0 * inch) {
     return std::make_shared<PilonsSegment>(params, target_point, drop_early);
   }
 };
-}// namespace rev
+}  // namespace rev

@@ -1,15 +1,29 @@
-#include "rev/api/alg/reckless/path.hh"
 #include "rev/api/alg/reckless/pilons_segment.hh"
-
+#include <iostream>
+#include "rev/api/alg/reckless/path.hh"
 namespace rev {
 
 void PilonsSegment::init(OdometryState initial_state) {
+  std::cout << "Pilons segment invoked" << std::endl;
   this->start_point = initial_state.pos;
 }
 
 SegmentStatus PilonsSegment::step(OdometryState current_state) {
   stop_state new_state = this->stop->get_stop_state(current_state, target_point,
                                                     start_point, drop_early);
+
+  QLength d_to_start = sqrt((start_point.x - current_state.pos.x) *
+                                (start_point.x - current_state.pos.x) +
+                            (start_point.y - current_state.pos.y) *
+                                (start_point.y - current_state.pos.y));
+
+  QLength current_d = sqrt((current_state.pos.x - target_point.x) *
+                               (current_state.pos.x - target_point.x) +
+                           (current_state.pos.y - target_point.y) *
+                               (current_state.pos.y - target_point.y));
+
+  Number pct_progress = d_to_start / (d_to_start + current_d);
+  part_progress = pct_progress.convert(Number(1.));
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||
@@ -41,5 +55,9 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
 }
 
 void PilonsSegment::clean_up() {}
+
+double PilonsSegment::progress() {
+  return part_progress;
+}
 
 }  // namespace rev

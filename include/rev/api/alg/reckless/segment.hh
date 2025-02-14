@@ -104,5 +104,11 @@ class RecklessSegment {
    * Executes immediately after a NEXT value is returned.
    */
   virtual void clean_up() = 0;
+
+  /**
+   * @brief Gets progress, from 0 to 1
+   *
+   */
+  virtual double progress() = 0;
 };
 }  // namespace rev
