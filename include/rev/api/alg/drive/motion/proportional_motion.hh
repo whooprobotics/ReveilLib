@@ -1,5 +1,6 @@
 #pragma once
 #include "rev/api/alg/drive/motion/motion.hh"
+#include <memory>
 
 namespace rev {
 /**
@@ -24,6 +25,10 @@ class ProportionalMotion : public Motion {
    * target
    */
   explicit ProportionalMotion(double ipower, double ik_p);
+
+  std::shared_ptr<ProportionalMotion> operator &() {
+        return std::shared_ptr<ProportionalMotion>(this);
+  }
 
  private:
   double power;

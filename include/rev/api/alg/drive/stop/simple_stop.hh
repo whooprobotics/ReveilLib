@@ -64,6 +64,10 @@ class SimpleStop : public Stop {
                             QLength drop_early) override;
   double get_coast_power() override;
 
+  std::shared_ptr<SimpleStop> operator &() {
+        return std::shared_ptr<SimpleStop>(this);
+  }
+
  private:
   const QTime harsh_threshold;
   const QTime coast_threshold;
