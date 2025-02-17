@@ -22,8 +22,7 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
                            (current_state.pos.y - target_point.y) *
                                (current_state.pos.y - target_point.y));
 
-  Number pct_progress = d_to_start / (d_to_start + current_d);
-  part_progress = pct_progress.convert(Number(1.));
+  this->part_progress = d_to_start.convert(inch) / (d_to_start + current_d).convert(inch);
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||

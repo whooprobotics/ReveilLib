@@ -50,7 +50,7 @@ class PilonsCorrection : public Correction {
   PilonsCorrection(double ik_correction, QLength imax_error);
 
   std::shared_ptr<PilonsCorrection> operator&() {
-    return std::shared_ptr<PilonsCorrection>(this);
+    return std::make_shared<PilonsCorrection>(*this);
   }
 
  private:

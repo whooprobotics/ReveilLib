@@ -67,7 +67,7 @@ class CascadingMotion : public Motion {
                            double ik_v = 0.07);
 
   std::shared_ptr<CascadingMotion> operator&() {
-    return std::shared_ptr<CascadingMotion>(this);
+    return std::make_shared<CascadingMotion>(*this);
   }
 
  private:

@@ -27,7 +27,7 @@ class ProportionalMotion : public Motion {
   explicit ProportionalMotion(double ipower, double ik_p);
 
   std::shared_ptr<ProportionalMotion> operator&() {
-    return std::shared_ptr<ProportionalMotion>(this);
+    return std::make_shared<ProportionalMotion>(*this);
   }
 
  private:

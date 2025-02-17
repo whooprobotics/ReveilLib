@@ -24,7 +24,7 @@ class ConstantMotion : public Motion {
   explicit ConstantMotion(double ipower);
 
   std::shared_ptr<ConstantMotion> operator&() {
-    return std::shared_ptr<ConstantMotion>(this);
+    return std::make_shared<ConstantMotion>(*this);
   }
 
  private:

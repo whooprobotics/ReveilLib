@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include "pros/rtos.hpp"
 #include "rev/api/alg/drive/stop/stop.hh"
 
@@ -65,7 +66,7 @@ class SimpleStop : public Stop {
   double get_coast_power() override;
 
   std::shared_ptr<SimpleStop> operator&() {
-    return std::shared_ptr<SimpleStop>(this);
+    return std::make_shared<SimpleStop>(*this);
   }
 
  private:

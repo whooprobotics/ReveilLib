@@ -19,7 +19,7 @@ void Reckless::step() {
     std::cout << "Completed motion with " << current_path.segments.size()
               << " segments" << std::endl;
     status = RecklessStatus::DONE;
-    partial_progress = -1.0;
+    partial_progress = current_path.segments.size();
     current_segment = 0;
     chassis->stop();
     return;
@@ -126,6 +126,7 @@ bool Reckless::is_completed() {
  */
 void Reckless::breakout() {
   status = RecklessStatus::DONE;
+  chassis->drive_tank(0, 0);
 }
 
 }  // namespace rev

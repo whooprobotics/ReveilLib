@@ -29,7 +29,7 @@ class NoCorrection : public Correction {
       std::tuple<double, double> powers) override;
 
   std::shared_ptr<NoCorrection> operator&() {
-    return std::shared_ptr<NoCorrection>(this);
+    return std::make_shared<NoCorrection>(*this);
   }
 };
 }  // namespace rev

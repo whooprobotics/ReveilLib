@@ -88,7 +88,7 @@ class PilonsSegment : public RecklessSegment {
   double progress() override;
 
   std::shared_ptr<RecklessSegment> operator&() {
-    return std::shared_ptr<PilonsSegment>(this);
+    return std::make_shared<PilonsSegment>(*this);
   }
 
   static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params,
