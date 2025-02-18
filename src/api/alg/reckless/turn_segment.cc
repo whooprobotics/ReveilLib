@@ -1,5 +1,6 @@
 #include "rev/api/alg/reckless/turn_segment.hh"
 #include "api.h"
+#include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/units/q_time.hh"
 
 namespace rev {
@@ -77,6 +78,10 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
   if (fabs(target_relative_original.convert(degree)) < 5.0) {
     SegmentStatus::next();
   }
+
+  //overshoot protection
+  if(std::copysign(1.0, target_relative.get_value()) != std::copysign(1.0, target_relative_original.get_value()))
+    return SegmentStatus::next();
 
   // Start slowdown if we are ready for that and we haven't already started
   // harsh-braking
