@@ -30,7 +30,7 @@ class RecklessTurnSegment : public RecklessSegment {
   void clean_up();
 
   std::shared_ptr<RecklessSegment> operator&() {
-    return std::shared_ptr<RecklessTurnSegment>(this);
+    return std::make_shared<RecklessTurnSegment>(*this);
   }
 
   static std::shared_ptr<RecklessTurnSegment> create(double imax_power,
