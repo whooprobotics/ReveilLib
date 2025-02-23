@@ -1,138 +1,93 @@
 #include "main.h"
-#include "rev/api/alg/reckless/path.hh"
-#include "rev/api/alg/reckless/turn_segment.hh"
-#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
-#include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
-#include "rev/rev.hh"
 
-// #include <iostream>
+/**
+ * A callback function for LLEMU's center button.
+ *
+ * When this callback is fired, it will toggle line 2 of the LCD text between
+ * "I was pressed!" and nothing.
+ */
+void on_center_button() {
+	static bool pressed = false;
+	pressed = !pressed;
+	if (pressed) {
+		pros::lcd::set_text(2, "I was pressed!");
+	} else {
+		pros::lcd::clear_line(2);
+	}
+}
 
-rev::Motor_Group leftd({-11, -12, -13, -18});
-rev::Motor_Group rightd({2, 3, 5, 6});
+/**
+ * Runs initialization code. This occurs as soon as the program is started.
+ *
+ * All other competition modes are blocked by initialize; it is recommended
+ * to keep execution time for this mode under a few seconds.
+ */
+void initialize() {
+	pros::lcd::initialize();
+	pros::lcd::set_text(1, "Hello PROS User!");
 
-pros::Imu imu(4);
-pros::Rotation fwd(1, true);
-pros::Rotation rgt(14);
-pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);
+	pros::lcd::register_btn1_cb(on_center_button);
+}
 
-std::shared_ptr<rev::SkidSteerChassis> chassis =
-    std::make_shared<rev::SkidSteerChassis>(leftd, rightd);
-
-// pros::Motor test_motor(15);
-using namespace rev;
-
-void on_center_button() {}
-
-void initialize() {}
-
+/**
+ * Runs while the robot is in the disabled state of Field Management System or
+ * the VEX Competition Switch, following either autonomous or opcontrol. When
+ * the robot is enabled, this task will exit.
+ */
 void disabled() {}
 
+/**
+ * Runs after initialize(), and before autonomous when connected to the Field
+ * Management System or the VEX Competition Switch. This is intended for
+ * competition-specific initialization routines, such as an autonomous selector
+ * on the LCD.
+ *
+ * This task will exit when the robot is enabled and autonomous or opcontrol
+ * starts.
+ */
 void competition_initialize() {}
 
+/**
+ * Runs the user autonomous code. This function will be started in its own task
+ * with the default priority and stack size whenever the robot is enabled via
+ * the Field Management System or the VEX Competition Switch in the autonomous
+ * mode. Alternatively, this function may be called in initialize or opcontrol
+ * for non-competition testing purposes.
+ *
+ * If the robot is disabled or communications is lost, the autonomous task
+ * will be stopped. Re-enabling the robot will restart the task, not re-start it
+ * from where it left off.
+ */
 void autonomous() {}
 
+/**
+ * Runs the operator control code. This function will be started in its own task
+ * with the default priority and stack size whenever the robot is enabled via
+ * the Field Management System or the VEX Competition Switch in the operator
+ * control mode.
+ *
+ * If no competition control is connected, this function will run immediately
+ * following initialize().
+ *
+ * If the robot is disabled or communications is lost, the
+ * operator control task will be stopped. Re-enabling the robot will restart the
+ * task, not resume it from where it left off.
+ */
 void opcontrol() {
-  // controller.print(0, 0, "furk");
-  // test_motor.move_voltage(12000);
-  pros::delay(2000);
-  std::shared_ptr<rev::TwoRotationInertialOdometry45Degrees> odom =
-      std::make_shared<rev::TwoRotationInertialOdometry45Degrees>(
-          fwd, rgt, imu, 2.09_in, 2.75_in, 4.75_in, 0.5_in);
+	pros::Controller master(pros::E_CONTROLLER_MASTER);
+	pros::Motor left_mtr(1);
+	pros::Motor right_mtr(2);
 
-  odom->set_position({0_ft, 0_ft, 0_deg});
+	while (true) {
+		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
+		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
+		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
+		int left = master.get_analog(ANALOG_LEFT_Y);
+		int right = master.get_analog(ANALOG_RIGHT_Y);
 
-  // odom->set_position({215_in, 49_in, 16_deg});
-  AsyncRunner odom_runner(odom);
+		left_mtr = left;
+		right_mtr = right;
 
-  /*std::shared_ptr<rev::CampbellTurn> turnc =
-  std::make_shared<CampbellTurn>(chassis, odom, 0.2, 0.05);
-
-  AsyncRunner turn_runner (turnc);
-
-  pros::delay(2000);
-  turnc->turn_to_target_absolute(0.7, -15_deg);
-  //pros::delay(2000);
-  turnc->turn_to_target_absolute(0.7, -30_deg);*/
-
-  std::shared_ptr<rev::Reckless> reckless =
-      std::make_shared<Reckless>(chassis, odom);
-
-  AsyncRunner reckless_runner(reckless);
-
-  pros::delay(2000);
-
-  const double kP = 0.0;
-  const double kB = 0.015;
-
-  /*turn->turn_to_target_absolute(0.7, 45_deg);
-
-  while (!turn->is_completed())
-    pros::delay(20);*/
-
-  PilonsSegmentParams SLOW = {
-      std::make_shared<CascadingMotion>(0.4, kP, kB, 40_in / second, 0.07),
-      std::make_shared<PilonsCorrection>(2, 0.5_in),
-      std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-  };
-
-  PilonsSegmentParams MEDIUM = {
-      std::make_shared<CascadingMotion>(0.7, kP, kB, 60_in / second, 0.07),
-      std::make_shared<PilonsCorrection>(2, 0.5_in),
-      std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-  };
-
-  PilonsSegmentParams FAST = {
-      std::make_shared<CascadingMotion>(0.9, kP, kB, 80_in / second, 0.07),
-      std::make_shared<PilonsCorrection>(2, 0.5_in),
-      std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-  };
-
-  // test new reckless syntax
-  reckless->go({PilonsSegment::create(SLOW, {20_in, 0_in}),
-                PilonsSegment::create(MEDIUM, {20_in, 20_in, 90_deg}),
-                PilonsSegment::create(FAST, {0_in, 20_in}),
-                &PilonsSegment(SLOW, {0_in, 0_in})});
-
-  reckless->go(RecklessPath()
-                   .with_segment(PilonsSegment(
-                       std::make_shared<CascadingMotion>(0.7, kP, kB,
-                                                         40_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(0.1_s, 0.2_s, 0.4),
-                       {2_ft, -5_ft, 0_deg}, 0_in)
-
-                                     )
-                   .with_segment(PilonsSegment(
-                       std::make_shared<CascadingMotion>(0.7, kP, kB,
-                                                         40_in / second, 0.07),
-                       std::make_shared<PilonsCorrection>(2, 0.5_in),
-                       std::make_shared<SimpleStop>(.1_s, 0.2_s, 0.4),
-                       {8_ft, 8_ft, 45_deg}, 0_in)));
-
-  while (!reckless->is_completed())
-    pros::delay(20);
-  printf("Completed motion");
-
-  // reckless->go(RecklessPath());
-
-  //   turn_runner.~AsyncRunner();  // Stop AsyncRunner
-
-  //   turn->turn_to_target_absolute(
-  //       0.7, 45_deg);  // Attempt another turn with AsyncRunner deleted, this
-  //                      // should fail
-
-  //   while (true) {
-  //     printf("loop\n");
-  //     auto pose = odom->get_state().pos;
-  //     std::cout << pose.x.convert(foot) << "ft, " << pose.y.convert(foot) <<
-  //     ","
-  //              << pose.theta.convert(degree) << "deg" << std::endl;
-
-  //     chassis->drive_arcade(
-  //         (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_LEFT_Y)/100,
-  //         (double)controller.get_analog(pros::controller_analog_e_t::E_CONTROLLER_ANALOG_RIGHT_X)/100
-  //     );
-
-  //     pros::delay(250);
-  //   }
+		pros::delay(20);
+	}
 }
