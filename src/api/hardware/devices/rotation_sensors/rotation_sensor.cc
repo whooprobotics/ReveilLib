@@ -4,7 +4,10 @@ namespace rev {
 
 RotationSensor::RotationSensor(std::uint8_t port,
                                const bool reverse_flag = false)
-    : sensor(port, reverse_flag) {}
+    : sensor(port) {
+  if (reverse_flag)
+    sensor.set_reversed(true);
+}
 
 double RotationSensor::get_position() {
   return (double)sensor.get_position() / 100;

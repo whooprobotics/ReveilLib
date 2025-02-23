@@ -71,7 +71,7 @@ std::int32_t rev::Motor::get_direction(void) const {
 }
 
 std::int32_t rev::Motor::is_stopped(void) const {
-  return pros::c::motor_is_stopped(port);
+  return pros::c::motor_get_flags(port) & pros::E_MOTOR_FLAGS_ZERO_VELOCITY;
 }
 
 std::int32_t rev::Motor::get_raw_position(
