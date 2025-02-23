@@ -19,7 +19,7 @@ void Reckless::step() {
     std::cout << "Completed motion with " << current_path.segments.size()
               << " segments" << std::endl;
     status = RecklessStatus::DONE;
-    partial_progress = -1.0;
+    partial_progress = current_path.segments.size();
     current_segment = 0;
     chassis->stop();
     return;
@@ -29,106 +29,59 @@ void Reckless::step() {
 
   auto seg = current_path.segments.at(current_segment);
 
-  // TODO: define step function
+  SegmentStatus drive_state = seg->step(current_state);
 
-  auto current_stop_state = seg.stop->get_stop_state(
-      current_state, seg.target_point, seg.start_point, seg.drop_early);
+  partial_progress = (double)current_segment + seg->progress();
 
-  if (current_stop_state != lsstate) {
-    std::cout << "State change occured to "
-              << (current_stop_state == stop_state::GO      ? "GO"
-                  : current_stop_state == stop_state::COAST ? "COAST"
-                                                            : "BRAKE")
-              << std::endl;
-    lsstate = current_stop_state;
-  }
-
-  switch (current_stop_state) {
-    case stop_state::GO: {
-      auto pows = seg.motion->gen_powers(current_state, seg.target_point,
-                                         seg.start_point, seg.drop_early);
-      auto [power_left, power_right] = seg.correction->apply_correction(
-          current_state, seg.target_point, seg.start_point, seg.drop_early,
-          pows);
-      chassis->drive_tank(power_left, power_right);
+  switch (drive_state.status) {
+    case SegmentStatusType::DRIVE: {
+      chassis->drive_tank(drive_state.power_left, drive_state.power_right);
       // Safety, should never matter
-      brake_time = -1;
+      brake_start_time = -1;
       break;
     } break;
-    case stop_state::COAST: {
-      // If the final state is somewhere behind the start state, we need to
-      // invert the facing vector
-      Number xi_facing = cos(seg.start_point.theta);
-      Number yi_facing = sin(seg.start_point.theta);
-
-      // Find dot product of initial facing and initial offset. If this dot
-      // product is negative, the target point is behind the robot and it needs
-      // to reverse to get there.
-      QLength initial_longitudinal_distance =
-          xi_facing * (seg.target_point.x - seg.start_point.x) +
-          yi_facing * (seg.target_point.y - seg.start_point.y);
-
-      double coast_power = seg.stop->get_coast_power();
-      // If its negative, we're goin backwards
-      if (initial_longitudinal_distance.get_value() < 0)
-        coast_power = -coast_power;
-      chassis->drive_tank(coast_power, coast_power);
-      // Safety, should never matter, just like Josh DeBerry
-      brake_time = -1;
-      break;
-    } break;
-    case stop_state::BRAKE: {
+    case SegmentStatusType::BRAKE:
       // Check if we havent started braking yet
-      if (brake_time == -1) {
+      if (brake_start_time == -1) {
         chassis->set_brake_harsh();
         chassis->stop();
-        brake_time = pros::millis();
+        brake_start_time = pros::millis();
+        break;
       }
       // Check if enough time has elapsed to stop braking
-      else if (pros::millis() > brake_time + 250) {
-        chassis->set_brake_coast();
-        brake_time = -1;
-        current_segment++;
-        // Ensure the next segment knows where we're really starting
-        if (current_segment < current_path.segments.size())
-          current_path.segments.at(current_segment).start_point =
-              current_state.pos;
-      }
-      break;
-    } break;
+      // If enough time has passed then it will just proceed as if it recieved a
+      // NEXT
+      else if (pros::millis() <= brake_start_time + 250)
+        break;
     // Just like brake but without the braking
-    case stop_state::EXIT:
+    case SegmentStatusType::NEXT:
       chassis->set_brake_coast();
       chassis->stop();
+      seg->clean_up();
       current_segment++;
       // Ensure the next segment knows where we're really starting
       if (current_segment < current_path.segments.size())
-        current_path.segments.at(current_segment).start_point =
-            current_state.pos;
+        current_path.segments.at(current_segment)->init(current_state);
       // Safety, should never matter
-      brake_time = -1;
+      brake_start_time = -1;
+      break;
+    case SegmentStatusType::DUMMY:
       break;
   }  // switch (current_stop_state) {
 
-  // Update progress
-  QLength csx = current_state.pos.x - seg.start_point.x;
-  QLength csy = current_state.pos.y - seg.start_point.y;
-
-  QLength tsx = seg.target_point.x - seg.start_point.x;
-  QLength tsy = seg.target_point.y - seg.start_point.y;
-
-  auto csts = csx * tsx + csy * tsy;
-  auto tsts = tsx * tsx + tsy * tsy;
-  Number current_segment_progress = csts / tsts;
-  partial_progress =
-      (double)current_segment + current_segment_progress.convert(number);
+  // TODO: figure out a way to update progress with the new segment format
 }
 
 void Reckless::await() {
-  // Technically we can make this lighter with a condition variable or semaphore
-  // but its not worth it in this case because its a very quick check
+  // Technically we can make this lighter with a condition variable or
+  // semaphore but its not worth it in this case because its a very quick
+  // check
   while (!is_completed())
     pros::delay(10);
+}
+
+bool Reckless::is_ready() {
+  return this->is_completed();
 }
 
 /**
@@ -139,7 +92,7 @@ void Reckless::go(RecklessPath path) {
     breakout();
   current_segment = 0;
   current_path = path;
-  current_path.segments.at(0).start_point = odometry->get_state().pos;
+  current_path.segments.at(0)->init(odometry->get_state());
   status = RecklessStatus::ACTIVE;
   std::cout << "Started motion with " << current_path.segments.size()
             << " segments" << std::endl;
@@ -168,20 +121,12 @@ bool Reckless::is_completed() {
   return get_status() == RecklessStatus::DONE;
 }
 /**
- * This function immediately sets the status to DONE and ends the current motion
+ * This function immediately sets the status to DONE and ends the current
+ * motion
  */
 void Reckless::breakout() {
   status = RecklessStatus::DONE;
+  chassis->drive_tank(0, 0);
 }
 
-/**
- * @brief Add a segment to the path under construction
- *
- * @param segment The segment to add
- * @return RecklessPath& An ongoing path builder
- */
-RecklessPath& RecklessPath::with_segment(RecklessPathSegment segment) {
-  segments.push_back(segment);
-  return *this;
-}
 }  // namespace rev

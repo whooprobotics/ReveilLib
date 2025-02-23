@@ -1,7 +1,7 @@
 /*
- * This code is a modified version of OkapiLib's units library, which in turn is a modified version of
- * Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of OkapiLib's units library, which in turn is
+ * a modified version of Benjamin Jurke's work in 2015. You can read his blog
+ * post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * You can find the OkapiLib code this was taken from here:
@@ -18,7 +18,7 @@
 namespace rev {
 QUANTITY_TYPE(0, 1, 0, 0, QLength)
 
-constexpr QLength meter(1.0); // SI base unit
+constexpr QLength meter(1.0);  // SI base unit
 constexpr QLength decimeter = meter / 10;
 constexpr QLength centimeter = meter / 100;
 constexpr QLength millimeter = meter / 1000;
@@ -84,5 +84,5 @@ constexpr QLength operator"" _in(unsigned long long int x) {
 constexpr QLength operator"" _tile(unsigned long long int x) {
   return static_cast<double>(x) * tile;
 }
-} // namespace literals
-} // namespace rev
+}  // namespace literals
+}  // namespace rev

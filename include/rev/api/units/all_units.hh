@@ -1,8 +1,7 @@
 /**
  * Helpful header file to include all unit things
-*/
+ */
 
-#include "rev/api/units/r_quantity.hh"
 #include "rev/api/units/q_acceleration.hh"
 #include "rev/api/units/q_angle.hh"
 #include "rev/api/units/q_angular_acceration.hh"
@@ -19,4 +18,5 @@
 #include "rev/api/units/q_time.hh"
 #include "rev/api/units/q_torque.hh"
 #include "rev/api/units/q_volume.hh"
+#include "rev/api/units/r_quantity.hh"
 #include "rev/api/units/r_quantity_name.hh"

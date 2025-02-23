@@ -1,7 +1,7 @@
 /*
- * This code is a modified version of OkapiLib's units library, which in turn is a modified version of
- * Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of OkapiLib's units library, which in turn is
+ * a modified version of Benjamin Jurke's work in 2015. You can read his blog
+ * post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * You can find the OkapiLib code this was taken from here:
@@ -13,8 +13,8 @@
  */
 #pragma once
 
-#include "rev/api/units/r_quantity.hh"
 #include <cmath>
+#include "rev/api/units/r_quantity.hh"
 
 namespace rev {
 QUANTITY_TYPE(0, 0, 0, 1, QAngle)
@@ -35,5 +35,5 @@ constexpr QAngle operator"" _deg(long double x) {
 constexpr QAngle operator"" _deg(unsigned long long int x) {
   return static_cast<double>(x) * degree;
 }
-} // namespace literals
-} // namespace rev
+}  // namespace literals
+}  // namespace rev

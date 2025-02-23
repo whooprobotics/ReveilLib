@@ -18,9 +18,11 @@ class Motion {
    *
    * @param current_state The current state when this method is called
    * @param target_state The target state being approached
-   * @param start_state The position occupied when the current segment gained control
-   * @param drop_early The distance from the target point at which this segment should end
-   * 
+   * @param start_state The position occupied when the current segment gained
+   * control
+   * @param drop_early The distance from the target point at which this segment
+   * should end
+   *
    * @return std::tuple<double, double>
    */
   virtual std::tuple<double, double> gen_powers(OdometryState current_state,

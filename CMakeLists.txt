@@ -26,23 +26,41 @@ add_executable(ReveilLib
         src/api/alg/drive/motion/cascading_motion.cc
         src/api/alg/drive/motion/proportional_motion.cc
         src/api/alg/drive/motion/constant_motion.cc
-        src/api/alg/drive/turn/campbell_turn.cc
+        src/api/alg/reckless/turn_segment.cc
         src/api/alg/drive/stop/simple_stop.cc
         src/api/alg/drive/correction/pilons_correction.cc
         src/api/alg/drive/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
+        src/api/alg/reckless/pilons_segment.cc
+        src/api/alg/path_gen/bezier_curves.cc
+        src/api/alg/path_gen/straight_lines.cc
+        src/api/alg/pure_pursuit/pure_pursuit.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
+        src/api/alg/reckless/call.cc
+        src/api/alg/reckless/await.cc
+        src/api/hardware/devices/rotation_sensors/mock_rotary_sensor.cc
+        src/api/hardware/devices/rotation_sensors/mock_quad_encoder.cc
+        src/api/hardware/devices/gyroscope/mock_imu.cc
+        src/api/alg/odometry/two_rotation_inertial_odometry.cc
         test/template_test.cc
         test/point_vector_test.cc
         test/off_robot_utils.cc
         test/pose_shift_test.cc
         test/driftless_sim_test.cc
         test/reckless_test.cc
+        test/odom_test.cc
+        test/reckless_call_test.cc
+        test/turn_segment_test.cc
+        #test/bezier_test.cc
+        #test/straight_line_test.cc
+        #test/opencv_test.cc
         )
 
-# Link against gtest
-target_link_libraries(ReveilLib GTest::gtest_main)
+#find_package(OpenCV REQUIRED)
+#include_directories(${OpenCV_INCLUDE_DIRS})
+
+target_link_libraries(ReveilLib GTest::gtest_main) #${OpenCV_LIBS})
 
 include(GoogleTest)
 gtest_discover_tests(ReveilLib)

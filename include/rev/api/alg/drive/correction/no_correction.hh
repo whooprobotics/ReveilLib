@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "rev/api/alg/drive/correction/correction.hh"
 
 namespace rev {
@@ -26,5 +27,9 @@ class NoCorrection : public Correction {
       Position start_state,
       QLength drop_early,
       std::tuple<double, double> powers) override;
+
+  std::shared_ptr<NoCorrection> operator&() {
+    return std::make_shared<NoCorrection>(*this);
+  }
 };
 }  // namespace rev
