@@ -101,6 +101,7 @@ $(function(){initNavTree('classrev_1_1RecklessTurnSegment.html',''); initResizab
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classrev_1_1RecklessTurnSegment-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">rev::RecklessTurnSegment Class Reference</div></div>
 </div><!--header-->
@@ -153,6 +154,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aebb8d5f2a10232fc17757756503e481b" id="r_aebb8d5f2a10232fc17757756503e481b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebb8d5f2a10232fc17757756503e481b">clean_up</a> ()</td></tr>
 <tr class="memdesc:aebb8d5f2a10232fc17757756503e481b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean-up.  <br /></td></tr>
 <tr class="separator:aebb8d5f2a10232fc17757756503e481b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207c23e3a9ef442225118ec6b889f2e3" id="r_a207c23e3a9ef442225118ec6b889f2e3"><td class="memItemLeft" align="right" valign="top"><a id="a207c23e3a9ef442225118ec6b889f2e3" name="a207c23e3a9ef442225118ec6b889f2e3"></a>
+std::shared_ptr&lt; <a class="el" href="classrev_1_1RecklessSegment.html">RecklessSegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;</b> ()</td></tr>
+<tr class="separator:a207c23e3a9ef442225118ec6b889f2e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad43fdfac661c20438406874712b9e93a" id="r_ad43fdfac661c20438406874712b9e93a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad43fdfac661c20438406874712b9e93a">progress</a> () override</td></tr>
+<tr class="memdesc:ad43fdfac661c20438406874712b9e93a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets progress, from 0 to 1.  <br /></td></tr>
+<tr class="separator:ad43fdfac661c20438406874712b9e93a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a64b5911c8c3a5d8f372c0bdfa5cd30b8" id="r_a64b5911c8c3a5d8f372c0bdfa5cd30b8"><td class="memItemLeft" align="right" valign="top"><a id="a64b5911c8c3a5d8f372c0bdfa5cd30b8" name="a64b5911c8c3a5d8f372c0bdfa5cd30b8"></a>
+static std::shared_ptr&lt; <a class="el" href="classrev_1_1RecklessTurnSegment.html">RecklessTurnSegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (double imax_power, double icoast_power, QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
+<tr class="separator:a64b5911c8c3a5d8f372c0bdfa5cd30b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Path segment for turning for use with <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> controller, implementing Walker Campbell's turn algorithm. </p>
@@ -215,6 +228,35 @@ Public Member Functions</h2></td></tr>
 <p>The intended use of this method is to perform any calculations that need to happen at the start of a segment. </p>
 
 <p>Implements <a class="el" href="classrev_1_1RecklessSegment.html#a51752dc2a483baf79281e69e6389bf79">rev::RecklessSegment</a>.</p>
+
+</div>
+</div>
+<a id="ad43fdfac661c20438406874712b9e93a" name="ad43fdfac661c20438406874712b9e93a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad43fdfac661c20438406874712b9e93a">&#9670;&#160;</a></span>progress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double rev::RecklessTurnSegment::progress </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets progress, from 0 to 1. </p>
+
+<p>Implements <a class="el" href="classrev_1_1RecklessSegment.html#a249c914d58ff971df3baa037cbf7f8c8">rev::RecklessSegment</a>.</p>
 
 </div>
 </div>

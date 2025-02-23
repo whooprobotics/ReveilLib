@@ -103,32 +103,37 @@ $(function(){initNavTree('pilons__correction_8hh_source.html',''); initResizable
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;rev/api/alg/drive/correction/correction.hh&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/units/q_length.hh&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
-<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classrev_1_1PilonsCorrection.html">   25</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">PilonsCorrection</a> : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1Correction.html">Correction</a> {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  std::tuple&lt;double, double&gt; <a class="code hl_function" href="classrev_1_1PilonsCorrection.html#a9b7c4b1093a1f6690a0a4bb490dcc446">apply_correction</a>(</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_state,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_state,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      QLength drop_early,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      std::tuple&lt;double, double&gt; powers) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <a class="code hl_function" href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">PilonsCorrection</a>(<span class="keywordtype">double</span> ik_correction, QLength imax_error);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">double</span> k_correction;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  QLength max_error;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
-</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/alg/drive/correction/correction.hh&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rev/api/units/q_length.hh&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classrev_1_1PilonsCorrection.html">   26</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">PilonsCorrection</a> : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1Correction.html">Correction</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  std::tuple&lt;double, double&gt; <a class="code hl_function" href="classrev_1_1PilonsCorrection.html#a9b7c4b1093a1f6690a0a4bb490dcc446">apply_correction</a>(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_state,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_state,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      QLength drop_early,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      std::tuple&lt;double, double&gt; powers) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <a class="code hl_function" href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">PilonsCorrection</a>(<span class="keywordtype">double</span> ik_correction, QLength imax_error);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::shared_ptr&lt;PilonsCorrection&gt; operator&amp;() {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> std::make_shared&lt;PilonsCorrection&gt;(*<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}  <span class="comment">// namespace rev</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">double</span> k_correction;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  QLength max_error;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="aclassrev_1_1Correction_html"><div class="ttname"><a href="classrev_1_1Correction.html">rev::Correction</a></div><div class="ttdoc">Interface for correction algorithms.</div><div class="ttdef"><b>Definition</b> correction.hh:11</div></div>
-<div class="ttc" id="aclassrev_1_1PilonsCorrection_html_a9b7c4b1093a1f6690a0a4bb490dcc446"><div class="ttname"><a href="classrev_1_1PilonsCorrection.html#a9b7c4b1093a1f6690a0a4bb490dcc446">rev::PilonsCorrection::apply_correction</a></div><div class="ttdeci">std::tuple&lt; double, double &gt; apply_correction(OdometryState current_state, Position target_state, Position start_state, QLength drop_early, std::tuple&lt; double, double &gt; powers) override</div><div class="ttdoc">Applies correction to the input.</div><div class="ttdef"><b>Definition</b> pilons_correction.cc:36</div></div>
-<div class="ttc" id="aclassrev_1_1PilonsCorrection_html_afe3fbb2ac90ee22ab6b55bdd9fb7e2c6"><div class="ttname"><a href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">rev::PilonsCorrection::PilonsCorrection</a></div><div class="ttdeci">PilonsCorrection(double ik_correction, QLength imax_error)</div><div class="ttdoc">Construct a new Pilons Correction object.</div><div class="ttdef"><b>Definition</b> pilons_correction.cc:33</div></div>
+<div class="ttc" id="aclassrev_1_1PilonsCorrection_html_a9b7c4b1093a1f6690a0a4bb490dcc446"><div class="ttname"><a href="classrev_1_1PilonsCorrection.html#a9b7c4b1093a1f6690a0a4bb490dcc446">rev::PilonsCorrection::apply_correction</a></div><div class="ttdeci">std::tuple&lt; double, double &gt; apply_correction(OdometryState current_state, Position target_state, Position start_state, QLength drop_early, std::tuple&lt; double, double &gt; powers) override</div><div class="ttdoc">Applies correction to the input.</div><div class="ttdef"><b>Definition</b> pilons_correction.cc:38</div></div>
+<div class="ttc" id="aclassrev_1_1PilonsCorrection_html_afe3fbb2ac90ee22ab6b55bdd9fb7e2c6"><div class="ttname"><a href="classrev_1_1PilonsCorrection.html#afe3fbb2ac90ee22ab6b55bdd9fb7e2c6">rev::PilonsCorrection::PilonsCorrection</a></div><div class="ttdeci">PilonsCorrection(double ik_correction, QLength imax_error)</div><div class="ttdoc">Construct a new Pilons Correction object.</div><div class="ttdef"><b>Definition</b> pilons_correction.cc:35</div></div>
 <div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
 <div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>

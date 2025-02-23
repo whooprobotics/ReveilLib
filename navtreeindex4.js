@@ -1,5 +1,15 @@
 var NAVTREEINDEX4 =
 {
+"classsciplot_1_1TicsSpecs.html":[12,0,2,40],
+"classsciplot_1_1TicsSpecs.html#a21e48420f7c4fa7b1ad98c96ebc7e9ea":[12,0,2,40,0],
+"classsciplot_1_1TicsSpecs.html#a76754daa58647537baf7586c1d9a55b9":[12,0,2,40,1],
+"classsciplot_1_1TicsSpecs.html#a86c871641895c55ce3693d93a415965a":[12,0,2,40,2],
+"classsciplot_1_1TicsSpecs.html#aaa97b2a108c7011d01285f52119f901e":[12,0,2,40,3],
+"classsciplot_1_1TicsSpecsBaseOf.html":[12,0,2,41],
+"classsciplot_1_1TicsSpecsBaseOf.html#a1959b550e8acfe6d3246296954b6130f":[12,0,2,41,12],
+"classsciplot_1_1TicsSpecsBaseOf.html#a1f35fa479d2a3b7aa40ee8e8219cbc30":[12,0,2,41,2],
+"classsciplot_1_1TicsSpecsBaseOf.html#a4cb3f10017927c36f144e15e1e349e1a":[12,0,2,41,6],
+"classsciplot_1_1TicsSpecsBaseOf.html#a5f4f99204a921d5ae754c986b9c0ec92":[12,0,2,41,11],
 "classsciplot_1_1TicsSpecsBaseOf.html#a6fdec17f42c34efcda1704a4b96240a6":[12,0,2,41,4],
 "classsciplot_1_1TicsSpecsBaseOf.html#a74986386d2b070ab3ed28e03d21dbfdb":[12,0,2,41,5],
 "classsciplot_1_1TicsSpecsBaseOf.html#a7653d3e73f6dfd3b9951ff1bc7498628":[12,0,2,41,3],
@@ -239,15 +249,5 @@ var NAVTREEINDEX4 =
 "point__vector_8hh_source.html":[13,0,0,0,1,0,0],
 "pose_8hh_source.html":[13,0,0,0,1,0,1],
 "proportional__motion_8hh_source.html":[13,0,0,0,0,0,0,1,3],
-"pure__pursuit_8hh_source.html":[13,0,0,0,0,0,3,0],
-"q__acceleration_8hh_source.html":[13,0,0,0,0,3,1],
-"q__angle_8hh_source.html":[13,0,0,0,0,3,2],
-"q__angular__acceration_8hh_source.html":[13,0,0,0,0,3,3],
-"q__angular__jerk_8hh_source.html":[13,0,0,0,0,3,4],
-"q__angular__speed_8hh_source.html":[13,0,0,0,0,3,5],
-"q__area_8hh_source.html":[13,0,0,0,0,3,6],
-"q__force_8hh_source.html":[13,0,0,0,0,3,7],
-"q__frequency_8hh_source.html":[13,0,0,0,0,3,8],
-"q__jerk_8hh_source.html":[13,0,0,0,0,3,9],
-"q__length_8hh_source.html":[13,0,0,0,0,3,10]
+"pure__pursuit_8hh_source.html":[13,0,0,0,0,0,3,0]
 };

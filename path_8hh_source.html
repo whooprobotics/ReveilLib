@@ -118,27 +118,28 @@ $(function(){initNavTree('path_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  std::vector&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt; segments;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  RecklessPath() { segments = std::vector&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt;(); }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">explicit</span> RecklessPath(std::initializer_list&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt; seg) {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    segments = std::vector&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt;();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; s : seg) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      segments.push_back(s);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">   35</a></span>  RecklessPath&amp; <a class="code hl_function" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">with_segment</a>(T segment) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">static_assert</span>(std::is_base_of&lt;RecklessSegment, T&gt;::value,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                  <span class="stringliteral">&quot;with_segment parameter must implement RecklessSegment&quot;</span>);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    segments.push_back(std::make_shared&lt;T&gt;(segment));</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">explicit</span> RecklessPath(</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      std::initializer_list&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt; seg) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    segments = std::vector&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt;();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; s : seg) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      segments.push_back(s);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">   36</a></span>  RecklessPath&amp; <a class="code hl_function" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">with_segment</a>(T segment) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static_assert</span>(std::is_base_of&lt;RecklessSegment, T&gt;::value,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                  <span class="stringliteral">&quot;with_segment parameter must implement RecklessSegment&quot;</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    segments.push_back(std::make_shared&lt;T&gt;(segment));</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}  <span class="comment">// namespace rev</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
-<div class="ttc" id="astructrev_1_1RecklessPath_html_a6f5fed189c38b8dd5355390e94dd68dd"><div class="ttname"><a href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">rev::RecklessPath::with_segment</a></div><div class="ttdeci">RecklessPath &amp; with_segment(T segment)</div><div class="ttdoc">Add a segment to the path under construction.</div><div class="ttdef"><b>Definition</b> path.hh:35</div></div>
+<div class="ttc" id="astructrev_1_1RecklessPath_html_a6f5fed189c38b8dd5355390e94dd68dd"><div class="ttname"><a href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">rev::RecklessPath::with_segment</a></div><div class="ttdeci">RecklessPath &amp; with_segment(T segment)</div><div class="ttdoc">Add a segment to the path under construction.</div><div class="ttdef"><b>Definition</b> path.hh:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

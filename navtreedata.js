@@ -120,11 +120,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AxisLabelSpecs_8hpp_source.html",
-"classrev_1_1BezierSegment.html",
-"classrev_1_1Reckless.html#a8a08835f1ce3814dd2b5862426594377",
-"classsciplot_1_1LegendSpecs.html#a1e7d804f07f9191c608f48c115df1c14",
-"classsciplot_1_1TicsSpecsBaseOf.html#a6fdec17f42c34efcda1704a4b96240a6",
-"q__mass_8hh_source.html"
+"classrev_1_1Await.html#aafbf1d27a9f6584d38d4bd4878855137",
+"classrev_1_1Reckless.html#a2bb13e2357ab22f12d60243f2fa0d552",
+"classsciplot_1_1LayoutSpecsOf.html#aea3f92ead6a1a9d8847aa638216427c6",
+"classsciplot_1_1TicsSpecs.html",
+"q__acceleration_8hh_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

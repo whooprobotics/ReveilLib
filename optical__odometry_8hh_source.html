@@ -102,45 +102,48 @@ $(function(){initNavTree('optical__odometry_8hh_source.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;odometry.hh&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;pros/rtos.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/async/async_runnable.hh&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rev/api/hardware/devices/optical/otos.hh&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;odometry.hh&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;pros/rtos.hpp&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;rev/api/async/async_runnable.hh&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;rev/api/hardware/devices/optical/otos.hh&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classrev_1_1OpticalOdometry.html">   15</a></span><span class="keyword">class </span>OpticalOdometry : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1Odometry.html">Odometry</a>, <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1AsyncRunnable.html">AsyncRunnable</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a6c0a096a0275cb7660d89df964d019a5">get_state</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a167ed700786a833e3910a37b9592d264">set_position</a>(<a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> pos) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a497a9526c68b184d06c65ba883849790">reset_position</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#ab3d0512dbfb9cb91a670347dec768e8c">step</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a6c0a096a0275cb7660d89df964d019a5">get_state</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a167ed700786a833e3910a37b9592d264">set_position</a>(<a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> pos) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#a497a9526c68b184d06c65ba883849790">reset_position</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1OpticalOdometry.html#ab3d0512dbfb9cb91a670347dec768e8c">step</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    OpticalOdometry(std::shared_ptr&lt;OTOS&gt; sensor, QLength ilongitudinal_offset, QLength ilateral_offset);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::shared_ptr&lt;OTOS&gt; optical_sensor; <span class="comment">// Tracking sensor</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    pros::Mutex current_position_mutex;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_position{{0_in, 0_in, 0_deg}, {0_mps, 0_mps, 0_deg / second}};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  OpticalOdometry(std::shared_ptr&lt;OTOS&gt; sensor,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                  QLength ilongitudinal_offset,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                  QLength ilateral_offset);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  std::shared_ptr&lt;OTOS&gt; optical_sensor;  <span class="comment">// Tracking sensor</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  pros::Mutex current_position_mutex;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// Offset of the longitudinal wheel to the right of the center of the robot</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    QLength longitudinal_offset;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// Likewise, for the lateral wheel backward from the center of rotation</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    QLength lateral_offset;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_position{{0_in, 0_in, 0_deg},</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                 {0_mps, 0_mps, 0_deg / second}};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// Offset of the longitudinal wheel to the right of the center of the robot</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  QLength longitudinal_offset;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">// Likewise, for the lateral wheel backward from the center of rotation</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  QLength lateral_offset;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>} <span class="comment">// namespace rev</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}  <span class="comment">// namespace rev</span></div>
 <div class="ttc" id="aclassrev_1_1AsyncRunnable_html"><div class="ttname"><a href="classrev_1_1AsyncRunnable.html">rev::AsyncRunnable</a></div><div class="ttdoc">Interface for classes which should have associated threads.</div><div class="ttdef"><b>Definition</b> async_runnable.hh:7</div></div>
 <div class="ttc" id="aclassrev_1_1Odometry_html"><div class="ttname"><a href="classrev_1_1Odometry.html">rev::Odometry</a></div><div class="ttdoc">Interface for odometry implementations.</div><div class="ttdef"><b>Definition</b> odometry.hh:45</div></div>
-<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a167ed700786a833e3910a37b9592d264"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a167ed700786a833e3910a37b9592d264">rev::OpticalOdometry::set_position</a></div><div class="ttdeci">void set_position(Position pos) override</div><div class="ttdoc">Set the position of the controller.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:18</div></div>
-<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a497a9526c68b184d06c65ba883849790"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a497a9526c68b184d06c65ba883849790">rev::OpticalOdometry::reset_position</a></div><div class="ttdeci">void reset_position() override</div><div class="ttdoc">Set the position to (0,0)</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:27</div></div>
-<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a6c0a096a0275cb7660d89df964d019a5"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a6c0a096a0275cb7660d89df964d019a5">rev::OpticalOdometry::get_state</a></div><div class="ttdeci">OdometryState get_state() override</div><div class="ttdoc">Get the current position.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:11</div></div>
-<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_ab3d0512dbfb9cb91a670347dec768e8c"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#ab3d0512dbfb9cb91a670347dec768e8c">rev::OpticalOdometry::step</a></div><div class="ttdeci">void step() override</div><div class="ttdoc">The step function for the runnable controller. This will be invoked once every tdelta milliseconds.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:31</div></div>
+<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a167ed700786a833e3910a37b9592d264"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a167ed700786a833e3910a37b9592d264">rev::OpticalOdometry::set_position</a></div><div class="ttdeci">void set_position(Position pos) override</div><div class="ttdoc">Set the position of the controller.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:21</div></div>
+<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a497a9526c68b184d06c65ba883849790"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a497a9526c68b184d06c65ba883849790">rev::OpticalOdometry::reset_position</a></div><div class="ttdeci">void reset_position() override</div><div class="ttdoc">Set the position to (0,0)</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:31</div></div>
+<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_a6c0a096a0275cb7660d89df964d019a5"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#a6c0a096a0275cb7660d89df964d019a5">rev::OpticalOdometry::get_state</a></div><div class="ttdeci">OdometryState get_state() override</div><div class="ttdoc">Get the current position.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:14</div></div>
+<div class="ttc" id="aclassrev_1_1OpticalOdometry_html_ab3d0512dbfb9cb91a670347dec768e8c"><div class="ttname"><a href="classrev_1_1OpticalOdometry.html#ab3d0512dbfb9cb91a670347dec768e8c">rev::OpticalOdometry::step</a></div><div class="ttdeci">void step() override</div><div class="ttdoc">The step function for the runnable controller. This will be invoked once every tdelta milliseconds.</div><div class="ttdef"><b>Definition</b> optical_odometry.cc:35</div></div>
 <div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
 <div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:36</div></div>

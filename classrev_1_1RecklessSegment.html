@@ -143,6 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a86ed29cc04b6c6c468cac64d3c5e10e0" id="r_a86ed29cc04b6c6c468cac64d3c5e10e0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86ed29cc04b6c6c468cac64d3c5e10e0">clean_up</a> ()=0</td></tr>
 <tr class="memdesc:a86ed29cc04b6c6c468cac64d3c5e10e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean-up.  <br /></td></tr>
 <tr class="separator:a86ed29cc04b6c6c468cac64d3c5e10e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a249c914d58ff971df3baa037cbf7f8c8" id="r_a249c914d58ff971df3baa037cbf7f8c8"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a249c914d58ff971df3baa037cbf7f8c8">progress</a> ()=0</td></tr>
+<tr class="memdesc:a249c914d58ff971df3baa037cbf7f8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets progress, from 0 to 1.  <br /></td></tr>
+<tr class="separator:a249c914d58ff971df3baa037cbf7f8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for path segments to be used with the <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> controller. </p>
@@ -205,6 +208,35 @@ Public Member Functions</h2></td></tr>
 <p>The intended use of this method is to perform any calculations that need to happen at the start of a segment. </p>
 
 <p>Implemented in <a class="el" href="classrev_1_1Await.html#a630ac8d5ebd088e5b766f53949ef1b9f">rev::Await</a>, <a class="el" href="classrev_1_1BezierSegment.html#a993d9e92b2e3f2eff66965cbd93fa939">rev::BezierSegment</a>, <a class="el" href="classrev_1_1Call.html#a0012402ea1651657ad95bfe33c6016d7">rev::Call</a>, <a class="el" href="classrev_1_1PilonsSegment.html#aa6b3b674d53d1016ade8b4c0b3abfabf">rev::PilonsSegment</a>, <a class="el" href="classrev_1_1PurePursuitSegment.html#ad6d7aaa3cbde0010f3cda7601ec812f7">rev::PurePursuitSegment</a>, <a class="el" href="classrev_1_1RecklessTurnSegment.html#ac3ad7246f8ad26ce38c70d8640cffdd4">rev::RecklessTurnSegment</a>, and <a class="el" href="classrev_1_1StraightSegments.html#a36792d75b6d28200a29e520e86a49781">rev::StraightSegments</a>.</p>
+
+</div>
+</div>
+<a id="a249c914d58ff971df3baa037cbf7f8c8" name="a249c914d58ff971df3baa037cbf7f8c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a249c914d58ff971df3baa037cbf7f8c8">&#9670;&#160;</a></span>progress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double rev::RecklessSegment::progress </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets progress, from 0 to 1. </p>
+
+<p>Implemented in <a class="el" href="classrev_1_1Await.html#a905d29d734fc9ae76ebfba9de70a664c">rev::Await</a>, <a class="el" href="classrev_1_1Call.html#a0601bbb35681e3106f1a4c28cc43e53a">rev::Call</a>, <a class="el" href="classrev_1_1PilonsSegment.html#a2edea32d854db6130dbeac2a82406c4a">rev::PilonsSegment</a>, and <a class="el" href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">rev::RecklessTurnSegment</a>.</p>
 
 </div>
 </div>

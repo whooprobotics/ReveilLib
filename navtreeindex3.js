@@ -1,5 +1,15 @@
 var NAVTREEINDEX3 =
 {
+"classsciplot_1_1LayoutSpecsOf.html#aea3f92ead6a1a9d8847aa638216427c6":[12,0,2,22,0],
+"classsciplot_1_1LegendSpecs.html":[12,0,2,23],
+"classsciplot_1_1LegendSpecs.html#a02d069f4613741250ccba4becad4b653":[12,0,2,23,25],
+"classsciplot_1_1LegendSpecs.html#a09f199b4f0bf2f2979a90f064ae6bdce":[12,0,2,23,0],
+"classsciplot_1_1LegendSpecs.html#a0fa30500eee9053d9e702edc9375d38d":[12,0,2,23,5],
+"classsciplot_1_1LegendSpecs.html#a149fe074b5f6b111eb6b1b95f49fac9c":[12,0,2,23,36],
+"classsciplot_1_1LegendSpecs.html#a1b86e848011b6534689b28f2b6d3d41f":[12,0,2,23,33],
+"classsciplot_1_1LegendSpecs.html#a1cd661e6055e50b65827a00759e41c98":[12,0,2,23,22],
+"classsciplot_1_1LegendSpecs.html#a1d9c1846c6a664737da4326a8684f418":[12,0,2,23,21],
+"classsciplot_1_1LegendSpecs.html#a1de3478ed9bbaff6ac4f1397d0b34849":[12,0,2,23,14],
 "classsciplot_1_1LegendSpecs.html#a1e7d804f07f9191c608f48c115df1c14":[12,0,2,23,31],
 "classsciplot_1_1LegendSpecs.html#a22a8cc66c933f52528f2746d1a5ad426":[12,0,2,23,34],
 "classsciplot_1_1LegendSpecs.html#a26a201d7744ce84592e7b25784c630f1":[12,0,2,23,32],
@@ -239,15 +249,5 @@ var NAVTREEINDEX3 =
 "classsciplot_1_1TextSpecsOf.html#a27caa8b54691966fc69c913840901001":[12,0,2,39,2],
 "classsciplot_1_1TextSpecsOf.html#a57ec02b5db26ba7a74e49d5c04dd91b0":[12,0,2,39,0],
 "classsciplot_1_1TextSpecsOf.html#a6f80347620e89df3bd1b70f5099d6d4c":[12,0,2,39,1],
-"classsciplot_1_1TextSpecsOf.html#adc12be6f7ee2609ed8a130861b5ff597":[12,0,2,39,3],
-"classsciplot_1_1TicsSpecs.html":[12,0,2,40],
-"classsciplot_1_1TicsSpecs.html#a21e48420f7c4fa7b1ad98c96ebc7e9ea":[12,0,2,40,0],
-"classsciplot_1_1TicsSpecs.html#a76754daa58647537baf7586c1d9a55b9":[12,0,2,40,1],
-"classsciplot_1_1TicsSpecs.html#a86c871641895c55ce3693d93a415965a":[12,0,2,40,2],
-"classsciplot_1_1TicsSpecs.html#aaa97b2a108c7011d01285f52119f901e":[12,0,2,40,3],
-"classsciplot_1_1TicsSpecsBaseOf.html":[12,0,2,41],
-"classsciplot_1_1TicsSpecsBaseOf.html#a1959b550e8acfe6d3246296954b6130f":[12,0,2,41,12],
-"classsciplot_1_1TicsSpecsBaseOf.html#a1f35fa479d2a3b7aa40ee8e8219cbc30":[12,0,2,41,2],
-"classsciplot_1_1TicsSpecsBaseOf.html#a4cb3f10017927c36f144e15e1e349e1a":[12,0,2,41,6],
-"classsciplot_1_1TicsSpecsBaseOf.html#a5f4f99204a921d5ae754c986b9c0ec92":[12,0,2,41,11]
+"classsciplot_1_1TextSpecsOf.html#adc12be6f7ee2609ed8a130861b5ff597":[12,0,2,39,3]
 };
