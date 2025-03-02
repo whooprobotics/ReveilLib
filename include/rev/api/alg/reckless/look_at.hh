@@ -2,6 +2,7 @@
 #include <memory>
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
+#include "rev/api/alg/reckless/turn_segment.hh"
 #include "rev/api/units/q_angle.hh"
 #include "rev/api/units/q_length.hh"
 #include "rev/api/units/q_time.hh"
@@ -46,7 +47,10 @@ namespace rev {
                         ibrake_time
                     );
                 }
+        double progress() override { return 0; }
+
         private:
+            RecklessTurnSegment turn_segment;
             double max_power;
             double coast_power;
             Position start_position;
@@ -55,7 +59,7 @@ namespace rev {
             QAngle drop_angle;
             double harsh_coeff;
             double coast_coeff;
-            uint32_t brake_time;
+            QTime brake_time;
 
 
     };
