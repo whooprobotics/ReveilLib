@@ -120,3 +120,7 @@ rev::motor_encoder_units_e_t rev::Motor::get_encoder_units(void) const {
 std::uint8_t rev::Motor::get_port(void) const {
   return port;
 }
+
+double rev::Motor::get_temperature(void) const {
+  return pros::c::motor_get_temperature(port);
+}
