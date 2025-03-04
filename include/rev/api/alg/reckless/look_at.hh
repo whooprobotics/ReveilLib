@@ -8,9 +8,9 @@
 #include "rev/api/units/q_time.hh"
 
 namespace rev {
-    class RecklessLookAt : public RecklessSegment {
+    class LookAt : public RecklessSegment {
         public:
-            RecklessLookAt(
+            LookAt(
                 double imax_power, 
                 double icoast_power, 
                 Position itarget_position, 
@@ -26,10 +26,10 @@ namespace rev {
             void clean_up();
 
             std::shared_ptr<RecklessSegment> operator&() {
-                return std::make_shared<RecklessLookAt>(*this);
+                return std::make_shared<LookAt>(*this);
             }
 
-            static std::shared_ptr<RecklessLookAt> create(
+            static std::shared_ptr<LookAt> create(
                 double imax_power, 
                 double icoast_power, 
                 Position itarget_position, 
@@ -37,7 +37,7 @@ namespace rev {
                 double iharsh_coeff, 
                 double icoast_coeff, 
                 QTime ibrake_time){
-                    return std::make_shared<RecklessLookAt>(
+                    return std::make_shared<LookAt>(
                         imax_power,
                         icoast_power,
                         itarget_position,
@@ -63,5 +63,4 @@ namespace rev {
 
 
     };
-    using LookAt = RecklessLookAt;
 }

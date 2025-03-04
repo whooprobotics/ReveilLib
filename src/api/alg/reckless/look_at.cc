@@ -8,7 +8,7 @@
 
 namespace rev {
 
-    RecklessLookAt::RecklessLookAt(
+    LookAt::LookAt(
         double imax_power, 
         double icoast_power, 
         Position itarget_position, 
@@ -26,7 +26,7 @@ namespace rev {
         turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time)
         {}
 
-    void RecklessLookAt::init(OdometryState initial_state){
+    void LookAt::init(OdometryState initial_state){
         start_position = initial_state.pos;
 
         // angle between start point and target
@@ -45,11 +45,17 @@ namespace rev {
         // normalize drop angles
         angle1 = angle1 - 360.0 * std::floor((angle1 + 180.0) / 360.0);
         angle2 = angle2 - 360.0 * std::floor((angle2 + 180.0) / 360.0);
+        // calc offsets
+        double offset1 = angle1 - start_position.theta.convert(degree);
+        double offset2 = angle2 - start_position.theta.convert(degree);
+        // normalize offsets
+        offset1 = offset1 - 360.0 * std::floor((offset1 + 180.0) / 360.0);
+        offset2 = offset2 - 360.0 * std::floor((offset2 + 180.0) / 360.0);
 
-        // select closer angle
+        // select closer angle (with offset)
         angle_goal = (
-            fabs(angle1 - start_position.theta.convert(degree))
-         < fabs(angle2 - start_position.theta.convert(degree))
+            fabs(offset1)
+         < fabs(offset2)
         ) 
          ? angle1 * degree : angle2 * degree;
 
@@ -65,11 +71,11 @@ namespace rev {
         turn_segment.init(initial_state);
     }
 
-    SegmentStatus RecklessLookAt::step(OdometryState current_state){
+    SegmentStatus LookAt::step(OdometryState current_state){
         return turn_segment.step(current_state);
     }
 
-    void RecklessLookAt::clean_up() {
+    void LookAt::clean_up() {
         turn_segment.clean_up();
     }
 }
