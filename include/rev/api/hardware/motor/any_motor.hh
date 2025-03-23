@@ -369,5 +369,17 @@ class AnyMotor {
    * motor or E_MOTOR_ENCODER_INVALID if the operation failed.
    */
   virtual motor_encoder_units_e_t get_encoder_units(void) const = 0;
+
+  /**
+   * Gets the temperature of the motor in degrees Celsius.
+   *
+   * This function uses the following values of errno when an error state is
+   * reached:
+   * ENODEV - The port cannot be configured as a motor
+   *
+   * \return The motor's temperature in degrees Celsius or PROS_ERR_F if the
+   * operation failed, setting errno.
+   */
+  virtual double get_temperature(void) const = 0;
 };
 }  // namespace rev
