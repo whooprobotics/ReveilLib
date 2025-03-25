@@ -17,6 +17,10 @@ struct BoomerangSegmentParams {
  * @brief Boomerang controller
  *
  * This is essentially just a Pilons controller with an intermediate "carrot" point
+ *
+ * The boomerang controller is not magic, and it works best if you are already facing in the general direction of the point you'd like to go to
+ * As just a general rule of thumb, the target point should be in the 120 degrees in front or behind the robot.
+ * This will also likely be slower than other controllers.
  */
 class BoomerangSegment : public RecklessSegment {
   std::shared_ptr<Motion> motion;
@@ -31,12 +35,23 @@ class BoomerangSegment : public RecklessSegment {
   double part_progress{0.0};
 
   double lead;
+  double direction {1};
 
   bool close {false};
 
   SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 
  public:
+  /**
+   * @brief Construct a new Boomerang Segment object
+   * 
+   * @param imotion The motion generator to use
+   * @param icorrection The correction algorithm to use
+   * @param istop A stop controller
+   * @param ilead A scalar from 0 to 1 which will determine how far the carrot point should be from the final point. 0.3 recommended.
+   * @param itarget_point The target point (with an angle!)
+   * @param idrop_early Early drop distance. You probably should not use this since it is untested.
+   */
   BoomerangSegment(std::shared_ptr<Motion> imotion,
                 std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
