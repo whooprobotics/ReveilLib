@@ -32,6 +32,8 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
                            square(current_state.pos.y - target_point.y));
 
   stop_state new_state;
+
+  // Only start stopping once we get close to the end point
   if(close)
     new_state = this->stop->get_stop_state(current_state, target_point,
                                                     frozen_carrot_point, drop_early);
