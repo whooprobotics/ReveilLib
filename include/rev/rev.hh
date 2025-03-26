@@ -29,6 +29,7 @@
 #include "rev/api/alg/reckless/pilons_segment.hh"
 #include "rev/api/alg/reckless/reckless.hh"
 #include "rev/api/alg/reckless/segment.hh"
+#include "rev/api/alg/reckless/boomerang.hh"
 
 // Chassis
 #include "rev/api/hardware/chassis/chassis.hh"
