@@ -25,15 +25,11 @@ void BoomerangSegment::init(OdometryState initial_state) {
 
 SegmentStatus BoomerangSegment::step(OdometryState current_state) {
 
-  QLength d_to_start = sqrt((start_point.x - current_state.pos.x) *
-                                (start_point.x - current_state.pos.x) +
-                            (start_point.y - current_state.pos.y) *
-                                (start_point.y - current_state.pos.y));
+  QLength d_to_start = sqrt(square(start_point.x - current_state.pos.x) +
+                            square(start_point.y - current_state.pos.y));
 
-  QLength current_d = sqrt((current_state.pos.x - target_point.x) *
-                               (current_state.pos.x - target_point.x) +
-                           (current_state.pos.y - target_point.y) *
-                               (current_state.pos.y - target_point.y));
+  QLength current_d = sqrt(square(current_state.pos.x - target_point.x) +
+                           square(current_state.pos.y - target_point.y));
 
   stop_state new_state;
   if(close)
@@ -44,6 +40,8 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
 
     if(abs(current_d) < 7.5_in) {
       close = true;
+      // Frozen carrot point is basically just a pretend start position used to get the stop controller to behave properly with this
+      // Theres probably a better way to do this but it technically works
       frozen_carrot_point = current_state.pos;
     }
   }
