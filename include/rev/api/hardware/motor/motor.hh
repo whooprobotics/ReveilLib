@@ -381,7 +381,7 @@ class Motor : public AnyMotor {
    * \return The motor's temperature in degrees Celsius or PROS_ERR_F if the
    * operation failed, setting errno.
    */
-  double get_temperature(void) const;
+  double get_temperature(void) const override;
 
  private:
   std::int8_t port;

@@ -130,3 +130,11 @@ rev::motor_brake_mode_e_t rev::MotorGroup::get_brake_mode(void) const {
 rev::motor_encoder_units_e_t rev::MotorGroup::get_encoder_units(void) const {
   return motors.at(0).get_encoder_units();
 }
+
+double rev::MotorGroup::get_temperature(void) const {
+  double maxTemp = motors.at(0).get_temperature();
+  for (Motor m : motors)
+    if(m.get_temperature() > maxTemp)
+      maxTemp = m.get_temperature();
+  return maxTemp;
+}
