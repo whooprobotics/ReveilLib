@@ -1,5 +1,6 @@
 #include "rev/api/hardware/devices/gyroscope/dual_imu.hh"
-
+#include "math.h" // done for the infinity definition in error.h
+#include "pros/error.h"
 namespace rev {
 
 DualImu::DualImu(int port1, int port2) : inertial1(port1), inertial2(port2) {}
@@ -7,6 +8,13 @@ DualImu::DualImu(int port1, int port2) : inertial1(port1), inertial2(port2) {}
 double DualImu::get_heading() {
   double h1 = inertial1.get_heading();
   double h2 = inertial2.get_heading();
+
+  if (h1 == PROS_ERR_F && h2 == PROS_ERR_F) {
+    return PROS_ERR_F;
+  }
+  if (h1 == PROS_ERR_F) return h2;
+  if (h2 == PROS_ERR_F) return h1;
+
   if (std::abs(h1 - h2) < 180)
     return (h1 + h2) / 2;
   double avg = (h1 + h2 - 360) / 2;
