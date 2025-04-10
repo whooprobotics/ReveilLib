@@ -371,6 +371,18 @@ class Motor : public AnyMotor {
    */
   std::uint8_t get_port(void) const;
 
+  /**
+   * Gets the temperature of the motor in degrees Celsius.
+   *
+   * This function uses the following values of errno when an error state is
+   * reached:
+   * ENODEV - The port cannot be configured as a motor
+   *
+   * \return The motor's temperature in degrees Celsius or PROS_ERR_F if the
+   * operation failed, setting errno.
+   */
+  double get_temperature(void) const override;
+
  private:
   std::int8_t port;
   std::int8_t reversed{1};
