@@ -141,7 +141,7 @@ double rev::MotorGroup::get_temperature(void) const {
 
 std::uint8_t rev::MotorGroup::check_ports(void) const {
   for (Motor m : motors) {
-    if (m.get_actual_velocity() == PROS_ERR_F) {
+    if (std::abs(m.get_actual_velocity()) == PROS_ERR_F) {
       return m.get_port();
     }
   }
