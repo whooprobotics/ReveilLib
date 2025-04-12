@@ -143,12 +143,11 @@ double rev::MotorGroup::get_temperature(void) const {
   return maxTemp;
 }
 
-vector<uint8_t> rev::MotorGroup::check_ports(void) const {
-  vector<uint8_t> ports;
+std::uint8_t rev::MotorGroup::check_ports(void) const {
   for (Motor m : motors) {
     if (std::abs(m.get_actual_velocity()) == PROS_ERR_F) {
-      ports.push_back(m.get_port());
+      return m.get_port(); 
     }
   }
-  return ports;
+  return 0;
 }

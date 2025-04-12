@@ -5,13 +5,16 @@
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
+#include <vector>
+#include <string>
 
-using std::shared_ptr, std::make_shared;
+using std::shared_ptr, std::make_shared, std::vector, std::string;
 
 // #include <iostream>
 
 rev::Motor_Group leftd({17, -18, 19, -20});
 rev::Motor_Group rightd({1, -2, 3, -4});
+rev::Motor conveyor(16);
 
 
 
@@ -149,9 +152,11 @@ void opcontrol() {
   while(true) {
     std::uint8_t left_ports = leftd.check_ports();
     std::uint8_t right_ports = rightd.check_ports();
+    uint8_t conv_port = conveyor.check_port();
 
     pros::lcd::print(0, "Left ports: %d", left_ports);
-    pros::lcd::print(1, "RIght ports: %d", right_ports);
+    pros::lcd::print(1, "Right ports: %d", right_ports);
+    pros::lcd::print(2, "Conv ports: %d", conv_port);
 
     pros::delay(20);
   }

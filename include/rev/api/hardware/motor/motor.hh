@@ -1,5 +1,6 @@
 #pragma once
 #include "rev/api/hardware/motor/any_motor.hh"
+#include <vector>
 
 namespace rev {
 class Motor : public AnyMotor {
@@ -382,6 +383,13 @@ class Motor : public AnyMotor {
    * operation failed, setting errno.
    */
   double get_temperature(void) const override;
+
+  /**
+   * Validates that the motor's port can be properly configured.
+   * 
+   * \return 0 if the port is properly configured, otherwise returns the port number of the motor's port
+   */
+  std::uint8_t check_port(void) const;
 
  private:
   std::int8_t port;

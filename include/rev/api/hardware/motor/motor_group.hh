@@ -380,7 +380,7 @@ class MotorGroup : public AnyMotor {
    * \return 0 if all ports are properly configured, otherwise the port number
    * of the first port that cannot be configured.
    */
-  std::vector<std::uint8_t> check_ports(void) const;
+  std::uint8_t check_ports(void) const;
 
  private:
   std::vector<Motor> motors;
