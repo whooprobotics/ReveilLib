@@ -7,6 +7,7 @@
 #include "rev/rev.hh"
 #include <vector>
 #include <string>
+#include "rev/api/hardware/sensors/optical.hh"
 
 using std::shared_ptr, std::make_shared, std::vector, std::string;
 
@@ -147,7 +148,7 @@ void opcontrol() {
   //     pros::delay(250);
   //   }
 
-
+  rev::Optical color(15);
   // Testing MotorGroup.check_ports();
   while(true) {
     std::uint8_t left_ports = leftd.check_ports();
@@ -156,7 +157,8 @@ void opcontrol() {
 
     pros::lcd::print(0, "Left ports: %d", left_ports);
     pros::lcd::print(1, "Right ports: %d", right_ports);
-    pros::lcd::print(2, "Conv ports: %d", conv_port);
+    pros::lcd::print(2, "Conv port: %d", conv_port);
+    pros::lcd::print(3, "Optic port: %d", color.check_port());
 
     pros::delay(20);
   }
