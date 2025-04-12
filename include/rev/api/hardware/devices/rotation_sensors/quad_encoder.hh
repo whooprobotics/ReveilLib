@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cstdint>
-#include <memory>
-#include <utility>
 #include "pros/adi.hpp"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 

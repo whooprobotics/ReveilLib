@@ -1,6 +1,10 @@
 #pragma once
 #include "pros/optical.hpp"
 
+/**
+ * Wrapper class for the pros::Optical class, implementing a
+ * Vex optical sensor.
+ */
 namespace rev {
 class Optical : public pros::Optical {
  public:

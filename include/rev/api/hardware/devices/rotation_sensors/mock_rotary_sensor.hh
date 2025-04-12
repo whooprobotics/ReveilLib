@@ -1,6 +1,5 @@
 #pragma once
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
-#include <cstdint>
 
 namespace rev {
 

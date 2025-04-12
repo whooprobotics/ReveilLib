@@ -7,11 +7,8 @@
 #include "rev/rev.hh"
 #include <vector>
 #include <string>
-#include "rev/api/hardware/sensors/optical.hh"
 
 using std::shared_ptr, std::make_shared, std::vector, std::string;
-
-// #include <iostream>
 
 rev::Motor_Group leftd({17, -18, 19, -20});
 rev::Motor_Group rightd({1, -2, 3, -4});
