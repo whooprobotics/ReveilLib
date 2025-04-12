@@ -1,8 +1,5 @@
 #include "rev/api/hardware/motor/motor_group.hh"
 #include <cmath>
-#include <vector>
-
-using std::vector;
 
 rev::MotorGroup::MotorGroup(const std::initializer_list<Motor> motors)
     : motors(motors), motor_count(motors.size()) {}

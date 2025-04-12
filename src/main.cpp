@@ -154,11 +154,13 @@ void opcontrol() {
     std::uint8_t left_ports = leftd.check_ports();
     std::uint8_t right_ports = rightd.check_ports();
     uint8_t conv_port = conveyor.check_port();
+    std::pair<uint8_t, uint8_t> left_enc_port = left_enc->check_port();
+    std::pair<uint8_t, uint8_t> right_enc_port = right_enc->check_port();
 
     pros::lcd::print(0, "Left ports: %d", left_ports);
     pros::lcd::print(1, "Right ports: %d", right_ports);
     pros::lcd::print(2, "Conv port: %d", conv_port);
-    pros::lcd::print(3, "Optic port: %d", color.check_port());
+    
 
     pros::delay(20);
   }

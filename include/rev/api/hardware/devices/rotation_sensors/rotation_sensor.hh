@@ -15,9 +15,11 @@ class RotationSensor : public ReadOnlyRotarySensor {
   RotationSensor(std::uint8_t port, const bool reverse_flag);
 
   double get_position() override;
+  std::pair<uint8_t, uint8_t> check_port() override;
 
  private:
   pros::Rotation sensor;
+  std::uint8_t port;
 };
 
 }  // namespace rev
