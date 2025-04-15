@@ -126,6 +126,12 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1BezierSegment.html">BezierSegment</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1BoomerangSegment.html">BoomerangSegment</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boomerang controller.  <a href="classrev_1_1BoomerangSegment.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrev_1_1BoomerangSegmentParams.html">BoomerangSegmentParams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters for a <a class="el" href="classrev_1_1BoomerangSegment.html" title="Boomerang controller.">BoomerangSegment</a>.  <a href="structrev_1_1BoomerangSegmentParams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Call.html">Call</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1CascadingMotion.html">CascadingMotion</a></td></tr>
@@ -150,6 +156,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Imu.html">Imu</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1LookAt.html">LookAt</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1MockImu.html">MockImu</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1MockQuadEncoder.html">MockQuadEncoder</a></td></tr>
@@ -171,6 +179,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrev_1_1OdometryState.html">OdometryState</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure packaging a velocity and position into one.  <a href="structrev_1_1OdometryState.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1Optical.html">Optical</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrev_1_1OpticalOdometry.html">OpticalOdometry</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">Odometry</a> implementation using optical odometry sensor.  <a href="classrev_1_1OpticalOdometry.html#details">More...</a><br /></td></tr>
@@ -906,7 +916,8 @@ stop_state&#160;</td><td class="memItemRight" valign="bottom"><b>lsstate</b> = s
 <tr class="separator:a5a7b467c88541bcedc24c16b0f0b3bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file primarily consists of code modified from PROS 3.8, and is therefore governed by the Mozilla Public License. You can view the license at include/pros/LICENSE </p>
+<div class="textblock"><p>This file primarily consists of code modified from PROS 3.8, and is therefore governed by the Mozilla Public License. You can view the license at include/pros/LICENSE</p>
+<p>Wrapper class for the pros::Optical class, implementing a Vex optical sensor. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a7589d327a7147e1bf9d87a7c1cda72ef" name="a7589d327a7147e1bf9d87a7c1cda72ef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7589d327a7147e1bf9d87a7c1cda72ef">&#9670;&#160;</a></span>abs()</h2>

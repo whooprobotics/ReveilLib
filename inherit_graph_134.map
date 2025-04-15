@@ -1,17 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,71,181,111"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="233,5,376,46"/>
-<area shape="poly" id="edge178_Node000000_Node000001" title=" " alt="" coords="174,63,235,44,237,49,176,68"/>
-<area shape="rect" id="Node000005" href="$classsciplot_1_1OffsetSpecsOf.html" title=" " alt="" coords="229,71,380,111"/>
-<area shape="poly" id="edge182_Node000000_Node000005" title=" " alt="" coords="196,88,228,88,228,94,196,94"/>
-<area shape="rect" id="Node000006" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="428,128,577,169"/>
-<area shape="poly" id="edge184_Node000000_Node000006" title=" " alt="" coords="190,113,229,120,333,134,428,142,427,147,332,139,228,126,189,118"/>
-<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="432,9,573,50"/>
-<area shape="poly" id="edge179_Node000001_Node000002" title=" " alt="" coords="391,25,432,26,432,31,391,30"/>
-<area shape="rect" id="Node000003" href="$classsciplot_1_1TicsSpecsBaseOf.html" title=" " alt="" coords="625,71,797,111"/>
-<area shape="poly" id="edge180_Node000002_Node000003" title=" " alt="" coords="589,52,640,67,639,73,588,57"/>
-<area shape="rect" id="Node000004" href="$classsciplot_1_1TicsSpecsMajor.html" title="The class used to specify options for major tics of a specific axis." alt="" coords="845,78,1004,104"/>
-<area shape="poly" id="edge181_Node000003_Node000004" title=" " alt="" coords="812,88,844,88,844,94,812,94"/>
-<area shape="poly" id="edge183_Node000005_Node000003" title=" " alt="" coords="395,88,625,88,625,94,395,94"/>
-<area shape="poly" id="edge185_Node000006_Node000003" title=" " alt="" coords="591,121,634,109,635,115,593,126"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,13,192,38"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="240,5,382,46"/>
+<area shape="poly" id="edge170_Node000000_Node000001" title=" " alt="" coords="207,23,239,23,239,28,207,28"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="430,5,571,46"/>
+<area shape="poly" id="edge171_Node000001_Node000002" title=" " alt="" coords="398,23,429,23,429,28,398,28"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1TextSpecs.html" title="The class used to specify text options." alt="" coords="619,13,747,38"/>
+<area shape="poly" id="edge172_Node000002_Node000003" title=" " alt="" coords="587,23,619,23,619,28,587,28"/>
 </map>

@@ -114,15 +114,17 @@ $(function(){initNavTree('rotation__sensor_8hh_source.html',''); initResizable(t
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  RotationSensor(std::uint8_t port, <span class="keyword">const</span> <span class="keywordtype">bool</span> reverse_flag);</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classrev_1_1RotationSensor.html#a5efb5406ad6fedf0bf02d90580cd5a5e">get_position</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  pros::Rotation sensor;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>};</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  std::pair&lt;uint8_t, uint8_t&gt; check_port() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  pros::Rotation sensor;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  std::uint8_t port;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
 </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}  <span class="comment">// namespace rev</span></div>
-<div class="ttc" id="aclassrev_1_1ReadOnlyRotarySensor_html"><div class="ttname"><a href="classrev_1_1ReadOnlyRotarySensor.html">rev::ReadOnlyRotarySensor</a></div><div class="ttdef"><b>Definition</b> rotary_sensors.hh:5</div></div>
-<div class="ttc" id="aclassrev_1_1RotationSensor_html_a5efb5406ad6fedf0bf02d90580cd5a5e"><div class="ttname"><a href="classrev_1_1RotationSensor.html#a5efb5406ad6fedf0bf02d90580cd5a5e">rev::RotationSensor::get_position</a></div><div class="ttdeci">double get_position() override</div><div class="ttdoc">Interface for rotational sensors used for odometry.</div><div class="ttdef"><b>Definition</b> rotation_sensor.cc:9</div></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}  <span class="comment">// namespace rev</span></div>
+<div class="ttc" id="aclassrev_1_1ReadOnlyRotarySensor_html"><div class="ttname"><a href="classrev_1_1ReadOnlyRotarySensor.html">rev::ReadOnlyRotarySensor</a></div><div class="ttdef"><b>Definition</b> rotary_sensors.hh:7</div></div>
+<div class="ttc" id="aclassrev_1_1RotationSensor_html_a5efb5406ad6fedf0bf02d90580cd5a5e"><div class="ttname"><a href="classrev_1_1RotationSensor.html#a5efb5406ad6fedf0bf02d90580cd5a5e">rev::RotationSensor::get_position</a></div><div class="ttdeci">double get_position() override</div><div class="ttdoc">Interface for rotational sensors used for odometry.</div><div class="ttdef"><b>Definition</b> rotation_sensor.cc:11</div></div>
 <div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdef"><b>Definition</b> correction.hh:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

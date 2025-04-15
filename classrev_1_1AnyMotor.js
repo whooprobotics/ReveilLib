@@ -7,6 +7,7 @@ var classrev_1_1AnyMotor =
     [ "get_encoder_units", "classrev_1_1AnyMotor.html#ab9b41762d2426b1d683d0e4c046b239b", null ],
     [ "get_position", "classrev_1_1AnyMotor.html#acb0ba60b5729172678606eaa7e97b465", null ],
     [ "get_raw_position", "classrev_1_1AnyMotor.html#a731a748ee9412b2765eb7fe10c74dc76", null ],
+    [ "get_temperature", "classrev_1_1AnyMotor.html#aa162989f703572e1a5981e110c8e4ce2", null ],
     [ "is_stopped", "classrev_1_1AnyMotor.html#a2f4ac15134601516c67ac8b52c22ff46", null ],
     [ "modify_profiled_velocity", "classrev_1_1AnyMotor.html#a2469c2bd88f7c787789bea233acfcafb", null ],
     [ "move", "classrev_1_1AnyMotor.html#a52986d5487d6f87d71fdfefe12f9fdc8", null ],

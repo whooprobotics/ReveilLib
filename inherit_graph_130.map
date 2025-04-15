@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,13,197,38"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1PointSpecsOf.html" title=" " alt="" coords="245,5,391,46"/>
-<area shape="poly" id="edge163_Node000000_Node000001" title=" " alt="" coords="212,23,244,23,244,28,212,28"/>
-<area shape="rect" id="Node000002" href="$classsciplot_1_1PointSpecs.html" title="The class used to specify point options." alt="" coords="439,13,571,38"/>
-<area shape="poly" id="edge164_Node000001_Node000002" title=" " alt="" coords="407,23,439,23,439,28,407,28"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,13,192,38"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1LineSpecsOf.html" title=" " alt="" coords="240,5,381,46"/>
+<area shape="poly" id="edge162_Node000000_Node000001" title=" " alt="" coords="207,23,239,23,239,28,207,28"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1LineSpecs.html" title="The class used to specify line options." alt="" coords="429,13,556,38"/>
+<area shape="poly" id="edge163_Node000001_Node000002" title=" " alt="" coords="397,23,429,23,429,28,397,28"/>
 </map>

@@ -27,5 +27,6 @@ var searchData=
   ['linewidth_24',['lineWidth',['../classsciplot_1_1LineSpecsOf.html#a421f2894f8559f6a5024ba624ccbfd17',1,'sciplot::LineSpecsOf']]],
   ['logarithmic_20axes_25',['Using logarithmic axes',['../md_sciplot_2docs_2website_2tutorials.html#autotoc_md41',1,'']]],
   ['logo_20svg_20alt_20sciplot_26',['&lt;img src=&quot;img/logo.svg&quot; alt=&quot;sciplot&quot;/&gt;',['../md_sciplot_2docs_2website_2index.html',1,'']]],
-  ['logscale_27',['logscale',['../classsciplot_1_1TicsSpecsBaseOf.html#a74986386d2b070ab3ed28e03d21dbfdb',1,'sciplot::TicsSpecsBaseOf']]]
+  ['logscale_27',['logscale',['../classsciplot_1_1TicsSpecsBaseOf.html#a74986386d2b070ab3ed28e03d21dbfdb',1,'sciplot::TicsSpecsBaseOf']]],
+  ['lookat_28',['LookAt',['../classrev_1_1LookAt.html',1,'rev']]]
 ];

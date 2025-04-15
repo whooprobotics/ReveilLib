@@ -184,6 +184,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa2831c246d0285023743c80ea2bdd9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad779a50c00f0ac6054240a0b5010e2bf" id="r_ad779a50c00f0ac6054240a0b5010e2bf"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad779a50c00f0ac6054240a0b5010e2bf">get_port</a> (void) const</td></tr>
 <tr class="separator:ad779a50c00f0ac6054240a0b5010e2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b2e6b59edf578fa06c04f5cccbd53b" id="r_ae7b2e6b59edf578fa06c04f5cccbd53b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7b2e6b59edf578fa06c04f5cccbd53b">get_temperature</a> (void) const override</td></tr>
+<tr class="separator:ae7b2e6b59edf578fa06c04f5cccbd53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4958b6c8047dd4ec70167aa012e8eee1" id="r_a4958b6c8047dd4ec70167aa012e8eee1"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4958b6c8047dd4ec70167aa012e8eee1">check_port</a> (void) const</td></tr>
+<tr class="separator:a4958b6c8047dd4ec70167aa012e8eee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5602a3560b3850ab8a543f3847c310e5" name="a5602a3560b3850ab8a543f3847c310e5"></a>
@@ -214,6 +218,25 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
 <p>Implements <a class="el" href="classrev_1_1AnyMotor.html#a249de5d2bb6eb6a6401d587a710d1228">rev::AnyMotor</a>.</p>
+
+</div>
+</div>
+<a id="a4958b6c8047dd4ec70167aa012e8eee1" name="a4958b6c8047dd4ec70167aa012e8eee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4958b6c8047dd4ec70167aa012e8eee1">&#9670;&#160;</a></span>check_port()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint8_t rev::Motor::check_port </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Validates that the motor's port can be properly configured.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 if the port is properly configured, otherwise returns the port number of the motor's port </dd></dl>
 
 </div>
 </div>
@@ -419,6 +442,36 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The raw encoder count at the given timestamp or PROS_ERR if the operation failed. </dd></dl>
 
 <p>Implements <a class="el" href="classrev_1_1AnyMotor.html#a731a748ee9412b2765eb7fe10c74dc76">rev::AnyMotor</a>.</p>
+
+</div>
+</div>
+<a id="ae7b2e6b59edf578fa06c04f5cccbd53b" name="ae7b2e6b59edf578fa06c04f5cccbd53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b2e6b59edf578fa06c04f5cccbd53b">&#9670;&#160;</a></span>get_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double rev::Motor::get_temperature </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gets the temperature of the motor in degrees Celsius.</p>
+<p>This function uses the following values of errno when an error state is reached: ENODEV - The port cannot be configured as a motor</p>
+<dl class="section return"><dt>Returns</dt><dd>The motor's temperature in degrees Celsius or PROS_ERR_F if the operation failed, setting errno. </dd></dl>
+
+<p>Implements <a class="el" href="classrev_1_1AnyMotor.html#aa162989f703572e1a5981e110c8e4ce2">rev::AnyMotor</a>.</p>
 
 </div>
 </div>

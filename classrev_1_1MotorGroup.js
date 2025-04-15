@@ -1,12 +1,14 @@
 var classrev_1_1MotorGroup =
 [
     [ "brake", "classrev_1_1MotorGroup.html#a1099094f32b6a485fcbb5afbfe3cdaf3", null ],
+    [ "check_ports", "classrev_1_1MotorGroup.html#ab5e6815cf2989fb478f828f5839dffea", null ],
     [ "get_actual_velocity", "classrev_1_1MotorGroup.html#a48b982d317c3797fcd976aed78228b0d", null ],
     [ "get_brake_mode", "classrev_1_1MotorGroup.html#adba6e4884309fce5fd7b5239b79c6f7e", null ],
     [ "get_direction", "classrev_1_1MotorGroup.html#a25937186e454eaf3385d30d41e07c4d2", null ],
     [ "get_encoder_units", "classrev_1_1MotorGroup.html#a649b5e52262c0e5c412c139ddef30e23", null ],
     [ "get_position", "classrev_1_1MotorGroup.html#ad50f40061ff366265f2e8ef31fa22974", null ],
     [ "get_raw_position", "classrev_1_1MotorGroup.html#ae0d81265c9d9c0838b788b65e271f0ab", null ],
+    [ "get_temperature", "classrev_1_1MotorGroup.html#a23a976ef15aa655deeb3fe5ade0b8cba", null ],
     [ "is_stopped", "classrev_1_1MotorGroup.html#a7d127f39eb682a958475d6c63ae5dbd0", null ],
     [ "modify_profiled_velocity", "classrev_1_1MotorGroup.html#a212919c5f2283ce746ab6eb41db8a86f", null ],
     [ "move", "classrev_1_1MotorGroup.html#ae05b1cd56a7f2fd4d2de17f0091df12d", null ],

@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,179,46"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1HistogramStyleSpecs.html" title="The class used to specify histogram style options." alt="" coords="227,13,418,38"/>
-<area shape="poly" id="edge147_Node000000_Node000001" title=" " alt="" coords="194,23,226,23,226,28,194,28"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,13,204,38"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1FrameSpecsOf.html" title=" " alt="" coords="252,5,405,46"/>
+<area shape="poly" id="edge141_Node000000_Node000001" title=" " alt="" coords="219,23,252,23,252,28,219,28"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1FrameSpecs.html" title="The class used to specify frame options." alt="" coords="453,13,592,38"/>
+<area shape="poly" id="edge142_Node000001_Node000002" title=" " alt="" coords="420,23,452,23,452,28,420,28"/>
 </map>

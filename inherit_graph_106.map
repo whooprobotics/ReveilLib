@@ -1,3 +1,21 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structrev_1_1SegmentStatus.html" title=" " alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000000" href="$classrev_1_1RecklessSegment.html" title="Interface for path segments to be used with the Reckless controller." alt="" coords="5,153,157,179"/>
+<area shape="rect" id="Node000001" href="$classrev_1_1Await.html" title=" " alt="" coords="254,5,332,31"/>
+<area shape="poly" id="edge90_Node000000_Node000001" title=" " alt="" coords="99,139,143,89,171,62,203,40,228,29,253,22,254,27,230,34,206,44,175,66,146,92,103,142"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1BoomerangSegment.html" title="Boomerang controller." alt="" coords="212,55,375,80"/>
+<area shape="poly" id="edge91_Node000000_Node000002" title=" " alt="" coords="112,142,154,115,204,89,233,78,235,83,206,94,157,119,114,146"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1Call.html" title=" " alt="" coords="260,104,327,130"/>
+<area shape="poly" id="edge92_Node000000_Node000003" title=" " alt="" coords="154,147,259,122,260,127,155,152"/>
+<area shape="rect" id="Node000004" href="$classrev_1_1LookAt.html" title=" " alt="" coords="250,153,337,179"/>
+<area shape="poly" id="edge93_Node000000_Node000004" title=" " alt="" coords="172,164,249,164,249,169,172,169"/>
+<area shape="rect" id="Node000005" href="$classrev_1_1PilonsSegment.html" title="Path segment for use with Reckless controller." alt="" coords="227,203,360,228"/>
+<area shape="poly" id="edge94_Node000000_Node000005" title=" " alt="" coords="155,180,235,199,234,205,154,186"/>
+<area shape="rect" id="Node000006" href="$classrev_1_1PurePursuitSegment.html" title="Pure Pursuit Path Segment." alt="" coords="211,252,376,278"/>
+<area shape="poly" id="edge95_Node000000_Node000006" title=" " alt="" coords="114,186,157,213,206,238,235,249,233,254,204,243,154,218,112,190"/>
+<area shape="rect" id="Node000009" href="$classrev_1_1RecklessTurnSegment.html" title="Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori..." alt="" coords="205,301,382,327"/>
+<area shape="poly" id="edge98_Node000000_Node000009" title=" " alt="" coords="103,190,146,240,175,266,206,288,229,298,227,303,203,292,171,270,143,244,99,193"/>
+<area shape="rect" id="Node000007" href="$classrev_1_1BezierSegment.html" title=" " alt="" coords="438,228,571,254"/>
+<area shape="poly" id="edge96_Node000006_Node000007" title=" " alt="" coords="391,251,437,246,438,251,392,256"/>
+<area shape="rect" id="Node000008" href="$classrev_1_1StraightSegments.html" title=" " alt="" coords="430,277,579,303"/>
+<area shape="poly" id="edge97_Node000006_Node000008" title=" " alt="" coords="392,274,430,279,429,284,391,279"/>
 </map>

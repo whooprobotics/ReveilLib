@@ -22,6 +22,7 @@ var hierarchy =
       [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::AsyncRunner", "classrev_1_1AsyncRunner.html", null ],
+    [ "rev::BoomerangSegmentParams", "structrev_1_1BoomerangSegmentParams.html", null ],
     [ "Canvas", "classCanvas.html", null ],
     [ "sciplot::Canvas", "classsciplot_1_1Canvas.html", null ],
     [ "Catch::Capturer", "classCatch_1_1Capturer.html", null ],
@@ -81,7 +82,6 @@ var hierarchy =
     [ "Catch::Generators::GeneratorWrapper< T >", "classCatch_1_1Generators_1_1GeneratorWrapper.html", null ],
     [ "rev::Gyroscope", "classrev_1_1Gyroscope.html", [
       [ "rev::DualImu", "classrev_1_1DualImu.html", null ],
-      [ "rev::Imu", "classrev_1_1Imu.html", null ],
       [ "rev::Imu", "classrev_1_1Imu.html", null ],
       [ "rev::MockImu", "classrev_1_1MockImu.html", null ]
     ] ],
@@ -182,6 +182,9 @@ var hierarchy =
       [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::OdometryState", "structrev_1_1OdometryState.html", null ],
+    [ "pros::Optical", null, [
+      [ "rev::Optical", "classrev_1_1Optical.html", null ]
+    ] ],
     [ "Catch::Option< T >", "classCatch_1_1Option.html", null ],
     [ "rev::OTOS", "classrev_1_1OTOS.html", null ],
     [ "rev::PilonsSegmentParams", "structrev_1_1PilonsSegmentParams.html", null ],
@@ -202,7 +205,9 @@ var hierarchy =
     [ "rev::RecklessPath", "structrev_1_1RecklessPath.html", null ],
     [ "rev::RecklessSegment", "classrev_1_1RecklessSegment.html", [
       [ "rev::Await", "classrev_1_1Await.html", null ],
+      [ "rev::BoomerangSegment", "classrev_1_1BoomerangSegment.html", null ],
       [ "rev::Call", "classrev_1_1Call.html", null ],
+      [ "rev::LookAt", "classrev_1_1LookAt.html", null ],
       [ "rev::PilonsSegment", "classrev_1_1PilonsSegment.html", null ],
       [ "rev::PurePursuitSegment", "classrev_1_1PurePursuitSegment.html", [
         [ "rev::BezierSegment", "classrev_1_1BezierSegment.html", null ],

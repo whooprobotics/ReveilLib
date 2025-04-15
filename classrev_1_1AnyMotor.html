@@ -164,6 +164,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afd0ffe1041fd38dfe7deadbd0847ce83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9b41762d2426b1d683d0e4c046b239b" id="r_ab9b41762d2426b1d683d0e4c046b239b"><td class="memItemLeft" align="right" valign="top">virtual motor_encoder_units_e_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9b41762d2426b1d683d0e4c046b239b">get_encoder_units</a> (void) const =0</td></tr>
 <tr class="separator:ab9b41762d2426b1d683d0e4c046b239b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa162989f703572e1a5981e110c8e4ce2" id="r_aa162989f703572e1a5981e110c8e4ce2"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa162989f703572e1a5981e110c8e4ce2">get_temperature</a> (void) const =0</td></tr>
+<tr class="separator:aa162989f703572e1a5981e110c8e4ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for implementing motors. </p>
@@ -383,6 +385,36 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The raw encoder count at the given timestamp or PROS_ERR if the operation failed. </dd></dl>
 
 <p>Implemented in <a class="el" href="classrev_1_1Motor.html#a6fa32404d508edbe7a2b69b658d5fc35">rev::Motor</a>, and <a class="el" href="classrev_1_1MotorGroup.html#ae0d81265c9d9c0838b788b65e271f0ab">rev::MotorGroup</a>.</p>
+
+</div>
+</div>
+<a id="aa162989f703572e1a5981e110c8e4ce2" name="aa162989f703572e1a5981e110c8e4ce2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa162989f703572e1a5981e110c8e4ce2">&#9670;&#160;</a></span>get_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double rev::AnyMotor::get_temperature </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gets the temperature of the motor in degrees Celsius.</p>
+<p>This function uses the following values of errno when an error state is reached: ENODEV - The port cannot be configured as a motor</p>
+<dl class="section return"><dt>Returns</dt><dd>The motor's temperature in degrees Celsius or PROS_ERR_F if the operation failed, setting errno. </dd></dl>
+
+<p>Implemented in <a class="el" href="classrev_1_1Motor.html#ae7b2e6b59edf578fa06c04f5cccbd53b">rev::Motor</a>, and <a class="el" href="classrev_1_1MotorGroup.html#a23a976ef15aa655deeb3fe5ade0b8cba">rev::MotorGroup</a>.</p>
 
 </div>
 </div>

@@ -1,7 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,5,181,46"/>
-<area shape="rect" id="Node000001" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="229,5,378,46"/>
-<area shape="poly" id="edge186_Node000000_Node000001" title=" " alt="" coords="196,23,229,23,229,28,196,28"/>
-<area shape="rect" id="Node000002" href="$classsciplot_1_1TicsSpecsMinor.html" title="The class used to specify options for minor tics of a specific axis." alt="" coords="426,13,585,38"/>
-<area shape="poly" id="edge187_Node000001_Node000002" title=" " alt="" coords="394,23,425,23,425,28,394,28"/>
+<area shape="rect" id="Node000000" href="$classsciplot_1_1Specs.html" title=" " alt="" coords="5,78,192,104"/>
+<area shape="rect" id="Node000001" href="$classsciplot_1_1FontSpecsOf.html" title=" " alt="" coords="244,5,386,46"/>
+<area shape="poly" id="edge173_Node000000_Node000001" title=" " alt="" coords="157,71,245,44,246,49,159,76"/>
+<area shape="rect" id="Node000005" href="$classsciplot_1_1OffsetSpecsOf.html" title=" " alt="" coords="240,71,391,111"/>
+<area shape="poly" id="edge177_Node000000_Node000005" title=" " alt="" coords="207,88,239,88,239,94,207,94"/>
+<area shape="rect" id="Node000006" href="$classsciplot_1_1ShowSpecsOf.html" title=" " alt="" coords="439,128,588,169"/>
+<area shape="poly" id="edge179_Node000000_Node000006" title=" " alt="" coords="167,105,240,120,344,134,439,141,438,147,343,139,239,126,166,111"/>
+<area shape="rect" id="Node000002" href="$classsciplot_1_1TextSpecsOf.html" title=" " alt="" coords="443,9,584,50"/>
+<area shape="poly" id="edge174_Node000001_Node000002" title=" " alt="" coords="402,25,443,26,443,31,402,30"/>
+<area shape="rect" id="Node000003" href="$classsciplot_1_1TicsSpecsBaseOf.html" title=" " alt="" coords="636,71,808,111"/>
+<area shape="poly" id="edge175_Node000002_Node000003" title=" " alt="" coords="600,52,651,67,650,73,599,57"/>
+<area shape="rect" id="Node000004" href="$classsciplot_1_1TicsSpecs.html" title="The class used to specify options for tics." alt="" coords="856,78,983,104"/>
+<area shape="poly" id="edge176_Node000003_Node000004" title=" " alt="" coords="823,88,855,88,855,94,823,94"/>
+<area shape="poly" id="edge178_Node000005_Node000003" title=" " alt="" coords="406,88,636,88,636,94,406,94"/>
+<area shape="poly" id="edge180_Node000006_Node000003" title=" " alt="" coords="602,121,645,109,646,115,604,126"/>
 </map>

@@ -10,5 +10,6 @@ var searchData=
   ['linespecsof_3c_20borderspecs_20_3e_7',['LineSpecsOf&lt; BorderSpecs &gt;',['../classsciplot_1_1LineSpecsOf.html',1,'sciplot']]],
   ['linespecsof_3c_20drawspecs_20_3e_8',['LineSpecsOf&lt; DrawSpecs &gt;',['../classsciplot_1_1LineSpecsOf.html',1,'sciplot']]],
   ['linespecsof_3c_20gridspecsbase_20_3e_9',['LineSpecsOf&lt; GridSpecsBase &gt;',['../classsciplot_1_1LineSpecsOf.html',1,'sciplot']]],
-  ['linespecsof_3c_20linespecs_20_3e_10',['LineSpecsOf&lt; LineSpecs &gt;',['../classsciplot_1_1LineSpecsOf.html',1,'sciplot']]]
+  ['linespecsof_3c_20linespecs_20_3e_10',['LineSpecsOf&lt; LineSpecs &gt;',['../classsciplot_1_1LineSpecsOf.html',1,'sciplot']]],
+  ['lookat_11',['LookAt',['../classrev_1_1LookAt.html',1,'rev']]]
 ];
