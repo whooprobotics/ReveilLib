@@ -1,5 +1,7 @@
 #include "rev/api/hardware/motor/motor.hh"
 #include <cmath>
+#include "pros/error.h"
+
 rev::Motor::Motor(const std::int8_t port,
                   const motor_gearset_e_t gearset,
                   const bool reverse,
@@ -123,4 +125,10 @@ std::uint8_t rev::Motor::get_port(void) const {
 
 double rev::Motor::get_temperature(void) const {
   return pros::c::motor_get_temperature(port);
+}
+
+std::uint8_t rev::Motor::check_port(void) const {
+  if (std::abs(get_actual_velocity()) == PROS_ERR_F)
+    return get_port();
+  return 0;
 }

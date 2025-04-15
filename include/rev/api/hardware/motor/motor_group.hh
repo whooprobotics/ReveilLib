@@ -374,6 +374,14 @@ class MotorGroup : public AnyMotor {
    */
   double get_temperature(void) const override;
 
+  /**
+   * Validates that all ports provided can be properly configured.
+   * 
+   * \return 0 if all ports are properly configured, otherwise the port number
+   * of the first port that cannot be configured.
+   */
+  std::uint8_t check_ports(void) const;
+
  private:
   std::vector<Motor> motors;
   std::uint8_t motor_count;

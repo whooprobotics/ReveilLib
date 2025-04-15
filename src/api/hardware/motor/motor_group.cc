@@ -1,5 +1,6 @@
 #include "rev/api/hardware/motor/motor_group.hh"
 #include <cmath>
+
 rev::MotorGroup::MotorGroup(const std::initializer_list<Motor> motors)
     : motors(motors), motor_count(motors.size()) {}
 rev::MotorGroup::MotorGroup(const std::vector<rev::Motor>& motors)
@@ -137,4 +138,13 @@ double rev::MotorGroup::get_temperature(void) const {
     if(m.get_temperature() > maxTemp)
       maxTemp = m.get_temperature();
   return maxTemp;
+}
+
+std::uint8_t rev::MotorGroup::check_ports(void) const {
+  for (Motor m : motors) {
+    if (std::abs(m.get_actual_velocity()) == PROS_ERR_F) {
+      return m.get_port(); 
+    }
+  }
+  return 0;
 }

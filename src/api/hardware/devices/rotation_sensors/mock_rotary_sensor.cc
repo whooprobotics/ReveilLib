@@ -21,4 +21,8 @@ void MockRotarySensor::decrement() {
   value--;
 }
 
+std::pair<std::uint8_t, std::uint8_t> MockRotarySensor::check_port() {
+  return std::make_pair(0, 0);
+}
+
 }  // namespace rev
