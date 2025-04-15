@@ -3,7 +3,7 @@
 #include "pros/error.h"
 namespace rev {
 
-DualImu::DualImu(int port1, int port2) : inertial1(port1), inertial2(port2) {}
+DualImu::DualImu(int port1, int port2) : inertial1(port1), inertial2(port2), port1(port1), port2(port2) {}
 
 double DualImu::get_heading() {
   double h1 = inertial1.get_heading();
@@ -25,6 +25,13 @@ double DualImu::get_heading() {
 
 bool DualImu::is_calibrating() {
   return inertial1.is_calibrating() || inertial2.is_calibrating();
+}
+
+std::pair<uint8_t, uint8_t> DualImu::check_port() {
+  uint8_t p1 = inertial1.get_heading() == PROS_ERR_F ? port1 : 0;
+  uint8_t p2 = inertial2.get_heading() == PROS_ERR_F ? port2 : 0;
+
+  return std::make_pair(p1, p2); 
 }
 
 }  // namespace rev

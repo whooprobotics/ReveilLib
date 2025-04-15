@@ -10,6 +10,7 @@ class MockImu : public Gyroscope {
   double get_heading();
   void set_angle(double new_angle);
   bool is_calibrating();
+  std::pair<uint8_t, uint8_t> check_port();
 
  private:
   double angle = 0.0;

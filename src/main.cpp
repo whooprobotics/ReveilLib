@@ -153,10 +153,12 @@ void opcontrol() {
     uint8_t conv_port = conveyor.check_port();
     std::pair<uint8_t, uint8_t> left_enc_port = left_enc->check_port();
     std::pair<uint8_t, uint8_t> right_enc_port = right_enc->check_port();
+    std::pair<uint8_t, uint8_t> dualimu_ports = imu->check_port();
 
     pros::lcd::print(0, "Left ports: %d", left_ports);
     pros::lcd::print(1, "Right ports: %d", right_ports);
     pros::lcd::print(2, "Conv port: %d", conv_port);
+    pros::lcd::print(3, "IMU ports: %d %d", dualimu_ports.first, dualimu_ports.second);
     
 
     pros::delay(20);
