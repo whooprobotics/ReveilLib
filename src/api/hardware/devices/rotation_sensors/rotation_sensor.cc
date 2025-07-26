@@ -4,10 +4,13 @@
 
 namespace rev {
 
+RotationSensor::RotationSensor(std::uint8_t port) : sensor(port, false), port(port) {}
+
 RotationSensor::RotationSensor(std::uint8_t port,
                                const bool reverse_flag = false)
-    : sensor(port, reverse_flag) {}
+    : sensor(port, reverse_flag), port(port) {}
 
+// Returns the angle of the rotation sensor in degrees
 double RotationSensor::get_position() {
   return (double)sensor.get_position() / 100;
 }
