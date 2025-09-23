@@ -57,9 +57,9 @@ class SimpleStop : public Stop {
    * @param start_state The place the robot started from
    * @param drop_early The distance from the target that the robot should aim to
    * exit this step of the controller
-   * @return stop_state
+   * @return StopState
    */
-  stop_state get_stop_state(OdometryState current_state,
+  StopState get_stop_state(OdometryState current_state,
                             Position target_state,
                             Position start_state,
                             QLength drop_early) override;
@@ -73,7 +73,7 @@ class SimpleStop : public Stop {
   const QTime harsh_threshold;
   const QTime coast_threshold;
   const double coast_power;
-  stop_state stop_state_last{stop_state::GO};
+  StopState stop_state_last{StopState::GO};
 
   uint32_t time_init{0};
   uint32_t timeout{0};
