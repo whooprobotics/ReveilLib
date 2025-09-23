@@ -114,11 +114,11 @@ SegmentStatus PurePursuitSegment::step(OdometryState current_state) {
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||
-      new_state == stop_state::EXIT)
+      new_state == StopState::EXIT)
     return last_status = SegmentStatus::next();
 
   if (last_status.status == SegmentStatusType::BRAKE ||
-      new_state == stop_state::BRAKE)
+      new_state == StopState::BRAKE)
     return last_status = SegmentStatus::brake();
 
   // Find the target point at the look-ahead distance

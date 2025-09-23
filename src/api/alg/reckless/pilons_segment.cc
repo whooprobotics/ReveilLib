@@ -9,7 +9,7 @@ void PilonsSegment::init(OdometryState initial_state) {
 }
 
 SegmentStatus PilonsSegment::step(OdometryState current_state) {
-  stop_state new_state = this->stop->get_stop_state(current_state, target_point,
+  StopState new_state = this->stop->get_stop_state(current_state, target_point,
                                                     start_point, drop_early);
 
   QLength d_to_start = sqrt((start_point.x - current_state.pos.x) *
@@ -26,18 +26,18 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||
-      new_state == stop_state::EXIT)
+      new_state == StopState::EXIT)
     return last_status = SegmentStatus::next();
 
   if (last_status.status == SegmentStatusType::BRAKE ||
-      new_state == stop_state::BRAKE)
+      new_state == StopState::BRAKE)
     return last_status = SegmentStatus::brake();
 
   std::tuple<double, double> pows = this->motion->gen_powers(
       current_state, this->target_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
-  if (new_state == stop_state::COAST) {
+  if (new_state == StopState::COAST) {
     double power = this->stop->get_coast_power();
     double left, right;
     std::tie(left, right) = pows;

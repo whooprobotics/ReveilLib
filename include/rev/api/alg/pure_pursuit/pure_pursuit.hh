@@ -77,7 +77,7 @@ class PurePursuitSegment : public RecklessSegment {
 
   QLength drop_early = 0_in;
 
-  stop_state new_state;
+  StopState new_state;
 
   double kp;
   double ki;

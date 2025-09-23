@@ -20,7 +20,7 @@ SimpleStop::SimpleStop(QTime iharsh_threshold,
       coast_power(fabs(icoast_power)) {
   timeout = (uint32_t)itimeout.convert(millisecond);
 }
-stop_state SimpleStop::get_stop_state(OdometryState current_state,
+StopState SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,
                                       QLength drop_early) {
@@ -30,7 +30,7 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
     if(time_init) {
         // Early exit if needed
         if(pros::millis() > time_init + timeout) {
-          return stop_state::EXIT;
+          return StopState::EXIT;
         }
     }
     else {
@@ -61,26 +61,26 @@ stop_state SimpleStop::get_stop_state(OdometryState current_state,
 
   // Begin stopping the robot if we've passed the target
   if (longitudinal_distance.get_value() < 0) {
-    stop_state_last = stop_state::BRAKE;
-    return harsh_threshold.convert(second) > 0.001 ? stop_state::BRAKE
-                                                   : stop_state::EXIT;
+    stop_state_last = StopState::BRAKE;
+    return harsh_threshold.convert(second) > 0.001 ? StopState::BRAKE
+                                                   : StopState::EXIT;
   }
 
   // Handle harsh stop
   if (longitudinal_speed * harsh_threshold > longitudinal_distance ||
-      stop_state_last == stop_state::BRAKE) {
-    stop_state_last = stop_state::BRAKE;
-    return stop_state::BRAKE;
+      stop_state_last == StopState::BRAKE) {
+    stop_state_last = StopState::BRAKE;
+    return StopState::BRAKE;
   }
 
   // Handle coast transition
   if (longitudinal_speed * coast_threshold > longitudinal_distance ||
-      stop_state_last == stop_state::COAST) {
-    stop_state_last = stop_state::COAST;
-    return stop_state::COAST;
+      stop_state_last == StopState::COAST) {
+    stop_state_last = StopState::COAST;
+    return StopState::COAST;
   }
 
-  return stop_state::GO;
+  return StopState::GO;
 }
 
 double SimpleStop::get_coast_power() {
