@@ -31,14 +31,14 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
   QLength current_d = sqrt(square(current_state.pos.x - target_point.x) +
                            square(current_state.pos.y - target_point.y));
 
-  stop_state new_state;
+  StopState new_state;
 
   // Only start stopping once we get close to the end point
   if(close)
     new_state = this->stop->get_stop_state(current_state, target_point,
                                                     frozen_carrot_point, drop_early);
   else {
-    new_state = stop_state::GO;
+    new_state = StopState::GO;
 
     if(abs(current_d) < 7.5_in) {
       close = true;
@@ -59,18 +59,18 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||
-      new_state == stop_state::EXIT)
+      new_state == StopState::EXIT)
     return last_status = SegmentStatus::next();
 
   if (last_status.status == SegmentStatusType::BRAKE ||
-      new_state == stop_state::BRAKE)
+      new_state == StopState::BRAKE)
     return last_status = SegmentStatus::brake();
 
   std::tuple<double, double> pows = this->motion->gen_powers(
       current_state, carrot_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
-  if (new_state == stop_state::COAST) {
+  if (new_state == StopState::COAST) {
     double power = this->stop->get_coast_power();
     double left, right;
     std::tie(left, right) = pows;

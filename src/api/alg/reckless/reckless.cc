@@ -4,7 +4,7 @@
 
 namespace rev {
 
-stop_state lsstate = stop_state::GO;
+StopState lsstate = StopState::GO;
 Reckless::Reckless(std::shared_ptr<Chassis> ichassis,
                    std::shared_ptr<Odometry> iodometry)
     : chassis(ichassis), odometry(iodometry) {}
