@@ -5,7 +5,7 @@
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/chassis/chassis.hh"
 #include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/alg/slipstream/slipstream_path.hh"
+#include "rev/api/alg/slipstream/path.hh"
 
 namespace rev {
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/alg/slipstream/slipstream_power.hh"
+#include "rev/api/alg/slipstream/power.hh"
 
 namespace rev {
 
