@@ -1,3 +1,5 @@
+#pragma once
+
 namespace rev {
 
 struct SlipstreamPower {

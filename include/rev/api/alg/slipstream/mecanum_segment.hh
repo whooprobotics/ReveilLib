@@ -1,23 +1,27 @@
 #pragma once
-#include "rev/api/alg/reckless/path.hh"
+#include "rev/api/alg/slipstream/segment.hh"
+#include "rev/api/alg/drive/motion/motion.hh"
+#include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/drive/correction/correction.hh"
+#include "rev/api/alg/slipstream/slipstream.hh"
+#include "rev/api/alg/slipstream/path.hh"
 
 namespace rev {
 /**
- * @brief Parameters for a PilonsSegment
+ * @brief params for a mecanum segment (same as MecanumSegment params)
  */
-struct PilonsSegmentParams {
+
+struct MecanumSegmentParams {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
 };
 
 /**
- * @brief Path segment for use with Reckless controller
+ * @bried Path segment for Slipstream controller
  *
- * TODO: Rename this to be more reflective of what it is specifically, but not
- * until a major release.
  */
-class PilonsSegment : public RecklessSegment {
+class MecanumSegment : public SlipstreamSegment {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
@@ -28,14 +32,12 @@ class PilonsSegment : public RecklessSegment {
 
   double part_progress{0.0};
 
-  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
-
  public:
-  PilonsSegment(std::shared_ptr<Motion> imotion,
-                std::shared_ptr<Correction> icorrection,
-                std::shared_ptr<Stop> istop,
-                Position itarget_point,
-                QLength idrop_early = 0 * inch)
+  MecanumSegment(std::shared_ptr<Motion> imotion,
+                 std::shared_ptr<Correction> icorrection,
+                 std::shared_ptr<Stop> istop,
+                 Position itarget_point,
+                 QLength idrop_early = 0_in)
       : motion(imotion),
         correction(icorrection),
         stop(istop),
@@ -44,9 +46,9 @@ class PilonsSegment : public RecklessSegment {
     start_point = {0_in, 0_in, 0_deg};
   }
 
-  PilonsSegment(PilonsSegmentParams iparams,
-                Position itarget_point,
-                QLength idrop_early = 0 * inch)
+  MecanumSegment(MecanumSegmentParams iparams,
+                 Position itarget_point,
+                 QLength idrop_early = 0_in)
       : motion(iparams.motion),
         correction(iparams.correction),
         stop(iparams.stop),
@@ -75,7 +77,7 @@ class PilonsSegment : public RecklessSegment {
    * the next segment, or if no next segment is present, terminate execution.
    *
    */
-  SegmentStatus step(OdometryState current_state) override;
+  SlipstreamSegmentStatus step(OdometryState current_state) override;
 
   /**
    * @brief Clean-up
@@ -86,14 +88,14 @@ class PilonsSegment : public RecklessSegment {
 
   double progress() override;
 
-  std::shared_ptr<RecklessSegment> operator&() {
-    return std::make_shared<PilonsSegment>(*this);
+  std::shared_ptr<SlipstreamSegment> operator&() {
+    return std::make_shared<MecanumSegment>(*this);
   }
 
-  static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params,
-                                               Position target_point,
-                                               QLength drop_early = 0 * inch) {
-    return std::make_shared<PilonsSegment>(params, target_point, drop_early);
+  static std::shared_ptr<MecanumSegment> create(MecanumSegmentParams params,
+                                                Position target_point,
+                                                QLength drop_early = 0_in) {
+    return std::make_shared<MecanumSegment>(params, target_point, drop_early);
   }
 };
 }  // namespace rev
