@@ -42,10 +42,10 @@ class MecanumChassis : public Chassis {
      void stop() override;
 
  private:
-  rev::AnyMotor* front_left;
-  rev::AnyMotor* back_left;
-  rev::AnyMotor* front_right;
-  rev::AnyMotor* back_right;
+  std::shared_ptr<rev::AnyMotor> front_left;
+  std::shared_ptr<rev::AnyMotor> back_left;
+  std::shared_ptr<rev::AnyMotor> front_right;
+  std::shared_ptr<rev::AnyMotor> back_right;
 
 };
 }
