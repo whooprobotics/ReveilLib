@@ -1,8 +1,8 @@
 #include "rev/api/alg/reckless/reckless.hh"
 #include "iostream"
-#include "pros/rtos.hpp"
+#include "pros/rtos.hpp"                        //used double quotes to tell program to look at CWD rather than system headers.
 
-namespace rev {
+namespace rev {                                 //used to hold names to avoid confusion when name is used in different parts of program
 
 StopState lsstate = StopState::GO;
 Reckless::Reckless(std::shared_ptr<Chassis> ichassis,
