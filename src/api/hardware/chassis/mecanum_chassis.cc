@@ -4,8 +4,15 @@
 #include <cmath>
 
 namespace rev {
-MecanumChassis::MecanumChassis(rev::AnyMotor& ifront_left, rev::AnyMotor& iback_left, rev::AnyMotor& ifront_right, rev::AnyMotor& iback_right)
-    : front_left(&ifront_left), back_left(&iback_left), front_right(&ifront_right), back_right(&iback_right) {}
+MecanumChassis::MecanumChassis(
+        rev::AnyMotor& ifront_left,
+        rev::AnyMotor& ifront_right,
+        rev::AnyMotor& iback_left,
+        rev::AnyMotor& iback_right)
+    : front_left(&ifront_left),
+      back_left(&iback_left),
+      front_right(&ifront_right),
+      back_right(&iback_right) {}
 
 void MecanumChassis::drive_tank(double leftv, double rightv) {
   leftv = std::clamp(leftv, -1.0, 1.0);
