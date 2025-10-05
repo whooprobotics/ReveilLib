@@ -6,7 +6,7 @@
 
 namespace rev {
 /**
- * @brief Implementation of a skid-steer chassis
+ * @brief Implementation of a mecanum chassis
  *
  */
 class MecanumChassis : public Chassis {
@@ -29,6 +29,13 @@ class MecanumChassis : public Chassis {
    */
   MecanumChassis(rev::AnyMotor& ifrontleft, rev::AnyMotor& ifrontright, rev::AnyMotor& ibackleft, rev::AnyMotor& ibackright);
 
+  /**
+   * @brief Drives mecanum chassis
+   *
+   * @param horizontal_v Horizontal (Side to side) direction input from controller
+   * @param vertical_v Vertical (Front to back) direction input from controller
+   * @param angular_v Angular (Turning) direction input from controller
+   */
   void drive(double horizontal_v, double vertical_v, double angular_v);
 
   /**

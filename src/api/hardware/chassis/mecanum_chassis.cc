@@ -11,9 +11,9 @@ void MecanumChassis::drive(double horizontal_v, double vertical_v, double angula
   /* horizontal_v = std::clamp(horizontal_v, -1.0, 1.0);
   vertical_v = std::clamp(vertical_v, -1.0, 1.0);
   angular_v = std::clamp(angular_v, -1.0, 1.0); */
-
+  
+  // denominator ensures that each motor group has the same "ratio" of power
   double denominator = std::max(std::abs(horizontal_v), std::abs(vertical_v), std::abs(angular_v));
-
   double front_left_power = (vertical_v + horizontal_v + angular_v) / denominator;
   double front_right_power = (vertical_v - horizontal_v - angular_v) / denominator;
   double back_left_power = (vertical_v - horizontal_v + angular_v) / denominator;
