@@ -3,9 +3,9 @@
 #include <memory>
 #include <vector>
 
-#include "rev/api/alg/drive/correction/correction.hh"
-#include "rev/api/alg/drive/motion/motion.hh"
-#include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/reckless/correction/correction.hh"
+#include "rev/api/alg/reckless/motion/motion.hh"
+#include "rev/api/alg/stop/stop.hh"
 #include "rev/api/alg/reckless/segment.hh"
 
 namespace rev {

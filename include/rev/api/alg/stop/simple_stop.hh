@@ -3,7 +3,7 @@
 #include <iostream>
 #include <memory>
 #include "pros/rtos.hpp"
-#include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/stop/stop.hh"
 
 namespace rev {
 

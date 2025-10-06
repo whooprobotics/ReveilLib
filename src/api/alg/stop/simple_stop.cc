@@ -1,4 +1,4 @@
-#include "rev/api/alg/drive/stop/simple_stop.hh"
+#include "rev/api/alg/stop/simple_stop.hh"
 
 namespace rev {
 

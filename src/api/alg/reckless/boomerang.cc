@@ -1,6 +1,6 @@
 #include "rev/api/alg/reckless/boomerang.hh"
 #include <iostream>
-#include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/stop/stop.hh"
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/path.hh"
 namespace rev {

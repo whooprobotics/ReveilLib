@@ -1,4 +1,4 @@
-#include "rev/api/alg/drive/motion/constant_motion.hh"
+#include "rev/api/alg/reckless/motion/constant_motion.hh"
 
 rev::ConstantMotion::ConstantMotion(double ipower) : power(fabs(ipower)) {}
 

@@ -1,17 +1,17 @@
 // Correction
-#include "rev/api/alg/drive/correction/correction.hh"
-#include "rev/api/alg/drive/correction/no_correction.hh"
-#include "rev/api/alg/drive/correction/pilons_correction.hh"
+#include "rev/api/alg/reckless/correction/correction.hh"
+#include "rev/api/alg/reckless/correction/no_correction.hh"
+#include "rev/api/alg/reckless/correction/pilons_correction.hh"
 
 // Motion
-#include "rev/api/alg/drive/motion/cascading_motion.hh"
-#include "rev/api/alg/drive/motion/constant_motion.hh"
-#include "rev/api/alg/drive/motion/motion.hh"
-#include "rev/api/alg/drive/motion/proportional_motion.hh"
+#include "rev/api/alg/reckless/motion/cascading_motion.hh"
+#include "rev/api/alg/reckless/motion/constant_motion.hh"
+#include "rev/api/alg/reckless/motion/motion.hh"
+#include "rev/api/alg/reckless/motion/proportional_motion.hh"
 
 // Stop
-#include "rev/api/alg/drive/stop/simple_stop.hh"
-#include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/stop/simple_stop.hh"
+#include "rev/api/alg/stop/stop.hh"
 
 // Turn
 #include "rev/api/alg/reckless/turn_segment.hh"

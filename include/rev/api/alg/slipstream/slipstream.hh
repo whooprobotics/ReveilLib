@@ -3,7 +3,7 @@
 #include <memory>
 #include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
-#include "rev/api/hardware/chassis/chassis.hh"
+#include "rev/api/hardware/chassis/holonomic_chassis.hh"
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/slipstream/path.hh"
 
@@ -13,7 +13,7 @@ enum class SlipstreamStatus { ACTIVE, DONE };
 
 class Slipstream : public AsyncRunnable, public AsyncAwaitable {
  public:
-  Slipstream(std::shared_ptr<Chassis> ichassis,
+  Slipstream(std::shared_ptr<HolonomicChassis> ichassis,
              std::shared_ptr<Odometry> iodometry);
 
   void step() override;
@@ -36,7 +36,7 @@ class Slipstream : public AsyncRunnable, public AsyncAwaitable {
 
   void breakout();
  private:
-  std::shared_ptr<Chassis> chassis;
+  std::shared_ptr<HolonomicChassis> chassis;
   std::shared_ptr<Odometry> odometry;
   SlipstreamPath current_path;
   SlipstreamStatus status{SlipstreamStatus::DONE};

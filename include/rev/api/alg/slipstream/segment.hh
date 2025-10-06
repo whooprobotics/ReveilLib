@@ -5,6 +5,7 @@
 namespace rev {
 
 enum class SlipstreamSegmentStatusType {DRIVE, BRAKE, NEXT, DUMMY };
+
 struct SlipstreamSegmentStatus {
   SlipstreamSegmentStatusType status;
   SlipstreamPower power{0., 0., 0., 0., 0., 0., 0., 0.};
@@ -29,6 +30,8 @@ struct SlipstreamSegmentStatus {
     status.power.front_right_steer = ipower_front_right_steer;
     status.power.rear_left_steer = ipower_rear_left_steer;
     status.power.rear_right_steer = ipower_rear_right_steer;
+
+    return status;
   }
 
   static SlipstreamSegmentStatus drive(SlipstreamPower ipower) {

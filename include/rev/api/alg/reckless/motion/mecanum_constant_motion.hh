@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "rev/api/alg/drive/motion/slipstream_motion.hh"
+#include "rev/api/alg/reckless/motion/slipstream_motion.hh"
 #include "rev/api/alg/slipstream/power.hh"
 
 namespace rev {
