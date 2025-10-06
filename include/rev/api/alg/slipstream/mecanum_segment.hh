@@ -18,7 +18,7 @@ struct MecanumSegmentParams {
 };
 
 /**
- * @bried Path segment for Slipstream controller
+ * @brief Path segment for Slipstream controller
  *
  */
 class MecanumSegment : public SlipstreamSegment {

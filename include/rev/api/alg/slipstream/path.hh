@@ -7,6 +7,9 @@
 
 namespace rev {
 
+/**
+ * @brief Complete path for use with the Slipstream controller
+ */
 struct SlipstreamPath {
   std::vector<std::shared_ptr<SlipstreamSegment>> segments;
 

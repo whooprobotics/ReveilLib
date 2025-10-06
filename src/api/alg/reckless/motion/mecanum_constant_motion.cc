@@ -1,10 +1,12 @@
 #include "rev/api/alg/reckless/motion/mecanum_constant_motion.hh"
 
-rev::MecanumConstantMotion::MecanumConstantMotion(double ipower) : power(fabs(ipower)) {}
+namespace rev {
 
-rev::SlipstreamPower rev::MecanumConstantMotion::gen_powers(
-    rev::OdometryState current_state,
-    rev::Position target_state,
+MecanumConstantMotion::MecanumConstantMotion(double ipower) : power(fabs(ipower)) {}
+
+SlipstreamPower MecanumConstantMotion::gen_powers(
+    OdometryState current_state,
+    Position target_state,
     Position start_state,
     QLength drop_early) {
 
@@ -21,3 +23,4 @@ rev::SlipstreamPower rev::MecanumConstantMotion::gen_powers(
 
   return {front_left_forward, front_right_forward, rear_left_forward, rear_right_forward};
 }
+} // namespace rev
