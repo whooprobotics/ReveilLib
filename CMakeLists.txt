@@ -5,6 +5,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
+
+FetchContent_Declare(
+  sciplot
+  GIT_REPOSITORY https://github.com/sciplot/sciplot.git
+  GIT_TAG master
+)
+
+set(SCIPLOT_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(SCIPLOT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(SCIPLOT_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(sciplot)
+include_directories(${sciplot_SOURCE_DIR})
+
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
@@ -21,7 +35,7 @@ include_directories(include)
 
 # Add include files, source files, and test files
 add_executable(ReveilLib
-        
+
         src/api/async/async_runner.cc
         src/api/alg/drive/motion/cascading_motion.cc
         src/api/alg/drive/motion/proportional_motion.cc

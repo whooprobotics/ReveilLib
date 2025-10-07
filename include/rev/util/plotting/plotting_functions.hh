@@ -7,7 +7,7 @@
 #include "rev/api/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
 #include "rev/util/math/pose.hh"
-#include "sciplot/sciplot.hpp"
+#include <sciplot/sciplot.hpp>
 
 using sciplot::Vec, sciplot::Plot2D, sciplot::Figure, sciplot::Canvas;
 using namespace rev;
