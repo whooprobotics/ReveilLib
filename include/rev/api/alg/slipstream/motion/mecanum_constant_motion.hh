@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "rev/api/alg/reckless/motion/slipstream_motion.hh"
+#include "rev/api/alg/slipstream/motion/holonomic_motion.hh"
 #include "rev/api/alg/slipstream/power.hh"
 
 namespace rev {
@@ -10,7 +10,7 @@ namespace rev {
  * This class takes an input power and just spits out a drive tuple with 2
  * powers of that exact value, like pilons mttSimple
  */
-class MecanumConstantMotion : public SlipstreamMotion {
+class MecanumConstantMotion : public HolonomicMotion {
  public:
   SlipstreamPower gen_powers(OdometryState current_state,
                              Position target_state,
