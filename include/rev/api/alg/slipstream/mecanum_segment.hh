@@ -1,8 +1,8 @@
 #pragma once
+#include "rev/api/alg/slipstream/correction/holonomic_correction.hh"
+#include "rev/api/alg/slipstream/motion/holonomic_motion.hh"
 #include "rev/api/alg/slipstream/segment.hh"
-#include "rev/api/alg/reckless/motion/motion.hh"
 #include "rev/api/alg/stop/stop.hh"
-#include "rev/api/alg/reckless/correction/correction.hh"
 #include "rev/api/alg/slipstream/slipstream.hh"
 #include "rev/api/alg/slipstream/path.hh"
 
@@ -12,9 +12,9 @@ namespace rev {
  */
 
 struct MecanumSegmentParams {
-  std::shared_ptr<Motion> motion;
-  std::shared_ptr<Correction> correction;
-  std::shared_ptr<Stop> stop;
+  std::shared_ptr<HolonomicMotion> motion;
+  std::shared_ptr<HolonomicCorrection> correction;
+  std::shared_ptr<Stop> stop;  // Stop class is shared between reckless and slipstream
 };
 
 /**
@@ -22,8 +22,8 @@ struct MecanumSegmentParams {
  *
  */
 class MecanumSegment : public SlipstreamSegment {
-  std::shared_ptr<Motion> motion;
-  std::shared_ptr<Correction> correction;
+  std::shared_ptr<HolonomicMotion> motion;
+  std::shared_ptr<HolonomicCorrection> correction;
   std::shared_ptr<Stop> stop;
 
   Position start_point;
@@ -33,8 +33,8 @@ class MecanumSegment : public SlipstreamSegment {
   double part_progress{0.0};
 
  public:
-  MecanumSegment(std::shared_ptr<Motion> imotion,
-                 std::shared_ptr<Correction> icorrection,
+  MecanumSegment(std::shared_ptr<HolonomicMotion> imotion,
+                 std::shared_ptr<HolonomicCorrection> icorrection,
                  std::shared_ptr<Stop> istop,
                  Position itarget_point,
                  QLength idrop_early = 0_in)
