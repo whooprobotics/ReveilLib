@@ -20,7 +20,6 @@ shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 
-
 void on_center_button() {}
 
 void initialize() {
@@ -31,7 +30,11 @@ void disabled() {}
 
 void competition_initialize() {}
 
-void autonomous() {}
+void autonomous() {
+  shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
+  chassis->drive_holonomic(0.5, 0.5, 0.5);
+
+}
 
 void opcontrol() {
   // controller.print(0, 0, "furk");
