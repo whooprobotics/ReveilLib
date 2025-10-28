@@ -23,12 +23,11 @@ using namespace rev;
 
 rev::MotorGroup front_left({-3, 5});
 rev::MotorGroup back_left({1, -2});
-rev::MotorGroup front_right({-7, 8});
+rev::MotorGroup front_right({-17, 8});
 rev::MotorGroup back_right({9, -10});
 
 shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-
 
 void on_center_button() {}
 
@@ -116,7 +115,4 @@ void opcontrol() {
     // chassis->drive_arcade(left, right);
     pros::delay(20);
   }
-
-
-
 }

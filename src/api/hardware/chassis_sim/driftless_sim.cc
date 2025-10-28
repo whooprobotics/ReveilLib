@@ -63,6 +63,7 @@ void DriftlessSim::set_position(Position pos) {
 void DriftlessSim::reset_position() {
   set_position({0.0_in, 0.0_in, 0.0_deg});
 }
+
 void DriftlessSim::step() {
   // Find speeds we're approaching
   QSpeed v_target = v_max * linear_power;
