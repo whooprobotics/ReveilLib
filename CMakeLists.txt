@@ -21,7 +21,7 @@ include_directories(include)
 
 # Add include files, source files, and test files
 add_executable(ReveilLib
-        
+
         src/api/async/async_runner.cc
         src/api/alg/drive/motion/cascading_motion.cc
         src/api/alg/drive/motion/proportional_motion.cc
@@ -52,6 +52,7 @@ add_executable(ReveilLib
         test/odom_test.cc
         test/reckless_call_test.cc
         test/turn_segment_test.cc
+        test/holonomic_test.cc
         #test/bezier_test.cc
         #test/straight_line_test.cc
         #test/opencv_test.cc
