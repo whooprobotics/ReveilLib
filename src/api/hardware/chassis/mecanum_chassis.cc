@@ -73,9 +73,9 @@ void MecanumChassis::set_brake_coast() {
 }
 
 void MecanumChassis::stop() {
-  front_left-> brake();
-  back_left-> brake();
-  front_right-> brake();
-  back_right-> brake();
+  front_left->brake();
+  back_left->brake();
+  front_right->brake();
+  back_right->brake();
 }
 } //namespace rev
