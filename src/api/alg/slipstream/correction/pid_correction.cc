@@ -15,7 +15,9 @@ namespace rev {
     PIDCorrection::PIDCorrection(double kp, double ki, double kd, QLength imax_forward_error,
                        QLength imax_lateral_error, QAngle imax_heading_error) 
                        : kp{kp}, ki{ki}, kd{kd}, max_forward_error{imax_forward_error}, 
-                       max_lateral_error{imax_lateral_error}, max_heading_error{imax_heading_error}, time{0.0} {}
+                       max_lateral_error{imax_lateral_error}, max_heading_error{imax_heading_error}, time{0.0}, 
+                       integral_sum_forward{0.0}, integral_sum_lateral{0.0}, integral_sum_heading{0.0}, last_forward_error{0.0}, 
+                       last_lateral_error{0.0}, last_heading_error{0.0} {}
     
     SlipstreamPower PIDCorrection::apply_correction(OdometryState current_state, Position target_state, Position start_state, QLength drop_early,
     SlipstreamPower powers) {
