@@ -18,18 +18,27 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "rev/api/hardware/chassis/butterfly_chassis.hh"
 
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
 
-rev::MotorGroup front_left({-3, 5});
-rev::MotorGroup back_left({1, -2});
-rev::MotorGroup front_right({-17, 8});
-rev::MotorGroup back_right({9, -10});
+rev::MotorGroup front_left({19, 20});
+rev::MotorGroup back_left({9, 10});
+rev::MotorGroup front_right({-14, -15});
+rev::MotorGroup back_right({-1, -2});
 rev::Motor center_left(11);
-rev::Motor center_right(-12);
+rev::Motor center_right(-12); 
 
 // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
+
+// butterfly chassis initialization
+// #define left_piston_port 'G'
+// #define right_piston_port 'H'
+// pros::ADIDigitalOut left_piston (left_piston_port);
+// pros::ADIDigitalOut right_piston (right_piston_port);
+// shared_ptr<rev::ButterflyChassis> chassis = make_shared<rev::ButterflyChassis>(front_left, front_right, back_left, back_right, left_piston, right_piston);
+
 shared_ptr<rev::AsteriskChassis> chassis = make_shared<rev::AsteriskChassis>(front_left, front_right, back_left, back_right, center_left, center_right);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
@@ -130,4 +139,33 @@ void opcontrol() {
     // chassis->drive_arcade(left, right);
     pros::delay(20);
   }
+
+
+
+  
+  // Butterfly teleop
+  /* while(true) {
+    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
+    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
+    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
+      chassis->toggle_pistons();
+    }
+
+    int exp = 3;
+    double forward = pow(left_y, exp);
+    double strafe = pow(left_x, exp);
+    double turn = pow(right_x, exp);
+
+    chassis->drive_auto(forward, turn, strafe);
+
+    pros::lcd::print(0, "Left Y: %d", forward);
+    pros::lcd::print(1, "Left X: %d", strafe);
+    pros::lcd::print(2, "Right X: %d", turn);
+    pros::lcd::print(3, "Piston state: %d", chassis->get_pistons());
+    pros::delay(20);
+  } */
+
+
 }
