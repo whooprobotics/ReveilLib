@@ -3,6 +3,10 @@
 namespace rev {
 
 QuadEncoder::QuadEncoder(std::uint8_t top,
+                         std::uint8_t bottom)
+    : sensor(top, bottom, false), ports(std::make_pair(top, bottom)) {}
+
+QuadEncoder::QuadEncoder(std::uint8_t top,
                          std::uint8_t bottom,
                          const bool reverse_flag = false)
     : sensor(top, bottom, reverse_flag), ports(std::make_pair(top, bottom)) {}

@@ -12,7 +12,7 @@ class RotarySensor {
  public:
   /**
    * @brief Gets the current position of the sensor
-   * @returns Returns degrees rotated from the zero position 
+   * @returns Degrees rotated from the zero position 
    */
   virtual double get_position() = 0;
 
