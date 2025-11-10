@@ -3,7 +3,7 @@
 
 namespace rev {
 
-class MockRotarySensor : public ReadOnlyRotarySensor {
+class MockRotarySensor : public RotarySensor {
  public:
   MockRotarySensor(int reading);
   double get_position() override;

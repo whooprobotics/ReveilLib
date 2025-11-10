@@ -26,8 +26,8 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   void step() override;
 
   TwoRotationInertialOdometry(
-      std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
-      std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
+      std::shared_ptr<rev::RotarySensor> ilongitudinal_sensor,
+      std::shared_ptr<rev::RotarySensor> ilateral_sensor,
       std::shared_ptr<rev::Gyroscope> iinertial,
       QLength ilongitudinal_wheel_diameter = 3.25 * inch,
       QLength ilateral_wheel_diameter = 3.25 * inch,
@@ -35,11 +35,11 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
       QLength ilateral_wheel_offset = 0 * inch);
 
  private:
-  std::shared_ptr<rev::ReadOnlyRotarySensor>
+  std::shared_ptr<rev::RotarySensor>
       longitudinal_sensor;  // Sensor indicating forward motion.
                             // Moving the robot forward should cause
                             // the position of this to increase.
-  std::shared_ptr<rev::ReadOnlyRotarySensor>
+  std::shared_ptr<rev::RotarySensor>
       lateral_sensor;  // Sensor indicating motion to the right.
                        // Moving the robot right should cause the
                        // position of this to increase.

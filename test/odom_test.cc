@@ -10,8 +10,8 @@ using namespace rev;
 using std::cout, std::endl;
 
 static void printOdomState(OdometryState state,
-                           std::shared_ptr<ReadOnlyRotarySensor> forward,
-                           std::shared_ptr<ReadOnlyRotarySensor> lateral) {
+                           std::shared_ptr<RotarySensor> forward,
+                           std::shared_ptr<RotarySensor> lateral) {
   cout << "x: " << state.pos.x.convert(inch) << endl
        << "y: " << state.pos.y.convert(inch) << endl;
   cout << "Forward value: " << forward->get_position()

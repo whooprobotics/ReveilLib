@@ -7,10 +7,8 @@ namespace rev {
 /**
  * @brief Implementation of the Vex Rotation sensor under the
  * ReadOnlyRotarySensor interface
- *
  */
-
-class RotationSensor : public ReadOnlyRotarySensor {
+class RotationSensor : public RotarySensor {
  public:
   RotationSensor(std::uint8_t port);
   RotationSensor(std::uint8_t port, const bool reverse_flag);

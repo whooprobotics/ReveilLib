@@ -18,8 +18,8 @@ rev::Motor conveyor(16);
 
 // pros::Imu imu(4);
 shared_ptr<rev::DualImu> imu = make_shared<rev::DualImu>(6, 7);
-shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
-shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('E'), static_cast<int>('F'), true);
+shared_ptr<rev::RotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
+shared_ptr<rev::RotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('E'), static_cast<int>('F'), true);
 // pros::Rotation fwd(1, true);
 // pros::Rotation rgt(14);
 // pros::Controller controller(pros::controller_id_e_t::E_CONTROLLER_MASTER);

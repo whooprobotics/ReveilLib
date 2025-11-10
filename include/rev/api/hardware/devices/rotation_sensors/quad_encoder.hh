@@ -5,7 +5,7 @@
 
 namespace rev {
 
-class QuadEncoder : public ReadOnlyRotarySensor {
+class QuadEncoder : public RotarySensor {
  public:
   QuadEncoder(std::uint8_t top, std::uint8_t bottom, const bool reverse_flag);
 

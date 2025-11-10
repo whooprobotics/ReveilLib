@@ -5,8 +5,8 @@
 
 namespace rev {
 TwoRotationInertialOdometry45Degrees::TwoRotationInertialOdometry45Degrees(
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
+    std::shared_ptr<rev::RotarySensor> ilongitudinal_sensor,
+    std::shared_ptr<rev::RotarySensor> ilateral_sensor,
     std::shared_ptr<rev::Gyroscope> iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
