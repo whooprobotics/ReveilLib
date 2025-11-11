@@ -1,10 +1,10 @@
 #pragma once
+
 #include "pros/imu.hpp"
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 #include <utility>
 
 namespace rev {
-
 /**
  * @brief Implementation of the Gyroscope interface with one Vex IMU
  * 
@@ -19,6 +19,7 @@ class Imu : public Gyroscope {
 
   /**
    * @brief Gets the current heading of the sensor
+   * 
    * @returns Current facing angle of the IMU, normalized to [-180, 180]
    */
   double get_heading() override;
@@ -31,12 +32,13 @@ class Imu : public Gyroscope {
 
   /**
    * @brief Verifies that the sensor port is properly connected
+   * 
    * @returns A pair <port, 0> if the port is not connected, zeros otherwise
    */
-  std::pair<std::uint8_t, std::uint8_t> check_port() override;
+  std::pair<std::uint8_t, std::uint8_t> check_ports() override;
 
  private:
   pros::Imu inertial;
   std::uint8_t port;
 };
-}  // namespace rev
+} // namespace rev

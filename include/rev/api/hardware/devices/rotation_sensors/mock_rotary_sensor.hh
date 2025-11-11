@@ -7,7 +7,7 @@ class MockRotarySensor : public RotarySensor {
  public:
   MockRotarySensor(int reading);
   double get_position() override;
-  std::pair<std::uint8_t, std::uint8_t> check_port() override;
+  std::pair<std::uint8_t, std::uint8_t> check_ports() override;
   int get_value();
   void increment();
   void decrement();

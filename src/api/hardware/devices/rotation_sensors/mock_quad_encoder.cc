@@ -36,7 +36,7 @@ int MockQuadEncoder::get_looparounds() {
   return looparounds;
 }
 
-std::pair<std::uint8_t, std::uint8_t> MockQuadEncoder::check_port() {
+std::pair<std::uint8_t, std::uint8_t> MockQuadEncoder::check_ports() {
   return std::make_pair(0, 0);
 }
 

@@ -35,7 +35,7 @@ class QuadEncoder : public RotarySensor {
    * @brief Verifies the sensor ports are properly connected
    * @returns A pair <port, port> if either port is not connected, zeros otherwise
    */
-  std::pair<uint8_t, uint8_t> check_port() override;
+  std::pair<uint8_t, uint8_t> check_ports() override;
 
  private:
   pros::ADIEncoder sensor;

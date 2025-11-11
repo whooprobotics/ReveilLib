@@ -33,7 +33,7 @@ class RotationSensor : public RotarySensor {
    * @brief Verifies that the sensor port is properly connected
    * @returns A pair of <port, 0> for the port if not connected, zeros otherwise
    */
-  std::pair<uint8_t, uint8_t> check_port() override;
+  std::pair<uint8_t, uint8_t> check_ports() override;
 
  private:
   pros::Rotation sensor;

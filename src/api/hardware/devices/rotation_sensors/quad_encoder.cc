@@ -15,7 +15,7 @@ double QuadEncoder::get_position() {
   return (double)sensor.get_value() * 360.0 / 8192.0;
 }
 
-std::pair<uint8_t, uint8_t> QuadEncoder::check_port() {
+std::pair<uint8_t, uint8_t> QuadEncoder::check_ports() {
   if (sensor.reset() == PROS_ERR) {
     return ports;
   }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <algorithm>
 #include "pros/imu.hpp"
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
@@ -13,6 +14,7 @@ class DualImu : public Gyroscope {
  public:
   /**
    * @brief Constructs a new DualImu object based on Vex IMUs
+   * 
    * @param port1 Port for first IMU
    * @param port2 Port for second IMU
    */
@@ -20,6 +22,7 @@ class DualImu : public Gyroscope {
 
   /**
    * @brief Gets the average heading of the sensors
+   * 
    * @returns Average current facing angle of the IMUs, normalized to [-180, 180]
    */
   double get_heading() override;
@@ -32,9 +35,10 @@ class DualImu : public Gyroscope {
 
   /**
    * @brief Verifies that the sensor ports are properly connected
+   * 
    * @returns Ports that are not properly connected, zeros otherwise
    */
-  std::pair<std::uint8_t, std::uint8_t> check_port() override;
+  std::pair<std::uint8_t, std::uint8_t> check_ports() override;
 
  private:
   pros::Imu inertial1;

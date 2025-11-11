@@ -27,7 +27,7 @@ bool DualImu::is_calibrating() {
   return inertial1.is_calibrating() || inertial2.is_calibrating();
 }
 
-std::pair<uint8_t, uint8_t> DualImu::check_port() {
+std::pair<uint8_t, uint8_t> DualImu::check_ports() {
   uint8_t p1 = inertial1.get_heading() == PROS_ERR_F ? port1 : 0;
   uint8_t p2 = inertial2.get_heading() == PROS_ERR_F ? port2 : 0;
 
