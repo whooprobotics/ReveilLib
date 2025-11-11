@@ -6,7 +6,6 @@
 #include "rev/api/alg/drive/stop/stop.hh"
 
 namespace rev {
-
 /**
  * @brief Stop controller implementing a simple stopping algorithm
  *
@@ -57,12 +56,17 @@ class SimpleStop : public Stop {
    * @param start_state The place the robot started from
    * @param drop_early The distance from the target that the robot should aim to
    * exit this step of the controller
-   * @return StopState
+   * 
+   * @return StopState The current stop state of the segment
    */
   StopState get_stop_state(OdometryState current_state,
                             Position target_state,
                             Position start_state,
                             QLength drop_early) override;
+
+  /**
+   * 
+   */
   double get_coast_power() override;
 
   std::shared_ptr<SimpleStop> operator&() {
@@ -75,8 +79,7 @@ class SimpleStop : public Stop {
   const double coast_power;
   StopState stop_state_last{StopState::GO};
 
-  uint32_t time_init{0};
-  uint32_t timeout{0};
+  uint32_t time_init = 0;
+  uint32_t timeout = 0;
 };
-
-}  // namespace rev
+} // namespace rev

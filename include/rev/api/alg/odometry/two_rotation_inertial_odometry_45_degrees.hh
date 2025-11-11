@@ -1,15 +1,17 @@
 #pragma once
-#include "odometry.hh"
+
 #include "pros/imu.hpp"
 #include "pros/rotation.hpp"
 #include "pros/rtos.hpp"
+#include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
+
 namespace rev {
 /**
- * @brief Odometry implementation using 2 tracking wheels mounted at a 45 degree
- * angle to each other and an inertial
+ * @brief Odometry implementation using 2 tracking wheels mounted at
+ * a 45 degree angle to each other and an inertial
  *
  */
 class TwoRotationInertialOdometry45Degrees : public Odometry,
@@ -20,16 +22,36 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
    *
    * The implementation of this is thread-safe
    *
-   * @return OdometryState
+   * @return OdometryState Current robot position
    */
   OdometryState get_state() override;
+
+  /**
+   * @brief Sets the current robot position
+   * 
+   * @param pos The desired x, y (QLength), and theta (QAngle)
+   */
   void set_position(Position pos) override;
+
+  /**
+   * @brief Resets the current robot position to {0, 0, 0}
+   */
   void reset_position() override;
+
+  /**
+   * @brief Updates the current robot position with new data from sensors
+   */
   void step() override;
 
+  /**
+   * @brief Constructs a new TwoRotationInertialOdometry45Degrees object
+   * 
+   * @param left_sensor std::shared_ptr<RotarySensor> pointing to the left sensor
+   * @param right_sensor std::shared_ptr<RotarySensor> pointing to the right sensor
+   */
   TwoRotationInertialOdometry45Degrees(
-      std::shared_ptr<rev::RotarySensor> ilongitudinal_sensor,
-      std::shared_ptr<rev::RotarySensor> ilateral_sensor,
+      std::shared_ptr<rev::RotarySensor> left_sensor,
+      std::shared_ptr<rev::RotarySensor> right_sensor,
       std::shared_ptr<rev::Gyroscope> iinertial,
       QLength ilongitudinal_wheel_diameter = 3.25 * inch,
       QLength ilateral_wheel_diameter = 3.25 * inch,
@@ -37,40 +59,47 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
       QLength ilateral_wheel_offset = 0 * inch);
 
  private:
-  std::shared_ptr<rev::RotarySensor>
-      longitudinal_sensor;  // Sensor indicating forward motion.
-                            // Moving the robot forward should cause
-                            // the position of this to increase.
-  std::shared_ptr<rev::RotarySensor>
-      lateral_sensor;  // Sensor indicating motion to the right.
-                       // Moving the robot right should cause the
-                       // position of this to increase.
-  std::shared_ptr<rev::Gyroscope>
-      inertial;  // Inertial sensor from which the robot yaw will be read
+  /*
+   * Which sensor is which doesn't matter frankly, left and right are
+   * used for convention. The sensor readings are averaged out.
+   */
 
+  // Sensor on left side of robot
+  std::shared_ptr<rev::RotarySensor> left_sensor;
+  // Sensor on right side of robot
+  std::shared_ptr<rev::RotarySensor> right_sensor;
+  // Inertial sensor from which the robot yaw will be read
+  std::shared_ptr<rev::Gyroscope> inertial;
+
+  // Mutex for updating odometry position
   pros::Mutex current_position_mutex;
+
+  // Current odometry state
   OdometryState current_position{{0_in, 0_in, 0_deg},
                                  {0_mps, 0_mps, 0_deg / second}};
 
   // Used for getting differences
   double longitude_ticks_last;
   double latitude_ticks_last;
+
   // Only used for velocity calculation
   double heading_ticks_last;
+
   // We call this init instead of last because it is used for absolutes
   double heading_ticks_init;
-  // Time of last call
-  int32_t time_last{-1};
 
-  bool is_initialized{false};
+  // Time of last call
+  int32_t time_last = -1;
+
+  bool is_initialized = false;
 
   // Wheel sizes
-  QLength longitudinal_wheel_diameter;
-  QLength lateral_wheel_diameter;
+  QLength left_wheel_diameter;
+  QLength right_wheel_diameter;
 
-  // Offset of the longitudinal wheel to the right of the center of the robot
+  // Longitudinal offset to the right of the center of the robot
   QLength longitudinal_wheel_offset;
   // Likewise, for the lateral wheel backward from the center of rotation
   QLength lateral_wheel_offset;
 };
-};  // namespace rev
+} // namespace rev

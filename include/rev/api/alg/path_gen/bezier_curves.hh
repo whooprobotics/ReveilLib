@@ -19,8 +19,8 @@ namespace rev {
 class BezierSegment : public PurePursuitSegment {
  public:
   /**
-   *
    * @brief Make a new Bezier Segment
+   * 
    * @note O(p^2 * r) where p is the number of path points and r is the
    * resolution
    *
@@ -44,7 +44,7 @@ class BezierSegment : public PurePursuitSegment {
 
   /**
    * @brief Initialize the Bezier segment by generating waypoints
-   *
+   * 
    * @param initial_state The initial odometry state of the robot
    */
   void init(OdometryState initial_state) override;
@@ -52,7 +52,7 @@ class BezierSegment : public PurePursuitSegment {
  protected:
   /**
    * @brief Generate the Bezier curve waypoints based on control points
-   *
+   * 
    * @return std::vector<PointVector> Generated waypoints
    */
   std::vector<PointVector> generate_waypoints() override;
@@ -68,11 +68,10 @@ class BezierSegment : public PurePursuitSegment {
   QLength wheelbase;
   QLength look_ahead_distance;
 
-  std::size_t resolution;
+  size_t resolution;
   double t_value;
 
   double left_speed;
   double right_speed;
 };
-
-}  // namespace rev
+} // namespace rev

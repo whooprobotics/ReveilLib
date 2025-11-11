@@ -31,7 +31,8 @@ class PilonsCorrection : public Correction {
    * @param current_state The current OdometryState
    * @param target_state The position being targeted
    * @param powers The input powers
-   * @return std::tuple<double, double> The adjusted powers
+   * 
+   * @return std::tuple<double, double> The corrected powers
    */
   std::tuple<double, double> apply_correction(
       OdometryState current_state,
@@ -42,13 +43,18 @@ class PilonsCorrection : public Correction {
 
   /**
    * @brief Construct a new Pilons Correction object
-   *
+   * 
    * @param ikCorrection The constant of correction. `8.0` was used by Pilons,
    * but tuning is recommended.
    * @param imaxError The error threshold over which correction will be applied
    */
   PilonsCorrection(double ik_correction, QLength imax_error);
 
+  /**
+   * @brief Shorthand for creating a new PilonsCorrection object
+   * 
+   * @return std::shared_ptr<PilonsCorrection> newly constructed PilonsCorrection object
+   */
   std::shared_ptr<PilonsCorrection> operator&() {
     return std::make_shared<PilonsCorrection>(*this);
   }
@@ -57,5 +63,4 @@ class PilonsCorrection : public Correction {
   double k_correction;
   QLength max_error;
 };
-
-}  // namespace rev
+} // namespace rev

@@ -1,14 +1,12 @@
 #pragma once
 
 #include <vector>
-
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/chassis/chassis.hh"
 
 namespace rev {
-
 /**
  * @brief Pure Pursuit Path Segment
  *
@@ -36,15 +34,16 @@ class PurePursuitSegment : public RecklessSegment {
 
   /**
    * @brief Initialize the Pure Pursuit segment
-   *
+   * 
    * @param initial_state The initial odometry state of the robot
    */
   virtual void init(OdometryState initial_state) override;
 
   /**
    * @brief Compute the next step in the Pure Pursuit segment
-   *
+   * 
    * @param current_state The current odometry state of the robot
+   * 
    * @return SegmentStatus The status after computing control commands
    */
   SegmentStatus step(OdometryState current_state) override;
@@ -57,7 +56,7 @@ class PurePursuitSegment : public RecklessSegment {
  protected:
   /**
    * @brief Get the generated waypoints
-   *
+   * 
    * @return std::vector<PointVector> Vector of waypoints
    */
   virtual std::vector<PointVector> generate_waypoints() = 0;
@@ -94,28 +93,30 @@ class PurePursuitSegment : public RecklessSegment {
   // Helper methods
   /**
    * @brief Find the target point on the path at the look-ahead distance
-   *
+   * 
    * @param current_state Current odometry state of the robot
+   * 
    * @return PointVector The target point for Pure Pursuit
    */
   PointVector find_target_point(OdometryState current_state);
 
   /**
    * @brief Calculate the remaining distance to the end of the path
-   *
+   * 
    * @param current_state Current odometry state of the robot
+   * 
    * @return double Remaining distance in meters
    */
   QLength calculate_remaining_distance(OdometryState current_state);
 
   /**
    * @brief PID controller for Pure Pursuit
-   *
+   * 
    * @param current_state Current odometry state of the robot
+   * 
    * @return std::tuple<double, double> Tuple of left and right motor powers
    */
   std::tuple<double, double> PID(OdometryState current_state,
                                  double base_power);
 };
-
-}  // namespace rev
+} // namespace rev

@@ -23,27 +23,9 @@ struct BoomerangSegmentParams {
  * This will also likely be slower than other controllers.
  */
 class BoomerangSegment : public RecklessSegment {
-  std::shared_ptr<Motion> motion;
-  std::shared_ptr<Correction> correction;
-  std::shared_ptr<Stop> stop;
-
-  Position start_point;
-  Position target_point;
-  Position frozen_carrot_point;
-  QLength drop_early;
-
-  double part_progress{0.0};
-
-  double lead;
-  double direction {1};
-
-  bool close {false};
-
-  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
-
  public:
   /**
-   * @brief Construct a new Boomerang Segment object
+   * @brief Construct a new BoomerangSegment object
    * 
    * @param imotion The motion generator to use
    * @param icorrection The correction algorithm to use
@@ -67,6 +49,13 @@ class BoomerangSegment : public RecklessSegment {
     start_point = {0_in, 0_in, 0_deg};
   }
 
+  /**
+   * @brief Construct a new BoomerangSegment object
+   * 
+   * @param iparams Struct containing imotion, icorrection, istop, and ilead
+   * @param itarget_point The target point (with an angle!)
+   * @param idrop_early Early drop distance. You should probably not use this since it is untested.
+   */
   BoomerangSegment(BoomerangSegmentParams iparams,
                 Position itarget_point,
                 QLength idrop_early = 0 * inch)
@@ -109,9 +98,17 @@ class BoomerangSegment : public RecklessSegment {
    */
   void clean_up() override;
 
+  /**
+   * @brief Returns how much of the segment has completed
+   */
   double progress() override;
 
-  std::shared_ptr<RecklessSegment> operator&() {
+  /**
+   * @brief Shorthand for creating a new BoomerangSegment object
+   * 
+   * @return std::shared_ptr<BoomerangSegment> newly constructed BoomerangSegment object
+   */
+  std::shared_ptr<BoomerangSegment> operator&() {
     return std::make_shared<BoomerangSegment>(*this);
   }
 
@@ -120,5 +117,24 @@ class BoomerangSegment : public RecklessSegment {
                                                QLength drop_early = 0 * inch) {
     return std::make_shared<BoomerangSegment>(params, target_point, drop_early);
   }
+
+ private:
+  std::shared_ptr<Motion> motion;
+  std::shared_ptr<Correction> correction;
+  std::shared_ptr<Stop> stop;
+
+  Position start_point;
+  Position target_point;
+  Position frozen_carrot_point;
+  QLength drop_early;
+
+  double part_progress = 0.0;
+
+  double lead;
+  double direction = 1;
+
+  bool close = false;
+
+  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
 };
 }  // namespace rev
