@@ -3,7 +3,7 @@
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include "rev/api/hardware/devices/gyroscope/mock_imu.hh"
 #include "rev/api/hardware/devices/rotation_sensors/mock_quad_encoder.hh"
-#include "rev/api/hardware/devices/rotation_sensors/mock_rotary_sensor.hh"
+#include "rev/api/hardware/devices/rotation_sensors/mock_rotation_sensor.hh"
 #include "rev/rev.hh"
 
 using namespace rev;
@@ -63,10 +63,10 @@ void quadencodertest(QLength wheel_diameter) {
 }
 
 void rotationsensortest(QLength wheel_diameter) {
-  std::shared_ptr<MockRotarySensor> forward =
-      std::make_shared<MockRotarySensor>(0);
-  std::shared_ptr<MockRotarySensor> lateral =
-      std::make_shared<MockRotarySensor>(0);
+  std::shared_ptr<MockRotationSensor> forward =
+      std::make_shared<MockRotationSensor>(0);
+  std::shared_ptr<MockRotationSensor> lateral =
+      std::make_shared<MockRotationSensor>(0);
   std::shared_ptr<MockImu> imu = std::make_shared<MockImu>(0);
   std::shared_ptr<TwoRotationInertialOdometry> odom =
       std::make_shared<TwoRotationInertialOdometry>(
