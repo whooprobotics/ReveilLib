@@ -8,9 +8,11 @@
 #include "rev/api/alg/stop/simple_holonomic_stop.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
+#include "rev/api/hardware/devices/gyroscope/imu.hh"
 #include "rev/rev.hh"
 #include "rev/api/hardware/chassis/mecanum_chassis.hh"
 #include "rev/api/hardware/chassis/asterisk_chassis.hh"
+#include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
 #include "rev/api/units/q_time.hh"
 #include "rev/api/units/q_length.hh"
 #include "rev/api/alg/slipstream/mecanum_segment.hh"
@@ -23,12 +25,16 @@
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
 
-rev::MotorGroup front_left({19, 20});
-rev::MotorGroup back_left({9, 10});
-rev::MotorGroup front_right({-14, -15});
-rev::MotorGroup back_right({-1, -2});
-rev::Motor center_left(11);
-rev::Motor center_right(-12); 
+rev::MotorGroup front_left({3, -5});
+rev::MotorGroup back_left({-1, 2});
+rev::MotorGroup front_right({17, -8});
+rev::MotorGroup back_right({-9, 10});
+rev::Motor center_left(-11);
+rev::Motor center_right(12);
+
+shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('A'), static_cast<int>('B'), false);
+shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
+shared_ptr<rev::Gyroscope> imu = make_shared<rev::Imu>(14);
 
 // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
 
@@ -40,12 +46,18 @@ rev::Motor center_right(-12);
 // shared_ptr<rev::ButterflyChassis> chassis = make_shared<rev::ButterflyChassis>(front_left, front_right, back_left, back_right, left_piston, right_piston);
 
 shared_ptr<rev::AsteriskChassis> chassis = make_shared<rev::AsteriskChassis>(front_left, front_right, back_left, back_right, center_left, center_right);
+shared_ptr<rev::TwoRotationInertialOdometry45Degrees> odom = make_shared<rev::TwoRotationInertialOdometry45Degrees>(left_enc, right_enc, imu, 2.46_in, 2.46_in);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
+shared_ptr<AsyncRunner> odom_runner;
 
 void on_center_button() {}
 
 void initialize() {
   pros::lcd::initialize();
+
+  odom_runner = make_shared<AsyncRunner>(odom);
+  std::cout << "Initialized" << std::endl;
 }
 
 void disabled() {}
@@ -107,15 +119,20 @@ int signum(double x) {
   else return -1;
 }
 
+void reset_odom() {
+  odom->reset_position();
+}
+
 void opcontrol() {
   // controller.print(0, 0, "furk");
+
   while(true) {
     /*
      * TEST MECANUM DRIVE
     */
     double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
     double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
-    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
+    double right_x = -1 * controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
     int exp = 3;
     double forward = pow(left_y, exp);
     double strafe = pow(left_x, exp);
@@ -123,9 +140,18 @@ void opcontrol() {
 
     chassis->drive_holonomic(forward, turn, strafe);
 
-    // pros::lcd::print(0, "Left Y: %d", forward);
-    // pros::lcd::print(1, "Left X: %d", strafe);
-    // pros::lcd::print(2, "Right X: %d", turn);
+    OdometryState current_state = odom->get_state();
+
+    pros::lcd::print(0, "X: %f", current_state.pos.x.convert(inch));
+    pros::lcd::print(1, "Y: %f", current_state.pos.y.convert(inch));
+    pros::lcd::print(2, "a: %f", current_state.pos.theta.convert(degree));
+    // pros::lcd::print(0, "L encoder: %f", left_enc->get_position());
+    // pros::lcd::print(1, "R encoder: %f", right_enc->get_position());
+    // pros::lcd::print(2, "IMU heading: %f", imu->get_heading());
+
+    // std::cout << "Odom X: " << current_state.pos.x.convert(inch) << std::endl;
+    // std::cout << "Odom Y: " << current_state.pos.y.convert(inch) << std::endl;
+    // std::cout << "Odom A: " << current_state.pos.theta.convert(degree) << std::endl;
     /*
      * END TEST MECANUM DRIVE
      */
