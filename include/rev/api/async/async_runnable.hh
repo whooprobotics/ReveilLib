@@ -1,4 +1,5 @@
 #pragma once
+
 namespace rev {
 /**
  * @brief Interface for classes which should have associated threads
@@ -13,4 +14,4 @@ class AsyncRunnable {
    */
   virtual void step() = 0;
 };
-}  // namespace rev
+} // namespace rev

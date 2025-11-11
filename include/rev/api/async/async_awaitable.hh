@@ -19,5 +19,4 @@ class AsyncAwaitable {
    */
   virtual bool is_ready() = 0;
 };
-
-}  // namespace rev
+} // namespace rev
