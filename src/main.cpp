@@ -97,10 +97,11 @@ void autonomous() {
   cout << "Starting route" << endl;
   uint8_t timeout = 0;
 
-  rev::Pose start_position = {19.8_in, 48_in, -22.1_deg};
+  rev::Pose start_position = {0_in, 0_in, 0_deg};
   odom->set_position(start_position);
 
   // test movement
+  cout << "Starting test movement" << endl;
   slipstream->go(
       {
         // Move fwd
@@ -108,9 +109,11 @@ void autonomous() {
           rush_motion,
           ct_correction,
           make_shared<rev::SimpleHolonomicStop>(0_s, 0_s, coast_power),
-          {40.2_in, 40_in}, 0_in),
+          {40_in, 0_in}, 0_in),
       }
   );
+
+
 }
 
 int signum(double x) {
@@ -168,7 +171,7 @@ void opcontrol() {
 
 
 
-  
+
   // Butterfly teleop
   /* while(true) {
     double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
