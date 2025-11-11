@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
@@ -17,10 +16,19 @@ enum class RecklessStatus { ACTIVE, DONE };
  */
 class Reckless : public AsyncRunnable, public AsyncAwaitable {
  public:
+  /**
+   * @brief Constructs a new Reckless controller instance
+   * 
+   * @param ichassis std::shared_ptr<Chassis> pointing to Chassis instance, with motors for control
+   * @param odometry std::shared_ptr<Odometry> pointing to odometry with sensors
+   */
   Reckless(std::shared_ptr<Chassis> ichassis,
            std::shared_ptr<Odometry> odometry);
+
   /**
-   * The step function for the asyncrunnable. This is where the bulk of the
+   * @brief Steps the Reckless controller
+   * 
+   * The step function for the AsyncRunnable. This is where the bulk of the
    * controller logic is
    */
   void step() override;
@@ -61,10 +69,12 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
    * invoked a harsh stop
    */
   double progress();
+
   /**
    * This function returns true if the status is DONE, and false otherwise
    */
   bool is_completed();
+
   /**
    * This function immediately sets the status to DONE and ends the current
    * motion
@@ -77,8 +87,8 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   RecklessPath current_path;
   RecklessStatus status{RecklessStatus::DONE};
 
-  size_t current_segment{0};
+  size_t current_segment = 0;
   long long brake_start_time = -1;
-  double partial_progress{-1.0};
+  double partial_progress = -1.0;
 };
-}  // namespace rev
+} // namespace rev

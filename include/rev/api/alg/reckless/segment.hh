@@ -2,7 +2,6 @@
 #include "rev/api/alg/odometry/odometry.hh"
 
 namespace rev {
-
 /**
  * @brief Algebraic data type for fancy return matching
  *
@@ -10,14 +9,15 @@ namespace rev {
 enum class SegmentStatusType { DRIVE, BRAKE, NEXT, DUMMY };
 struct SegmentStatus {
   SegmentStatusType status;
-  double power_left{0.};
-  double power_right{0.};
+  double power_left = 0.;
+  double power_right = 0.;
 
   /**
    * @brief Return status for applying a pair of powers to the chassis
    *
    * @param ipower_left The power to apply to the left side of the chassis
    * @param ipower_right The power to apply to the right side of the chassis
+   * 
    * @return SegmentStatus
    */
   static SegmentStatus drive(double ipower_left, double ipower_right) {
@@ -33,6 +33,7 @@ struct SegmentStatus {
    * @brief Return status for applying power to the chassis
    *
    * @param ipower A power to apply to both sides of the chassis
+   * 
    * @return SegmentStatus
    */
   static SegmentStatus drive(double ipower) { return drive(ipower, ipower); }
@@ -42,6 +43,7 @@ struct SegmentStatus {
    * tuple
    *
    * @param ipowers A tuple of powers to apply
+   * 
    * @return SegmentStatus
    */
   static SegmentStatus drive(std::tuple<double, double> ipowers) {
@@ -50,18 +52,33 @@ struct SegmentStatus {
     return drive(left, right);
   }
 
+  /**
+   * @brief Return status for applying brakes to the chassis
+   * 
+   * @return SegmentStatus brake status
+   */
   static SegmentStatus brake() {
     SegmentStatus status;
     status.status = SegmentStatusType::BRAKE;
     return status;
   }
 
+  /**
+   * @brief Return status for transitioning to the next segment
+   * 
+   * @return SegmentStatus next status
+   */
   static SegmentStatus next() {
     SegmentStatus status;
     status.status = SegmentStatusType::NEXT;
     return status;
   }
 
+  /**
+   * @brief Return status for dummy state
+   * 
+   * @return SegmentStatus dummy status
+   */
   static SegmentStatus dummy() {
     SegmentStatus status;
     status.status = SegmentStatusType::DUMMY;
@@ -82,6 +99,8 @@ class RecklessSegment {
    *
    * The intended use of this method is to perform any calculations that need to
    * happen at the start of a segment.
+   * 
+   * @param initial_state The initial odometry state when this segment is initialized
    */
   virtual void init(OdometryState initial_state) = 0;
 
@@ -95,6 +114,8 @@ class RecklessSegment {
    * the next segment, or if no next segment is present, terminate execution.
    *
    * If a return value of
+   * 
+   * @param current_state The current odometry state during this iteration of the segment
    */
   virtual SegmentStatus step(OdometryState current_state) = 0;
 
@@ -102,13 +123,15 @@ class RecklessSegment {
    * @brief Clean-up
    *
    * Executes immediately after a NEXT value is returned.
+   * 
+   * Primarily intended for freeing pointers and cleaning up memory.
    */
   virtual void clean_up() = 0;
 
   /**
-   * @brief Gets progress, from 0 to 1
+   * @brief Gets current segment progress, from 0 to 1
    *
    */
   virtual double progress() = 0;
 };
-}  // namespace rev
+} // namespace rev

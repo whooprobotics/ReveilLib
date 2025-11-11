@@ -37,7 +37,7 @@ class LookAt : public RecklessSegment {
   /**
    * @brief Initialize the segment to turn the robot
    * 
-   * @param initial_state The current robot state when this function is called
+   * @param initial_state The current robot state when this segment is initialized
    */
   void init(OdometryState initial_state) override;
 
