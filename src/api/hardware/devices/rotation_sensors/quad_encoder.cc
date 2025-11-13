@@ -2,12 +2,12 @@
 
 namespace rev {
 
-QuadEncoder::QuadEncoder(std::uint8_t top,
-                         std::uint8_t bottom)
+QuadEncoder::QuadEncoder(uint8_t top,
+                         uint8_t bottom)
     : sensor(top, bottom, false), ports(std::make_pair(top, bottom)) {}
 
-QuadEncoder::QuadEncoder(std::uint8_t top,
-                         std::uint8_t bottom,
+QuadEncoder::QuadEncoder(uint8_t top,
+                         uint8_t bottom,
                          const bool reverse_flag = false)
     : sensor(top, bottom, reverse_flag), ports(std::make_pair(top, bottom)) {}
 
@@ -22,4 +22,4 @@ std::pair<uint8_t, uint8_t> QuadEncoder::check_ports() {
   return std::make_pair(0, 0);
 }
 
-}  // namespace rev
+} // namespace rev

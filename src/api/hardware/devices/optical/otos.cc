@@ -3,11 +3,9 @@
 using std::cin, std::string, std::getline;
 
 namespace rev {
-OTOS::OTOS() {
-  x = 0;
-  y = 0;
-  h = 0;
-}
+
+OTOS::OTOS()
+  : x(0), y(0), h(0) {}
 
 double OTOS::get_x() {
   return x;
@@ -48,4 +46,4 @@ void OTOS::update() {
   tokens.clear();
 }
 
-}  // namespace rev
+} // namespace rev

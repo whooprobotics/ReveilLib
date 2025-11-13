@@ -4,9 +4,9 @@
 
 namespace rev {
 
-RotationSensor::RotationSensor(std::uint8_t port) : sensor(port, false), port(port) {}
+RotationSensor::RotationSensor(uint8_t port) : sensor(port, false), port(port) {}
 
-RotationSensor::RotationSensor(std::uint8_t port,
+RotationSensor::RotationSensor(uint8_t port,
                                const bool reverse_flag = false)
     : sensor(port, reverse_flag), port(port) {}
 
@@ -21,4 +21,4 @@ std::pair<uint8_t, uint8_t> RotationSensor::check_ports() {
   return std::make_pair(0, 0);
 }
 
-}  // namespace rev
+} // namespace rev

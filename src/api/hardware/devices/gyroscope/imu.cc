@@ -1,6 +1,8 @@
-#include "rev/api/hardware/devices/gyroscope/imu.hh"
 #include <cmath>
 #include "pros/error.h"
+#include "rev/api/hardware/devices/gyroscope/imu.hh"
+
+using std::pair, std::make_pair;
 
 namespace rev {
 
@@ -14,9 +16,9 @@ bool Imu::is_calibrating() {
   return inertial.is_calibrating();
 }
 
-std::pair<std::uint8_t, std::uint8_t> Imu::check_ports() {
+pair<uint8_t, uint8_t> Imu::check_ports() {
   uint8_t p = inertial.get_heading() == PROS_ERR_F ? port : 0;
-  return std::make_pair(p, 0);
+  return make_pair(p, 0);
 }
 
 }  // namespace rev

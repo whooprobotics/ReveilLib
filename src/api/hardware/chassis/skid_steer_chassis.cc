@@ -1,9 +1,9 @@
 #include <algorithm>
-
 #include "rev/api/hardware/chassis/skid_steer_chassis.hh"
 
 namespace rev {
-SkidSteerChassis::SkidSteerChassis(rev::AnyMotor& ileft, rev::AnyMotor& iright)
+
+SkidSteerChassis::SkidSteerChassis(AnyMotor& ileft, AnyMotor& iright)
     : left(&ileft), right(&iright) {}
 
 void SkidSteerChassis::drive_tank(double leftv, double rightv) {
@@ -38,4 +38,5 @@ void SkidSteerChassis::stop() {
   left->brake();
   right->brake();
 }
+
 } // namespace rev

@@ -1,5 +1,5 @@
-#include "rev/api/alg/reckless/look_at.hh"
 #include "api.h"
+#include "rev/api/alg/reckless/look_at.hh"
 #include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/alg/reckless/turn_segment.hh"
 
@@ -28,8 +28,7 @@ void LookAt::init(OdometryState initial_state){
 
   // angle between start point and target
   double computed_angle = atan2(
-    target_position.y - start_position.y
-    ,
+    target_position.y - start_position.y,
     target_position.x - start_position.x
   ).convert(degree); // * 180 / M_PI;
 
@@ -75,4 +74,5 @@ SegmentStatus LookAt::step(OdometryState current_state){
 void LookAt::clean_up() {
   turn_segment.clean_up();
 }
+
 } // namespace rev

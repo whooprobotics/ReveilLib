@@ -6,6 +6,7 @@
 #include "rev/api/units/q_length.hh"
 
 #define PI 3.1415926535
+
 // Helper function, stolen from Nick Mertin
 /**
  * @brief Helper function which constrains angle to within 180 degrees of
@@ -32,10 +33,12 @@ rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference) {
           angle.get_value());
 }
 
-rev::PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
+namespace rev {
+
+PilonsCorrection::PilonsCorrection(double ikCorrection, QLength imaxError)
     : k_correction(ikCorrection), max_error(imaxError) {}
 
-std::tuple<double, double> rev::PilonsCorrection::apply_correction(
+std::tuple<double, double> PilonsCorrection::apply_correction(
     rev::OdometryState current_state,
     rev::Position target_state,
     Position start_state,
@@ -78,3 +81,5 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   else
     return powers;
 }
+
+} // namespace rev

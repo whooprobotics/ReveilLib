@@ -12,6 +12,7 @@ rev::MotorGroup::MotorGroup(
     motors.emplace_back(Motor(i));
   }
 }
+
 rev::MotorGroup::MotorGroup(const std::vector<std::int8_t> motor_ports)
     : motor_count(motor_ports.size()) {
   for (auto& i : motor_ports) {
