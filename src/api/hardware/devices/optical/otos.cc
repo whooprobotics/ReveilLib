@@ -46,4 +46,4 @@ void OTOS::update() {
   tokens.clear();
 }
 
-} // namespace rev
+}  // namespace rev

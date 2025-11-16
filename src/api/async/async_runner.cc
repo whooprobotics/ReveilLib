@@ -45,4 +45,4 @@ void AsyncRunner::loop() {
   }
 }
 
-} // namespace rev
+}  // namespace rev

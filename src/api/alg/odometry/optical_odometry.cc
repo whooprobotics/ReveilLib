@@ -46,4 +46,4 @@ void OpticalOdometry::step() {
   current_position_mutex.give();
 }
 
-} // namespace rev
+}  // namespace rev

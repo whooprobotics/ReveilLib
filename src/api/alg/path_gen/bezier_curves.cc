@@ -54,4 +54,4 @@ vector<PointVector> BezierSegment::generate_waypoints() {
   return this->path_waypoints;
 }
 
-} // namespace rev
+}  // namespace rev

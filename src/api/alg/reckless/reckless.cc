@@ -134,4 +134,4 @@ void Reckless::breakout() {
   chassis->drive_tank(0, 0);
 }
 
-} // namespace rev
+}  // namespace rev

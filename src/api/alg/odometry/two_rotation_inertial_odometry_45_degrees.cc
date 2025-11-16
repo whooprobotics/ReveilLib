@@ -177,4 +177,5 @@ void TwoRotationInertialOdometry45Degrees::step() {
   // Before exiting, release mutex
   current_position_mutex.give();
 }
+
 }  // namespace rev

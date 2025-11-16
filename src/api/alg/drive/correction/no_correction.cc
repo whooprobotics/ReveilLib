@@ -11,4 +11,4 @@ std::tuple<double, double> rev::NoCorrection::apply_correction(
   return powers;
 }
 
-} // namespace rev
+}  // namespace rev

@@ -37,4 +37,4 @@ pair<uint8_t, uint8_t> DualImu::check_ports() {
   return make_pair(p1, p2); 
 }
 
-} // namespace rev
+}  // namespace rev

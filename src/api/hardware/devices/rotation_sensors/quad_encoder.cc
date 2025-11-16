@@ -22,4 +22,4 @@ std::pair<uint8_t, uint8_t> QuadEncoder::check_ports() {
   return std::make_pair(0, 0);
 }
 
-} // namespace rev
+}  // namespace rev

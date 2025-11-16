@@ -26,4 +26,4 @@ std::tuple<double, double> ConstantMotion::gen_powers(
   return std::make_tuple(opower, opower);
 }
 
-} // namespace rev
+}  // namespace rev

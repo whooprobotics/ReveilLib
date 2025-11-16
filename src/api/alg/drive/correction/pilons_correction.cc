@@ -82,4 +82,4 @@ std::tuple<double, double> PilonsCorrection::apply_correction(
     return powers;
 }
 
-} // namespace rev
+}  // namespace rev

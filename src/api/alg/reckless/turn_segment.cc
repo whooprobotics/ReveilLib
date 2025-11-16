@@ -129,4 +129,4 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
 
 void RecklessTurnSegment::clean_up() {}
 
-} // namespace rev
+}  // namespace rev

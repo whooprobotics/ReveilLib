@@ -146,4 +146,4 @@ SegmentStatus PurePursuitSegment::step(OdometryState current_state) {
 
 void PurePursuitSegment::clean_up() {}
 
-} // namespace rev
+}  // namespace rev

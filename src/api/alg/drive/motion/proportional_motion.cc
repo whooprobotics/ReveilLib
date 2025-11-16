@@ -40,4 +40,4 @@ std::tuple<double, double> ProportionalMotion::gen_powers(
   return std::make_tuple(finalPower, finalPower);
 }
 
-} // namespace rev
+}  // namespace rev

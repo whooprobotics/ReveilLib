@@ -12,4 +12,4 @@ uint8_t Optical::check_port(void) {
   return 0;
 }
 
-} // namespace rev
+}  // namespace rev

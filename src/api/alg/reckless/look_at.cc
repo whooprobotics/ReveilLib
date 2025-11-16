@@ -75,4 +75,4 @@ void LookAt::clean_up() {
   turn_segment.clean_up();
 }
 
-} // namespace rev
+}  // namespace rev

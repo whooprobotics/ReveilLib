@@ -25,4 +25,4 @@ std::pair<std::uint8_t, std::uint8_t> MockRotationSensor::check_ports() {
   return std::make_pair(0, 0);
 }
 
-} // namespace rev
+}  // namespace rev

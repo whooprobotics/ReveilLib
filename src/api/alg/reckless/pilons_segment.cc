@@ -63,4 +63,4 @@ double PilonsSegment::progress() {
   return part_progress;
 }
 
-} // namespace rev
+}  // namespace rev

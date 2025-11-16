@@ -39,4 +39,4 @@ void SkidSteerChassis::stop() {
   right->brake();
 }
 
-} // namespace rev
+}  // namespace rev

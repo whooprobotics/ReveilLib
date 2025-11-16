@@ -187,4 +187,4 @@ void TwoRotationInertialOdometry::step() {
 #endif
 }
 
-} // namespace rev
+}  // namespace rev
