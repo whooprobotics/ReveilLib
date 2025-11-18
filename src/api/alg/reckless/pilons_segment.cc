@@ -1,5 +1,6 @@
 #include "rev/api/alg/reckless/pilons_segment.hh"
 #include <iostream>
+#include <functional>
 #include "rev/api/alg/reckless/path.hh"
 namespace rev {
 
@@ -23,6 +24,8 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
                                (current_state.pos.y - target_point.y));
 
   this->part_progress = d_to_start.convert(inch) / (d_to_start + current_d).convert(inch);
+
+  this->segment_callback->progress(this->part_progress);
 
   // Prevent status from regressing
   if (last_status.status == SegmentStatusType::NEXT ||

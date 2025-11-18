@@ -6,6 +6,7 @@
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
+#include "rev/api/alg/drive/callback/callback.hh"
 #include "rev/api/alg/reckless/segment.hh"
 
 namespace rev {
