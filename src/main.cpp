@@ -65,11 +65,11 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-  shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
-  shared_ptr<rev::Odometry> odom;
+  // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
+  // shared_ptr<rev::Odometry> odom;
   // chassis->drive_holonomic(0.5, 0.5, 0.5);
 
-  shared_ptr<rev::Slipstream> slipstream;
+  shared_ptr<rev::Slipstream> slipstream = make_shared<rev::Slipstream>(chassis, odom);
 
   // Set start position and consts
   rev::QTime harsh = 0.06_s;
