@@ -184,7 +184,7 @@ TEST(Bezier, BezierVerification1){
 //   cout << "Made reckless runner" << endl;
 
 //   std::vector<PointVector> path_points {{0_in, 0_in}, {6_in, 6_in}, {12_in, 24_in}};
-  
+
 //   cout << "Made path points" << endl;
 
 //   reckless->go(RecklessPath()

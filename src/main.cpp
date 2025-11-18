@@ -109,7 +109,7 @@ void autonomous() {
           rush_motion,
           ct_correction,
           make_shared<rev::SimpleHolonomicStop>(0_s, 0_s, coast_power),
-          {40_in, 0_in}, 0_in),
+          {40.2_in, 40_in, 0_deg}, 0_in),
       }
   );
 
