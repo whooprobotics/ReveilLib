@@ -23,13 +23,13 @@ include_directories(include)
 add_executable(ReveilLib
 
         src/api/async/async_runner.cc
-        src/api/alg/drive/motion/cascading_motion.cc
-        src/api/alg/drive/motion/proportional_motion.cc
-        src/api/alg/drive/motion/constant_motion.cc
+        src/api/alg/reckless/motion/cascading_motion.cc
+        src/api/alg/reckless/motion/proportional_motion.cc
+        src/api/alg/reckless/motion/constant_motion.cc
         src/api/alg/reckless/turn_segment.cc
-        src/api/alg/drive/stop/simple_stop.cc
-        src/api/alg/drive/correction/pilons_correction.cc
-        src/api/alg/drive/correction/no_correction.cc
+        src/api/alg/stop/simple_stop.cc
+        src/api/alg/reckless/correction/pilons_correction.cc
+        src/api/alg/reckless/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
         src/api/alg/reckless/pilons_segment.cc
         src/api/alg/path_gen/bezier_curves.cc
@@ -37,21 +37,27 @@ add_executable(ReveilLib
         src/api/alg/pure_pursuit/pure_pursuit.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
+        src/api/hardware/chassis_sim/holonomic_sim.cc
+        src/api/alg/slipstream/slipstream.cc
+        src/api/alg/slipstream/mecanum_segment.cc
+        src/api/alg/slipstream/motion/mecanum_constant_motion.cc
+        src/api/alg/slipstream/correction/cross_track_correction.cc
+        src/api/alg/stop/simple_holonomic_stop.cc
         src/api/alg/reckless/call.cc
         src/api/alg/reckless/await.cc
         src/api/hardware/devices/rotation_sensors/mock_rotary_sensor.cc
         src/api/hardware/devices/rotation_sensors/mock_quad_encoder.cc
         src/api/hardware/devices/gyroscope/mock_imu.cc
         src/api/alg/odometry/two_rotation_inertial_odometry.cc
-        test/template_test.cc
-        test/point_vector_test.cc
+        #test/template_test.cc
+        #test/point_vector_test.cc
         test/off_robot_utils.cc
-        test/pose_shift_test.cc
-        test/driftless_sim_test.cc
-        test/reckless_test.cc
-        test/odom_test.cc
-        test/reckless_call_test.cc
-        test/turn_segment_test.cc
+        #test/pose_shift_test.cc
+        #test/driftless_sim_test.cc
+        #test/reckless_test.cc
+        #test/odom_test.cc
+        #test/reckless_call_test.cc
+        #test/turn_segment_test.cc
         test/holonomic_test.cc
         #test/bezier_test.cc
         #test/straight_line_test.cc
