@@ -21,7 +21,7 @@ class PilonsSegment : public RecklessSegment {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
-  std::shared_ptr<callback> segment_callback = std::make_shared<callback>([](){}, 0);
+  std::shared_ptr<Callback> segment_callback = std::make_shared<Callback>([](){}, 0);
 
   Position start_point;
   Position target_point;
@@ -60,7 +60,7 @@ class PilonsSegment : public RecklessSegment {
                 std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
                 Position itarget_point,
-                std::shared_ptr<callback> icallback,
+                std::shared_ptr<Callback> icallback,
                 QLength idrop_early = 0 * inch)
       : motion(imotion),
         correction(icorrection),

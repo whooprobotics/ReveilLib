@@ -3,12 +3,12 @@
 
 namespace rev {
 
-callback::callback(std::function<void()> auton_callback,
+Callback::Callback(std::function<void()> auton_callback,
 					          float percent)
 		: auton_callback(auton_callback),
 		  percent(percent) {}
 
-bool callback::progress(float current_percent) {
+bool Callback::progress(float current_percent) {
 	if(current_percent >= percent && !called) {
 		auton_callback();
 		called = true;

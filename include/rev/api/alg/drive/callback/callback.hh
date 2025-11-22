@@ -6,7 +6,7 @@ namespace rev {
 /**
  * @brief Callback for auton tasks after a percent
  */
-class callback {
+class Callback {
   public:
     /**
      * @brief Contruct a callback
@@ -15,7 +15,7 @@ class callback {
      * @param percent The percent threshold where the callback will 
      * be executed 
      */
-    callback(std::function<void()> auton_callback,
+    Callback(std::function<void()> auton_callback,
               float percent);
 
     /**
@@ -23,6 +23,10 @@ class callback {
      * is past percent. False otherwise 
      */
     bool progress(float current_percent);
+
+  std::shared_ptr<Callback> operator&() {
+    return std::make_shared<Callback>(*this);
+  }
 
   private:
     std::function<void()> auton_callback;
