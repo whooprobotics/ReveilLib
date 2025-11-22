@@ -64,9 +64,51 @@ void disabled() {}
 
 void competition_initialize() {}
 
+void pilons_test() {
+  rev::MotorGroup left({11, -12, 13, -14, 15});
+  rev::MotorGroup right({-16, 17, -18, 19, -20});
+
+  shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), false);
+  shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('F'), static_cast<int>('E'), true); 
+  shared_ptr<rev::Imu> skid_imu = make_shared<rev::Imu>(5);
+
+  shared_ptr<rev::SkidSteerChassis> skid_chassis = make_shared<rev::SkidSteerChassis>(left, right);
+  shared_ptr<rev::TwoRotationInertialOdometry45Degrees> skid_odom = make_shared<rev::TwoRotationInertialOdometry45Degrees>(left_enc, right_enc, skid_imu, 2.46_in, 2.46_in);
+
+  shared_ptr<rev::Reckless> reckless = make_shared<rev::Reckless>(skid_chassis, skid_odom);
+
+  rev::AsyncRunner reckless_runner(reckless);
+  rev::AsyncRunner odom_runner(skid_odom);
+
+  odom->set_position({40.5_in, 0_in, 270_deg});
+
+  reckless->go(
+    {
+    &PilonsSegment(
+      &ConstantMotion(0.75),
+      &PilonsCorrection(2, 0.5_in),
+      make_shared<SimpleStop>(0.06_s, 0.2_s, 0.25),
+      {20_in, 0_in, 270_deg}, 0_in),
+    &PilonsSegment(
+      &ConstantMotion(0.75),
+      &PilonsCorrection(2, 0.5_in),
+      make_shared<SimpleStop>(0.06_s, 0.2_s, 0.25),
+      {4_in, 20_in, 0_deg}, 0_in)
+    }
+  );
+
+  reckless->await();
+}
+
 void autonomous() {
+  rev::MotorGroup left({3, -5, -1, 2});
+  rev::MotorGroup right({17, -8, -9, 10});
+
+
+
   // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
-  // shared_ptr<rev::Odometry> odom;
+  shared_ptr<rev::SkidSteerChassis> skid_chassis = make_shared<rev::SkidSteerChassis>(left, right);
+
   // chassis->drive_holonomic(0.5, 0.5, 0.5);
 
   shared_ptr<rev::Slipstream> slipstream = make_shared<rev::Slipstream>(chassis, odom);
