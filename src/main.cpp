@@ -4,6 +4,7 @@
 #include "rev/api/alg/reckless/look_at.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
+#include "rev/api/control/control_reckless.hh"
 #include "rev/rev.hh"
 #include <vector>
 #include <string>
