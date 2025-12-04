@@ -43,8 +43,8 @@ TEST(HolonomicTest, Test1) {
       &MecanumSegment(
         motion,
         ct_correction,
-        make_shared<SimpleHolonomicStop>(0_s, 0_s, coast_power),
-        {90_in, 40_in, 0_deg}, 0_in),
+        make_shared<SimpleHolonomicStop>(0.1_s, 0_s, coast_power),
+        {90_in, 40_in, 90_deg}, 0_in),
     }
   );
 
@@ -62,7 +62,8 @@ TEST(HolonomicTest, Test1) {
 
     auto state = sim->get_state();
     std::cout << state.pos.x.convert(inch) << "in, "
-              << state.pos.y.convert(inch) << "in" << std::endl;
+              << state.pos.y.convert(inch) << "in, "
+              << state.pos.theta.convert(degree) << "deg" << std::endl;
     pros::delay(100);
   }
 
