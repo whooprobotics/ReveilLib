@@ -45,6 +45,16 @@ TEST(HolonomicTest, Test1) {
         ct_correction,
         make_shared<SimpleHolonomicStop>(0.1_s, 0_s, coast_power),
         {40_in, 40_in, 30_deg}, 0_in),
+      &MecanumSegment(
+        motion,
+        ct_correction,
+        make_shared<SimpleHolonomicStop>(0.1_s, 0_s, coast_power),
+        {90_in, 40_in, 90_deg}, 0_in),
+      &MecanumSegment(
+        motion,
+        ct_correction,
+        make_shared<SimpleHolonomicStop>(0.1_s, 0_s, coast_power),
+        {30_in, 100_in, -30_deg}, 0_in),
     }
   );
 
@@ -64,6 +74,10 @@ TEST(HolonomicTest, Test1) {
     std::cout << state.pos.x.convert(inch) << "in, "
               << state.pos.y.convert(inch) << "in, "
               << state.pos.theta.convert(degree) << " deg" << std::endl;
+
+    auto progress = slipstream->progress();
+    std::cout << "Progress: " << progress << std::endl;
+
     pros::delay(100);
   }
 
