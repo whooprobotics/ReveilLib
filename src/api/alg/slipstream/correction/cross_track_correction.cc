@@ -72,9 +72,9 @@ SlipstreamPower CrossTrackCorrection::apply_correction(
   QLength cross_track_error = sqrt(cross_track_error_vector.x * cross_track_error_vector.x +
                                   cross_track_error_vector.y * cross_track_error_vector.y);
 
-  // Calculate desired heading (from current position toward target)
-  QAngle desired_heading = atan2(target_state.y - current_pos.y,
-                                target_state.x - current_pos.x);
+  // Calculate desired heading
+  // Desired heading is specified by user (last part of the pose)
+  QAngle desired_heading = target_state.theta;
 
   // Calculate heading error
   QAngle heading_error = normalize_angle(desired_heading - current_pos.theta);
