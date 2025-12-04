@@ -12,13 +12,17 @@ html/
 
 # PROS
 bin/
+
+# Personal
 .vscode/
+.zed/
 .cache/
 compile_commands.json
 temp.log
 temp.errors
 *.ini
 .d/
+.clangd
 
 # CMake Tests
 build/

@@ -44,7 +44,7 @@ TEST(HolonomicTest, Test1) {
         motion,
         ct_correction,
         make_shared<SimpleHolonomicStop>(0_s, 0_s, coast_power),
-        {40_in, 40_in, 0_deg}, 0_in),
+        {90_in, 40_in, 0_deg}, 0_in),
     }
   );
 
