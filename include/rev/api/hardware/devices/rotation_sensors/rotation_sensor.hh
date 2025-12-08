@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include "pros/rotation.hpp"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
@@ -9,7 +10,6 @@ namespace rev {
  * ReadOnlyRotarySensor interface
  *
  */
-
 class RotationSensor : public ReadOnlyRotarySensor {
  public:
   RotationSensor(std::uint8_t port);
@@ -24,3 +24,5 @@ class RotationSensor : public ReadOnlyRotarySensor {
 };
 
 }  // namespace rev
+
+#endif

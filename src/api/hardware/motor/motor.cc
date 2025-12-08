@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/motor/motor.hh"
 #include <cmath>
 #include "pros/error.h"
@@ -132,3 +134,5 @@ std::uint8_t rev::Motor::check_port(void) const {
     return get_port();
   return 0;
 }
+
+#endif

@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
+
 #include "api.h"
 #include "rev/api/hardware/chassis/chassis.hh"
 #include "rev/api/hardware/motor/any_motor.hh"
@@ -44,3 +46,5 @@ class SkidSteerChassis : public Chassis {
   rev::AnyMotor* right;
 };
 }  // namespace rev
+
+#endif

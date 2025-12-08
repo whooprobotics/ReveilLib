@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
 namespace rev {
@@ -18,3 +20,5 @@ class MockQuadEncoder : public ReadOnlyRotarySensor {
   int looparounds = 0;
 };
 }  // namespace rev
+
+#endif

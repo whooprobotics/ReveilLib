@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "odometry.hh"
 #include "pros/imu.hpp"
 #include "pros/rotation.hpp"
@@ -73,4 +75,6 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
   // Likewise, for the lateral wheel backward from the center of rotation
   QLength lateral_wheel_offset;
 };
-};  // namespace rev
+}  // namespace rev
+
+#endif

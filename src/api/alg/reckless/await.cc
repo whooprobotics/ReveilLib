@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/reckless/await.hh"
 
 namespace rev {
@@ -16,3 +18,5 @@ SegmentStatus Await::step(OdometryState current_state) {
 
 void Await::clean_up(){};
 }  // namespace rev
+
+#endif

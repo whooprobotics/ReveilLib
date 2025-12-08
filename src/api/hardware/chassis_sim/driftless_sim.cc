@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/chassis_sim/driftless_sim.hh"
 #include <cmath>
 #include "pros/rtos.hpp"
@@ -122,3 +124,5 @@ void DriftlessSim::step() {
   state.vel.yv = v_after * sin(travel_angle);
 }
 }  // namespace rev
+
+#endif

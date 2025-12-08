@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/devices/rotation_sensors/mock_quad_encoder.hh"
 
 namespace rev {
@@ -41,3 +43,5 @@ std::pair<std::uint8_t, std::uint8_t> MockQuadEncoder::check_port() {
 }
 
 }  // namespace rev
+
+#endif

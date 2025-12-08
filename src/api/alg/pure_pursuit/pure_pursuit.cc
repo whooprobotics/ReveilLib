@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/pure_pursuit/pure_pursuit.hh"
 
 namespace rev {
@@ -144,3 +146,5 @@ SegmentStatus PurePursuitSegment::step(OdometryState current_state) {
 void PurePursuitSegment::clean_up() {}
 
 }  // namespace rev
+
+#endif

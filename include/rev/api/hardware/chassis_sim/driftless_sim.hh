@@ -1,3 +1,6 @@
+#pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/async/async_runnable.hh"
 #include "rev/api/hardware/chassis_sim/chassis_sim.hh"
 
@@ -91,5 +94,6 @@ class DriftlessSim : public ChassisSim, public AsyncRunnable {
 
   OdometryState state;
 };
-
 }  // namespace rev
+
+#endif

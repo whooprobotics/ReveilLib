@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <functional>
 #include <memory>
 #include "rev/api/alg/reckless/segment.hh"
@@ -44,3 +46,5 @@ class Await : public RecklessSegment {
   std::shared_ptr<AsyncAwaitable> dependency;
 };
 }  // namespace rev
+
+#endif

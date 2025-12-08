@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include <algorithm>
 
 #include "rev/api/hardware/chassis/skid_steer_chassis.hh"
@@ -38,3 +40,5 @@ void SkidSteerChassis::stop() {
   right->brake();
 }
 }  // namespace rev
+
+#endif

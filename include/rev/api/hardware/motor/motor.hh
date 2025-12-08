@@ -1,6 +1,8 @@
 #pragma once
-#include "rev/api/hardware/motor/any_motor.hh"
+
+#ifdef PLATFORM_BRAIN
 #include <vector>
+#include "rev/api/hardware/motor/any_motor.hh"
 
 namespace rev {
 class Motor : public AnyMotor {
@@ -396,3 +398,5 @@ class Motor : public AnyMotor {
   std::int8_t reversed{1};
 };
 }  // namespace rev
+
+#endif

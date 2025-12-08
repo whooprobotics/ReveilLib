@@ -1,3 +1,4 @@
+#ifdef PLATFORM_BRAIN
 #include "rev/api/alg/reckless/reckless.hh"
 #include "iostream"
 #include "pros/rtos.hpp"
@@ -130,3 +131,5 @@ void Reckless::breakout() {
 }
 
 }  // namespace rev
+
+#endif

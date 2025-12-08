@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <algorithm>
 #include "pros/imu.hpp"
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
@@ -18,5 +20,6 @@ class DualImu : public Gyroscope {
   std::uint8_t port1;
   std::uint8_t port2;
 };
-
 }  // namespace rev
+
+#endif

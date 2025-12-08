@@ -1,7 +1,8 @@
 #pragma once
-#include "rev/api/alg/odometry/odometry.hh"
 
+#ifdef PLATFORM_BRAIN
 #include <tuple>
+#include "rev/api/alg/odometry/odometry.hh"
 
 namespace rev {
 /**
@@ -31,3 +32,5 @@ class Motion {
                                                 QLength drop_early) = 0;
 };
 }  // namespace rev
+
+#endif

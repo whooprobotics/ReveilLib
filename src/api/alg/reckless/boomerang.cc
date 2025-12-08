@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/reckless/boomerang.hh"
 #include <iostream>
 #include "rev/api/alg/drive/stop/stop.hh"
@@ -93,3 +95,5 @@ double BoomerangSegment::progress() {
 }
 
 }  // namespace rev
+
+#endif

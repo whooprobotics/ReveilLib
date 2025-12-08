@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include <cerrno>
 #include <iostream>
@@ -184,3 +186,5 @@ void TwoRotationInertialOdometry::step() {
 #endif
 }
 }  // namespace rev
+
+#endif

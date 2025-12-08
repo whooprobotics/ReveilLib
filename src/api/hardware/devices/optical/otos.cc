@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/devices/optical/otos.hh"
 #include <iostream>
 using std::cin, std::string, std::getline;
@@ -49,3 +51,5 @@ void OTOS::update() {
 }
 
 }  // namespace rev
+
+#endif

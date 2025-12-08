@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <sstream>
 #include <string>
 #include <vector>
@@ -42,5 +44,6 @@ class OpticalOdometry : public Odometry, public AsyncRunnable {
   // Likewise, for the lateral wheel backward from the center of rotation
   QLength lateral_offset;
 };
-
 }  // namespace rev
+
+#endif

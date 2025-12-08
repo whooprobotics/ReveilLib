@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/reckless/call.hh"
 
 namespace rev {
@@ -13,3 +15,5 @@ SegmentStatus Call::step(OdometryState current_state) {
 
 void Call::clean_up(){};
 }  // namespace rev
+
+#endif

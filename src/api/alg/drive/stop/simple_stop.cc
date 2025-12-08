@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/drive/stop/simple_stop.hh"
 
 namespace rev {
@@ -88,3 +90,5 @@ double SimpleStop::get_coast_power() {
 }
 
 }  // namespace rev
+
+#endif

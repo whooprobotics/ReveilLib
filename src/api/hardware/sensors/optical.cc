@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/sensors/optical.hh"
 #include <cmath>
 #include "pros/error.h"
@@ -9,3 +11,5 @@ uint8_t rev::Optical::check_port(void) {
     return get_port();
   return 0;
 }
+
+#endif

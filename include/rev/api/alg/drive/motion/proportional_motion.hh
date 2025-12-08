@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/drive/motion/motion.hh"
 
@@ -35,3 +37,5 @@ class ProportionalMotion : public Motion {
   double k_p;
 };
 }  // namespace rev
+
+#endif

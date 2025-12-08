@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/drive/motion/proportional_motion.hh"
 #include "rev/util/mathutil.hh"
 
@@ -38,3 +40,5 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
 
   return std::make_tuple(finalPower, finalPower);
 }
+
+#endif

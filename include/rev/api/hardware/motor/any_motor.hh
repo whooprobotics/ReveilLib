@@ -5,6 +5,8 @@ include/pros/LICENSE
 */
 
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <cstdint>
 #include "pros/motors.h"
 
@@ -383,3 +385,5 @@ class AnyMotor {
   virtual double get_temperature(void) const = 0;
 };
 }  // namespace rev
+
+#endif

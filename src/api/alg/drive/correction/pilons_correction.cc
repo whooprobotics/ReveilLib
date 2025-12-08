@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/drive/correction/pilons_correction.hh"
 #include <cmath>
 #include <iostream>
@@ -78,3 +80,5 @@ std::tuple<double, double> rev::PilonsCorrection::apply_correction(
   else
     return powers;
 }
+
+#endif

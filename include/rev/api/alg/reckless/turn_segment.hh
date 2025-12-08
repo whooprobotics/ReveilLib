@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
@@ -66,3 +68,5 @@ class RecklessTurnSegment : public RecklessSegment {
 using TurnSegment = RecklessTurnSegment;
 
 }  // namespace rev
+
+#endif

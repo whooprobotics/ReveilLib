@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/odometry/optical_odometry.hh"
 #include <cerrno>
 #include <iostream>
@@ -45,3 +47,5 @@ void OpticalOdometry::step() {
 }
 
 }  // namespace rev
+
+#endif

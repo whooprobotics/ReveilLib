@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/drive/motion/cascading_motion.hh"
 #include "rev/util/mathutil.hh"
 
@@ -57,3 +59,5 @@ std::tuple<double, double> rev::CascadingMotion::gen_powers(
 
   return std::make_tuple(finalPower, finalPower);
 }
+
+#endif

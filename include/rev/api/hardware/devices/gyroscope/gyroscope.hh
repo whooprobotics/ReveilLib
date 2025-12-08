@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <utility>
 #include <cstdint>
 
@@ -13,3 +14,5 @@ class Gyroscope {
 };
 
 }  // namespace rev
+
+#endif

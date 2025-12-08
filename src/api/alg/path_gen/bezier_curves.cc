@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/path_gen/bezier_curves.hh"
 
 using std::cout, std::endl;
@@ -52,3 +54,5 @@ std::vector<PointVector> BezierSegment::generate_waypoints() {
 }
 
 }  // namespace rev
+
+#endif

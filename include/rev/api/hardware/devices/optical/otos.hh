@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <sstream>
 #include <string>
 #include <vector>
@@ -26,4 +28,7 @@ class OTOS {
   std::vector<std::string> tokens;
   std::stringstream ss;
 };
+
 }  // namespace rev
+
+#endif

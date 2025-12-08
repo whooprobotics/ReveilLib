@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include "pros/adi.hpp"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
@@ -18,3 +19,5 @@ class QuadEncoder : public ReadOnlyRotarySensor {
 };
 
 }  // namespace rev
+
+#endif

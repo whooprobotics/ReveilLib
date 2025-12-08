@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/devices/gyroscope/mock_imu.hh"
 
 namespace rev {
@@ -21,3 +23,5 @@ std::pair<uint8_t, uint8_t> MockImu::check_port() {
 }
 
 }  // namespace rev
+
+#endif

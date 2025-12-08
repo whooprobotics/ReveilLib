@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <functional>
 #include "rev/api/alg/reckless/segment.hh"
 
@@ -54,3 +56,5 @@ class Call : public RecklessSegment {
   std::function<void(void)> callback;
 };
 }  // namespace rev
+
+#endif

@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/units/all_units.hh"
@@ -78,3 +80,5 @@ class CascadingMotion : public Motion {
   double k_v;
 };
 }  // namespace rev
+
+#endif

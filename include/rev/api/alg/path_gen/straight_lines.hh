@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <cstddef>
 #include <iostream>
 #include <memory>
@@ -82,5 +83,6 @@ class StraightSegments : public PurePursuitSegment {
   double left_speed;
   double right_speed;
 };
-
 }  // namespace rev
+
+#endif

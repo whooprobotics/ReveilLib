@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include "rev/api/alg/odometry/odometry.hh"
 
 namespace rev {
@@ -19,5 +20,6 @@ class Stop {
 
   virtual double get_coast_power() = 0;
 };
-
 }  // namespace rev
+
+#endif

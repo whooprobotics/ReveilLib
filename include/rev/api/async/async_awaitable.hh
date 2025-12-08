@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
+
 namespace rev {
 /**
  * @brief Interface for classes which have something that can be waited for
@@ -19,5 +21,6 @@ class AsyncAwaitable {
    */
   virtual bool is_ready() = 0;
 };
-
 }  // namespace rev
+
+#endif

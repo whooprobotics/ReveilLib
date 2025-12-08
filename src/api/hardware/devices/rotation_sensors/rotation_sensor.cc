@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include <cmath>
 #include "pros/error.h"
@@ -22,3 +24,5 @@ std::pair<uint8_t, uint8_t> RotationSensor::check_port() {
 }
 
 }  // namespace rev
+
+#endif

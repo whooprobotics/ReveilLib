@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/path_gen/straight_lines.hh"
 
 using std::cout, std::endl;
@@ -48,3 +50,5 @@ std::vector<PointVector> StraightSegments::generate_waypoints() {
 }
 
 }  // namespace rev
+
+#endif

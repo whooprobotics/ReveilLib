@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/drive/motion/constant_motion.hh"
 
 rev::ConstantMotion::ConstantMotion(double ipower) : power(fabs(ipower)) {}
@@ -23,3 +25,5 @@ std::tuple<double, double> rev::ConstantMotion::gen_powers(
 
   return std::make_tuple(opower, opower);
 }
+
+#endif

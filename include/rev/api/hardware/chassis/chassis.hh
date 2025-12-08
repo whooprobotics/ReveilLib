@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
+
 namespace rev {
 /**
  * @brief Interface for chassis objects
@@ -35,3 +37,5 @@ class Chassis {
   virtual void stop() = 0;
 };
 }  // namespace rev
+
+#endif

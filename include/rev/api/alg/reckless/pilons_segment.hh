@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/alg/reckless/path.hh"
 
 namespace rev {
@@ -98,3 +100,5 @@ class PilonsSegment : public RecklessSegment {
   }
 };
 }  // namespace rev
+
+#endif

@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/reckless/pilons_segment.hh"
 #include <iostream>
 #include "rev/api/alg/reckless/path.hh"
@@ -60,3 +62,5 @@ double PilonsSegment::progress() {
 }
 
 }  // namespace rev
+
+#endif

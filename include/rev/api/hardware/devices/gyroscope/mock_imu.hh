@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
@@ -17,3 +19,5 @@ class MockImu : public Gyroscope {
 };
 
 }  // namespace rev
+
+#endif

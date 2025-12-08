@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/alg/odometry/odometry.hh"
 
 namespace rev {
@@ -112,3 +114,5 @@ class RecklessSegment {
   virtual double progress() = 0;
 };
 }  // namespace rev
+
+#endif

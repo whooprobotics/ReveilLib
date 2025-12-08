@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/drive/correction/correction.hh"
 
@@ -33,3 +35,5 @@ class NoCorrection : public Correction {
   }
 };
 }  // namespace rev
+
+#endif

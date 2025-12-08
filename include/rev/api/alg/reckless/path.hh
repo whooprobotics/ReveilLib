@@ -1,8 +1,8 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include <vector>
-
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
@@ -41,3 +41,5 @@ struct RecklessPath {
   }
 };
 }  // namespace rev
+
+#endif

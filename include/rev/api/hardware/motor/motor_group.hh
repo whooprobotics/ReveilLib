@@ -1,10 +1,11 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
+#include <initializer_list>
+#include <vector>
 #include "pros/apix.h"
 #include "rev/api/hardware/motor/any_motor.hh"
 #include "rev/api/hardware/motor/motor.hh"
-
-#include <initializer_list>
-#include <vector>
 
 namespace rev {
 class MotorGroup : public AnyMotor {
@@ -390,3 +391,4 @@ class MotorGroup : public AnyMotor {
 using Motor_Group = MotorGroup;
 
 }  // namespace rev
+#endif

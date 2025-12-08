@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/drive/motion/motion.hh"
 
@@ -31,3 +33,5 @@ class ConstantMotion : public Motion {
   double power;
 };
 }  // namespace rev
+
+#endif

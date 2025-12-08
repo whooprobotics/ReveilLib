@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/reckless/segment.hh"
@@ -64,3 +66,5 @@ namespace rev {
 
     };
 }
+
+#endif

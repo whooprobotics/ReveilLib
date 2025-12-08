@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/async/async_runner.hh"
 
 namespace rev {
@@ -42,3 +44,5 @@ void AsyncRunner::loop() {
   }
 }
 }  // namespace rev
+
+#endif

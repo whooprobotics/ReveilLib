@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/devices/gyroscope/dual_imu.hh"
 #include "math.h" // done for the infinity definition in error.h
 #include "pros/error.h"
@@ -35,3 +37,5 @@ std::pair<uint8_t, uint8_t> DualImu::check_port() {
 }
 
 }  // namespace rev
+
+#endif

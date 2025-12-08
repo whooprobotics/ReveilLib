@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
 #include <cerrno>
 #include <iostream>
@@ -175,3 +177,5 @@ void TwoRotationInertialOdometry45Degrees::step() {
   current_position_mutex.give();
 }
 }  // namespace rev
+
+#endif

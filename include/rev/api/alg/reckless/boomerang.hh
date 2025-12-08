@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/reckless/path.hh"
 
@@ -122,3 +124,5 @@ class BoomerangSegment : public RecklessSegment {
   }
 };
 }  // namespace rev
+
+#endif

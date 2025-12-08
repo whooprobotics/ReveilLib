@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "pros/optical.hpp"
 
 /**
@@ -15,3 +17,5 @@ class Optical : public pros::Optical {
 };
 
 } // namespace rev
+
+#endif

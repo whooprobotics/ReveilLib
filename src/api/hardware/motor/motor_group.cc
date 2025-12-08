@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/hardware/motor/motor_group.hh"
 #include <cmath>
 
@@ -148,3 +150,5 @@ std::uint8_t rev::MotorGroup::check_ports(void) const {
   }
   return 0;
 }
+
+#endif

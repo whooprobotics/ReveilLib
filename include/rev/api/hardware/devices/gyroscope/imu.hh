@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "pros/imu.hpp"
 #include "rev/api/hardware/devices/gyroscope/gyroscope.hh"
 #include <utility>
@@ -18,3 +20,5 @@ class Imu : public Gyroscope {
 };
 
 }  // namespace rev
+
+#endif

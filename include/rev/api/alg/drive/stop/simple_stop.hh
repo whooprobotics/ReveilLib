@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <iostream>
 #include <memory>
 #include "pros/rtos.hpp"
@@ -78,5 +79,6 @@ class SimpleStop : public Stop {
   uint32_t time_init{0};
   uint32_t timeout{0};
 };
-
 }  // namespace rev
+
+#endif

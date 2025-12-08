@@ -1,7 +1,9 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
+#include <tuple>
 #include "rev/api/alg/odometry/odometry.hh"
 
-#include <tuple>
 
 namespace rev {
 /**
@@ -29,3 +31,5 @@ class Correction {
       std::tuple<double, double> powers) = 0;
 };
 }  // namespace rev
+
+#endif

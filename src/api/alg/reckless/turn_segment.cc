@@ -1,3 +1,4 @@
+#ifdef PLATFORM_BRAIN
 #include "rev/api/alg/reckless/turn_segment.hh"
 #include "api.h"
 #include "rev/api/alg/reckless/segment.hh"
@@ -130,3 +131,5 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
 void RecklessTurnSegment::clean_up() {}
 
 }  // namespace rev
+
+#endif

@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/units/q_angle.hh"
 #include "rev/api/units/q_angular_speed.hh"
 #include "rev/api/units/q_length.hh"
@@ -65,3 +67,5 @@ class Odometry {
   virtual void reset_position() = 0;
 };
 }  // namespace rev
+
+#endif

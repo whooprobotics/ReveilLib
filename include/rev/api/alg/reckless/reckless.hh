@@ -1,7 +1,7 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <memory>
-
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/async/async_awaitable.hh"
 #include "rev/api/async/async_runnable.hh"
@@ -82,3 +82,5 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   double partial_progress{-1.0};
 };
 }  // namespace rev
+
+#endif

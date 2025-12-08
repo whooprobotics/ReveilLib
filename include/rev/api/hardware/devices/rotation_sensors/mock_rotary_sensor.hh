@@ -1,4 +1,6 @@
 #pragma once
+
+#ifdef PLATFORM_BRAIN
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 
 namespace rev {
@@ -17,3 +19,5 @@ class MockRotarySensor : public ReadOnlyRotarySensor {
 };
 
 }  // namespace rev
+
+#endif

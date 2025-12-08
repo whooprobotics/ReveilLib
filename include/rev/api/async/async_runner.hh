@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #ifndef OFF_ROBOT_TESTS
 #include "pros/apix.h"
@@ -35,3 +36,5 @@ class AsyncRunner {
   void loop();
 };
 }  // namespace rev
+
+#endif

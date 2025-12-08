@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include <memory>
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/units/q_length.hh"
@@ -57,5 +58,6 @@ class PilonsCorrection : public Correction {
   double k_correction;
   QLength max_error;
 };
-
 }  // namespace rev
+
+#endif
