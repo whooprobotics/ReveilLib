@@ -28,6 +28,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_compile_definitions(OFF_ROBOT_TESTS)
+add_compile_definitions(PLATFORM_BRAIN)
 
 enable_testing()
 
