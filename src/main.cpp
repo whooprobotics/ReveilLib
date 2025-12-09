@@ -32,8 +32,8 @@ rev::MotorGroup back_right({-9, 10});
 rev::Motor center_left(-11);
 rev::Motor center_right(12);
 
-shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('A'), static_cast<int>('B'), false);
-shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
+shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('A'), static_cast<int>('B'), false);
+shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
 shared_ptr<rev::Gyroscope> imu = make_shared<rev::Imu>(14);
 
 // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
@@ -183,7 +183,7 @@ void opcontrol() {
     double strafe = pow(left_x, exp);
     double turn = pow(right_x, exp);
 
-    chassis->drive_holonomic(forward, turn, strafe);
+    // chassis->drive_holonomic(forward, turn, strafe);
 
     OdometryState current_state = odom->get_state();
 
