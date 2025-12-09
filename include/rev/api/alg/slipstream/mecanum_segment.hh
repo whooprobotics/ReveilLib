@@ -31,6 +31,7 @@ class MecanumSegment : public SlipstreamSegment {
   QLength drop_early;
 
   double part_progress{0.0};
+  SlipstreamSegmentStatus last_status{SlipstreamSegmentStatus::drive({0, 0, 0, 0})};
 
  public:
   MecanumSegment(std::shared_ptr<HolonomicMotion> imotion,
