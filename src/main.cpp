@@ -9,7 +9,12 @@ Motor_Group right_drive({4, 5, 6});
 
 auto chassis = m_s<SkidSteerChassis>(left_drive, right_drive);
 
-// Setting Up Odometry 
+/*
+  Setting Up Odometry
+    - When moving forward robot position X should increase
+    - When moving right robot position Y should increase
+*/  
+
 auto imu = m_s<Imu>(7);
 
 auto left_encoder = m_s<QuadEncoder>('A', 'B', false);
@@ -19,6 +24,7 @@ auto odom = m_s<TwoRotationInertialOdometry45Degrees>(
   left_encoder, right_encoder, imu, 
   2.46_in, 2.46_in // Wheel Diameters
 );
+
 
 // Controller Setup
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
