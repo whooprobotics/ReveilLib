@@ -27,6 +27,8 @@
 #include "rev/api/alg/reckless/call.hh"
 #include "rev/api/alg/reckless/path.hh"
 #include "rev/api/alg/reckless/pilons_segment.hh"
+#include "rev/api/alg/reckless/look_at.hh"
+#include "rev/api/alg/reckless/turn_segment.hh"
 #include "rev/api/alg/reckless/reckless.hh"
 #include "rev/api/alg/reckless/segment.hh"
 #include "rev/api/alg/reckless/boomerang.hh"
@@ -49,7 +51,13 @@
 
 // Sensors
 #include "rev/api/hardware/devices/gyroscope/dual_imu.hh"
+#include "rev/api/hardware/devices/gyroscope/imu.hh"
 #include "rev/api/hardware/devices/optical/otos.hh"
 #include "rev/api/hardware/devices/rotation_sensors/quad_encoder.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/hardware/sensors/optical.hh"
+
+template<class T, class... Args>
+std::shared_ptr<T> m_s(Args&&... args) {
+  return std::make_shared<T>(std::forward<Args>(args)...);
+}
