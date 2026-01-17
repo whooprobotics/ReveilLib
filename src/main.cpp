@@ -26,6 +26,11 @@ auto odom = make_shared<TwoRotationInertialOdometry45Degrees>(
   2.46_in, 2.46_in // Wheel Diameters
 );
 
+auto odom_reset = rev::ResetOdometry({
+    rev::DistanceReset(8, rev::DistancePosition::FRONT_SENSOR, 0.0f, 3.0f),
+    rev::DistanceReset(9, rev::DistancePosition::LEFT_SENSOR, -3.0f, 0.0f)
+  }, odom
+);
 
 // Controller Setup
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -99,6 +104,12 @@ void opcontrol() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
       autonomous();
     }
+    
+    odom_reset.reset_axis(
+      rev::DistancePosition::FRONT_SENSOR, 
+      rev::WallPosition::TOP_WALL, 
+      5
+    );
 
     // Print odometry output
     pros::lcd::print(0, "X: %f", odom->get_state().pos.x.convert(inch));

@@ -56,3 +56,5 @@
 #include "rev/api/hardware/devices/rotation_sensors/quad_encoder.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/hardware/sensors/optical.hh"
+#include "rev/api/hardware/sensors/distance_reset.hh"
+#include "rev/api/alg/odometry/reset_odometry.hh"
