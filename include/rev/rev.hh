@@ -56,8 +56,3 @@
 #include "rev/api/hardware/devices/rotation_sensors/quad_encoder.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/hardware/sensors/optical.hh"
-
-template<class T, class... Args>
-std::shared_ptr<T> m_s(Args&&... args) {
-  return std::make_shared<T>(std::forward<Args>(args)...);
-}

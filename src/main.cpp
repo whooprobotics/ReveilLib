@@ -2,12 +2,13 @@
 #include "rev/rev.hh"
 
 using namespace rev;
+using std::make_shared;    
 
 // Setting up tank drive chassis
 Motor_Group left_drive({1, 2, -3});
 Motor_Group right_drive({4, 5, 6});
 
-auto chassis = m_s<SkidSteerChassis>(left_drive, right_drive);
+auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
 
 /*
   Setting Up Odometry
@@ -15,12 +16,12 @@ auto chassis = m_s<SkidSteerChassis>(left_drive, right_drive);
     - When moving right robot position Y should increase
 */  
 
-auto imu = m_s<Imu>(7);
+auto imu = make_shared<Imu>(7);
 
-auto left_encoder = m_s<QuadEncoder>('A', 'B', false);
-auto right_encoder = m_s<QuadEncoder>('C', 'D', true);
+auto left_encoder = make_shared<QuadEncoder>('A', 'B', false);
+auto right_encoder = make_shared<QuadEncoder>('C', 'D', true);
 
-auto odom = m_s<TwoRotationInertialOdometry45Degrees>(
+auto odom = make_shared<TwoRotationInertialOdometry45Degrees>(
   left_encoder, right_encoder, imu, 
   2.46_in, 2.46_in // Wheel Diameters
 );
@@ -30,7 +31,7 @@ auto odom = m_s<TwoRotationInertialOdometry45Degrees>(
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // Setting up ReveilLib
-auto reckless = m_s<Reckless>(chassis, odom);
+auto reckless = make_shared<Reckless>(chassis, odom);
 AsyncRunner odom_runner(odom);
 AsyncRunner reckless_runner(reckless);
 
