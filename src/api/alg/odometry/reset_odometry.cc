@@ -60,7 +60,7 @@ bool rev::ResetOdometry::reset_axis(rev::DistancePosition sensor_position, rev::
     const double angle = odom->get_state().pos.theta.convert(degree);
     const float new_pos = get_reset_axis_pos(sensor_position, wall_position, angle);
 
-    const bool reset_x = (wall_position == rev::WallPosition::TOP_WALL || wall_position == rev::WallPosition::BOTTOM_WALL) ? false : true; 
+    const bool reset_x = (wall_position == rev::WallPosition::TOP_WALL || wall_position == rev::WallPosition::BOTTOM_WALL) ? true : false; 
 
     const float odom_x = odom->get_state().pos.x.convert(inch);
     const float odom_y = odom->get_state().pos.y.convert(inch);
