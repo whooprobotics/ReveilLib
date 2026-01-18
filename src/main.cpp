@@ -16,21 +16,21 @@ auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
     - When moving right robot position Y should increase
 */  
 
-auto imu = make_shared<Imu>(7);
+auto imu = make_shared<Imu>(14);
 
-auto left_encoder = make_shared<QuadEncoder>('A', 'B', false);
-auto right_encoder = make_shared<QuadEncoder>('C', 'D', true);
+auto left_encoder = make_shared<QuadEncoder>('C', 'D', true);
+auto right_encoder = make_shared<QuadEncoder>('G', 'H', true);
 
 auto odom = make_shared<TwoRotationInertialOdometry45Degrees>(
-  left_encoder, right_encoder, imu, 
+  right_encoder, left_encoder, imu, 
   2.46_in, 2.46_in // Wheel Diameters
 );
 
 auto odom_reset = rev::ResetOdometry({
-    rev::DistanceReset(8, rev::DistancePosition::FRONT_SENSOR, 0.0f, 3.0f),
-    rev::DistanceReset(9, rev::DistancePosition::LEFT_SENSOR, -3.0f, 0.0f)
-  }, odom
-);
+    rev::DistanceReset(16, rev::DistancePosition::FRONT_SENSOR, -2.5f, 6.5f),
+    rev::DistanceReset(18, rev::DistancePosition::LEFT_SENSOR, 7.5f, 3.0f),
+    rev::DistanceReset(19, rev::DistancePosition::RIGHT_SENSOR, -7.5f, -3.0f)
+  }, odom);
 
 // Controller Setup
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -42,6 +42,7 @@ AsyncRunner reckless_runner(reckless);
 
 void initialize() {
   pros::lcd::initialize();
+  odom->set_position({-48_in, 48_in, 180_deg});
 }
 
 void disabled() {}
@@ -59,6 +60,7 @@ void competition_initialize() {}
 */
 void autonomous() {
  odom->set_position({0_in, 0_in, 0_deg});
+
  reckless->go({
     &PilonsSegment(
       &ConstantMotion(1),
@@ -93,7 +95,7 @@ void autonomous() {
 }
 
 void opcontrol() {
-  odom->set_position({0_in, 0_in, 0_deg});
+  odom->set_position({-48_in, 48_in, 180_deg});
 
   while (true) {
     double left_power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
@@ -105,11 +107,6 @@ void opcontrol() {
       autonomous();
     }
     
-    odom_reset.reset_axis(
-      rev::DistancePosition::FRONT_SENSOR, 
-      rev::WallPosition::TOP_WALL, 
-      5
-    );
 
     // Print odometry output
     pros::lcd::print(0, "X: %f", odom->get_state().pos.x.convert(inch));

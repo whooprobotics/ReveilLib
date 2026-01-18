@@ -1,11 +1,11 @@
 #include "rev/api/alg/odometry/reset_odometry.hh"
 #include "rev/api/units/all_units.hh"
-#include "rev.hh"
+#include "rev/rev.hh"
 
-#define WALL_TOP_Y     70
-#define WALL_BOTTOM_Y -70
-#define WALL_LEFT_X   -70
-#define WALL_RIGHT_X   70
+#define WALL_TOP_Y     70.75
+#define WALL_BOTTOM_Y -70.75
+#define WALL_LEFT_X   -70.75
+#define WALL_RIGHT_X   70.75
 
 #define WALL_TOP_ANGLE_OFFSET    270
 #define WALL_BOTTOM_ANGLE_OFFSET 270
@@ -46,6 +46,7 @@ float rev::ResetOdometry::get_reset_axis_pos(rev::DistancePosition sensor_positi
     const bool reset_x = (wall_position == rev::WallPosition::LEFT_WALL || wall_position == rev::WallPosition::RIGHT_WALL);
     const bool reset_y = (wall_position == rev::WallPosition::TOP_WALL || wall_position == rev::WallPosition::BOTTOM_WALL);
     
+
     if (reset_x) {
         return wall_pos + (std::cos(to_rad(theta)) * distance) - (std::cos(to_rad(angle)) * x_offset) - (std::sin(to_rad(angle)) * y_offset);
     }
@@ -60,6 +61,7 @@ bool rev::ResetOdometry::reset_axis(rev::DistancePosition sensor_position, rev::
     const double angle = odom->get_state().pos.theta.convert(degree);
     const float new_pos = get_reset_axis_pos(sensor_position, wall_position, angle);
 
+
     const bool reset_x = (wall_position == rev::WallPosition::TOP_WALL || wall_position == rev::WallPosition::BOTTOM_WALL) ? true : false; 
 
     const float odom_x = odom->get_state().pos.x.convert(inch);
@@ -71,19 +73,19 @@ bool rev::ResetOdometry::reset_axis(rev::DistancePosition sensor_position, rev::
 
     if (reset_x && std::abs(new_pos - odom_x) < max_reset_distance) {
         odom->set_position({ qnew_pos, qodom_y, odom->get_state().pos.theta });
-        pros::lcd::print(4, "New X: %f", new_pos);
+        std::cout << "New X: " << new_pos << std::endl;
         return true;
     }
     if (!reset_x && std::abs(new_pos - odom_y) < max_reset_distance) {
         odom->set_position({ qodom_x, qnew_pos, odom->get_state().pos.theta });
-        pros::lcd::print(5, "New Y: %f", new_pos);
+        std::cout << "New Y: " << new_pos << std::endl;
         return true;
     } 
     
     if (reset_x) {
-        pros::lcd::print(4, "X Failed: %f", new_pos);
+        std::cout << "X Failed: " << new_pos << std::endl;
     } else {
-        pros::lcd::print(5, "Y Failed: %f", new_pos);
+        std::cout << "Y Failed: " << new_pos << std::endl;
     }
 
     return false;
