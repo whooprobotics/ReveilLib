@@ -1,5 +1,5 @@
 COPRO_CXX=g++
-COPRO_CXXFLAGS += -Wall -Wextra -std=c++17 -DPLATFORM_RASPI
+COPRO_CXXFLAGS += -Wall -Wextra -std=c++17 -DPLATFORM_COPRO
 COPRO_INCLUDE_PATH=include/
 LIB_NAME=reveillib
 SHARED_LIB_FILE=bin/$(LIB_NAME)_copro.so
