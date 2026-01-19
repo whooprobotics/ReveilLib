@@ -83,4 +83,4 @@ class StraightSegments : public PurePursuitSegment {
   double left_speed;
   double right_speed;
 };
-} // namespace rev
+}  // namespace rev

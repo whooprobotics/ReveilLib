@@ -383,4 +383,4 @@ class AnyMotor {
    */
   virtual double get_temperature(void) const = 0;
 };
-} // namespace rev
+}  // namespace rev

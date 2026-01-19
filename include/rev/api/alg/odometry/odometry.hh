@@ -65,4 +65,4 @@ class Odometry {
    */
   virtual void reset_position() = 0;
 };
-} // namespace rev
+}  // namespace rev

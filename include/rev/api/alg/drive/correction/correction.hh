@@ -29,4 +29,4 @@ class Correction {
       QLength drop_early,
       std::tuple<double, double> powers) = 0;
 };
-} // namespace rev
+}  // namespace rev

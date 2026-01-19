@@ -52,4 +52,4 @@ class MockRotationSensor : public RotarySensor {
   int value = 0;
 };
 
-} // namespace rev
+}  // namespace rev

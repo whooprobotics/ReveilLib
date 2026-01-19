@@ -52,4 +52,4 @@ class ProportionalMotion : public Motion {
   double power;
   double k_p;
 };
-} // namespace rev
+}  // namespace rev

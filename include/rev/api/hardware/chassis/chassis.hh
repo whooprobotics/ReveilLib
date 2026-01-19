@@ -38,4 +38,4 @@ class Chassis {
    */
   virtual void stop() = 0;
 };
-} // namespace rev
+}  // namespace rev

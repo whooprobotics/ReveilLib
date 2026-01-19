@@ -399,4 +399,4 @@ class Motor : public AnyMotor {
   std::int8_t port;
   std::int8_t reversed{1};
 };
-} // namespace rev
+}  // namespace rev

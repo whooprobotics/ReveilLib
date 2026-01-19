@@ -28,4 +28,4 @@ class Motion {
                                                 Position start_state,
                                                 QLength drop_early) = 0;
 };
-} // namespace rev
+}  // namespace rev

@@ -58,4 +58,4 @@ class MockQuadEncoder : public RotarySensor {
   int value = 0;
   int looparounds = 0;
 };
-} // namespace rev
+}  // namespace rev

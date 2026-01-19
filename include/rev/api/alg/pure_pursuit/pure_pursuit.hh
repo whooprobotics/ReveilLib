@@ -119,4 +119,4 @@ class PurePursuitSegment : public RecklessSegment {
   std::tuple<double, double> PID(OdometryState current_state,
                                  double base_power);
 };
-} // namespace rev
+}  // namespace rev

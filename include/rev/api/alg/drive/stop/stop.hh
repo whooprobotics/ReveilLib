@@ -30,4 +30,4 @@ class Stop {
 
   virtual double get_coast_power() = 0;
 };
-} // namespace rev
+}  // namespace rev

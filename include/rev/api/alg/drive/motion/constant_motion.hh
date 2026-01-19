@@ -36,4 +36,4 @@ class ConstantMotion : public Motion {
  private:
   double power;
 };
-} // namespace rev
+}  // namespace rev

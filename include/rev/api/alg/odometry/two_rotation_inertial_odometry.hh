@@ -101,4 +101,4 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   // Likewise, for the lateral wheel backward from the center of rotation
   QLength lateral_wheel_offset;
 };
-} // namespace rev
+}  // namespace rev

@@ -134,4 +134,4 @@ class RecklessSegment {
    */
   virtual double progress() = 0;
 };
-} // namespace rev
+}  // namespace rev

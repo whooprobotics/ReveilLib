@@ -14,4 +14,4 @@ class AsyncRunnable {
    */
   virtual void step() = 0;
 };
-} // namespace rev
+}  // namespace rev

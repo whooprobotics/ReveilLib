@@ -41,4 +41,4 @@ class Imu : public Gyroscope {
   pros::Imu inertial;
   std::uint8_t port;
 };
-} // namespace rev
+}  // namespace rev

@@ -112,4 +112,4 @@ class PilonsSegment : public RecklessSegment {
 
   SegmentStatus last_status = SegmentStatus::drive(0, 0);
 };
-} // namespace rev
+}  // namespace rev

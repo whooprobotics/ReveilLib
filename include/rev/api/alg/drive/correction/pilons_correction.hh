@@ -63,4 +63,4 @@ class PilonsCorrection : public Correction {
   double k_correction;
   QLength max_error;
 };
-} // namespace rev
+}  // namespace rev

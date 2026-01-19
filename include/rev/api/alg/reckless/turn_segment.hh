@@ -101,4 +101,4 @@ class RecklessTurnSegment : public RecklessSegment {
 
 using TurnSegment = RecklessTurnSegment;
 
-} // namespace rev
+}  // namespace rev

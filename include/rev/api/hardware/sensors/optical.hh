@@ -25,4 +25,4 @@ class Optical : public pros::Optical {
  private:
   std::uint8_t _port;
 };
-} // namespace rev
+}  // namespace rev

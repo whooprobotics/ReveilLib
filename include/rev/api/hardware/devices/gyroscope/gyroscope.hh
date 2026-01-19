@@ -32,4 +32,4 @@ class Gyroscope {
   virtual std::pair<std::uint8_t, std::uint8_t> check_ports() = 0;
 };
 
-} // namespace rev
+}  // namespace rev

@@ -38,4 +38,4 @@ class NoCorrection : public Correction {
     return std::make_shared<NoCorrection>(*this);
   }
 };
-} // namespace rev
+}  // namespace rev

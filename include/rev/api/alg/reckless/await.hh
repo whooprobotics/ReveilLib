@@ -43,4 +43,4 @@ class Await : public RecklessSegment {
  private:
   std::shared_ptr<AsyncAwaitable> dependency;
 };
-} // namespace rev
+}  // namespace rev

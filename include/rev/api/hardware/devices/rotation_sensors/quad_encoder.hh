@@ -46,4 +46,4 @@ class QuadEncoder : public RotarySensor {
   pros::ADIEncoder sensor;
   std::pair<char, char> ports; // top, bottom
 };
-} // namespace rev
+}  // namespace rev

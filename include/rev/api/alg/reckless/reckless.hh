@@ -91,4 +91,4 @@ class Reckless : public AsyncRunnable, public AsyncAwaitable {
   long long brake_start_time = -1;
   double partial_progress = -1.0;
 };
-} // namespace rev
+}  // namespace rev

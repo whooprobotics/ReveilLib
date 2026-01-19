@@ -41,4 +41,4 @@ class AsyncRunner {
 
   void loop();
 };
-} // namespace rev
+}  // namespace rev

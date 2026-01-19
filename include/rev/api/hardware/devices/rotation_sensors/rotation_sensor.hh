@@ -44,4 +44,4 @@ class RotationSensor : public RotarySensor {
   pros::Rotation sensor;
   std::uint8_t port;
 };
-} // namespace rev
+}  // namespace rev

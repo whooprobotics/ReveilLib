@@ -62,4 +62,4 @@ class OpticalOdometry : public Odometry, public AsyncRunnable {
   // Likewise, for the OTOS position backward from the center of rotation
   QLength lateral_offset;
 };
-} // namespace rev
+}  // namespace rev

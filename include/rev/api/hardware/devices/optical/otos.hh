@@ -60,4 +60,4 @@ class OTOS {
   std::vector<std::string> tokens;
   std::stringstream ss;
 };
-} // namespace rev
+}  // namespace rev

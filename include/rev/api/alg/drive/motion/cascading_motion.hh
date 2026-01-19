@@ -97,4 +97,4 @@ class CascadingMotion : public Motion {
 
   QSpeed max_v;
 };
-} // namespace rev
+}  // namespace rev

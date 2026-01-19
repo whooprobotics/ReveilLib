@@ -393,4 +393,4 @@ class MotorGroup : public AnyMotor {
 
 using Motor_Group = MotorGroup;
 
-} // namespace rev
+}  // namespace rev

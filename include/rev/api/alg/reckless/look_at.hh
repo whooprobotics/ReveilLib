@@ -131,4 +131,4 @@ class LookAt : public RecklessSegment {
 
   QTime brake_time;
 };
-} // namespace rev
+}  // namespace rev

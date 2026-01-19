@@ -82,4 +82,4 @@ class SimpleStop : public Stop {
   uint32_t time_init = 0;
   uint32_t timeout = 0;
 };
-} // namespace rev
+}  // namespace rev
