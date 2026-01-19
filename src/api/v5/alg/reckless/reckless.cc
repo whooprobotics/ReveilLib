@@ -40,7 +40,7 @@ void Reckless::step() {
       // Safety, should never matter
       brake_start_time = -1;
       break;
-    }
+    } break;
     case SegmentStatusType::BRAKE:
       // Check if we havent started braking yet
       if (brake_start_time == -1) {
@@ -50,10 +50,9 @@ void Reckless::step() {
         break;
       }
       // Check if enough time has elapsed to stop braking
-      // If enough time has passed then it will just proceed as if it received a
+      // If enough time has passed then it will just proceed as if it recieved a
       // NEXT
       else if (pros::millis() <= brake_start_time + 250)
-      // TODO: add to this if statement: || abs(velocity) <= some_threshold
         break;
     // Just like brake but without the braking
     case SegmentStatusType::NEXT:

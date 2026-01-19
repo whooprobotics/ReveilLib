@@ -42,5 +42,4 @@ TEMPLATE_FILES=$(INCDIR)/rev/**/*.h $(INCDIR)/rev/**/*.hpp $(INCDIR)/rev/**/*.hh
 ################################################################################
 ################################################################################
 ########## Nothing below this line should be edited by typical users ###########
--include ./copro_rules.mk
 -include ./common.mk
