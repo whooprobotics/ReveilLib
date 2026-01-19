@@ -1,6 +1,5 @@
 #pragma once
 
-#ifdef PLATFORM_BRAIN
 #include "rev/api/common/units/all_units.hh"
 
 namespace rev {
@@ -149,5 +148,3 @@ constexpr PointVector rejection(const PointVector lhs, const PointVector rhs) {
 }
 
 }  // namespace rev
-
-#endif
