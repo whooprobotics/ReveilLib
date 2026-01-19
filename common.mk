@@ -171,16 +171,17 @@ endif
 
 .PHONY: all clean quick
 
-quick: $(DEFAULT_BIN)
+quick: $(DEFAULT_BIN) copro-lib
 
 all: clean $(DEFAULT_BIN)
 
-clean:
+clean: clean-copro
 	@echo Cleaning project
 	-$Drm -rf $(BINDIR)
 	-$Drm -rf $(DEPDIR)
 	-$Drm -rf html
 	-$Drm -rf latex
+  
 
 ifeq ($(IS_LIBRARY),1)
 ifeq ($(LIBNAME),libbest)
