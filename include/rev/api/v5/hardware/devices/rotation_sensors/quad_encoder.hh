@@ -8,7 +8,7 @@ namespace rev {
 
 class QuadEncoder : public ReadOnlyRotarySensor {
  public:
-  QuadEncoder(std::uint8_t top, std::uint8_t bottom, const bool reverse_flag);
+  QuadEncoder(char top, char bottom, const bool reverse_flag);
 
   double get_position() override;
   std::pair<uint8_t, uint8_t> check_port() override;

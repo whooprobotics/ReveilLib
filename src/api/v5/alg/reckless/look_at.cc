@@ -28,6 +28,26 @@ namespace rev {
         turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time)
         {}
 
+    LookAt::LookAt(
+        double imax_power, 
+        double icoast_power, 
+        Position itarget_position, 
+        QAngle iangle_offset,
+        QAngle idrop_angle, 
+        double iharsh_coeff, 
+        double icoast_coeff, 
+        QTime ibrake_time) 
+        : max_power(imax_power),
+        coast_power(icoast_power),
+        target_position(itarget_position),
+        angle_offset(iangle_offset),
+        drop_angle(idrop_angle),
+        harsh_coeff(iharsh_coeff),
+        coast_coeff(icoast_coeff),
+        brake_time(ibrake_time),
+        turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time)
+        {}
+
     void LookAt::init(OdometryState initial_state){
         start_position = initial_state.pos;
 
@@ -37,6 +57,8 @@ namespace rev {
             ,
             target_position.x - start_position.x
         ).convert(degree);// * 180 / M_PI;
+
+        computed_angle += angle_offset.convert(degree);
 
         // normalize angle between 2 points
         computed_angle = computed_angle - 360.0 * std::floor((computed_angle + 180.0) / 360.0);

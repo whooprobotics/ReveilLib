@@ -48,6 +48,7 @@
 #include "rev/api/v5/hardware/motor/motor_group.hh"
 
 // Sensors
+#include "rev/api/v5/hardware/devices/gyroscope/imu.hh"
 #include "rev/api/v5/hardware/devices/gyroscope/dual_imu.hh"
 #include "rev/api/v5/hardware/devices/optical/otos.hh"
 #include "rev/api/v5/hardware/devices/rotation_sensors/quad_encoder.hh"
