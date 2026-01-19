@@ -1,26 +1,29 @@
-#include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
 #include <cerrno>
 #include <iostream>
 #include "pros/error.h"
+#include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
+
+using std::shared_ptr;
 
 namespace rev {
+
 TwoRotationInertialOdometry45Degrees::TwoRotationInertialOdometry45Degrees(
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
-    std::shared_ptr<rev::Gyroscope> iinertial,
+    shared_ptr<RotarySensor> ilongitudinal_sensor,
+    shared_ptr<RotarySensor> ilateral_sensor,
+    shared_ptr<Gyroscope> iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
     QLength ilongitudinal_wheel_offset,
     QLength ilateral_wheel_offset)
-    : longitudinal_sensor(ilongitudinal_sensor),
-      lateral_sensor(ilateral_sensor),
+    : left_sensor(ilongitudinal_sensor),
+      right_sensor(ilateral_sensor),
       inertial(iinertial),
-      longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),
-      lateral_wheel_diameter(ilateral_wheel_diameter),
+      left_wheel_diameter(ilongitudinal_wheel_diameter),
+      right_wheel_diameter(ilateral_wheel_diameter),
       longitudinal_wheel_offset(ilongitudinal_wheel_offset),
       lateral_wheel_offset(ilateral_wheel_offset) {
-  longitude_ticks_last = (double)(longitudinal_sensor->get_position());
-  latitude_ticks_last = (double)(lateral_sensor->get_position());
+  longitude_ticks_last = (double)(left_sensor->get_position());
+  latitude_ticks_last = (double)(right_sensor->get_position());
   heading_ticks_init = inertial->get_heading();
   time_last = pros::millis();
 }
@@ -47,8 +50,8 @@ void TwoRotationInertialOdometry45Degrees::reset_position() {
   this->set_position({0 * inch, 0 * inch, 0 * degree});
 }
 void TwoRotationInertialOdometry45Degrees::step() {
-  double longitude_ticks = (double)longitudinal_sensor->get_position();
-  double latitude_ticks = (double)lateral_sensor->get_position();
+  double longitude_ticks = (double)left_sensor->get_position();
+  double latitude_ticks = (double)right_sensor->get_position();
   double heading_ticks = inertial->get_heading();
 
   if (heading_ticks == PROS_ERR_F || inertial->is_calibrating()) {
@@ -56,8 +59,8 @@ void TwoRotationInertialOdometry45Degrees::step() {
   }
 
   if (!is_initialized) {
-    longitude_ticks_last = (double)(longitudinal_sensor->get_position());
-    latitude_ticks_last = (double)(lateral_sensor->get_position());
+    longitude_ticks_last = (double)(left_sensor->get_position());
+    latitude_ticks_last = (double)(right_sensor->get_position());
     heading_ticks_last = inertial->get_heading();
     heading_ticks_init =
         inertial->get_heading() - current_position.pos.theta.convert(degree);
@@ -107,15 +110,15 @@ void TwoRotationInertialOdometry45Degrees::step() {
   // Raw translation values
   // QLength raw_fwd_translation =
   //     d_longitudinal_ticks / 360 * 3.1415926535 *
-  //     longitudinal_wheel_diameter;
+  //     left_wheel_diameter;
   // QLength raw_right_translation =
-  //     d_latitude_ticks / 360 * 3.1415926535 * lateral_wheel_diameter;
+  //     d_latitude_ticks / 360 * 3.1415926535 * right_wheel_diameter;
 
   // translation calculation adjusted for 45 degrees
   QLength raw_fr_translation =
-      d_longitudinal_ticks * 3.141592653 / 360 * longitudinal_wheel_diameter;
+      d_longitudinal_ticks * 3.141592653 / 360 * left_wheel_diameter;
   QLength raw_fl_translation =
-      d_latitude_ticks * 3.141592653 / 360 * lateral_wheel_diameter;
+      d_latitude_ticks * 3.141592653 / 360 * right_wheel_diameter;
   QLength raw_fwd_translation =
       (raw_fr_translation + raw_fl_translation) / std::sqrt(2);
   QLength raw_side_translation =
@@ -174,4 +177,5 @@ void TwoRotationInertialOdometry45Degrees::step() {
   // Before exiting, release mutex
   current_position_mutex.give();
 }
+
 }  // namespace rev

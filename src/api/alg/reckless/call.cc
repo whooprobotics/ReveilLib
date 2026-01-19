@@ -11,5 +11,6 @@ SegmentStatus Call::step(OdometryState current_state) {
   return SegmentStatus::next();
 }
 
-void Call::clean_up(){};
+void Call::clean_up() {};
+
 }  // namespace rev

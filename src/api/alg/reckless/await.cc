@@ -1,8 +1,10 @@
 #include "rev/api/alg/reckless/await.hh"
 
+using std::shared_ptr;
+
 namespace rev {
 
-Await::Await(std::shared_ptr<AsyncAwaitable> idependency)
+Await::Await(shared_ptr<AsyncAwaitable> idependency)
     : dependency(idependency) {}
 
 void Await::init(OdometryState initial_state) {}
@@ -14,5 +16,6 @@ SegmentStatus Await::step(OdometryState current_state) {
     return SegmentStatus::dummy();
 }
 
-void Await::clean_up(){};
+void Await::clean_up() {};
+
 }  // namespace rev

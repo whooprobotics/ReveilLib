@@ -10,6 +10,7 @@ typedef pros::Task rthread;
 typedef std::thread rthread;
 #endif
 #include "rev/api/async/async_runnable.hh"
+
 namespace rev {
 /**
  * @brief Thread runner for AsyncRunnable
@@ -17,6 +18,12 @@ namespace rev {
  */
 class AsyncRunner {
  public:
+  /**
+   * @brief Constructs a new AsyncRunner object
+   * 
+   * @param icontroller std::shared_ptr<AsyncRunnable> asynchronous controller to be run
+   * @param itdelta timestep in ms
+   */
   AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
               uint32_t itdelta = 10);
 
@@ -27,7 +34,7 @@ class AsyncRunner {
   rthread* thread;
   uint32_t tdelta;  // Time to wait between iterations in millis
 
-  bool active{true};
+  bool active = true;
 
   // Helper function to launch thread
   static void run(void* context);

@@ -1,9 +1,9 @@
 #include <algorithm>
-
 #include "rev/api/hardware/chassis/skid_steer_chassis.hh"
 
 namespace rev {
-SkidSteerChassis::SkidSteerChassis(rev::AnyMotor& ileft, rev::AnyMotor& iright)
+
+SkidSteerChassis::SkidSteerChassis(AnyMotor& ileft, AnyMotor& iright)
     : left(&ileft), right(&iright) {}
 
 void SkidSteerChassis::drive_tank(double leftv, double rightv) {
@@ -13,6 +13,7 @@ void SkidSteerChassis::drive_tank(double leftv, double rightv) {
   left->move_voltage(12000 * leftv);
   right->move_voltage(12000 * rightv);
 }
+
 void SkidSteerChassis::drive_arcade(double forward, double yaw) {
   double scale = fabs(forward) + fabs(yaw);
   if (scale > 1.0) {
@@ -37,4 +38,5 @@ void SkidSteerChassis::stop() {
   left->brake();
   right->brake();
 }
+
 }  // namespace rev

@@ -1,14 +1,17 @@
-#include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
 #include <cerrno>
 #include <iostream>
-using std::cout, std::endl;
 #include "pros/error.h"
+#include "rev/api/alg/odometry/two_rotation_inertial_odometry.hh"
+
+using std::cout, std::endl;
+using std::shared_ptr;
 
 namespace rev {
+
 TwoRotationInertialOdometry::TwoRotationInertialOdometry(
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilongitudinal_sensor,
-    std::shared_ptr<rev::ReadOnlyRotarySensor> ilateral_sensor,
-    std::shared_ptr<rev::Gyroscope> iinertial,
+    shared_ptr<RotarySensor> ilongitudinal_sensor,
+    shared_ptr<RotarySensor> ilateral_sensor,
+    shared_ptr<Gyroscope> iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
     QLength ilongitudinal_wheel_offset,
@@ -183,4 +186,5 @@ void TwoRotationInertialOdometry::step() {
   current_position_mutex.give();
 #endif
 }
+
 }  // namespace rev

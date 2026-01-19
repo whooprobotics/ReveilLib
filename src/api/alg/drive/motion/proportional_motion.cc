@@ -1,13 +1,14 @@
+#include <algorithm>
+#include <cmath>
 #include "rev/api/alg/drive/motion/proportional_motion.hh"
 #include "rev/util/mathutil.hh"
 
-#include <algorithm>
-#include <cmath>
+namespace rev {
 
-rev::ProportionalMotion::ProportionalMotion(double ipower, double ik_p)
+ProportionalMotion::ProportionalMotion(double ipower, double ik_p)
     : power(fabs(ipower)), k_p(ik_p) {}
 
-std::tuple<double, double> rev::ProportionalMotion::gen_powers(
+std::tuple<double, double> ProportionalMotion::gen_powers(
     rev::OdometryState current_state,
     rev::Position target_state,
     Position start_state,
@@ -38,3 +39,5 @@ std::tuple<double, double> rev::ProportionalMotion::gen_powers(
 
   return std::make_tuple(finalPower, finalPower);
 }
+
+}  // namespace rev

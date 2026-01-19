@@ -2,14 +2,12 @@
 
 #include <memory>
 #include <vector>
-
 #include "rev/api/alg/drive/correction/correction.hh"
 #include "rev/api/alg/drive/motion/motion.hh"
 #include "rev/api/alg/drive/stop/stop.hh"
 #include "rev/api/alg/reckless/segment.hh"
 
 namespace rev {
-
 /**
  * @brief Complete path for use with the Reckless Controller
  *
@@ -17,7 +15,10 @@ namespace rev {
 struct RecklessPath {
   std::vector<std::shared_ptr<RecklessSegment>> segments;
 
-  RecklessPath() { segments = std::vector<std::shared_ptr<RecklessSegment>>(); }
+  RecklessPath() {
+    segments = std::vector<std::shared_ptr<RecklessSegment>>();
+  }
+
   explicit RecklessPath(
       std::initializer_list<std::shared_ptr<RecklessSegment>> seg) {
     segments = std::vector<std::shared_ptr<RecklessSegment>>();
@@ -26,6 +27,7 @@ struct RecklessPath {
       segments.push_back(s);
     }
   }
+
   /**
    * @brief Add a segment to the path under construction
    *

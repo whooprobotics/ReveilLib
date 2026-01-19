@@ -1,7 +1,7 @@
 #pragma once
-#include "rev/api/alg/odometry/odometry.hh"
 
 #include <tuple>
+#include "rev/api/alg/odometry/odometry.hh"
 
 namespace rev {
 /**
@@ -19,7 +19,8 @@ class Correction {
    * @param drop_early The distance from the segment target point at which this
    * segment will halt
    * @param powers The input powers
-   * @return std::tuple<double, double> The adjusted powers
+   * 
+   * @return std::tuple<double, double> The corrected powers
    */
   virtual std::tuple<double, double> apply_correction(
       OdometryState current_state,

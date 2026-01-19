@@ -21,6 +21,7 @@ class StraightSegments : public PurePursuitSegment {
   /**
    *
    * @brief Make a new Straight Segment
+   * 
    * @note A straight line segment will draw points along the line between each
    * input point, making paths of straight lines. However, due to this
    * implementating pure pursuit, the robot will not exactly be straight but
@@ -50,7 +51,7 @@ class StraightSegments : public PurePursuitSegment {
 
   /**
    * @brief Initialize the Bezier segment by generating waypoints
-   *
+   * 
    * @param initial_state The initial odometry state of the robot
    */
   void init(OdometryState initial_state) override;
@@ -58,7 +59,7 @@ class StraightSegments : public PurePursuitSegment {
  protected:
   /**
    * @brief Generate the Bezier curve waypoints based on control points
-   *
+   * 
    * @return std::vector<PointVector> Generated waypoints
    */
   std::vector<PointVector> generate_waypoints() override;
@@ -74,13 +75,12 @@ class StraightSegments : public PurePursuitSegment {
   QLength wheelbase;
   QLength look_ahead_distance;
 
-  std::size_t resolution;
+  size_t resolution;
   double t_value;
 
-  int res_per_line;
+  int32_t res_per_line;
 
   double left_speed;
   double right_speed;
 };
-
 }  // namespace rev

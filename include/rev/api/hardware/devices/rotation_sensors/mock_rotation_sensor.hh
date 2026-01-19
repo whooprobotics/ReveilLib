@@ -4,18 +4,18 @@
 
 namespace rev {
 /**
- * @brief Simulated implementation of the QuadEncoder class
+ * @brief Simulated implementation of the RotationSensor class
  * 
  */
-class MockQuadEncoder : public RotarySensor {
+class MockRotationSensor : public RotarySensor {
  public:
   /**
-   * @brief Constructs a new MockQuadEncoder simulated device
+   * @brief Constructs a new MockRotationSensor simulated device
    * 
-   * @param initial_reading Initial sensor reading of the encoder
+   * @param reading Initial sensor reading of the encoder
    */
-  MockQuadEncoder(int initial_reading);
-  
+  MockRotationSensor(int reading);
+
   /**
    * @brief Gets the current position of the sensor
    * 
@@ -31,31 +31,25 @@ class MockQuadEncoder : public RotarySensor {
   std::pair<std::uint8_t, std::uint8_t> check_ports() override;
 
   /**
-   * @brief Gets the number of encoder ticks rotated
+   * @brief Gets the number of ticks rotated from the zero position
    * 
-   * @returns Tick count (1 rotation = 8192 ticks)
+   * @returns Ticks rotated from zero
    */
   int get_value();
 
   /**
-   * @brief Increments the tick counter by 1
+   * @brief Increments the tick count by 1
+   * 
    */
   void increment();
 
   /**
-   * @brief Decrements the tick counter by 1
+   * @brief Decrements the tick count by 1
    */
   void decrement();
 
-  /**
-   * @brief Gets the number of times the encoder has looped around to 0
-   * 
-   * @returns Looparound count
-   */
-  int get_looparounds();
-
  private:
   int value = 0;
-  int looparounds = 0;
 };
+
 }  // namespace rev
