@@ -17,7 +17,7 @@ class QuadEncoder : public RotarySensor {
    * @param top ADI port number, static_cast<uint8_t> from a char
    * @param bottom ADI port number, static_cast<uint8_t> from a char
    */
-  QuadEncoder(std::uint8_t top, std::uint8_t bottom);
+  QuadEncoder(char top, char bottom);
 
   /**
    * @brief Constructs a new Rev Quadrature encoder
@@ -26,7 +26,7 @@ class QuadEncoder : public RotarySensor {
    * @param bottom ADI port number, static_cast<uint8_t> from a char
    * @param reverse_flag Reverses the direction of the encoder
    */
-  QuadEncoder(std::uint8_t top, std::uint8_t bottom, const bool reverse_flag);
+  QuadEncoder(char top, char bottom, const bool reverse_flag);
 
   /**
    * @brief Gets the current position of the sensor
@@ -44,6 +44,6 @@ class QuadEncoder : public RotarySensor {
 
  private:
   pros::ADIEncoder sensor;
-  std::pair<std::uint8_t, std::uint8_t> ports; // top, bottom
+  std::pair<char, char> ports; // top, bottom
 };
 } // namespace rev

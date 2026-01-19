@@ -13,17 +13,35 @@ LookAt::LookAt(
         double iharsh_coeff, 
         double icoast_coeff, 
         QTime ibrake_time) 
-    : max_power(imax_power),
-    coast_power(icoast_power),
-    target_position(itarget_position),
-    drop_angle(idrop_angle),
-    harsh_coeff(iharsh_coeff),
-    coast_coeff(icoast_coeff),
-    brake_time(ibrake_time),
-    turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time)
-    {}
+  : max_power(imax_power),
+  coast_power(icoast_power),
+  target_position(itarget_position),
+  drop_angle(idrop_angle),
+  harsh_coeff(iharsh_coeff),
+  coast_coeff(icoast_coeff),
+  brake_time(ibrake_time),
+  turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {}
 
-void LookAt::init(OdometryState initial_state){
+LookAt::LookAt(
+        double imax_power, 
+        double icoast_power, 
+        Position itarget_position, 
+        QAngle iangle_offset,
+        QAngle idrop_angle, 
+        double iharsh_coeff, 
+        double icoast_coeff, 
+        QTime ibrake_time) 
+  : max_power(imax_power),
+  coast_power(icoast_power),
+  target_position(itarget_position),
+  angle_offset(iangle_offset),
+  drop_angle(idrop_angle),
+  harsh_coeff(iharsh_coeff),
+  coast_coeff(icoast_coeff),
+  brake_time(ibrake_time),
+  turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {}
+
+void LookAt::init(OdometryState initial_state) {
   start_position = initial_state.pos;
 
   // angle between start point and target
