@@ -56,8 +56,6 @@ namespace rev {
             target_position.x - start_position.x
         ).convert(degree);// * 180 / M_PI;
 
-        computed_angle += angle_offset.convert(degree);
-
         // normalize angle between 2 points
         computed_angle = computed_angle - 360.0 * std::floor((computed_angle + 180.0) / 360.0);
 
@@ -79,7 +77,7 @@ namespace rev {
             fabs(offset1)
          < fabs(offset2)
         ) 
-         ? angle1 * degree : angle2 * degree;
+         ? (angle1 + angle_offset.convert(degree)) * degree : (angle2 + angle_offset.convert(degree)) * degree;
 
          // call RecklessTurnSegment with better angle
         turn_segment = RecklessTurnSegment(
