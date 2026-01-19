@@ -1,12 +1,22 @@
 COPRO_CXX=g++
-COPRO_CXXFLAGS += -Wall -Wextra -std=c++17
+COPRO_CXXFLAGS += -Wall -Wextra -std=c++17 -DPLATFORM_RASPI
+COPRO_INCLUDE_PATH=include/
 LIB_NAME=reveillib
-SHARED_LIB_FILE=$(LIB_NAME).so
+SHARED_LIB_FILE=bin/$(LIB_NAME)_copro.so
 
-all: $(SHARED_LIB_FILE)
+SRCS := $(shell find src -name "*.cc")
+OBJS := $(patsubst src/%.cc, bin/copro/%.o, $(SRCS))
 
-$(SHARED_LIB_FILE) : 
+copro-lib: $(SHARED_LIB_FILE)
 
-.PHONY: clean
-clean:
-  
+$(SHARED_LIB_FILE) : $(OBJS)
+	$(COPRO_CXX) -shared $^ -o $@
+
+bin/copro/%.o: src/%.cc
+	@mkdir -p $(dir $@)
+	$(COPRO_CXX) $(COPRO_CXXFLAGS) -I$(COPRO_INCLUDE_PATH) -fPIC -c $< -o $@
+
+.PHONY: clean-copro
+clean-copro:
+	rm -rf bin/copro
+	rm $(SHARED_LIB_FILE)
