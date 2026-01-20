@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "ReveilLib", "index.html", [
-    [ "sciplot's API Reference", "index.html", null ],
     [ "Setting up the ReveilLib depot", "md_docs_2tutorials_2depot-setup.html", null ],
     [ "Reckless Controller Usage Guide", "md_docs_2tutorials_2reckless.html", [
       [ "Getting Started", "md_docs_2tutorials_2reckless.html#autotoc_md4", [
@@ -42,68 +41,16 @@ var NAVTREE =
         [ "Early Drop", "md_docs_2tutorials_2reckless.html#autotoc_md14", null ]
       ] ]
     ] ],
-    [ "About", "md_sciplot_2docs_2website_2about.html", [
-      [ "License", "md_sciplot_2docs_2website_2about.html#autotoc_md16", null ]
-    ] ],
-    [ "API", "md_sciplot_2docs_2website_2api.html", null ],
-    [ "FAQ", "md_sciplot_2docs_2website_2faq.html", [
-      [ "How are my plots generated?", "md_sciplot_2docs_2website_2faq.html#autotoc_md19", null ],
-      [ "Something is not working for me. Is it a known issue?", "md_sciplot_2docs_2website_2faq.html#autotoc_md20", null ],
-      [ "How do I report issues?", "md_sciplot_2docs_2website_2faq.html#autotoc_md21", null ],
-      [ "How can I contribute?", "md_sciplot_2docs_2website_2faq.html#autotoc_md22", null ],
-      [ "How can I cite?", "md_sciplot_2docs_2website_2faq.html#autotoc_md23", null ]
-    ] ],
-    [ "<img src=\"img/logo.svg\" alt=\"sciplot\"/>", "md_sciplot_2docs_2website_2index.html", [
-      [ "! WARNING ! sciplot has been redesigned and there were breaking API changes between v0....", "md_sciplot_2docs_2website_2index.html#autotoc_md25", null ]
-    ] ],
-    [ "Installation", "md_sciplot_2docs_2website_2installation.html", [
-      [ "Download", "md_sciplot_2docs_2website_2installation.html#autotoc_md27", null ],
-      [ "Installation by copying", "md_sciplot_2docs_2website_2installation.html#autotoc_md28", null ],
-      [ "Installation using FetchContent", "md_sciplot_2docs_2website_2installation.html#autotoc_md29", null ],
-      [ "Installation using CMake", "md_sciplot_2docs_2website_2installation.html#autotoc_md30", null ],
-      [ "Installation failed. What do I do?", "md_sciplot_2docs_2website_2installation.html#autotoc_md31", null ]
-    ] ],
-    [ "Known issues", "md_sciplot_2docs_2website_2known__issues.html", [
-      [ "I get compiler errors when compiling for Windows", "md_sciplot_2docs_2website_2known__issues.html#autotoc_md33", null ],
-      [ "I still have problems when compiling for Windows", "md_sciplot_2docs_2website_2known__issues.html#autotoc_md34", null ],
-      [ "I have problems setting a grid for my plot", "md_sciplot_2docs_2website_2known__issues.html#autotoc_md35", null ],
-      [ "I have a different issue", "md_sciplot_2docs_2website_2known__issues.html#autotoc_md36", null ]
-    ] ],
-    [ "Tutorials", "md_sciplot_2docs_2website_2tutorials.html", [
-      [ "Plotting sine functions", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md38", null ],
-      [ "Plotting Bessel functions", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md39", null ],
-      [ "Plotting filled curves", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md40", null ],
-      [ "Using logarithmic axes", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md41", null ],
-      [ "Plotting multiple plots", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md42", null ],
-      [ "Ploting trigonometric functions", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md43", null ],
-      [ "Plotting boxes", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md44", null ],
-      [ "Plotting boxes with custom tick labels", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md45", null ],
-      [ "Plotting broken curves when NaN values are present", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md46", null ],
-      [ "Plotting a 3D helix plot", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md47", null ],
-      [ "Plotting multiple mixed 2D and 3D plots", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md48", null ],
-      [ "Changing plots in a figure", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md49", null ],
-      [ "Integration with CMake-based projects", "md_sciplot_2docs_2website_2tutorials.html#autotoc_md50", null ]
-    ] ],
     [ "Code styling & standards for ReveilLib", "md_Style.html", [
-      [ "Capitalization", "md_Style.html#autotoc_md60", null ]
-    ] ],
-    [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
-      ] ]
+      [ "Capitalization", "md_Style.html#autotoc_md16", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -119,12 +66,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AxisLabelSpecs_8hpp_source.html",
-"classrev_1_1Await.html#a905d29d734fc9ae76ebfba9de70a664c",
-"classrev_1_1PilonsSegment.html#aa6b3b674d53d1016ade8b4c0b3abfabf",
-"classsciplot_1_1GridSpecs.html#a0a4daea622cf3bcab537c79e821ca75c",
-"classsciplot_1_1Plot3D.html#a8acbe502c647c451a6b8e73438a864d2",
-"namespacerev.html"
+"all__units_8hh_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

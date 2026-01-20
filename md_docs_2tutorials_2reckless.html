@@ -117,10 +117,10 @@ Chassis</h2>
 </div><!-- fragment --><p>With the motor groups defined, you can build your chassis model</p>
 <div class="fragment"><div class="line">std::shared_ptr&lt;rev::SkidSteerChassis&gt; chassis =</div>
 <div class="line">    std::make_shared&lt;rev::SkidSteerChassis&gt;(leftd, rightd);</div>
-</div><!-- fragment --><p>If you don't want to use a skid steer chassis, you can also define your own compatible chassis model by implementing the <code><a class="el" href="classrev_1_1Chassis.html" title="Interface for chassis objects.">rev::Chassis</a></code> interface. As of 1.0.0, ReveilLib does not support any models other than skid steer.</p>
+</div><!-- fragment --><p>If you don't want to use a skid steer chassis, you can also define your own compatible chassis model by implementing the <code>rev::Chassis</code> interface. As of 1.0.0, ReveilLib does not support any models other than skid steer.</p>
 <h2><a class="anchor" id="autotoc_md7"></a>
 Odometry</h2>
-<p>In addition to a chassis, an odometry system is also required. Like with chassis, a compatible custom odometry solution can be created by extending <code><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">rev::Odometry</a></code>, however by default ReveilLib 1.0.0 only comes with a single odometry system type.</p>
+<p>In addition to a chassis, an odometry system is also required. Like with chassis, a compatible custom odometry solution can be created by extending <code>rev::Odometry</code>, however by default ReveilLib 1.0.0 only comes with a single odometry system type.</p>
 <p>The TwoEncoderGyroOdometry system uses 3 sensors; an inertial and 2 rotation sensors. These can be set up as below:</p>
 <div class="fragment"><div class="line">pros::Rotation fwd(5);        <span class="comment">// Rotation sensor connected to the wheel measuring forward translation</span></div>
 <div class="line">pros::Rotation rgt(16, <span class="keyword">true</span>); <span class="comment">// Rotation sensor connected to the wheel measuring rightward translation. </span></div>
@@ -138,8 +138,7 @@ Odometry</h2>
 <div class="line">    4.75_in,  <span class="comment">// How far to the right of the center of the robot the forward wheel is</span></div>
 <div class="line">    0.5_in    <span class="comment">// How far to the rear of the robot the lateral wheel is from the center</span></div>
 <div class="line">  );</div>
-</div><!-- fragment --><p>Additionally, you will need to initalize the odometry, as it has an associated thread. This can be done at the top of your autonomous function as follows </p><div class="fragment"><div class="line"><a class="code hl_class" href="classrev_1_1AsyncRunner.html">rev::AsyncRunner</a> odom_runner(odom);</div>
-<div class="ttc" id="aclassrev_1_1AsyncRunner_html"><div class="ttname"><a href="classrev_1_1AsyncRunner.html">rev::AsyncRunner</a></div><div class="ttdoc">Thread runner for AsyncRunnable.</div><div class="ttdef"><b>Definition</b> async_runner.hh:18</div></div>
+</div><!-- fragment --><p>Additionally, you will need to initalize the odometry, as it has an associated thread. This can be done at the top of your autonomous function as follows </p><div class="fragment"><div class="line">rev::AsyncRunner odom_runner(odom);</div>
 </div><!-- fragment --><p>The inertial sensor automatically calibrates every time a Vex program starts, so it might be wise to wait a few seconds before creating the runner.</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Reckless controller</h2>
