@@ -1,4 +1,9 @@
 #include "main.h"
+#include "rev/api/v5/alg/reckless/path.hh"
+#include "rev/api/v5/alg/reckless/turn_segment.hh"
+#include "rev/api/v5/alg/reckless/look_at.hh"
+#include "rev/api/v5/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
 using namespace rev;

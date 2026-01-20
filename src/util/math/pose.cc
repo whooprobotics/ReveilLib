@@ -1,3 +1,4 @@
+#ifdef PLATFORM_BRAIN
 #include "rev/util/math/pose.hh"
 
 namespace rev {
@@ -42,3 +43,5 @@ Pose Pose::to_absolute(const Pose reference) const {
               reference.theta + this->theta};
 }
 }  // namespace rev
+
+#endif

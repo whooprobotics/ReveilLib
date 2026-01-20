@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef OFF_ROBOT_TESTS
+
 #include <tuple>
 #include <vector>
 #include "rev/api/alg/odometry/odometry.hh"
@@ -86,3 +88,5 @@ int generate_plot(const std::vector<PointVector> ideal_path,
 
   return 0;
 }
+
+#endif
