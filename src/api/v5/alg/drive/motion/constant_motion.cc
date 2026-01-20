@@ -2,9 +2,11 @@
 
 #include "rev/api/v5/alg/drive/motion/constant_motion.hh"
 
-rev::ConstantMotion::ConstantMotion(double ipower) : power(fabs(ipower)) {}
+namespace rev {
 
-std::tuple<double, double> rev::ConstantMotion::gen_powers(
+ConstantMotion::ConstantMotion(double ipower) : power(fabs(ipower)) {}
+
+std::tuple<double, double> ConstantMotion::gen_powers(
     rev::OdometryState current_state,
     rev::Position target_state,
     Position start_state,
@@ -25,5 +27,7 @@ std::tuple<double, double> rev::ConstantMotion::gen_powers(
 
   return std::make_tuple(opower, opower);
 }
+
+}  // namespace rev
 
 #endif

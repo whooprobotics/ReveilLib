@@ -48,6 +48,19 @@ namespace rev {
  */
 class CascadingMotion : public Motion {
  public:
+  /**
+   * @brief Generate motor powers.
+   * 
+   * This is intended for use as the initial generation of motor powers.
+   * Correction should be applied later.
+   * 
+   * @param current_state The current state when this method is called
+   * @param target_state The target state being approached
+   * @param start_state the position occupied when the current segment gained control
+   * @param drop_early The distance from the target point at which this segment should end
+   * 
+   * @return std::tuple<double, double> Motor powers for a differential drive
+   */
   std::tuple<double, double> gen_powers(OdometryState current_state,
                                         Position target_state,
                                         Position start_state,
@@ -68,6 +81,11 @@ class CascadingMotion : public Motion {
                            QSpeed imax_v = 60 * inch / second,
                            double ik_v = 0.07);
 
+  /**
+   * @brief Shorthand for creating a new CascadingMotion object
+   * 
+   * @return std::shared_ptr<CascadingMotion> newly constructed CascadingMotion object
+   */
   std::shared_ptr<CascadingMotion> operator&() {
     return std::make_shared<CascadingMotion>(*this);
   }
@@ -76,8 +94,9 @@ class CascadingMotion : public Motion {
   double power;
   double k_p;
   double k_b;
-  QSpeed max_v;
   double k_v;
+
+  QSpeed max_v;
 };
 }  // namespace rev
 

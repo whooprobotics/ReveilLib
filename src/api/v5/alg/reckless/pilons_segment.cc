@@ -3,10 +3,14 @@
 #include <iostream>
 #include "rev/api/v5/alg/reckless/pilons_segment.hh"
 #include "rev/api/v5/alg/reckless/path.hh"
+
+using std::cout, std::endl;
+using std::tuple;
+
 namespace rev {
 
 void PilonsSegment::init(OdometryState initial_state) {
-  std::cout << "Pilons segment invoked" << std::endl;
+  cout << "Pilons segment invoked" << endl;
   this->start_point = initial_state.pos;
 }
 
@@ -35,7 +39,7 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
       new_state == StopState::BRAKE)
     return last_status = SegmentStatus::brake();
 
-  std::tuple<double, double> pows = this->motion->gen_powers(
+  tuple<double, double> pows = this->motion->gen_powers(
       current_state, this->target_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
@@ -48,7 +52,7 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
     return last_status = SegmentStatus::drive(power);
   }
   // Apply correction
-  std::tuple<double, double> corrected_pows =
+  tuple<double, double> corrected_pows =
       this->correction->apply_correction(current_state, this->target_point,
                                          this->start_point, this->drop_early,
                                          pows);

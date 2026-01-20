@@ -8,7 +8,6 @@
 #include "rev/api/common/units/q_time.hh"
 
 namespace rev {
-
 /**
  * @brief Path segment for turning for use with Reckless controller,
  * implementing Walker Campbell's turn algorithm
@@ -16,6 +15,16 @@ namespace rev {
  */
 class RecklessTurnSegment : public RecklessSegment {
  public:
+  /**
+   * @brief Constructs a new RecklessTurnSegment object
+   * 
+   * @param imax_power Maximum turning power
+   * @param icoast_power Turning coast power
+   * @param iangle The angle to face the robot towards
+   * @param iharsh_coeff The harsh braking coefficient
+   * @param icoast_coeff The coast braking coefficient
+   * @param ibrake_time The maximum time that should be spent braking
+   */
   RecklessTurnSegment(double imax_power,
                       double icoast_power,
                       QAngle iangle,
@@ -23,14 +32,35 @@ class RecklessTurnSegment : public RecklessSegment {
                       double icoast_coeff,
                       QTime ibrake_time);
 
+  /**
+   * @brief Current state of the turn segment
+   */
   enum class TurnState { FULLPOWER, COAST, BRAKE };
 
+  /**
+   * @brief Initializes the segment to turn the robot
+   * 
+   * @param initial_state The current odometry state when this segment is initialized
+   */
   void init(OdometryState initial_state);
 
+  /**
+   * @brief Update the segment with new sensor data
+   * 
+   * @return SegmentStatus The current status of the segment
+   */
   SegmentStatus step(OdometryState current_state);
 
+  /**
+   * @brief Cleans up the turn segment
+   */
   void clean_up();
 
+  /**
+   * @brief Shorthand for creating a new LookAt object
+   * 
+   * @return std::shared_ptr<LookAt> newly constructed LookAt object
+   */
   std::shared_ptr<RecklessSegment> operator&() {
     return std::make_shared<RecklessTurnSegment>(*this);
   }
@@ -46,6 +76,11 @@ class RecklessTurnSegment : public RecklessSegment {
                                                  icoast_coeff, ibrake_time);
   }
 
+  /**
+   * @brief Returns the progress of the segment
+   * 
+   * @return Segment progress
+   */
   double progress() override { return 0; }
 
  private:

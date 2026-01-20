@@ -1,12 +1,14 @@
 #ifdef PLATFORM_BRAIN
 
-#include "rev/api/v5/alg/odometry/optical_odometry.hh"
 #include <cerrno>
 #include <iostream>
+#include "rev/api/v5/alg/odometry/optical_odometry.hh"
+
+using std::shared_ptr;
 
 namespace rev {
 
-OpticalOdometry::OpticalOdometry(std::shared_ptr<OTOS> sensor,
+OpticalOdometry::OpticalOdometry(shared_ptr<OTOS> sensor,
                                  QLength ilongitudinal_offset,
                                  QLength ilateral_offset)
     : optical_sensor(sensor),

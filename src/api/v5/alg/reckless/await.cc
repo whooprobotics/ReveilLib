@@ -2,9 +2,11 @@
 
 #include "rev/api/v5/alg/reckless/await.hh"
 
+using std::shared_ptr;
+
 namespace rev {
 
-Await::Await(std::shared_ptr<AsyncAwaitable> idependency)
+Await::Await(shared_ptr<AsyncAwaitable> idependency)
     : dependency(idependency) {}
 
 void Await::init(OdometryState initial_state) {}

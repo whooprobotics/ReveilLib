@@ -14,6 +14,19 @@ namespace rev {
  */
 class ProportionalMotion : public Motion {
  public:
+  /**
+   * @brief Generate motor powers.
+   * 
+   * This is intended for use as the initial generation of motor powers.
+   * Correction should be applied later.
+   * 
+   * @param current_state The current state when this method is called
+   * @param target_state The target state being approached
+   * @param start_state The position occupied when the current segment gained control
+   * @param drop_early The distance from the target point at which this segment should end
+   * 
+   * @return std::tuple<double, double> Motor powers for a differential drive
+   */
   std::tuple<double, double> gen_powers(OdometryState current_state,
                                         Position target_state,
                                         Position start_state,
@@ -23,11 +36,15 @@ class ProportionalMotion : public Motion {
    * @brief Construct a new Proportional Motion object
    *
    * @param ipower The maximum power the controller will output
-   * @param ik_p A constant determining the power to be applied per inch from
-   * target
+   * @param ik_p A constant determining the power to be applied per inch from target
    */
   explicit ProportionalMotion(double ipower, double ik_p);
 
+  /**
+   * @brief Shorthand for creating a new ProportionalMotion object
+   * 
+   * @return std::shared_ptr<ProportionalMotion> newly constructed ProportionalMotion object
+   */
   std::shared_ptr<ProportionalMotion> operator&() {
     return std::make_shared<ProportionalMotion>(*this);
   }

@@ -48,21 +48,21 @@ class Odometry {
  public:
   /**
    * @brief Get the current position and velocity of the robot
-   *
-   * @return OdometryState
+   * 
+   * @return OdometryState current position and velocity
    */
   virtual OdometryState get_state() = 0;
+
   /**
    * @brief Set the position of the controller
-   *
-   * @param pos
+   * 
+   * @param pos x, y, and heading coordinates
    */
   virtual void set_position(Position pos) = 0;
+  
   /**
    * @brief Set the position to (0,0)
-   *
    * THIS WILL ALSO RESET HEADING, WHICH YOU MIGHT NOT WANT
-   *
    */
   virtual void reset_position() = 0;
 };

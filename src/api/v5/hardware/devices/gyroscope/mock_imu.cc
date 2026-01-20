@@ -18,7 +18,7 @@ bool MockImu::is_calibrating() {
   return false;
 }
 
-std::pair<uint8_t, uint8_t> MockImu::check_port() {
+std::pair<uint8_t, uint8_t> MockImu::check_ports() {
   return std::make_pair(0, 0);
 }
 

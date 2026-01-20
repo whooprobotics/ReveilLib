@@ -25,6 +25,11 @@ class ConstantMotion : public Motion {
    */
   explicit ConstantMotion(double ipower);
 
+  /**
+   * @brief Shorthand for creating a new ConstantMotion object
+   * 
+   * @return std::shared_ptr<ConstantMotion> newly constructed ConstantMotion object
+   */
   std::shared_ptr<ConstantMotion> operator&() {
     return std::make_shared<ConstantMotion>(*this);
   }

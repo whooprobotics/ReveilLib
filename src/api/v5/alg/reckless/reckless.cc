@@ -3,11 +3,14 @@
 #include "pros/rtos.hpp"
 #include "rev/api/v5/alg/reckless/reckless.hh"
 
+using std::cout, std::endl;
+using std::shared_ptr;
+
 namespace rev {
 
 StopState lsstate = StopState::GO;
-Reckless::Reckless(std::shared_ptr<Chassis> ichassis,
-                   std::shared_ptr<Odometry> iodometry)
+Reckless::Reckless(shared_ptr<Chassis> ichassis,
+                   shared_ptr<Odometry> iodometry)
     : chassis(ichassis), odometry(iodometry) {}
 
 void Reckless::step() {
@@ -17,8 +20,8 @@ void Reckless::step() {
 
   // If we are out of steps to complete, don't try to complete a step
   if (current_segment >= current_path.segments.size()) {
-    std::cout << "Completed motion with " << current_path.segments.size()
-              << " segments" << std::endl;
+    cout << "Completed motion with " << current_path.segments.size()
+              << " segments" << endl;
     status = RecklessStatus::DONE;
     partial_progress = current_path.segments.size();
     current_segment = 0;
@@ -95,8 +98,8 @@ void Reckless::go(RecklessPath path) {
   current_path = path;
   current_path.segments.at(0)->init(odometry->get_state());
   status = RecklessStatus::ACTIVE;
-  std::cout << "Started motion with " << current_path.segments.size()
-            << " segments" << std::endl;
+  cout << "Started motion with " << current_path.segments.size()
+            << " segments" << endl;
 }
 
 /**
@@ -115,12 +118,14 @@ RecklessStatus Reckless::get_status() {
 double Reckless::progress() {
   return partial_progress;
 }
+
 /**
  * This function returns true if the status is DONE, and false otherwise
  */
 bool Reckless::is_completed() {
   return get_status() == RecklessStatus::DONE;
 }
+
 /**
  * This function immediately sets the status to DONE and ends the current
  * motion

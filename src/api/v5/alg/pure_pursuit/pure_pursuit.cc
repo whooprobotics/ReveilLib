@@ -2,13 +2,16 @@
 
 #include "rev/api/v5/alg/pure_pursuit/pure_pursuit.hh"
 
+using std::shared_ptr;
+using std::tuple;
+
 namespace rev {
 
 PurePursuitSegment::PurePursuitSegment(
-    std::shared_ptr<Motion> imotion,
-    std::shared_ptr<Correction> icorrection,
-    std::shared_ptr<Stop> istop,
-    std::tuple<double, double, double> pid_constants,
+    shared_ptr<Motion> imotion,
+    shared_ptr<Correction> icorrection,
+    shared_ptr<Stop> istop,
+    tuple<double, double, double> pid_constants,
     QLength wheelbase,
     QLength look_ahead_distance)
     : motion(imotion),

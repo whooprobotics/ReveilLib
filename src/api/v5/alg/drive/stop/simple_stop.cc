@@ -4,7 +4,7 @@
 
 namespace rev {
 
-rev::QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference);
+QAngle near_semicircle(QAngle angle, QAngle reference);
 
 SimpleStop::SimpleStop(QTime iharsh_threshold,
                        QTime icoast_threshold,
@@ -22,6 +22,7 @@ SimpleStop::SimpleStop(QTime iharsh_threshold,
       coast_power(fabs(icoast_power)) {
   timeout = (uint32_t)itimeout.convert(millisecond);
 }
+
 StopState SimpleStop::get_stop_state(OdometryState current_state,
                                       Position target_state,
                                       Position start_state,

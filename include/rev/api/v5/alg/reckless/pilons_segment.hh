@@ -20,19 +20,16 @@ struct PilonsSegmentParams {
  * until a major release.
  */
 class PilonsSegment : public RecklessSegment {
-  std::shared_ptr<Motion> motion;
-  std::shared_ptr<Correction> correction;
-  std::shared_ptr<Stop> stop;
-
-  Position start_point;
-  Position target_point;
-  QLength drop_early;
-
-  double part_progress{0.0};
-
-  SegmentStatus last_status{SegmentStatus::drive(0, 0)};
-
  public:
+  /**
+   * @brief Constructs a new PilonsSegment object
+   * 
+   * @param imotion The motion controller used for this segment
+   * @param icorrection The correction controller used for this segment
+   * @param istop The stop controller used for this segment
+   * @param itarget_point The desired point to move to
+   * @param idrop_early The distance from the target point at which this segment should stop
+   */
   PilonsSegment(std::shared_ptr<Motion> imotion,
                 std::shared_ptr<Correction> icorrection,
                 std::shared_ptr<Stop> istop,
@@ -89,15 +86,33 @@ class PilonsSegment : public RecklessSegment {
 
   double progress() override;
 
+  /**
+   * @brief Shorthand for creating a new PilonsSegment object
+   * 
+   * @return std::shared_ptr<PilonsSegment> newly constructed PilonsSegment object
+   */
   std::shared_ptr<RecklessSegment> operator&() {
     return std::make_shared<PilonsSegment>(*this);
   }
 
-  static std::shared_ptr<PilonsSegment> create(PilonsSegmentParams params,
-                                               Position target_point,
-                                               QLength drop_early = 0 * inch) {
+  static std::shared_ptr<PilonsSegment> create(
+      PilonsSegmentParams params,
+      Position target_point,
+      QLength drop_early = 0 * inch) {
     return std::make_shared<PilonsSegment>(params, target_point, drop_early);
   }
+ private:
+  std::shared_ptr<Motion> motion;
+  std::shared_ptr<Correction> correction;
+  std::shared_ptr<Stop> stop;
+
+  Position start_point;
+  Position target_point;
+  QLength drop_early;
+
+  double part_progress = 0.0;
+
+  SegmentStatus last_status = SegmentStatus::drive(0, 0);
 };
 }  // namespace rev
 

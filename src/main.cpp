@@ -19,8 +19,7 @@ auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
   Setting Up Odometry
     - When moving forward robot position X should increase
     - When moving right robot position Y should increase
-*/  
-
+*/
 auto imu = make_shared<Imu>(7);
 
 auto left_encoder = make_shared<QuadEncoder>('A', 'B', false);

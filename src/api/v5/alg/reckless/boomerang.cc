@@ -1,14 +1,17 @@
 #ifdef PLATFORM_BRAIN
 
-#include "rev/api/v5/alg/reckless/boomerang.hh"
 #include <iostream>
+#include "rev/api/v5/alg/reckless/boomerang.hh"
 #include "rev/api/v5/alg/drive/stop/stop.hh"
 #include "rev/api/v5/alg/odometry/odometry.hh"
 #include "rev/api/v5/alg/reckless/path.hh"
+
+using std::cout, std::endl, std::tuple;
+
 namespace rev {
 
 void BoomerangSegment::init(OdometryState initial_state) {
-  std::cout << "Boomerang segment invoked" << std::endl;
+  cout << "Boomerang segment invoked" << endl;
   this->start_point = initial_state.pos;
 
   Number xi_facing = cos(initial_state.pos.theta);
@@ -68,7 +71,7 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
       new_state == StopState::BRAKE)
     return last_status = SegmentStatus::brake();
 
-  std::tuple<double, double> pows = this->motion->gen_powers(
+  tuple<double, double> pows = this->motion->gen_powers(
       current_state, carrot_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
@@ -81,7 +84,7 @@ SegmentStatus BoomerangSegment::step(OdometryState current_state) {
     return last_status = SegmentStatus::drive(power);
   }
   // Apply correction
-  std::tuple<double, double> corrected_pows =
+  tuple<double, double> corrected_pows =
       this->correction->apply_correction(current_state, carrot_point,
                                          this->start_point, this->drop_early,
                                          pows);

@@ -1,27 +1,28 @@
 #ifdef PLATFORM_BRAIN
 
+#include <algorithm>
+
 #include "rev/api/v5/alg/drive/motion/cascading_motion.hh"
 #include "rev/util/mathutil.hh"
 
-#include <algorithm>
-#include <cmath>
+namespace rev {
 
-rev::CascadingMotion::CascadingMotion(double ipower,
-                                      double ik_p,
-                                      double ik_b,
-                                      QSpeed imax_v,
-                                      double ik_v)
+CascadingMotion::CascadingMotion(double ipower,
+                                 double ik_p,
+                                 double ik_b,
+                                 QSpeed imax_v,
+                                 double ik_v)
     : power(fabs(ipower)),
       k_p(fabs(ik_p)),
       k_b(fabs(ik_b)),
       max_v(abs(imax_v)),
       k_v(fabs(ik_v)) {}
 
-std::tuple<double, double> rev::CascadingMotion::gen_powers(
-    rev::OdometryState current_state,
-    rev::Position target_state,
-    Position start_state,
-    QLength drop_early) {
+std::tuple<double, double> CascadingMotion::gen_powers(
+      rev::OdometryState current_state,
+      rev::Position target_state,
+      Position start_state,
+      QLength drop_early) {
   // Calculate the absolute angle from the robot's facing direction to the
   // target point
   QAngle angle_to_target = atan2(target_state.y - current_state.pos.y,
@@ -59,5 +60,7 @@ std::tuple<double, double> rev::CascadingMotion::gen_powers(
 
   return std::make_tuple(finalPower, finalPower);
 }
+
+}  // namespace rev
 
 #endif

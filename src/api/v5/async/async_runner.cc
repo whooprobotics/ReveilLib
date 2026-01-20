@@ -2,8 +2,11 @@
 
 #include "rev/api/v5/async/async_runner.hh"
 
+using std::shared_ptr;
+
 namespace rev {
-AsyncRunner::AsyncRunner(std::shared_ptr<AsyncRunnable> icontroller,
+  
+AsyncRunner::AsyncRunner(shared_ptr<AsyncRunnable> icontroller,
                          uint32_t itdelta)
     : controller(icontroller), tdelta(itdelta), thread(nullptr) {
 #ifndef OFF_ROBOT_TESTS
@@ -43,6 +46,7 @@ void AsyncRunner::loop() {
     pros::Task::delay_until(&last_time, tdelta);
   }
 }
+
 }  // namespace rev
 
 #endif
