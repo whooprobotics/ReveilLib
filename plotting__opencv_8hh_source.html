@@ -115,7 +115,7 @@ $(function(){initNavTree('plotting__opencv_8hh_source.html',''); initResizable(t
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span>rev;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>cv::Point top_left(23, 475);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>cv::Point top_right(471, 475);</div>
@@ -124,7 +124,7 @@ $(function(){initNavTree('plotting__opencv_8hh_source.html',''); initResizable(t
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">double</span> field_width_pixels = 448;  <span class="comment">// 471-23 and 475-26</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>QLength field_width = 12_ft;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>cv::Point convert_to_cv(PointVector point) {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>cv::Point convert_to_cv(<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> point) {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">double</span> x_pixels =</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      point.x.convert(inch) / field_width.convert(inch) * field_width_pixels;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">double</span> y_pixels = -1 * point.y.convert(inch) / field_width.convert(inch) *</div>
@@ -141,7 +141,7 @@ $(function(){initNavTree('plotting__opencv_8hh_source.html',''); initResizable(t
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  std::vector&lt;cv::Point&gt; cv_points;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (PointVector point : points) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> point : points) {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    cv_points.push_back(convert_to_cv(point));</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
@@ -177,6 +177,8 @@ $(function(){initNavTree('plotting__opencv_8hh_source.html',''); initResizable(t
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
+<div class="ttc" id="astructrev_1_1PointVector_html"><div class="ttname"><a href="structrev_1_1PointVector.html">rev::PointVector</a></div><div class="ttdoc">Structure representing a 2D vector on a plane.</div><div class="ttdef"><b>Definition</b> point_vector.hh:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

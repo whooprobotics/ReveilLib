@@ -1,0 +1,5 @@
+<map id="rev::ProportionalMotion" name="rev::ProportionalMotion">
+<area shape="rect" id="Node000001" title="Motion class in which the outputs are proportional to longitudinal error." alt="" coords="5,79,159,105"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1Motion.html" title="Interface for generating raw motor powers." alt="" coords="40,5,124,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,46,85,79,79,79,79,46"/>
+</map>

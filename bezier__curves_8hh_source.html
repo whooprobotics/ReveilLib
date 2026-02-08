@@ -118,11 +118,12 @@ $(function(){initNavTree('bezier__curves_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;rev/api/common/units/q_length.hh&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;rev/util/math/point_vector.hh&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">class </span>BezierSegment : <span class="keyword">public</span> PurePursuitSegment {</div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classrev_1_1BezierSegment.html">   20</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1BezierSegment.html#ad294221b006a4f5b6302f618e3542974">BezierSegment</a> : <span class="keyword">public</span> <a class="code hl_function" href="classrev_1_1PurePursuitSegment.html#a19ef48cfc971940e58cf2a6af549d56a">PurePursuitSegment</a> {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  BezierSegment(std::shared_ptr&lt;Motion&gt; imotion,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_function" href="classrev_1_1BezierSegment.html#ad294221b006a4f5b6302f618e3542974">BezierSegment</a>(std::shared_ptr&lt;Motion&gt; imotion,</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                std::shared_ptr&lt;Correction&gt; icorrection,</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                std::shared_ptr&lt;Stop&gt; istop,</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                std::vector&lt;PointVector&gt; path_points,</div>
@@ -131,10 +132,10 @@ $(function(){initNavTree('bezier__curves_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                std::size_t resolution = 0,</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                QLength look_ahead_distance = 6_in);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordtype">void</span> init(OdometryState initial_state) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1BezierSegment.html#a993d9e92b2e3f2eff66965cbd93fa939">init</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  std::vector&lt;PointVector&gt; generate_waypoints() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  std::vector&lt;PointVector&gt; <a class="code hl_function" href="classrev_1_1BezierSegment.html#a67bf9636cc9c5c1554132cd5c89e02e3">generate_waypoints</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  std::shared_ptr&lt;Motion&gt; motion;</div>
@@ -142,8 +143,8 @@ $(function(){initNavTree('bezier__curves_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  std::shared_ptr&lt;Stop&gt; stop;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  std::vector&lt;PointVector&gt; path_points;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  Position target_point;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  Position final_point;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> final_point;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  QLength wheelbase;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  QLength look_ahead_distance;</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
@@ -153,10 +154,18 @@ $(function(){initNavTree('bezier__curves_8hh_source.html',''); initResizable(tru
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">double</span> left_speed;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">double</span> right_speed;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}  <span class="comment">// namespace rev</span></div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassrev_1_1BezierSegment_html_a67bf9636cc9c5c1554132cd5c89e02e3"><div class="ttname"><a href="classrev_1_1BezierSegment.html#a67bf9636cc9c5c1554132cd5c89e02e3">rev::BezierSegment::generate_waypoints</a></div><div class="ttdeci">std::vector&lt; PointVector &gt; generate_waypoints() override</div><div class="ttdoc">Generate the Bezier curve waypoints based on control points.</div><div class="ttdef"><b>Definition</b> bezier_curves.cc:38</div></div>
+<div class="ttc" id="aclassrev_1_1BezierSegment_html_a993d9e92b2e3f2eff66965cbd93fa939"><div class="ttname"><a href="classrev_1_1BezierSegment.html#a993d9e92b2e3f2eff66965cbd93fa939">rev::BezierSegment::init</a></div><div class="ttdeci">void init(OdometryState initial_state) override</div><div class="ttdoc">Initialize the Bezier segment by generating waypoints.</div><div class="ttdef"><b>Definition</b> bezier_curves.cc:31</div></div>
+<div class="ttc" id="aclassrev_1_1BezierSegment_html_ad294221b006a4f5b6302f618e3542974"><div class="ttname"><a href="classrev_1_1BezierSegment.html#ad294221b006a4f5b6302f618e3542974">rev::BezierSegment::BezierSegment</a></div><div class="ttdeci">BezierSegment(std::shared_ptr&lt; Motion &gt; imotion, std::shared_ptr&lt; Correction &gt; icorrection, std::shared_ptr&lt; Stop &gt; istop, std::vector&lt; PointVector &gt; path_points, std::tuple&lt; double, double, double &gt; pid_constants, QLength wheelbase, std::size_t resolution=0, QLength look_ahead_distance=6_in)</div><div class="ttdoc">Make a new Bezier Segment.</div><div class="ttdef"><b>Definition</b> bezier_curves.cc:11</div></div>
+<div class="ttc" id="aclassrev_1_1PurePursuitSegment_html_a19ef48cfc971940e58cf2a6af549d56a"><div class="ttname"><a href="classrev_1_1PurePursuitSegment.html#a19ef48cfc971940e58cf2a6af549d56a">rev::PurePursuitSegment::PurePursuitSegment</a></div><div class="ttdeci">PurePursuitSegment(std::shared_ptr&lt; Motion &gt; imotion, std::shared_ptr&lt; Correction &gt; icorrection, std::shared_ptr&lt; Stop &gt; istop, std::tuple&lt; double, double, double &gt; pid_constants, QLength wheelbase, QLength look_ahead_distance)</div><div class="ttdoc">Construct a new Pure Pursuit Segment.</div><div class="ttdef"><b>Definition</b> pure_pursuit.cc:10</div></div>
 <div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:22</div></div>
+<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

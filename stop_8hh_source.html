@@ -106,22 +106,29 @@ $(function(){initNavTree('stop_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifdef PLATFORM_BRAIN</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/v5/alg/odometry/odometry.hh&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">enum class</span> StopState { GO, COAST, BRAKE, EXIT };</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">class </span>Stop {</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classrev_1_1Stop.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1Stop.html">Stop</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">virtual</span> StopState get_stop_state(OdometryState current_state,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                                    Position target_state,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                                    Position start_state,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classrev_1_1Stop.html#adc9344362fd5143224ebd456f3e34bea">   27</a></span>  <span class="keyword">virtual</span> StopState <a class="code hl_function" href="classrev_1_1Stop.html#adc9344362fd5143224ebd456f3e34bea">get_stop_state</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                                    <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_state,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                                    <a class="code hl_typedef" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> start_state,</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                                    QLength drop_early) = 0;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">virtual</span> <span class="keywordtype">double</span> get_coast_power() = 0;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}  <span class="comment">// namespace rev</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassrev_1_1Stop_html"><div class="ttname"><a href="classrev_1_1Stop.html">rev::Stop</a></div><div class="ttdoc">Interface for stop controllers.</div><div class="ttdef"><b>Definition</b> stop.hh:14</div></div>
+<div class="ttc" id="aclassrev_1_1Stop_html_adc9344362fd5143224ebd456f3e34bea"><div class="ttname"><a href="classrev_1_1Stop.html#adc9344362fd5143224ebd456f3e34bea">rev::Stop::get_stop_state</a></div><div class="ttdeci">virtual StopState get_stop_state(OdometryState current_state, Position target_state, Position start_state, QLength drop_early)=0</div><div class="ttdoc">Find the current stop state.</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
+<div class="ttc" id="anamespacerev_html_a032bee8fc59a38d427e7be078e6653b8"><div class="ttname"><a href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></div><div class="ttdeci">struct Pose Position</div><div class="ttdoc">A structure representing a position and facing direction.</div><div class="ttdef"><b>Definition</b> odometry.hh:22</div></div>
+<div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

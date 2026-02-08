@@ -44,13 +44,23 @@ var NAVTREE =
     [ "Code styling & standards for ReveilLib", "md_Style.html", [
       [ "Capitalization", "md_Style.html#autotoc_md16", null ]
     ] ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -66,7 +76,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"all__units_8hh_source.html"
+"all__units_8hh_source.html",
+"classrev_1_1MockRotationSensor.html#a309f40af84e03491cfddf1022dc75fe5",
+"classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91a35f405fc169f9245d654f3b46653cd0e",
+"q__volume_8hh_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

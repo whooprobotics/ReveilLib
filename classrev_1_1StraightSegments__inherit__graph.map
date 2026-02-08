@@ -1,0 +1,7 @@
+<map id="rev::StraightSegments" name="rev::StraightSegments">
+<area shape="rect" id="Node000001" title=" " alt="" coords="13,153,163,178"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1PurePursuitSegment.html" title="Pure Pursuit Path Segment." alt="" coords="5,79,171,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,120,91,152,85,152,85,120"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1RecklessSegment.html" title="Interface for path segments to be used with the Reckless controller." alt="" coords="12,5,164,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,46,91,79,85,79,85,46"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="rev::MockQuadEncoder" name="rev::MockQuadEncoder">
+<area shape="rect" id="Node000001" title="Simulated implementation of the QuadEncoder class." alt="" coords="5,79,161,105"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1RotarySensor.html" title="Interface for rotational sensors used for odometry." alt="" coords="21,5,145,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,46,86,79,80,79,80,46"/>
+</map>

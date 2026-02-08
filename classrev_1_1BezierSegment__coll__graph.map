@@ -1,0 +1,12 @@
+<map id="rev::BezierSegment" name="rev::BezierSegment">
+<area shape="rect" id="Node000001" title=" " alt="" coords="138,244,272,270"/>
+<area shape="rect" id="Node000002" href="$classrev_1_1PurePursuitSegment.html" title="Pure Pursuit Path Segment." alt="" coords="122,169,288,195"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,210,208,244,202,244,202,210"/>
+<area shape="rect" id="Node000003" href="$classrev_1_1RecklessSegment.html" title="Interface for path segments to be used with the Reckless controller." alt="" coords="5,80,157,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="112,113,189,166,186,171,109,117"/>
+<area shape="rect" id="Node000004" href="$structrev_1_1Pose.html" title=" " alt="" coords="289,80,364,106"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="299,117,224,171,221,166,296,113"/>
+<area shape="rect" id="Node000005" href="$structrev_1_1PointVector.html" title="Structure representing a 2D vector on a plane." alt="" coords="164,5,278,31"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="221,47,209,169,204,168,216,47"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="253,38,310,78,307,82,250,42"/>
+</map>

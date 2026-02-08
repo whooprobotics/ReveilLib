@@ -111,8 +111,9 @@ $(function(){initNavTree('path_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;rev/api/v5/alg/drive/stop/stop.hh&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;rev/api/v5/alg/reckless/segment.hh&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>rev {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">struct </span>RecklessPath {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structrev_1_1RecklessPath.html">   16</a></span><span class="keyword">struct </span>RecklessPath {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  std::vector&lt;std::shared_ptr&lt;RecklessSegment&gt;&gt; segments;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  RecklessPath() {</div>
@@ -129,16 +130,21 @@ $(function(){initNavTree('path_8hh_source.html',''); initResizable(true); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  }</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  RecklessPath&amp; with_segment(T segment) {</div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">   39</a></span>  RecklessPath&amp; <a class="code hl_function" href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">with_segment</a>(T segment) {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">static_assert</span>(std::is_base_of&lt;RecklessSegment, T&gt;::value,</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                  <span class="stringliteral">&quot;with_segment parameter must implement RecklessSegment&quot;</span>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    segments.push_back(std::make_shared&lt;T&gt;(segment));</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
+</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}  <span class="comment">// namespace rev</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
+<div class="ttc" id="astructrev_1_1RecklessPath_html_a6f5fed189c38b8dd5355390e94dd68dd"><div class="ttname"><a href="structrev_1_1RecklessPath.html#a6f5fed189c38b8dd5355390e94dd68dd">rev::RecklessPath::with_segment</a></div><div class="ttdeci">RecklessPath &amp; with_segment(T segment)</div><div class="ttdoc">Add a segment to the path under construction.</div><div class="ttdef"><b>Definition</b> path.hh:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

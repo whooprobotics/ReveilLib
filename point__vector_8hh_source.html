@@ -106,36 +106,49 @@ $(function(){initNavTree('point__vector_8hh_source.html',''); initResizable(true
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifdef PLATFORM_BRAIN</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;rev/api/common/units/all_units.hh&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">struct </span>PointVector {</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structrev_1_1PointVector.html">   12</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  QLength x;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  QLength y;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>};</div>
+</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">constexpr</span> PointVector operator+(<span class="keyword">const</span> PointVector&amp; lhs,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                                <span class="keyword">const</span> PointVector&amp; rhs) {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">return</span> PointVector{lhs.x + rhs.x, lhs.y + rhs.y};</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacerev.html#aefe874af86f9888c9e852ed4f9575b07">   24</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> operator+(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; lhs,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; rhs) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{lhs.x + rhs.x, lhs.y + rhs.y};</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">constexpr</span> PointVector operator-(<span class="keyword">const</span> PointVector&amp; lhs,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                                <span class="keyword">const</span> PointVector&amp; rhs) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">return</span> PointVector{lhs.x - rhs.x, lhs.y - rhs.y};</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespacerev.html#aaf276f649b5d30d031132a96ef670996">   36</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> operator-(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; lhs,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; rhs) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{lhs.x - rhs.x, lhs.y - rhs.y};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">constexpr</span> QArea operator*(<span class="keyword">const</span> PointVector&amp; lhs, <span class="keyword">const</span> PointVector&amp; rhs) {</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespacerev.html#a780d8f94a89386effca9f7f718137dcc">   48</a></span><span class="keyword">constexpr</span> QArea operator*(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; rhs) {</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">return</span> lhs.x * rhs.x + lhs.y * rhs.y;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">constexpr</span> PointVector operator*(<span class="keyword">const</span> <span class="keywordtype">double</span> lhs, <span class="keyword">const</span> PointVector&amp; rhs) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">return</span> PointVector{rhs.x * lhs, rhs.y * lhs};</div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="namespacerev.html#ace15974f111020fdd77bb4390a9bc4e7">   59</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> operator*(<span class="keyword">const</span> <span class="keywordtype">double</span> lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; rhs) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{rhs.x * lhs, rhs.y * lhs};</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">constexpr</span> PointVector operator*(<span class="keyword">const</span> Number&amp; lhs, <span class="keyword">const</span> PointVector&amp; rhs) {</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacerev.html#af55d4bc766d94223b9957a41bae880f2">   70</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> operator*(<span class="keyword">const</span> Number&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>&amp; rhs) {</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordflow">return</span> {lhs * rhs.x, lhs * rhs.y};</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
+</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> operator==(PointVector lhs, PointVector rhs) {</div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="namespacerev.html#a82863fdef7301daaddc5840d803429a2">   83</a></span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> operator==(<a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> lhs, <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> rhs) {</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// Millimeter precision is enough here</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span> (abs(lhs.x - rhs.x) &gt; 1_mm)</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -144,35 +157,52 @@ $(function(){initNavTree('point__vector_8hh_source.html',''); initResizable(true
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
+</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">constexpr</span> QLength abs(<span class="keyword">const</span> PointVector lhs) {</div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="namespacerev.html#a7589d327a7147e1bf9d87a7c1cda72ef">   99</a></span><span class="keyword">constexpr</span> QLength abs(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> lhs) {</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">return</span> sqrt(lhs.x * lhs.x + lhs.y * lhs.y);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">constexpr</span> PointVector unitize(<span class="keyword">const</span> PointVector lhs) {</div>
+<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="namespacerev.html#a2838f491cb9ce7f98da4439c5d084c98">  110</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> <a class="code hl_function" href="namespacerev.html#a2838f491cb9ce7f98da4439c5d084c98">unitize</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> lhs) {</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordflow">if</span> (abs(lhs) == 0_m)</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> PointVector{1_m, 0_m};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{1_m, 0_m};</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  Number kd = abs(lhs) / meter;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">return</span> PointVector{lhs.x / kd, lhs.y / kd};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{lhs.x / kd, lhs.y / kd};</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">constexpr</span> PointVector unit_from_angle(<span class="keyword">const</span> QAngle lhs) {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keywordflow">return</span> PointVector{meter * cos(lhs), meter * sin(lhs)};</div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="namespacerev.html#affb0dd4002ecaff3dc17ec79f3977eb3">  123</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> <a class="code hl_function" href="namespacerev.html#affb0dd4002ecaff3dc17ec79f3977eb3">unit_from_angle</a>(<span class="keyword">const</span> QAngle lhs) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a>{meter * cos(lhs), meter * sin(lhs)};</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
+</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">constexpr</span> PointVector projection(<span class="keyword">const</span> PointVector lhs, <span class="keyword">const</span> PointVector rhs) {</div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="}">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="namespacerev.html#a8e19a487928bfd9cb535b5a8208ecfec">  134</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> <a class="code hl_function" href="namespacerev.html#a8e19a487928bfd9cb535b5a8208ecfec">projection</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> rhs) {</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  Number ratio = (lhs * rhs) / (rhs * rhs);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordflow">return</span> ratio * rhs;</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
+</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">constexpr</span> PointVector rejection(<span class="keyword">const</span> PointVector lhs, <span class="keyword">const</span> PointVector rhs) {</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  PointVector proj = projection(lhs, rhs);</div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="namespacerev.html#a1b19e2521ecb20964b11868a507a3ca0">  146</a></span><span class="keyword">constexpr</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> <a class="code hl_function" href="namespacerev.html#a1b19e2521ecb20964b11868a507a3ca0">rejection</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> rhs) {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <a class="code hl_struct" href="structrev_1_1PointVector.html">PointVector</a> proj = <a class="code hl_function" href="namespacerev.html#a8e19a487928bfd9cb535b5a8208ecfec">projection</a>(lhs, rhs);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordflow">return</span> lhs - proj;</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}  <span class="comment">// namespace rev</span></div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
+<div class="ttc" id="anamespacerev_html_a1b19e2521ecb20964b11868a507a3ca0"><div class="ttname"><a href="namespacerev.html#a1b19e2521ecb20964b11868a507a3ca0">rev::rejection</a></div><div class="ttdeci">constexpr PointVector rejection(const PointVector lhs, const PointVector rhs)</div><div class="ttdoc">Finds the vector rejection of lhs onto rhs</div><div class="ttdef"><b>Definition</b> point_vector.hh:146</div></div>
+<div class="ttc" id="anamespacerev_html_a2838f491cb9ce7f98da4439c5d084c98"><div class="ttname"><a href="namespacerev.html#a2838f491cb9ce7f98da4439c5d084c98">rev::unitize</a></div><div class="ttdeci">constexpr PointVector unitize(const PointVector lhs)</div><div class="ttdoc">Unitization function.</div><div class="ttdef"><b>Definition</b> point_vector.hh:110</div></div>
+<div class="ttc" id="anamespacerev_html_a8e19a487928bfd9cb535b5a8208ecfec"><div class="ttname"><a href="namespacerev.html#a8e19a487928bfd9cb535b5a8208ecfec">rev::projection</a></div><div class="ttdeci">constexpr PointVector projection(const PointVector lhs, const PointVector rhs)</div><div class="ttdoc">Projects lhs onto rhs</div><div class="ttdef"><b>Definition</b> point_vector.hh:134</div></div>
+<div class="ttc" id="anamespacerev_html_affb0dd4002ecaff3dc17ec79f3977eb3"><div class="ttname"><a href="namespacerev.html#affb0dd4002ecaff3dc17ec79f3977eb3">rev::unit_from_angle</a></div><div class="ttdeci">constexpr PointVector unit_from_angle(const QAngle lhs)</div><div class="ttdoc">Unit vector from angle function.</div><div class="ttdef"><b>Definition</b> point_vector.hh:123</div></div>
+<div class="ttc" id="astructrev_1_1PointVector_html"><div class="ttname"><a href="structrev_1_1PointVector.html">rev::PointVector</a></div><div class="ttdoc">Structure representing a 2D vector on a plane.</div><div class="ttdef"><b>Definition</b> point_vector.hh:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

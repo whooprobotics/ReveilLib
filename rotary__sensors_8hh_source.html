@@ -107,18 +107,24 @@ $(function(){initNavTree('rotary__sensors_8hh_source.html',''); initResizable(tr
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>rev {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span>RotarySensor {</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classrev_1_1RotarySensor.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classrev_1_1RotarySensor.html">RotarySensor</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">virtual</span> <span class="keywordtype">double</span> get_position() = 0;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classrev_1_1RotarySensor.html#a75e7ba393ec77912e130d3e8e689efa1">   20</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classrev_1_1RotarySensor.html#a75e7ba393ec77912e130d3e8e689efa1">get_position</a>() = 0;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">virtual</span> std::pair&lt;std::uint8_t, std::uint8_t&gt; check_ports() = 0;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classrev_1_1RotarySensor.html#ab928a1bf054aea0403f5d280cab79858">   27</a></span>  <span class="keyword">virtual</span> std::pair&lt;std::uint8_t, std::uint8_t&gt; <a class="code hl_function" href="classrev_1_1RotarySensor.html#ab928a1bf054aea0403f5d280cab79858">check_ports</a>() = 0;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}  <span class="comment">// namespace rev</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassrev_1_1RotarySensor_html"><div class="ttname"><a href="classrev_1_1RotarySensor.html">rev::RotarySensor</a></div><div class="ttdoc">Interface for rotational sensors used for odometry.</div><div class="ttdef"><b>Definition</b> rotary_sensors.hh:13</div></div>
+<div class="ttc" id="aclassrev_1_1RotarySensor_html_a75e7ba393ec77912e130d3e8e689efa1"><div class="ttname"><a href="classrev_1_1RotarySensor.html#a75e7ba393ec77912e130d3e8e689efa1">rev::RotarySensor::get_position</a></div><div class="ttdeci">virtual double get_position()=0</div><div class="ttdoc">Gets the current position of the sensor.</div></div>
+<div class="ttc" id="aclassrev_1_1RotarySensor_html_ab928a1bf054aea0403f5d280cab79858"><div class="ttname"><a href="classrev_1_1RotarySensor.html#ab928a1bf054aea0403f5d280cab79858">rev::RotarySensor::check_ports</a></div><div class="ttdeci">virtual std::pair&lt; std::uint8_t, std::uint8_t &gt; check_ports()=0</div><div class="ttdoc">Verifies that the sensor port(s) are properly connected.</div></div>
+<div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
