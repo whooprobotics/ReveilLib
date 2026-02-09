@@ -2,6 +2,7 @@
 #include <cmath>
 
 namespace rev {
+
 AsteriskChassis::AsteriskChassis(AnyMotor& ifront_left, AnyMotor& ifront_right,
                                  AnyMotor& iback_left, AnyMotor& iback_right,
                                  AnyMotor& icenter_left, AnyMotor& icenter_right)
@@ -50,10 +51,13 @@ void AsteriskChassis::drive_holonomic(double forward, double yaw, double strafe)
   double center_left_power = std::clamp(forward + yaw, -1.0, 1.0);
   double center_right_power = std::clamp(forward - yaw, -1.0, 1.0);
 
-  drive_holonomic({front_left_power, front_right_power, rear_left_power, rear_right_power, center_left_power, center_right_power});
+  drive_holonomic({front_left_power, front_right_power, rear_left_power, 
+                   rear_right_power, center_left_power, center_right_power});
 }
 
 void AsteriskChassis::drive_holonomic(SlipstreamPower power) {
+  power.clamp_powers();
+
   front_left->move_voltage(12000 * power.front_left_forward);
   back_left->move_voltage(12000 * power.rear_left_forward);
   front_right->move_voltage(12000 * power.front_right_forward);
