@@ -60,6 +60,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/reveillib_copro.so
-          asset_name: reveillib_copro.so
-          asset_content_type: application/octet-stream
+          asset_path: ./reveillib_copro.zip
+          asset_name: reveillib_copro@${{ github.ref_name }}.zip
+          asset_content_type: application/zip
