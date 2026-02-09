@@ -1,4 +1,4 @@
-COPRO_CXX=g++
+COPRO_CXX=aarch64-linux-gnu-g++
 COPRO_CXXFLAGS += -Wall -Wextra -std=c++17 -DPLATFORM_RASPI
 COPRO_INCLUDE_PATH=include/
 LIB_NAME=reveillib
