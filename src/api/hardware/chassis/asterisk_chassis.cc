@@ -43,21 +43,24 @@ void AsteriskChassis::drive_holonomic(double forward, double yaw, double strafe)
   }
 
   double front_left_power = std::clamp(forward + yaw + strafe, -1.0, 1.0);
-  double back_left_power = std::clamp(forward + yaw - strafe, -1.0, 1.0);
+  double rear_left_power = std::clamp(forward + yaw - strafe, -1.0, 1.0);
   double front_right_power = std::clamp(forward - yaw - strafe, -1.0, 1.0);
-  double back_right_power = std::clamp(forward - yaw + strafe, -1.0, 1.0);
+  double rear_right_power = std::clamp(forward - yaw + strafe, -1.0, 1.0);
 
-  front_left->move_voltage(12000 * front_left_power);
-  back_left->move_voltage(12000 * back_left_power);
-  front_right->move_voltage(12000 * front_right_power);
-  back_right->move_voltage(12000 * back_right_power);
+  double center_left_power = std::clamp(forward + yaw, -1.0, 1.0);
+  double center_right_power = std::clamp(forward - yaw, -1.0, 1.0);
 
-  center_left->move_voltage(12000 * std::clamp(forward + yaw, -1.0, 1.0));
-  center_right->move_voltage(12000 * std::clamp(forward - yaw, -1.0, 1.0));
+  drive_holonomic({front_left_power, front_right_power, rear_left_power, rear_right_power, center_left_power, center_right_power});
 }
 
 void AsteriskChassis::drive_holonomic(SlipstreamPower power) {
-  // TODO
+  front_left->move_voltage(12000 * power.front_left_forward);
+  back_left->move_voltage(12000 * power.rear_left_forward);
+  front_right->move_voltage(12000 * power.front_right_forward);
+  back_right->move_voltage(12000 * power.rear_right_forward);
+
+  center_left->move_voltage(12000 * power.front_left_steer);
+  center_right->move_voltage(12000 * power.front_right_steer);
 }
 
 void AsteriskChassis::set_brake_harsh() {
