@@ -24,6 +24,7 @@ jobs:
 
       - name: Build V5
         run: make template
+        
       - name: Build copro
         run: make copro-lib
 
