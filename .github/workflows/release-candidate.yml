@@ -22,8 +22,9 @@ jobs:
       - name: Update version number
         run: ./setversion.sh ${{ github.ref_name }}
 
-      - name: Build
+      - name: Build V5
         run: make template
+      - name: Build copro
         run: make copro-lib
 
       - name: Release
