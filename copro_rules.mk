@@ -1,8 +1,8 @@
 COPRO_CXX=aarch64-linux-gnu-g++
 COPRO_CXXFLAGS += -Wall -Wextra -std=c++17 -DPLATFORM_RASPI
 COPRO_INCLUDE_PATH=include/
-LIB_NAME=reveillib
-SHARED_LIB_FILE=bin/$(LIB_NAME)_copro.so
+COPRO_LIB_NAME=reveillib
+SHARED_LIB_FILE=bin/$(COPRO_LIB_NAME)_copro.so
 
 SRCS := $(shell find src -name "*.cc")
 OBJS := $(patsubst src/%.cc, bin/copro/%.o, $(SRCS))
@@ -17,6 +17,8 @@ bin/copro/%.o: src/%.cc
 	$(COPRO_CXX) $(COPRO_CXXFLAGS) -I$(COPRO_INCLUDE_PATH) -fPIC -c $< -o $@
 
 .PHONY: clean-copro
+
 clean-copro:
-	rm -rf bin/copro
-	rm $(SHARED_LIB_FILE)
+	@echo Cleaning reveillib_copro
+	-$Drm -rf bin/copro
+	-$Drm -rf $(SHARED_LIB_FILE)

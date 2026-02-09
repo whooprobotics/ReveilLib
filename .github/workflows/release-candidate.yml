@@ -16,14 +16,17 @@ jobs:
           submodules: true
 
       - run: apt update
-      - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi
+      - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi g++-aarch64-linux-gnu
       - run: python3 -m pip install pros-cli
 
       - name: Update version number
         run: ./setversion.sh ${{ github.ref_name }}
 
-      - name: Build
+      - name: Build V5
         run: make template
+        
+      - name: Build copro
+        run: make copro-lib
 
       - name: Release
         id: create_release
