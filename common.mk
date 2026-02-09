@@ -171,12 +171,12 @@ endif
 
 .PHONY: all clean quick
 
-quick: $(DEFAULT_BIN)
+quick: $(DEFAULT_BIN) copro-lib
 
-all: clean $(DEFAULT_BIN)
+all: clean $(DEFAULT_BIN) copro-lib
 
-clean:
-	@echo Cleaning project
+clean: clean-copro
+	@echo Cleaning PROS project
 	-$Drm -rf $(BINDIR)
 	-$Drm -rf $(DEPDIR)
 	-$Drm -rf html
