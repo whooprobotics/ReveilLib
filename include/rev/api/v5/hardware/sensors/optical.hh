@@ -3,11 +3,11 @@
 #ifdef PLATFORM_BRAIN
 #include "pros/optical.hpp"
 
+namespace rev {
 /**
  * @brief Implementation of a Vex optical sensor with port checking
  * 
  */
-namespace rev {
 class Optical : public pros::Optical {
  public:
   /**
