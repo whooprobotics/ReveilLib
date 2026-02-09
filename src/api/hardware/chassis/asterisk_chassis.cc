@@ -93,4 +93,4 @@ void AsteriskChassis::stop() {
   center_right->brake();
 }
 
-}
+}  // namespace rev
