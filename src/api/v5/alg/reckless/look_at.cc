@@ -88,12 +88,12 @@ namespace rev {
 
      // call RecklessTurnSegment with better angle
     turn_segment = RecklessTurnSegment(
-        max_power, 
-        coast_power, 
-        angle_goal, 
-        harsh_coeff, 
-        coast_coeff, 
-        brake_time
+      max_power, 
+      coast_power, 
+      angle_goal, 
+      harsh_coeff, 
+      coast_coeff, 
+      brake_time
     );
     turn_segment.init(initial_state);
   }
