@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['guide_0',['Reckless Controller Usage Guide',['../md_docs_2tutorials_2reckless.html',1,'']]]
+  ['for_20reveillib_0',['Code styling &amp;amp; standards for ReveilLib',['../md_Style.html',1,'']]]
 ];

@@ -70,7 +70,7 @@ var hierarchy =
       [ "rev::QuadEncoder", "classrev_1_1QuadEncoder.html", null ],
       [ "rev::RotationSensor", "classrev_1_1RotationSensor.html", null ]
     ] ],
-    [ "rev::RQuantity< MassDim, LengthDim, TimeDim, AngleDim >", "classrev_1_1RQuantity.html", null ],
+    [ "rev::RQuantity&lt; MassDim, LengthDim, TimeDim, AngleDim &gt;", "classrev_1_1RQuantity.html", null ],
     [ "rev::SegmentStatus", "structrev_1_1SegmentStatus.html", null ],
     [ "rev::Stop", "classrev_1_1Stop.html", [
       [ "rev::SimpleStop", "classrev_1_1SimpleStop.html", null ]
