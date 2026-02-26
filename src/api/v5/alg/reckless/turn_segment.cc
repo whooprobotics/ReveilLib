@@ -19,6 +19,22 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       angle_goal(iangle),
       brake_time(ibrake_time.convert(millisecond)) {}
 
+RecklessTurnSegment::RecklessTurnSegment(double imax_power,
+                                         double icoast_power,
+                                         QAngle iangle,
+                                         double iharsh_coeff,
+                                         double icoast_coeff,
+                                         QTime ibrake_time,
+                                         QTime itimeout)
+    : max_power(imax_power),
+      coast_power(icoast_power),
+      harsh_coeff(iharsh_coeff),
+      coast_coeff(icoast_coeff),
+      angle_goal(iangle),
+      brake_time(ibrake_time.convert(millisecond)) {
+        timeout = (uint32_t)itimeout.convert(millisecond);
+      }
+
 void RecklessTurnSegment::init(OdometryState initial_state) {
   start_angle = initial_state.pos.theta;  // normalized (-180 to 180)
   start_angle = start_angle -
@@ -53,6 +69,19 @@ void RecklessTurnSegment::init(OdometryState initial_state) {
 }
 
 SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
+  if(timeout) {
+    // Only if the initialization time has been set by a previous loop
+    if(time_init) {
+        // Early exit if needed
+        if(pros::millis() > time_init + timeout) {
+          return SegmentStatus::next();
+        }
+    }
+    else {
+      time_init = pros::millis();
+    }
+  }
+
   OdometryState state = current_state;
 
   // #################### Determine Turn State ####################

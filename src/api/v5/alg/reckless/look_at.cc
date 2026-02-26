@@ -24,6 +24,27 @@ LookAt::LookAt(
   brake_time(ibrake_time),
   turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {}
 
+
+LookAt::LookAt(
+        double imax_power, 
+        double icoast_power, 
+        Position itarget_position, 
+        QAngle idrop_angle, 
+        double iharsh_coeff, 
+        double icoast_coeff, 
+        QTime ibrake_time,
+        QTime itimeout) 
+  : max_power(imax_power),
+  coast_power(icoast_power),
+  target_position(itarget_position),
+  drop_angle(idrop_angle),
+  harsh_coeff(iharsh_coeff),
+  coast_coeff(icoast_coeff),
+  brake_time(ibrake_time),
+  turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {
+    timeout = (uint32_t)itimeout.convert(millisecond);
+  }
+
 LookAt::LookAt(
         double imax_power, 
         double icoast_power, 
@@ -42,6 +63,29 @@ LookAt::LookAt(
   coast_coeff(icoast_coeff),
   brake_time(ibrake_time),
   turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {}
+
+LookAt::LookAt(
+        double imax_power, 
+        double icoast_power, 
+        Position itarget_position, 
+        QAngle iangle_offset,
+        QAngle idrop_angle, 
+        double iharsh_coeff, 
+        double icoast_coeff, 
+        QTime ibrake_time,
+        QTime itimeout) 
+  : max_power(imax_power),
+  coast_power(icoast_power),
+  target_position(itarget_position),
+  angle_offset(iangle_offset),
+  drop_angle(idrop_angle),
+  harsh_coeff(iharsh_coeff),
+  coast_coeff(icoast_coeff),
+  brake_time(ibrake_time),
+  turn_segment(imax_power, icoast_power, 0 * degree, iharsh_coeff, icoast_coeff, ibrake_time) {
+    timeout = (uint32_t)itimeout.convert(millisecond);
+  }
+
 
 void LookAt::init(OdometryState initial_state) {
   start_position = initial_state.pos;
@@ -75,16 +119,30 @@ void LookAt::init(OdometryState initial_state) {
   angle_goal = (fabs(offset1) < fabs(offset2)) 
     ? angle1 * degree : angle2 * degree;
 
+  
   // call RecklessTurnSegment with better angle
-  turn_segment = RecklessTurnSegment(
-      max_power, 
-      coast_power, 
-      angle_goal, 
-      harsh_coeff, 
-      coast_coeff, 
-      brake_time
-  );
-  turn_segment.init(initial_state);
+  if (timeout){
+    turn_segment = RecklessTurnSegment(
+        max_power, 
+        coast_power, 
+        angle_goal, 
+        harsh_coeff, 
+        coast_coeff, 
+        brake_time,
+        timeout * millisecond
+    );
+    turn_segment.init(initial_state);
+  } else {
+    turn_segment = RecklessTurnSegment(
+        max_power, 
+        coast_power, 
+        angle_goal, 
+        harsh_coeff, 
+        coast_coeff, 
+        brake_time
+    );
+    turn_segment.init(initial_state);
+  }
 }
 
 SegmentStatus LookAt::step(OdometryState current_state){

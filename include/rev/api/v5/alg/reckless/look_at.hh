@@ -38,6 +38,29 @@ class LookAt : public RecklessSegment {
   );
 
   /**
+   * @brief Constructs a new LookAt object
+   * 
+   * @param imax_power Maximum turning power
+   * @param icoast_power Turning coast power
+   * @param itarget_position The point to face the robot towards
+   * @param idrop_angle The angle at which the segment should end. You probably should leave this at 0, as it has not been tested.
+   * @param iharsh_coeff The harsh braking coefficient
+   * @param icoast_coeff The coast braking coefficient
+   * @param ibrake_time The maximum time that should be spent braking
+   * @param itimeout The maximum amount of time in the turn before it breaks out
+   */
+  LookAt(
+      double imax_power, 
+      double icoast_power, 
+      Position itarget_position, 
+      QAngle idrop_angle, 
+      double iharsh_coeff, 
+      double icoast_coeff, 
+      QTime ibrake_time,
+      QTime itimeout
+  );
+
+  /**
     * @brief Constructs a new LookAt object
     * 
     * @param imax_power Maximum turning power
@@ -59,6 +82,32 @@ class LookAt : public RecklessSegment {
     double iharsh_coeff, 
     double icoast_coeff, 
     QTime ibrake_time
+  );
+
+  /**
+    * @brief Constructs a new LookAt object
+    * 
+    * @param imax_power Maximum turning power
+    * @param icoast_power Turning coast power
+    * @param itarget_position The point to face the robot towards
+    * @param iangle_offset The amount of offset to add to the computed angle from 
+    * the target position, EX: 180_deg to look backwards
+    * @param idrop_angle The angle at which the segment should end. You probably should leave this at 0, as it has not been tested.
+    * @param iharsh_coeff The harsh braking coefficient
+    * @param icoast_coeff The coast braking coefficient
+    * @param ibrake_time The maximum time that should be spent braking
+    * @param itimeout The maximum amount of time in the turn before it breaks out
+    */
+  LookAt(
+    double imax_power, 
+    double icoast_power, 
+    Position itarget_position, 
+    QAngle iangle_offset,
+    QAngle idrop_angle, 
+    double iharsh_coeff, 
+    double icoast_coeff, 
+    QTime ibrake_time,
+    QTime itimeout
   );
   
   /**
@@ -132,6 +181,9 @@ class LookAt : public RecklessSegment {
   double coast_coeff;
 
   QTime brake_time;
+
+  uint32_t timeout = 0;
+
 };
 
 }  // namespace rev
