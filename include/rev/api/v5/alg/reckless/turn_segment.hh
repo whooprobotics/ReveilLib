@@ -31,6 +31,25 @@ class RecklessTurnSegment : public RecklessSegment {
                       double iharsh_coeff,
                       double icoast_coeff,
                       QTime ibrake_time);
+  
+                      /**
+   * @brief Constructs a new RecklessTurnSegment object
+   * 
+   * @param imax_power Maximum turning power
+   * @param icoast_power Turning coast power
+   * @param iangle The angle to face the robot towards
+   * @param iharsh_coeff The harsh braking coefficient
+   * @param icoast_coeff The coast braking coefficient
+   * @param ibrake_time The maximum time that should be spent braking
+   * @param itimeout The timeout in seconds
+   */
+  RecklessTurnSegment(double imax_power,
+                      double icoast_power,
+                      QAngle iangle,
+                      double iharsh_coeff,
+                      double icoast_coeff,
+                      QTime ibrake_time,
+                      QTime itimeout);
 
   /**
    * @brief Current state of the turn segment
@@ -89,6 +108,8 @@ class RecklessTurnSegment : public RecklessSegment {
   double coast_coeff;
   double coast_power;
   uint32_t brake_time;
+  uint32_t timeout = 0;
+  uint32_t time_init = 0;
   QAngle angle_goal = 0_deg;
   QAngle start_angle;
   QAngle angle_difference;
