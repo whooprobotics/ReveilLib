@@ -30,6 +30,7 @@
 #include "rev/api/v5/alg/reckless/reckless.hh"
 #include "rev/api/v5/alg/reckless/segment.hh"
 #include "rev/api/v5/alg/reckless/boomerang.hh"
+#include "rev/api/v5/alg/reckless/look_at.hh"
 
 // Chassis
 #include "rev/api/v5/hardware/chassis/chassis.hh"

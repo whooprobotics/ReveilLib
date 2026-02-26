@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "rev/api/v5/hardware/devices/rotation_sensors/mock_rotation_sensor.hh"
 
 namespace rev {
@@ -26,3 +28,5 @@ std::pair<std::uint8_t, std::uint8_t> MockRotationSensor::check_ports() {
 }
 
 }  // namespace rev
+
+#endif

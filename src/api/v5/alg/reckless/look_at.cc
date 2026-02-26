@@ -1,9 +1,12 @@
 #ifdef PLATFORM_BRAIN
 
-#include "api.h"
+#include "rev/rev.hh"
 #include "rev/api/v5/alg/reckless/look_at.hh"
 #include "rev/api/v5/alg/reckless/segment.hh"
 #include "rev/api/v5/alg/reckless/turn_segment.hh"
+
+// Wrapper of RecklessTurnSegment
+// Takes a position value instead of angle_goal
 
 namespace rev {
 
@@ -145,14 +148,13 @@ void LookAt::init(OdometryState initial_state) {
   }
 }
 
-SegmentStatus LookAt::step(OdometryState current_state){
-  return turn_segment.step(current_state);
-}
+  SegmentStatus LookAt::step(OdometryState current_state){
+    return turn_segment.step(current_state);
+  }
 
-void LookAt::clean_up() {
-  turn_segment.clean_up();
+  void LookAt::clean_up() {
+    turn_segment.clean_up();
+  }
 }
-
-}  // namespace rev
 
 #endif
