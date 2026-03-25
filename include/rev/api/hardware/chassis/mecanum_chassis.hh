@@ -45,7 +45,7 @@ class MecanumChassis : public HolonomicChassis {
   /**
    * @brief Heuristic function for a holonomic drive from joystick controls
    */
-  void drive_holonomic(double forward, double yaw, double strafe, double angle) override;
+  void drive_holonomic(double forward, double yaw, double strafe) override;
   
   /**
    * @brief Sets the brake types of all chassis motors to brake

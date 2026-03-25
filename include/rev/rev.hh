@@ -13,6 +13,9 @@
 #include "rev/api/alg/stop/simple_stop.hh"
 #include "rev/api/alg/stop/stop.hh"
 
+// PID
+#include "rev/api/alg/pid/pid.hh"
+
 // Turn
 #include "rev/api/alg/reckless/turn_segment.hh"
 

@@ -21,7 +21,7 @@ class AsteriskChassis : public HolonomicChassis {
 
   void drive_holonomic(SlipstreamPower power) override;
 
-  void drive_holonomic(double forward, double yaw, double strafe) override;
+  void drive_holonomic(double forward, double turn, double strafe) override;
 
   void set_brake_harsh() override;
 

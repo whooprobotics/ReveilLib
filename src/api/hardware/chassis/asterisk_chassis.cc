@@ -35,21 +35,22 @@ void AsteriskChassis::drive_arcade(double forward, double yaw) {
   drive_tank(forward + yaw, forward - yaw);
 }
 
-void AsteriskChassis::drive_holonomic(double forward, double yaw, double strafe) {
-  double scale = fabs(forward) + fabs(yaw) + fabs(strafe);
+void AsteriskChassis::drive_holonomic(double forward, double turn, double strafe) {
+  double scale = fabs(forward) + fabs(turn) + fabs(strafe);
   if (scale > 1.0) {
     forward /= scale;
-    yaw /= scale;
+    turn /= scale;
     strafe /= scale;
   }
 
-  double front_left_power = std::clamp(forward + yaw + strafe, -1.0, 1.0);
-  double rear_left_power = std::clamp(forward + yaw - strafe, -1.0, 1.0);
-  double front_right_power = std::clamp(forward - yaw - strafe, -1.0, 1.0);
-  double rear_right_power = std::clamp(forward - yaw + strafe, -1.0, 1.0);
+  double front_left_power = std::clamp(forward + strafe + turn, -1.0, 1.0);
+  double front_right_power = std::clamp(forward - strafe - turn, -1.0, 1.0);
 
-  double center_left_power = std::clamp(forward + yaw, -1.0, 1.0);
-  double center_right_power = std::clamp(forward - yaw, -1.0, 1.0);
+  double rear_left_power = std::clamp(forward - strafe + turn, -1.0, 1.0);
+  double rear_right_power = std::clamp(forward + strafe - turn, -1.0, 1.0);
+
+  double center_left_power = std::clamp(forward + turn, -1.0, 1.0);
+  double center_right_power = std::clamp(forward - turn, -1.0, 1.0);
 
   drive_holonomic({front_left_power, front_right_power, rear_left_power, 
                    rear_right_power, center_left_power, center_right_power});
