@@ -25,18 +25,18 @@
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
 
-rev::MotorGroup front_left({3, -5});
-rev::MotorGroup back_left({-1, 2});
-rev::MotorGroup front_right({17, -8});
-rev::MotorGroup back_right({-9, 10});
-rev::Motor center_left(-11);
-rev::Motor center_right(12);
+rev::MotorGroup front_left({11, -12});
+rev::MotorGroup back_left({-14, 15});
+rev::MotorGroup front_right({-10, 19});
+rev::MotorGroup back_right({17, -16});
+rev::Motor center_left(13);
+rev::Motor center_right(8);
 
-shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('A'), static_cast<int>('B'), false);
-shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('C'), static_cast<int>('D'), true);
+shared_ptr<rev::ReadOnlyRotarySensor> right_enc = make_shared<rev::QuadEncoder>(static_cast<int>('E'), static_cast<int>('F'), false);
+shared_ptr<rev::ReadOnlyRotarySensor> left_enc = make_shared<rev::QuadEncoder>(static_cast<int>('H'), static_cast<int>('G'), true);
 shared_ptr<rev::Gyroscope> imu = make_shared<rev::Imu>(14);
 
-// shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
+shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
 
 // butterfly chassis initialization
 // #define left_piston_port 'G'
@@ -175,15 +175,15 @@ void opcontrol() {
     /*
      * TEST MECANUM DRIVE
     */
-    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
-    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
-    double right_x = -1 * controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
-    int exp = 3;
-    double forward = pow(left_y, exp);
-    double strafe = pow(left_x, exp);
-    double turn = pow(right_x, exp);
+    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X);
+    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
-    // chassis->drive_holonomic(forward, turn, strafe);
+    double forward = left_y;
+    double strafe = left_x;
+    double turn = right_x;
+
+    chassis->drive_holonomic(forward, turn, strafe, odom->get_state().pos.theta.convert(degree));
 
     OdometryState current_state = odom->get_state();
 

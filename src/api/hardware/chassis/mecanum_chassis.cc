@@ -41,13 +41,17 @@ void MecanumChassis::drive_holonomic(SlipstreamPower power) {
   back_right->move_voltage(12000 * power.rear_right_forward);
 }
 
-void MecanumChassis::drive_holonomic(double forward, double yaw, double strafe) {
-  double scale = fabs(forward) + fabs(yaw) + fabs(strafe);
-  if (scale > 1.0) {
-    forward /= scale;
-    yaw /= scale;
-    strafe /= scale;
-  }
+void MecanumChassis::drive_holonomic(double forward, double yaw, double strafe, double angle) {
+  // double scale = fabs(forward) + fabs(yaw) + fabs(strafe);
+  // if (scale > 1.0) {
+  //   forward /= scale;
+  //   yaw /= scale;
+  //   strafe /= scale;
+  // }
+
+  float robotFwd =  forward * std::cos(angle) + strafe * std::sin(angle);
+  float robotStrafe = -forward * std::sin(angle) + strafe * std::cos(angle);
+
 
   SlipstreamPower power;
   power.front_left_forward = forward + yaw + strafe;
