@@ -119,12 +119,12 @@ void pilons_test() {
 
 
 
-//   // shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
-//   // shared_ptr<rev::SkidSteerChassis> skid_chassis = make_shared<rev::SkidSteerChassis>(left, right);
+//   shared_ptr<rev::MecanumChassis> chassis = make_shared<rev::MecanumChassis>(front_left, front_right, back_left, back_right);
+//   shared_ptr<rev::SkidSteerChassis> skid_chassis = make_shared<rev::SkidSteerChassis>(left, right);
 
-//   // chassis->drive_holonomic(0.5, 0.5, 0.5);
+//   chassis->drive_holonomic(0.5, 0.5, 0.5);
 
-//   // shared_ptr<rev::Slipstream> slipstream = make_shared<rev::Slipstream>(chassis, odom);
+//   shared_ptr<rev::Slipstream> slipstream = make_shared<rev::Slipstream>(chassis, odom);
 
 //   // Set start position and consts
 //   rev::QTime harsh = 0.06_s;
@@ -210,6 +210,8 @@ void opcontrol() {
     double forward = deadband(left_y, 0.05);
     double strafe = deadband(left_x, 0.05);
     double turn = deadband(right_x, 0.05);
+
+    double lever_speed = 1;
     // double angle = reduce_0_to_360(imu->get_heading());
 
     // float robotFwd =  forward * std::cos(angle) + strafe * std::sin(angle);
@@ -229,13 +231,24 @@ void opcontrol() {
 
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       lever_target = 1000;
+      lift.set_value(1);
       hood.set_value(1);
     } else {
       lever_target = 0;
+      lift.set_value(0);
       hood.set_value(0);
     }
 
-    lever.move_voltage(12000 * lever_pid.update(lever_target, lever.get_positions()[0]));
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      lever_target = 1000;
+      hood.set_value(1);
+      lever_speed = .28;
+    } else {
+      hood.set_value(1);
+      lever_speed = 1;
+    }
+
+    lever.move_voltage((12000 * lever_pid.update(lever_target, lever.get_positions()[0])) * lever_speed );
 
     
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
