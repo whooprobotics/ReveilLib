@@ -16,15 +16,15 @@ TwoRotationInertialOdometry::TwoRotationInertialOdometry(
     shared_ptr<Gyroscope> iinertial,
     QLength ilongitudinal_wheel_diameter,
     QLength ilateral_wheel_diameter,
-    QLength ilongitudinal_wheel_offset,
-    QLength ilateral_wheel_offset)
+    QLength ivertical_distance_from_cog,
+    QLength ihorizontal_distance_from_cog)
     : longitudinal_sensor(ilongitudinal_sensor),
       lateral_sensor(ilateral_sensor),
       inertial(iinertial),
       longitudinal_wheel_diameter(ilongitudinal_wheel_diameter),
       lateral_wheel_diameter(ilateral_wheel_diameter),
-      longitudinal_wheel_offset(ilongitudinal_wheel_offset),
-      lateral_wheel_offset(ilateral_wheel_offset) {
+      vertical_distance_from_cog(ivertical_distance_from_cog),
+      horizontal_distance_from_cog(ihorizontal_distance_from_cog) {
   longitude_ticks_last = (double)(longitudinal_sensor->get_position()) / 100;
   latitude_ticks_last = (double)(lateral_sensor->get_position()) / 100;
   heading_ticks_init = inertial->get_heading();
@@ -144,10 +144,10 @@ void TwoRotationInertialOdometry::step() {
     double dht_radian = d_heading_ticks * degree.convert(radian);
     double sindt2 = std::sin(dht_radian / 2);
     local_off_lat = 2 * sindt2 *
-                    (raw_right_translation / dht_radian + lateral_wheel_offset);
+                    (raw_right_translation / dht_radian + vertical_distance_from_cog);
     local_off_long =
         2 * sindt2 *
-        (raw_fwd_translation / dht_radian + longitudinal_wheel_offset);
+        (raw_fwd_translation / dht_radian + horizontal_distance_from_cog);
   } else {
     local_off_lat = raw_right_translation;
     local_off_long = raw_fwd_translation;

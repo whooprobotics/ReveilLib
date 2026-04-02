@@ -43,14 +43,14 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
 
   /**
    * @brief Constructs a new TwoRotationInertialOdometry object
-   * 
+   *
    * @param ilongitudinal_sensor std::shared_ptr<RotarySensor> pointing to the sensor along robot's longitudinal axis
    * @param ilateral_sensor std::shared_ptr<RotarySensor> pointing to the sensor along robot's lateral axis
    * @param iinertial std::shared_ptr<Gyroscope> pointing to the inertial sensors
    * @param ilongitudinal_wheel_diameter Diameter of the wheel on the longitudinal sensor
    * @param ilateral_wheel_diameter Diameter of the wheel on the lateral sensor
-   * @param ilongitudinal_wheel_offset Offset of the longitudinal wheel to the right of the center of the robot
-   * @param ilateral_wheel_offset Offset of the lateral wheel backward from the center of rotation
+   * @param ivertical_distance_from_cog Vertical distance from the center, positive is behind the center, negative is in front.
+   * @param ihorizontal_distance_from_cog Horizontal distance from the center, positive is to the right of the center, negative is to the left.
    */
   TwoRotationInertialOdometry(
       std::shared_ptr<RotarySensor> ilongitudinal_sensor,
@@ -58,8 +58,8 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
       std::shared_ptr<Gyroscope> iinertial,
       QLength ilongitudinal_wheel_diameter = 3.25 * inch,
       QLength ilateral_wheel_diameter = 3.25 * inch,
-      QLength ilongitudinal_wheel_offset = 0 * inch,
-      QLength ilateral_wheel_offset = 0 * inch);
+      QLength ivertical_distance_from_cog = 0 * inch,
+      QLength ihorizontal_distance_from_cog = 0 * inch);
 
  private:
   std::shared_ptr<rev::RotarySensor>
@@ -98,10 +98,9 @@ class TwoRotationInertialOdometry : public Odometry, public AsyncRunnable {
   QLength longitudinal_wheel_diameter;
   QLength lateral_wheel_diameter;
 
-  // Offset of the longitudinal wheel to the right of the center of the robot
-  QLength longitudinal_wheel_offset;
-  // Likewise, for the lateral wheel backward from the center of rotation
-  QLength lateral_wheel_offset;
+  // Offsets
+  QLength vertical_distance_from_cog;
+  QLength horizontal_distance_from_cog;
 };
 
 }  // namespace rev
