@@ -48,6 +48,8 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
    * 
    * @param left_sensor std::shared_ptr<RotarySensor> pointing to the left sensor
    * @param right_sensor std::shared_ptr<RotarySensor> pointing to the right sensor
+   * @param vertical_distance_from_cog Vertical distance from the center, positive is behind the center, negative is in front.
+   * @param horizontal_distance_from_cog Horizontal distance from the center, positive is to the right of the center, negative is to the left.
    */
   TwoRotationInertialOdometry45Degrees(
       std::shared_ptr<rev::RotarySensor> left_sensor,
@@ -55,8 +57,8 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
       std::shared_ptr<rev::Gyroscope> iinertial,
       QLength ilongitudinal_wheel_diameter = 3.25 * inch,
       QLength ilateral_wheel_diameter = 3.25 * inch,
-      QLength ilongitudinal_wheel_offset = 0 * inch,
-      QLength ilateral_wheel_offset = 0 * inch);
+      QLength ivertical_distance_from_cog = 0 * inch,
+      QLength ihorizontal_distance_from_cog = 0 * inch);
 
  private:
   /*
@@ -96,11 +98,10 @@ class TwoRotationInertialOdometry45Degrees : public Odometry,
   // Wheel sizes
   QLength left_wheel_diameter;
   QLength right_wheel_diameter;
-
-  // Longitudinal offset to the right of the center of the robot
-  QLength longitudinal_wheel_offset;
-  // Likewise, for the lateral wheel backward from the center of rotation
-  QLength lateral_wheel_offset;
+  
+  // Offsets
+  QLength vertical_distance_from_cog;
+  QLength horizontal_distance_from_cog;
 };
 }  // namespace rev
 
