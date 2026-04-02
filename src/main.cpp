@@ -5,7 +5,7 @@
 #include "rev/api/alg/slipstream/correction/cross_track_correction.hh"
 #include "rev/api/alg/slipstream/motion/mecanum_constant_motion.hh"
 #include "rev/api/alg/slipstream/slipstream.hh"
-#include "rev/api/alg/stop/simple_holonomic_stop.hh"
+#include "rev/api/alg/stop/simple_holonomic_stop.hh"  
 #include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/hardware/devices/gyroscope/imu.hh"
@@ -33,9 +33,9 @@ rev::MotorGroup back_right({17, -16});
 rev::Motor center_left(13);
 rev::Motor center_right(-8);
 
-rev::Motor intake(1);
+rev::Motor intake(2);
 
-pros::Motor lever1(-2, pros::E_MOTOR_GEAR_RED);
+pros::Motor lever1(-1, pros::E_MOTOR_GEAR_RED);
 pros::Motor lever2(9, pros::E_MOTOR_GEAR_RED);
 
 pros::Motor_Group lever({lever1, lever2});
@@ -265,10 +265,10 @@ void opcontrol() {
 
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
       scraper_state = true;
-      scraper.set_value(scraper_state);
     } else {
-      scraper_state = false;
+      scraper_state = false
     }
+    scraper.set_value(scraper_state);
 
     // chassis->drive_holonomic(forward, turn, strafe);
 
