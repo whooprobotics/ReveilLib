@@ -16,8 +16,6 @@ namespace rev {
 DefaultPilonsParams default_params = {0.0, 0.0, 0_in, 0_s, 0_s, 0.0};
 
 void PilonsSegment::init(OdometryState initial_state) {
-  // UNCOMMENT THIS FOR REVEILLIB 4.0.0
-  // assert(check_defaults());
   cout << "Pilons segment invoked" << endl;
   this->start_point = initial_state.pos;
 }
@@ -49,20 +47,8 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
 
   tuple<double, double> pows;
 
-  // temporary measure to make both the Motion/Correction API call
-  // and the default_params format work
-  // REFACTOR THIS FOR 4.0.0
-  if (!motion) {
-    pows = this->motion->gen_powers(
-      current_state, this->target_point, this->start_point, this->drop_early);
-  }
-  else if (check_defaults()) {
-    pows = gen_powers(current_state);
-  }
-  else {
-    // SEND THIS MAN TO THE SHADOW REALM
-    std::cout << "Default PilonsParams has not been set & Motion/Correction controllers were not specified" << std::endl;
-  }
+  pows = this->motion->gen_powers(
+    current_state, this->target_point, this->start_point, this->drop_early);
 
   // Handle coasting if needed
   if (new_state == StopState::COAST) {
@@ -76,17 +62,9 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
   // Apply correction
   // again, temporary measure for 3.1.0
   // REFACTOR THIS IN 4.0.0
-  tuple<double, double> corrected_pows;
-  if (!correction) {
-    corrected_pows = this->correction->apply_correction(current_state, this->target_point,
+  tuple<double, double> corrected_pows = this->correction->apply_correction(current_state, this->target_point,
                                        this->start_point, this->drop_early,
                                        pows);
-  }
-  else if (check_defaults()) {
-    corrected_pows = pilons_correction(
-      current_state, pows
-    );
-  }
   return SegmentStatus::drive(corrected_pows);
 }
 
@@ -113,15 +91,6 @@ tuple<double, double> PilonsSegment::gen_powers(
   double opower = isBackwards ? -(default_params.power) : default_params.power;
 
   return std::make_tuple(opower, opower);
-}
-
-/**
- * @brief Checks if the default params are zeros
- * 
- * @return true if defaults are valid, false if defaults are zeros
- */
-bool PilonsSegment::check_defaults() {
-  return default_params != DefaultPilonsParams({0.0, 0.0, 0_in, 0_s, 0_s, 0.0});
 }
 
 QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference) {

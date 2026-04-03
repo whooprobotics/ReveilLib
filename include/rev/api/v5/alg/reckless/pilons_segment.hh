@@ -156,9 +156,8 @@ class PilonsSegment : public RecklessSegment {
     OdometryState current_state,
     std::tuple<double, double> powers
   );
-
-  bool check_defaults();
 };
+
 }  // namespace rev
 
 #endif
