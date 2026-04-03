@@ -28,7 +28,7 @@ struct DefaultPilonsParams {
   bool operator!=(const DefaultPilonsParams&) const = default;
 };
 
-extern DefaultPilonsParams default_pilons_params;
+extern DefaultPilonsParams default_params;
 
 /**
  * @brief Path segment for use with Reckless controller

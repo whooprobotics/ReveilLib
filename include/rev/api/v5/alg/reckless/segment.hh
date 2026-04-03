@@ -135,12 +135,6 @@ class RecklessSegment {
    *
    */
   virtual double progress() = 0;
-
-  /**
-   * @brief Checks if the segment's default parameters have been initialized
-   * 
-   */
-  virtual bool check_defaults() = 0;
 };
 }  // namespace rev
 
