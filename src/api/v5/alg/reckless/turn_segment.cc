@@ -6,6 +6,8 @@
 
 namespace rev {
 
+DefaultTurnSegmentParams default_turn_params = {0.0, 0.0, 0.0, 0.0, 0.0_s};
+
 RecklessTurnSegment::RecklessTurnSegment(double imax_power,
                                          double icoast_power,
                                          QAngle iangle,
@@ -36,6 +38,8 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       }
 
 void RecklessTurnSegment::init(OdometryState initial_state) {
+  // UNCOMMENT THIS IN REVEILLIB 4.0.0
+  // assert(check_defaults());
   start_angle = initial_state.pos.theta;  // normalized (-180 to 180)
   start_angle = start_angle -
                 360 * std::floor((start_angle.convert(degree) + 180) / 360) *
@@ -158,6 +162,10 @@ SegmentStatus RecklessTurnSegment::step(OdometryState current_state) {
 }
 
 void RecklessTurnSegment::clean_up() {}
+
+bool RecklessTurnSegment::check_defaults() {
+  return default_turn_params != DefaultTurnSegmentParams({0.0, 0.0, 0.0, 0.0, 0.0_s});
+}
 
 }  // namespace rev
 
