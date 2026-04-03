@@ -14,13 +14,34 @@ struct PilonsSegmentParams {
 };
 
 /**
+ * @brief Default parameters for PilonsSegment
+ */
+struct DefaultPilonsParams {
+  double power;
+  double k_correction;
+  QLength max_error;
+  QTime harsh;
+  QTime coast;
+  double coast_power;
+ 
+  bool operator==(const DefaultPilonsParams&) const = default;
+  bool operator!=(const DefaultPilonsParams&) const = default;
+};
+
+extern DefaultPilonsParams default_params;
+
+/**
  * @brief Path segment for use with Reckless controller
  *
  * TODO: Rename this to be more reflective of what it is specifically, but not
  * until a major release.
  */
 class PilonsSegment : public RecklessSegment {
- public:
+  public:
+  /**
+   * @brief Static instance of default parameters for PilonsSegments
+   */
+
   /**
    * @brief Constructs a new PilonsSegment object
    * 
@@ -53,6 +74,16 @@ class PilonsSegment : public RecklessSegment {
         drop_early(idrop_early) {
     start_point = {0_in, 0_in, 0_deg};
   }
+
+  /**
+   * Constructor for using default params
+   */
+  PilonsSegment(Position itarget_point,
+                QLength idrop_early = 0 * inch)
+      : target_point(itarget_point),
+        drop_early(idrop_early) {
+          start_point = {0_in, 0_in, 0_deg};
+  };
 
   /**
    * @brief Initialize the path segment
@@ -110,9 +141,23 @@ class PilonsSegment : public RecklessSegment {
   Position target_point;
   QLength drop_early;
 
+  double k_correction;
+  QLength max_error;
+
   double part_progress = 0.0;
 
   SegmentStatus last_status = SegmentStatus::drive(0, 0);
+
+  std::tuple<double, double> gen_powers(
+    rev::OdometryState current_state
+  );
+
+  std::tuple<double, double> pilons_correction(
+    OdometryState current_state,
+    std::tuple<double, double> powers
+  );
+
+  bool check_defaults();
 };
 }  // namespace rev
 
