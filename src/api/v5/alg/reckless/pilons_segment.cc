@@ -13,7 +13,7 @@ using std::tuple;
 
 namespace rev {
 
-DefaultPilonsParams default_params = {0.0, 0.0, 0_in, 0_s, 0_s, 0.0};
+DefaultPilonsParams default_pilons_params = {0.0, 0.0, 0_in, 0_s, 0_s, 0.0};
 
 void PilonsSegment::init(OdometryState initial_state) {
   // UNCOMMENT THIS FOR REVEILLIB 4.0.0
@@ -50,7 +50,7 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
   tuple<double, double> pows;
 
   // temporary measure to make both the Motion/Correction API call
-  // and the default_params format work
+  // and the default_pilons_params format work
   // REFACTOR THIS FOR 4.0.0
   if (!motion) {
     pows = this->motion->gen_powers(
@@ -110,7 +110,7 @@ tuple<double, double> PilonsSegment::gen_powers(
 
   bool isBackwards = (initial_longitudinal_distance.get_value() < 0);
 
-  double opower = isBackwards ? -(default_params.power) : default_params.power;
+  double opower = isBackwards ? -(default_pilons_params.power) : default_pilons_params.power;
 
   return std::make_tuple(opower, opower);
 }
@@ -121,7 +121,7 @@ tuple<double, double> PilonsSegment::gen_powers(
  * @return true if defaults are valid, false if defaults are zeros
  */
 bool PilonsSegment::check_defaults() {
-  return default_params != DefaultPilonsParams({0.0, 0.0, 0_in, 0_s, 0_s, 0.0});
+  return default_pilons_params != DefaultPilonsParams({0.0, 0.0, 0_in, 0_s, 0_s, 0.0});
 }
 
 QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference) {
