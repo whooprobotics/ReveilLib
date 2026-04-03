@@ -52,8 +52,6 @@ class Call : public RecklessSegment {
 
   double progress() override { return 0; }
 
-  bool check_defaults() override { return true; }
-
  private:
   std::function<void(void)> callback;
 };
