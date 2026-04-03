@@ -42,6 +42,8 @@ class Await : public RecklessSegment {
 
   double progress() override { return 0; }
 
+  bool check_defaults() override { return true; }
+
  private:
   std::shared_ptr<AsyncAwaitable> dependency;
 };
