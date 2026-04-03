@@ -13,9 +13,6 @@
 #include "rev/api/alg/stop/simple_stop.hh"
 #include "rev/api/alg/stop/stop.hh"
 
-// PID
-#include "rev/api/alg/pid/pid.hh"
-
 // Turn
 #include "rev/api/alg/reckless/turn_segment.hh"
 
@@ -56,3 +53,33 @@
 #include "rev/api/hardware/devices/rotation_sensors/quad_encoder.hh"
 #include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/hardware/sensors/optical.hh"
+
+#include "rev/api/alg/reckless/path.hh"
+#include "rev/api/alg/reckless/turn_segment.hh"
+#include "rev/api/alg/reckless/look_at.hh"
+#include "rev/api/alg/slipstream/correction/cross_track_correction.hh"
+#include "rev/api/alg/slipstream/motion/mecanum_constant_motion.hh"
+#include "rev/api/alg/slipstream/slipstream.hh"
+#include "rev/api/alg/stop/simple_holonomic_stop.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/hardware/devices/rotation_sensors/rotation_sensor.hh"
+#include "rev/api/hardware/devices/gyroscope/imu.hh"
+#include "rev/api/hardware/chassis/mecanum_chassis.hh"
+#include "rev/api/hardware/chassis/asterisk_chassis.hh"
+#include "rev/api/alg/odometry/two_rotation_inertial_odometry_45_degrees.hh"
+#include "rev/api/units/q_time.hh"
+#include "rev/api/units/q_length.hh"
+#include "rev/api/alg/slipstream/mecanum_segment.hh"
+#include <memory>
+#include <vector>
+#include <string>
+#include <iostream>
+#include "rev/api/hardware/chassis/butterfly_chassis.hh"
+
+#include "mecanum_util.hh"
+#include "mecanum_PID.hh"
+#include "mecanum_odom45.hh"
+#include "robot-config.hh"
+#include "mecanum_alg.hh"
+
+#include "main.h"
