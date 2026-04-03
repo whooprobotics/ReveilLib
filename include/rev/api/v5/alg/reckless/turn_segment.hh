@@ -8,20 +8,6 @@
 #include "rev/api/common/units/q_time.hh"
 
 namespace rev {
-
-struct DefaultTurnSegmentParams {
-  double max_power;
-  double coast_power;
-  double harsh;
-  double coast;
-  QTime brake_time;
-
-  bool operator==(const DefaultTurnSegmentParams&) const = default;
-  bool operator!=(const DefaultTurnSegmentParams&) const = default;
-};
-
-extern DefaultTurnSegmentParams default_turn_params;
-
 /**
  * @brief Path segment for turning for use with Reckless controller,
  * implementing Walker Campbell's turn algorithm
@@ -115,8 +101,6 @@ class RecklessTurnSegment : public RecklessSegment {
    * @return Segment progress
    */
   double progress() override { return 0; }
-
-  bool check_defaults() override;
 
  private:
   double max_power;
