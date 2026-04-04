@@ -23,12 +23,6 @@ struct Constants {
   double drive_exit_error;
   double drive_min_speed;
   double drive_max_speed;
-
-  // Heading PID
-  double heading_kp;
-  double heading_ki;
-  double heading_kd;
-  double heading_starti;
   
   // Turn PID
   double turn_kp;
@@ -66,10 +60,23 @@ inline bool is_line_settled(double desired_X, double desired_Y, double desired_a
   return (desired_Y - current_Y) * cos(to_rad(desired_angle_deg)) <= -(desired_X - current_X) * sin(to_rad(desired_angle_deg)) + exit_error;
 }
 
+enum class TurnDirection {
+  NONE,
+  CLOCKWISE,
+  COUNTERCLOCKWISE
+};
+
 inline double reduce_negative_180_to_180(double angle) {
   angle = fmod(angle + 180.0, 360.0);
   if (angle < 0) angle += 360.0;
   return angle - 180.0;
+}
+
+inline double angle_error(double error, TurnDirection direction) {
+  if (direction == TurnDirection::NONE) return reduce_negative_180_to_180(error);
+  if (direction == TurnDirection::CLOCKWISE) return error < 0 ? error + 360 : error;
+  if (direction == TurnDirection::COUNTERCLOCKWISE) return error > 0 ? error - 360 : error;
+  return reduce_negative_180_to_180(error);
 }
 
 inline double reduce_0_to_360(double angle) {

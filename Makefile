@@ -37,6 +37,8 @@ EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/main.cpp
 # that are in the the include directory get exported
 TEMPLATE_FILES=$(INCDIR)/rev/**/*.h $(INCDIR)/rev/**/*.hpp $(INCDIR)/rev/**/*.hh
 
+MAKEFLAGS+=-j$(shell nproc)
+
 .DEFAULT_GOAL=quick
 
 ################################################################################

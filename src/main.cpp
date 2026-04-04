@@ -5,25 +5,27 @@ using namespace rev;
 
 // Devices have moved into robot-config
 
-double odom_wheel_diameter = 2.75; // in inches
+double odom_wheel_diameter = 2.41; // in inches
 
-PID lever_pid(.01, 0.0, 0, 0);
+PID lever_pid(.1, 0.0, 0, 0);
 double lever_target = 0;
 
-static void set_coordinates(double x, double y, double angle) {
-  static auto get_left_enc_inches = []() {
-    return left_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
-  };
-  
-  static auto get_right_enc_inches = []() {
-    return right_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
-  };
+static auto get_left_enc_inches = []() {
+  return left_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
+};
 
+static auto get_right_enc_inches = []() {
+  return right_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
+};
+
+static void set_coordinates(double x, double y, double angle) {
+
+  imu.set_heading(angle);
   odom45.set_position({x, y}, angle, get_right_enc_inches(), get_left_enc_inches());
 
   static pros::Task odom_task([](){
     while (true) {
-      odom45.update_position(get_right_enc_inches(), get_left_enc_inches(), imu.get_heading());
+      odom45.update_position(get_left_enc_inches(), get_right_enc_inches(), imu.get_heading());
       pros::delay(10);
     }
   });
@@ -31,20 +33,110 @@ static void set_coordinates(double x, double y, double angle) {
 
 void initialize() {
   pros::lcd::initialize();
-  odom45.set_physical_distances(3.25, 5.75); // in inches, horizontal distance from cog, vertical distance from cog
+
+  imu.reset(true);
+
+  constants = {
+    .drive_kp = 1.5,
+    .drive_ki = 0,
+    .drive_kd = 10,
+    .drive_starti = 0,
+
+    .drive_settle_error = 1,
+    .drive_settle_time = 100,
+    .drive_large_settle_error = 3,
+    .drive_large_settle_time = 500,
+    .drive_timeout = 5000,
+
+    .drive_exit_error = 0,
+    .drive_min_speed = 0,
+    .drive_max_speed = 12,
+
+    .turn_kp = .4,
+    .turn_ki = 0.03,
+    .turn_kd = 3,
+    .turn_starti = 15,
+
+    .turn_settle_error = 1,
+    .turn_settle_time = 100,
+    .turn_large_settle_error = 3,
+    .turn_large_settle_time = 500,
+    .turn_timeout = 3000,
+
+    .turn_exit_error = 0,
+    .turn_min_speed = 0,
+    .turn_max_speed = 12,
+  };
+
+  odom45.set_physical_distances(-5.3, 0); // in inches, horizontal distance from cog, vertical distance from cog
+  set_coordinates(0, 0, 0);
+}
+
+void config_measure_odometry_offsets() {
+
+    int iterations = 10;
+
+    float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
+
+    right_encoder.sensor.reset();
+    left_encoder.sensor.reset();
+
+    for (int i = 0; i < iterations; i++) {
+        imu.set_heading(0);
+        right_encoder.sensor.reset();
+        left_encoder.sensor.reset();
+
+        float start_heading = imu.get_rotation();
+        float target = i % 2 == 0 ? 90 : 270;
+
+        mecanum_turn_to_angle(target, { .max_speed = 6 });
+        pros::delay(250);
+
+        float t_delta = to_rad(reduce_negative_180_to_180(imu.get_rotation() - start_heading));
+
+
+        float f_delta = get_left_enc_inches();
+        float s_delta = get_right_enc_inches();
+
+        f_offset += (f_delta - s_delta) / (sqrt(2) * t_delta);
+        s_offset += (f_delta + s_delta) / (sqrt(2) * t_delta);
+    }
+
+    f_offset /= iterations;
+    s_offset /= iterations;
+    d_offset /= iterations;
+
+    pros::lcd::print(0, "X: %f", -f_offset);
+    pros::lcd::print(1, "Y: %f", -s_offset);
+
+    cout << "Forward Tracker Center Distance: " << -f_offset << " in" << endl;
+    cout << "Sideways Tracker Center Distance: " << -s_offset << " in" << endl;
 }
 
 void test_mecanum() {
   set_coordinates(0, 0, 0);
-  mecanum_to_pose(24, 0, 90);
+
+  constants.drive_exit_error = 2;
+  constants.turn_exit_error = 2;
+  constants.drive_min_speed = 2;
+  constants.turn_min_speed = 2;
+  mecanum_to_pose(0, 24, 0);
+  mecanum_to_pose(0, 0, 90);
+  mecanum_turn_to_angle(0);
 }
 
 // Drive Code
 void opcontrol() {
-  pros::delay(1000);
-
   bool scraper_state = false;
+  bool lift_state = false;
   while(true) {
+    pros::lcd::print(0, "X: %f", odom45.get_x());
+    pros::lcd::print(1, "Y: %f", odom45.get_y());
+    pros::lcd::print(2, "Theta: %f", imu.get_heading());
+    pros::lcd::print(3, "Right Encoder: %f", right_encoder.get_position());
+    pros::lcd::print(4, "Left Encoder: %f", left_encoder.get_position());
+
+
     double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
     double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
     double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
@@ -57,45 +149,66 @@ void opcontrol() {
 
     chassis.drive_holonomic(forward, turn, strafe);
     
+    scraper.set_value(scraper_state);
+    lift.set_value(lift_state);
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+      test_mecanum();
+    }
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      lift_state = !lift_state;
+    }
+
+    // hood goes up immediately, lever follows 250ms later; hood goes down 500ms after release
+    static uint32_t r1_press_time = 0;
+    static uint32_t r1_release_time = 0;
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      lever_target = 1000;
-      lift.set_value(1);
+      if (r1_press_time == 0) r1_press_time = pros::millis();
+      if (pros::millis() - r1_press_time < 2000) intake.move_voltage(12000);
+      else intake.move(0);
+      r1_release_time = 0;
       hood.set_value(0);
+      if (pros::millis() - r1_press_time >= 250) lever_target = 1000;
     } else {
+      r1_press_time = 0;
       lever_target = 0;
-      lift.set_value(0);
-      hood.set_value(1);
+      if (r1_release_time == 0) r1_release_time = pros::millis();
+      if (pros::millis() - r1_release_time >= 1000) hood.set_value(1);
     }
 
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       lever_target = 1000;
       hood.set_value(0);
-      lever_speed = .28;
+      lever_pid.kp = .008;
+      // lever_speed = .28;
     } else {
-      lever_speed = 1;
+      lever_pid.kp = .1;
     }
 
-    lever.move_voltage((12000 * lever_pid.compute(lever_target - lever.get_positions()[0])) * lever_speed );
+    lever.move_voltage((1000 * lever_pid.compute(lever_target - lever.get_positions()[0])) );
 
-    
+    // lift state needs to be fixed so that it goes down when B is release
+
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
       intake.move_voltage(12000); 
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+      lift_state = true;
       intake.move_voltage(-12000); 
     } else {
       if (scraper_state) {
         intake.move_voltage(12000); 
-      } else {
+      } else if (!controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
         intake.move(0);
       }
     }
 
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
       scraper_state = true;
+      lift_state = true;
     } else {
       scraper_state = false;
     }
-    scraper.set_value(scraper_state);
 
     pros::delay(20);
   }

@@ -24,6 +24,6 @@ pros::ADIDigitalOut hood('B');
 rev::AsteriskChassis chassis(front_left, front_right, back_left, back_right, center_left, center_right);
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-rev::QuadEncoder left_encoder('H', 'H', false);
-rev::QuadEncoder right_encoder('I', 'I', false);
-pros::IMU imu(20);
+rev::QuadEncoder left_encoder('H', 'G', false);
+rev::QuadEncoder right_encoder('E', 'F', false);
+pros::Imu imu(7);
