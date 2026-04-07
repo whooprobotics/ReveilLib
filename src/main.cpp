@@ -52,10 +52,10 @@ void initialize() {
 
 void test_mecanum() {
   slipstream.go({
-    &MecanumToPose({24_in, 0_in, 0_deg}, {}),
-    &MecanumToPose({24_in, 24_in, 90_deg}, {}),
-    &MecanumToPose({0_in, 24_in, 180_deg}, {}),
-    &MecanumToPose({0_in, 0_in, 270_deg}, {}),
+    &MecanumToPose({24_in, 0_in, 0_deg}),
+    &MecanumToPose({24_in, 24_in, 90_deg}),
+    &MecanumToPose({0_in, 24_in, 180_deg}),
+    &MecanumToPose({0_in, 0_in, 270_deg}),
   });
 }
 
