@@ -51,6 +51,8 @@ void initialize() {
 
 // Go crazy dawg
 
+// Message me if this doesnt work, i can show you a video on it working on mikgen.
+// Also, if this doesnt work, read the commit logs, its not the code's fault, its probably something else, and if you message me about it not working, i will probably just send you a video of it working and then you can figure out what you did wrong on your end.
 void test_mecanum() {
   slipstream.go({
     &MecanumToPose({24_in, 0_in, 0_deg}),
