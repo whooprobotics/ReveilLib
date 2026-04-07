@@ -1,7 +1,7 @@
 #include "rev/rev.hh"
 #include "robot-config.hh"
 
-rev::Constants constants; // Global constants
+namespace rev { Constants constants; } // Global constants
 
 rev::MotorGroup front_left({11, -12});
 rev::MotorGroup back_left({-14, 15});
@@ -27,4 +27,4 @@ rev::QuadEncoder left_encoder('H', 'G', false);
 rev::QuadEncoder right_encoder('E', 'F', false);
 pros::IMU imu(7);
 
-rev::Slipstream slipstream;
+// rev::Slipstream slipstream;

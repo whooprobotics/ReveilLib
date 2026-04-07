@@ -24,4 +24,4 @@ extern rev::QuadEncoder left_encoder;
 extern rev::QuadEncoder right_encoder;
 extern pros::IMU imu;
 
-rev::Slipstream slipstream;
+// rev::Slipstream slipstream;

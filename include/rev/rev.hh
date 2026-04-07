@@ -76,7 +76,7 @@
 #include <string>
 #include <iostream>
 
-#include "PID.hh"
+#include "api/alg/PID/PID.hh"
 #include "robot-config.hh"
 
 #include "main.h"
