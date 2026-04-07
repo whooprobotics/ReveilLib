@@ -49,7 +49,7 @@ class MecanumToPose : public SlipstreamSegment {
       SlipstreamSegmentStatus::drive({0, 0, 0, 0})};
 
  public:
-  MecanumToPose(Position itarget_point, MecanumToPoseParams iparams)
+  MecanumToPose(Position itarget_point, MecanumToPoseParams iparams = MecanumToPoseParams{})
       : target_point(itarget_point), p(iparams) {
     start_point = {0_in, 0_in, 0_deg};
   }
