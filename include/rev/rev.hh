@@ -70,16 +70,13 @@
 #include "rev/api/units/q_time.hh"
 #include "rev/api/units/q_length.hh"
 #include "rev/api/alg/slipstream/mecanum_segment.hh"
+#include "rev/api/alg/slipstream/mecanum_to_pose.hh"
 #include <memory>
 #include <vector>
 #include <string>
 #include <iostream>
-#include "rev/api/hardware/chassis/butterfly_chassis.hh"
 
-#include "mecanum_util.hh"
-#include "mecanum_PID.hh"
-#include "mecanum_odom45.hh"
+#include "PID.hh"
 #include "robot-config.hh"
-#include "mecanum_alg.hh"
 
 #include "main.h"

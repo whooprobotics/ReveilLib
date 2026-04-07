@@ -5,7 +5,6 @@
 #include "mecanum_PID.hh"
 #include <ostream>
 
-extern Constants constants;
 
 struct mecanum_to_pose_params {
     pidParams<QLength> drive_k = {

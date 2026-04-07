@@ -10,119 +10,53 @@ double odom_wheel_diameter = 2.41; // in inches
 PID lever_pid(.1, 0.0, 0, 0);
 double lever_target = 0;
 
-static auto get_left_enc_inches = []() {
-  return left_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
-};
-
-static auto get_right_enc_inches = []() {
-  return right_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
-};
-
-static void set_coordinates(double x, double y, double angle) {
-
-  imu.set_heading(angle);
-  odom45.set_position({x, y}, angle, get_right_enc_inches(), get_left_enc_inches());
-
-  static pros::Task odom_task([](){
-    while (true) {
-      odom45.update_position(get_left_enc_inches(), get_right_enc_inches(), imu.get_heading());
-      pros::delay(10);
-    }
-  });
-}
-
 void initialize() {
   pros::lcd::initialize();
 
   imu.reset(true);
 
-  constants = {
+  slipstream.set_constants({
     .drive_kp = 1.5,
     .drive_ki = 0,
     .drive_kd = 10,
     .drive_starti = 0,
-
+  
     .drive_settle_error = 1,
-    .drive_settle_time = 100,
+    .drive_settle_time = 100_ms,
     .drive_large_settle_error = 3,
-    .drive_large_settle_time = 500,
-    .drive_timeout = 5000,
-
-    .drive_exit_error = 0,
+    .drive_large_settle_time = 500_ms,
+    .drive_timeout = 5000_ms,
+  
+    .drive_exit_error = 0_in,
     .drive_min_speed = 0,
     .drive_max_speed = 12,
-
+  
     .turn_kp = .4,
     .turn_ki = 0.03,
     .turn_kd = 3,
     .turn_starti = 15,
-
+  
     .turn_settle_error = 1,
-    .turn_settle_time = 100,
+    .turn_settle_time = 100_ms,
     .turn_large_settle_error = 3,
-    .turn_large_settle_time = 500,
-    .turn_timeout = 3000,
-
-    .turn_exit_error = 0,
+    .turn_large_settle_time = 500_ms,
+    .turn_timeout = 3000_ms,
+  
+    .turn_exit_error = 0_deg,
     .turn_min_speed = 0,
     .turn_max_speed = 12,
-  };
-
-  odom45.set_physical_distances(-5.3, 0); // in inches, horizontal distance from cog, vertical distance from cog
-  set_coordinates(0, 0, 0);
+  });
 }
 
-void config_measure_odometry_offsets() {
-
-    int iterations = 10;
-
-    float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
-
-    right_encoder.sensor.reset();
-    left_encoder.sensor.reset();
-
-    for (int i = 0; i < iterations; i++) {
-        imu.set_heading(0);
-        right_encoder.sensor.reset();
-        left_encoder.sensor.reset();
-
-        float start_heading = imu.get_rotation();
-        float target = i % 2 == 0 ? 90 : 270;
-
-        mecanum_turn_to_angle(target, { .max_speed = 6 });
-        pros::delay(250);
-
-        float t_delta = to_rad(reduce_negative_180_to_180(imu.get_rotation() - start_heading));
-
-
-        float f_delta = get_left_enc_inches();
-        float s_delta = get_right_enc_inches();
-
-        f_offset += (f_delta - s_delta) / (sqrt(2) * t_delta);
-        s_offset += (f_delta + s_delta) / (sqrt(2) * t_delta);
-    }
-
-    f_offset /= iterations;
-    s_offset /= iterations;
-    d_offset /= iterations;
-
-    pros::lcd::print(0, "X: %f", -f_offset);
-    pros::lcd::print(1, "Y: %f", -s_offset);
-
-    cout << "Forward Tracker Center Distance: " << -f_offset << " in" << endl;
-    cout << "Sideways Tracker Center Distance: " << -s_offset << " in" << endl;
-}
+// Go crazy dawg
 
 void test_mecanum() {
-  set_coordinates(0, 0, 0);
-
-  constants.drive_exit_error = 2;
-  constants.turn_exit_error = 2;
-  constants.drive_min_speed = 2;
-  constants.turn_min_speed = 2;
-  mecanum_to_pose(0, 24, 0);
-  mecanum_to_pose(0, 0, 90);
-  mecanum_turn_to_angle(0);
+  slipstream.go({
+    &MecanumToPose({24_in, 0_in, 0_deg}, {}),
+    &MecanumToPose({24_in, 24_in, 90_deg}, {}),
+    &MecanumToPose({0_in, 24_in, 180_deg}, {}),
+    &MecanumToPose({0_in, 0_in, 270_deg}, {}),
+  });
 }
 
 // Drive Code
@@ -130,8 +64,6 @@ void opcontrol() {
   bool scraper_state = false;
   bool lift_state = false;
   while(true) {
-    pros::lcd::print(0, "X: %f", odom45.get_x());
-    pros::lcd::print(1, "Y: %f", odom45.get_y());
     pros::lcd::print(2, "Theta: %f", imu.get_heading());
     pros::lcd::print(3, "Right Encoder: %f", right_encoder.get_position());
     pros::lcd::print(4, "Left Encoder: %f", left_encoder.get_position());

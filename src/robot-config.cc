@@ -1,8 +1,7 @@
 #include "rev/rev.hh"
 #include "robot-config.hh"
 
-Odom45 odom45; // Odom using +y coordinate scheme
-Constants constants; // Global constants
+rev::Constants constants; // Global constants
 
 rev::MotorGroup front_left({11, -12});
 rev::MotorGroup back_left({-14, 15});
@@ -26,4 +25,6 @@ rev::AsteriskChassis chassis(front_left, front_right, back_left, back_right, cen
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 rev::QuadEncoder left_encoder('H', 'G', false);
 rev::QuadEncoder right_encoder('E', 'F', false);
-pros::Imu imu(7);
+pros::IMU imu(7);
+
+rev::Slipstream slipstream;

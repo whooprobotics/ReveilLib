@@ -1,6 +1,8 @@
 #pragma once
 
-#include "mecanum_units.hh"
+#include "rev/api/units/all_units.hh"
+
+namespace rev {
 
 struct PIDParams {
   double p;
@@ -26,6 +28,8 @@ public:
 
   bool is_settled();
 
+  void reset();
+
   double error = 0;
   double kp = 0;
   double ki = 0;
@@ -45,3 +49,7 @@ public:
   QTime time_spent_running = 0_ms;
   bool exiting = false;
 };
+
+} // namespace rev
+
+

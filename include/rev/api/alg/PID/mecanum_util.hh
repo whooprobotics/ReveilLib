@@ -6,44 +6,6 @@
 
 // Header only util file since the constants struct is in the header
 
-struct Constants {
-  // Drive PID
-  double drive_kp;
-  double drive_ki;
-  double drive_kd;
-  double drive_starti;
-
-  // Drive Exiting
-  QLength drive_settle_error;
-  QTime drive_settle_time;
-  QLength drive_large_settle_error;
-  QTime drive_large_settle_time;
-  QTime drive_timeout;
-
-  // Drive Motion Chaining
-  QLength drive_exit_error;
-  double drive_min_speed;
-  double drive_max_speed;
-  
-  // Turn PID
-  double turn_kp;
-  double turn_ki;
-  double turn_kd;
-  double turn_starti;
-
-  // Turn Exiting
-  QAngle turn_settle_error;
-  QTime turn_settle_time;
-  QAngle turn_large_settle_error;
-  QTime turn_large_settle_time;
-  QTime turn_timeout;
-  
-  // Turn Motion Chaining
-  QAngle turn_exit_error;
-  double turn_min_speed;
-  double turn_max_speed;
-};
-
 template <typename T>
 constexpr T sign(T value) {
 	return value < 0 ? -1 : 1;

@@ -91,6 +91,10 @@ bool Slipstream::is_completed() {
   return get_status() == SlipstreamStatus::DONE;
 }
 
+void Slipstream::set_constants(Constants constants_) {
+  constants = constants_;
+}
+
 void Slipstream::breakout() {
   status = SlipstreamStatus::DONE;
   chassis->drive_tank(0, 0);

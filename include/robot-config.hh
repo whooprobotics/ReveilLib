@@ -1,8 +1,5 @@
 #pragma once
 
-extern Odom45 odom45;
-extern Constants constants;
-
 extern rev::MotorGroup front_left;
 extern rev::MotorGroup back_left;
 extern rev::MotorGroup front_right;
@@ -26,3 +23,5 @@ extern pros::Controller controller;
 extern rev::QuadEncoder left_encoder;
 extern rev::QuadEncoder right_encoder;
 extern pros::IMU imu;
+
+rev::Slipstream slipstream;
