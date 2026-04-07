@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pros/rtos.hpp"
+#include "mecanum_units.hh"
 #include <cmath>
 
 // Header only util file since the constants struct is in the header
@@ -13,14 +14,14 @@ struct Constants {
   double drive_starti;
 
   // Drive Exiting
-  double drive_settle_error;
-  double drive_settle_time;
-  double drive_large_settle_error;
-  double drive_large_settle_time;
-  double drive_timeout;
+  QLength drive_settle_error;
+  QTime drive_settle_time;
+  QLength drive_large_settle_error;
+  QTime drive_large_settle_time;
+  QTime drive_timeout;
 
   // Drive Motion Chaining
-  double drive_exit_error;
+  QLength drive_exit_error;
   double drive_min_speed;
   double drive_max_speed;
   
@@ -31,14 +32,14 @@ struct Constants {
   double turn_starti;
 
   // Turn Exiting
-  double turn_settle_error;
-  double turn_settle_time;
-  double turn_large_settle_error;
-  double turn_large_settle_time;
-  double turn_timeout;
+  QAngle turn_settle_error;
+  QTime turn_settle_time;
+  QAngle turn_large_settle_error;
+  QTime turn_large_settle_time;
+  QTime turn_timeout;
   
   // Turn Motion Chaining
-  double turn_exit_error;
+  QAngle turn_exit_error;
   double turn_min_speed;
   double turn_max_speed;
 };
@@ -56,8 +57,8 @@ inline double to_deg(double angle_rad) {
   return (angle_rad * (180.0 / M_PI));
 }
 
-inline bool is_line_settled(double desired_X, double desired_Y, double desired_angle_deg, double current_X, double current_Y, double exit_error) {
-  return (desired_Y - current_Y) * cos(to_rad(desired_angle_deg)) <= -(desired_X - current_X) * sin(to_rad(desired_angle_deg)) + exit_error;
+inline bool is_line_settled(double desired_X, double desired_Y, double desired_angle_deg, double current_X, double current_Y, QLength exit_error) {
+  return (desired_Y - current_Y) * cos(to_rad(desired_angle_deg)) <= -(desired_X - current_X) * sin(to_rad(desired_angle_deg)) + exit_error.internal();
 }
 
 enum class TurnDirection {

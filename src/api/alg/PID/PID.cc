@@ -11,7 +11,7 @@ PID::PID(double kp, double ki, double kd, double starti) :
     starti(starti)
 {};
 
-PID::PID(double kp, double ki, double kd, double starti, double settle_error, double settle_time, double large_settle_error, double large_settle_time, double exit_error, double timeout) :
+PID::PID(double kp, double ki, double kd, double starti, double settle_error, QTime settle_time, double large_settle_error, QTime large_settle_time, double exit_error, QTime timeout) :
     kp(kp),
     ki(ki),
     kd(kd),
@@ -37,13 +37,13 @@ double PID::compute(double error) {
     previous_error = error;
 
     if(fabs(error) < settle_error) {
-        time_spent_settled += 10;
+        time_spent_settled += dt;
     } else {
         time_spent_settled = 0;
     }
 
     if (fabs(error) < large_settle_error) {
-        time_spent_large_settled += 10;
+        time_spent_large_settled += dt;
     } else {
         time_spent_large_settled = 0;
     }
@@ -52,7 +52,7 @@ double PID::compute(double error) {
         exiting = true;
     }
 
-    time_spent_running += 10;
+    time_spent_running += dt;
 
     return output;
 }
