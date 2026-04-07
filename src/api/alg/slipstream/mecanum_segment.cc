@@ -37,7 +37,6 @@ SlipstreamSegmentStatus MecanumSegment::step(OdometryState current_state) {
 
   // Generate base power from motion controller
   SlipstreamPower base_power = motion->gen_powers(current_state, target_point, start_point, drop_early);
-
   // Handle coasting if needed
   if (stop_state == StopState::COAST) {
     double coast_power_val = stop->get_coast_power();
