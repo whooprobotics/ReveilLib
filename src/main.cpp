@@ -14,7 +14,8 @@ void initialize() {
   pros::lcd::initialize();
 
   imu.reset(true);
-
+  // These constants work, if the algo does not work 
+  // ITS NOT THE CONSTANTS FAULT READ THE COMMIT LOGS, NOT THE CONSTANTS FAULT
   slipstream.set_constants({
     .drive_kp = 1.5,
     .drive_ki = 0,
