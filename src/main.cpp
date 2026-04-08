@@ -227,8 +227,6 @@ void opcontrol() {
 
     chassis->drive_holonomic(forward, turn, strafe);
     
-
-
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       lever_target = 1000;
       lift.set_value(1);
@@ -242,7 +240,7 @@ void opcontrol() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       lever_target = 1000;
       hood.set_value(1);
-      lever_speed = .28;
+      lever_speed = .35;
     } else {
       hood.set_value(1);
       lever_speed = 1;
@@ -266,7 +264,7 @@ void opcontrol() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
       scraper_state = true;
     } else {
-      scraper_state = false
+      scraper_state = false;
     }
     scraper.set_value(scraper_state);
 

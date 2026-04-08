@@ -41,7 +41,12 @@ class MecanumChassis : public HolonomicChassis {
    * @brief Drive the robot in a mecanum drive style
    */
   void drive_holonomic(SlipstreamPower power) override;
-
+  
+  /**
+   * @brief Heuristic function for a holonomic drive from joystick controls
+   */
+  void drive_holonomic(double forward, double yaw, double strafe, double angle);
+  
   /**
    * @brief Heuristic function for a holonomic drive from joystick controls
    */
