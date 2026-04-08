@@ -13,8 +13,6 @@ using std::tuple;
 
 namespace rev {
 
-DefaultPilonsParams default_params = {0.0, 0.0, 0_in, 0_s, 0_s, 0.0};
-
 void PilonsSegment::init(OdometryState initial_state) {
   cout << "Pilons segment invoked" << endl;
   this->start_point = initial_state.pos;
@@ -47,8 +45,13 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
 
   tuple<double, double> pows;
 
-  pows = this->motion->gen_powers(
-    current_state, this->target_point, this->start_point, this->drop_early);
+  if (!motion) {
+    pows = gen_powers(current_state);
+  }
+  else {
+    pows = this->motion->gen_powers(
+      current_state, this->target_point, this->start_point, this->drop_early);
+  }
 
   // Handle coasting if needed
   if (new_state == StopState::COAST) {
@@ -62,9 +65,16 @@ SegmentStatus PilonsSegment::step(OdometryState current_state) {
   // Apply correction
   // again, temporary measure for 3.1.0
   // REFACTOR THIS IN 4.0.0
-  tuple<double, double> corrected_pows = this->correction->apply_correction(current_state, this->target_point,
+  tuple<double, double> corrected_pows;
+  if (!correction) {
+    corrected_pows = pilons_correction(current_state, pows);
+  }
+  else {
+    corrected_pows = this->correction->apply_correction(current_state, this->target_point,
                                        this->start_point, this->drop_early,
                                        pows);
+  }
+
   return SegmentStatus::drive(corrected_pows);
 }
 
@@ -88,7 +98,7 @@ tuple<double, double> PilonsSegment::gen_powers(
 
   bool isBackwards = (initial_longitudinal_distance.get_value() < 0);
 
-  double opower = isBackwards ? -(default_params.power) : default_params.power;
+  double opower = isBackwards ? -(power) : power;
 
   return std::make_tuple(opower, opower);
 }
