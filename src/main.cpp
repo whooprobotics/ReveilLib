@@ -16,7 +16,7 @@ Motor_Group right_drive({4, 5, 6});
 auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
 
 template<>
-class Defaults<PilonsParams> {
+class rev::Defaults<PilonsParams> {
   constexpr static double power = 0.75;
   constexpr static QLength drop_early = 0_in;
   constexpr static double k_correction = 0.2;

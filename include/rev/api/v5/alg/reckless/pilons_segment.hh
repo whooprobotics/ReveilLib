@@ -1,6 +1,7 @@
 #pragma once
 
 #ifdef PLATFORM_BRAIN
+#include "rev/util/defaults.hh"
 #include "rev/api/v5/alg/reckless/path.hh"
 #include "rev/api/v5/alg/drive/stop/simple_stop.hh"
 
@@ -33,8 +34,6 @@ struct PilonsParams {
   bool operator!=(const PilonsParams&) const = default;
 };
 
-template<typename T>
-class Defaults {};
 
 /**
  * @brief Path segment for use with Reckless controller
