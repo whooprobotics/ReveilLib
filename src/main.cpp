@@ -99,27 +99,60 @@ void opcontrol() {
     static uint32_t r1_press_time = 0;
     static uint32_t r1_release_time = 0;
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      if (r1_press_time == 0) r1_press_time = pros::millis();
-      if (pros::millis() - r1_press_time < 2000) intake.move_voltage(12000);
+      if (r1_press_time == 0) 
+        r1_press_time = pros::millis();
+      if (pros::millis() - r1_press_time < 2000) 
+        intake.move_voltage(12000);
       else intake.move(0);
       r1_release_time = 0;
       hood.set_value(0);
-      if (pros::millis() - r1_press_time >= 250) lever_target = 1000;
+      if (pros::millis() - r1_press_time >= 250) 
+        lever_target = 1000;
     } else {
       r1_press_time = 0;
       lever_target = 0;
-      if (r1_release_time == 0) r1_release_time = pros::millis();
-      if (pros::millis() - r1_release_time >= 1000) hood.set_value(1);
+      if (r1_release_time == 0) 
+        r1_release_time = pros::millis();
+      if (pros::millis() - r1_release_time >= 1000) 
+        hood.set_value(1);
     }
 
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      lever_target = 1000;
+    static uint32_t l1_press_time = 0;
+    static uint32_t l1_release_time = 0;
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      if (l1_press_time == 0) 
+        l1_press_time = pros::millis();
+      if (pros::millis() - l1_press_time < 2000) 
+        intake.move_voltage(12000);
+      else 
+        intake.move(0);
+      l1_release_time = 0;
       hood.set_value(0);
-      lever_pid.kp = .008;
-      // lever_speed = .28;
+      if (pros::millis() - l1_press_time >= 250) {
+        lever_target = 1000;
+        if((lever_target - lever.get_positions()[0]) > 500)
+        lever_pid.kp = .01;
+      } 
     } else {
+      l1_press_time = 0;
+      lever_target = 0;
       lever_pid.kp = .1;
+      if (l1_release_time == 0) 
+        l1_release_time = pros::millis();
+      if (pros::millis() - l1_release_time >= 1000) 
+        hood.set_value(1);
     }
+
+    // if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+    //   hood.set_value(0);
+    //   lever_target = 1000;
+    //   if((lever_target - lever.get_positions()[0]) > 500)
+    //     lever_pid.kp = .01;
+    //   // lever_speed = .28;
+    // } else {
+    //   hood.set_value(1);
+    //   lever_pid.kp = .1;
+    // }
 
     lever.move_voltage((1000 * lever_pid.compute(lever_target - lever.get_positions()[0])) );
 
