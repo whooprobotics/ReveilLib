@@ -59,7 +59,29 @@ void test_mecanum() {
   //   &MecanumToPose({24_in, 24_in, 90_deg}),
   //   &MecanumToPose({0_in, 24_in, 180_deg}),
   //   &MecanumToPose({0_in, 0_in, 270_deg}),
+
+  //   &MecanumToPoint({24_in, 24_in})
   // });
+}
+
+void field_centric() {
+    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
+    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
+    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
+    
+    double angle = imu.get_heading() * M_PI / 180.0;
+    double robotFwd    =  throttle * std::cos(angle) + strafe * std::sin(angle);
+    double robotStrafe =  -throttle * std::sin(angle) + strafe * std::cos(angle);
+
+    SlipstreamPower power{
+      .front_left_forward  = robotFwd + turn + robotStrafe,
+      .front_right_forward = robotFwd - turn - robotStrafe,
+      .rear_left_forward   = robotFwd + turn - robotStrafe,
+      .rear_right_forward  = robotFwd - turn + robotStrafe,
+    };
+    power.clamp_powers();
+
+    chassis.drive_holonomic(power);
 }
 
 // Drive Code
@@ -72,17 +94,19 @@ void opcontrol() {
     pros::lcd::print(4, "Left Encoder: %f", left_encoder.get_position());
 
 
-    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
-    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
-    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
+    // double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
+    // double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
+    // double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
 
-    double forward = deadband(left_y, 0.05);
-    double strafe = deadband(left_x, 0.05);
-    double turn = deadband(right_x, 0.05);
+    // double forward = deadband(left_y, 0.05);
+    // double strafe = deadband(left_x, 0.05);
+    // double turn = deadband(right_x, 0.05);
 
     double lever_speed = 1;
 
-    chassis.drive_holonomic(forward, turn, strafe);
+    field_centric();
+
+    // chassis.drive_holonomic(forward, turn, strafe);
     
     scraper.set_value(scraper_state);
     lift.set_value(lift_state);

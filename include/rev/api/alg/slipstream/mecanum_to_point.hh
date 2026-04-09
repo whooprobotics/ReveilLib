@@ -5,7 +5,7 @@
 
 namespace rev {
 
-struct MecanumToPoseParams {
+struct MecanumToPointParams {
   PIDParams drive_k = {.p = constants.drive_kp,
                        .i = constants.drive_ki,
                        .d = constants.drive_kd,
@@ -14,6 +14,10 @@ struct MecanumToPoseParams {
                       .i = constants.turn_ki,
                       .d = constants.turn_kd,
                       .starti = constants.turn_starti};
+  PIDParams heading_k = {.p = constants.heading_kp,
+                         .i = constants.heading_ki,
+                         .d = constants.heading_kd,
+                         .starti = constants.heading_starti};
 
   settleParams drive_settle = {
       .settle_error = constants.drive_settle_error,
@@ -35,22 +39,23 @@ struct MecanumToPoseParams {
   QTime timeout = constants.drive_timeout;
 };
 
-class MecanumToPose : public SlipstreamSegment {
+class MecanumToPoint : public SlipstreamSegment {
   Position start_point;
   Position target_point;
-  MecanumToPoseParams p;
+  MecanumToPointParams p;
 
   PID drivePID;
   PID turnPID;
+  PID headingPID;
   bool prev_line_settled = false;
-
 
   double part_progress{0.0};
   SlipstreamSegmentStatus last_status{
       SlipstreamSegmentStatus::drive({0, 0, 0, 0})};
 
  public:
-  MecanumToPose(Position itarget_point, MecanumToPoseParams iparams = MecanumToPoseParams{})
+  MecanumToPoint(Position itarget_point,
+                 MecanumToPointParams iparams = MecanumToPointParams{})
       : target_point(itarget_point), p(iparams) {
     start_point = {0_in, 0_in, 0_deg};
   }
@@ -63,12 +68,12 @@ class MecanumToPose : public SlipstreamSegment {
   double progress() override;
 
   std::shared_ptr<SlipstreamSegment> operator&() {
-    return std::make_shared<MecanumToPose>(*this);
+    return std::make_shared<MecanumToPoint>(*this);
   }
 
-  static std::shared_ptr<MecanumToPose> create(Position target_point,
-                                               MecanumToPoseParams params) {
-    return std::make_shared<MecanumToPose>(target_point, params);
+  static std::shared_ptr<MecanumToPoint> create(
+      Position target_point, MecanumToPointParams params = MecanumToPointParams{}) {
+    return std::make_shared<MecanumToPoint>(target_point, params);
   }
 };
 
