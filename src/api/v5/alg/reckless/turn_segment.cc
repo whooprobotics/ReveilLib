@@ -36,6 +36,10 @@ RecklessTurnSegment::RecklessTurnSegment(double imax_power,
       }
 
 void RecklessTurnSegment::init(OdometryState initial_state) {
+  // debugging
+  std::cout << "Max power: " << max_power << "\tCoast power: " << coast_power << "\tHarsh: " << harsh_coeff << std::endl;
+  std::cout << "Coast: " << coast_coeff << "\tBrake_time: " << brake_time << "\tTimeout: " << timeout << std::endl;
+
   start_angle = initial_state.pos.theta;  // normalized (-180 to 180)
   start_angle = start_angle -
                 360 * std::floor((start_angle.convert(degree) + 180) / 360) *
