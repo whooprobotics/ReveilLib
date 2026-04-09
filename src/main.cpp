@@ -6,6 +6,8 @@
 #include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
+#include "robots/soundwave.hh"
+
 using namespace rev;
 using std::make_shared;    
 
@@ -14,17 +16,6 @@ Motor_Group left_drive({1, 2, -3});
 Motor_Group right_drive({4, 5, 6});
 
 auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
-
-template<>
-class rev::Defaults<PilonsParams> {
-  constexpr static double power = 0.75;
-  constexpr static QLength drop_early = 0_in;
-  constexpr static double k_correction = 0.2;
-  constexpr static QLength max_error = 0.5_in;
-  constexpr static QTime harsh = 0.06_s;
-  constexpr static QTime coast = 0.2_s;
-  constexpr static double coast_power = 0.25;
-};
 
 /*
   Setting Up Odometry
@@ -103,6 +94,11 @@ void autonomous() {
 }
 
 void opcontrol() {
+  soundwave::auton();
+
+  while(true) {
+    pros::delay(20);
+  }
   odom->set_position({0_in, 0_in, 0_deg});
 
   while (true) {
