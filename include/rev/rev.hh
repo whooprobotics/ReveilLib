@@ -55,3 +55,5 @@
 #include "rev/api/v5/hardware/devices/rotation_sensors/quad_encoder.hh"
 #include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/api/v5/hardware/sensors/optical.hh"
+
+#include "rev/util/defaults.hh"

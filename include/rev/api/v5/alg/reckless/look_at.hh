@@ -11,6 +11,19 @@
 
 namespace rev {
 /**
+ * @brief Default parameters for LookAt segment
+ */
+struct LookAtParams {
+  double max_power;
+  double coast_power;
+  QAngle angle_offset;
+  QAngle drop_angle;
+  double harsh;
+  double coast;
+  QTime brake_time;
+  QTime timeout;
+};
+/**
  * @brief Implements a point turn segment to face the robot towards a set of coordinates
  * 
  */
@@ -109,7 +122,20 @@ class LookAt : public RecklessSegment {
     QTime ibrake_time,
     QTime itimeout
   );
-  
+
+  template<typename Self = LookAtParams>
+  constexpr LookAt(Position itarget_position)
+    : target_position(itarget_position),
+    max_power(Defaults<Self>::max_power),
+    coast_power(Defaults<Self>::coast_power),
+    angle_offset(Defaults<Self>::angle_offset),
+    drop_angle(Defaults<Self>::drop_angle),
+    harsh_coeff(Defaults<Self>::harsh),
+    coast_coeff(Defaults<Self>::coast),
+    brake_time(Defaults<Self>::brake_time),
+    timeout((uint32_t)Defaults<Self>::timeout.convert(millisecond)),
+    turn_segment(max_power, coast_power, 0 * degree, harsh_coeff, coast_coeff, brake_time, timeout * 1_ms) {}
+      
   /**
    * @brief Initialize the segment to turn the robot
    * 
@@ -183,7 +209,6 @@ class LookAt : public RecklessSegment {
   QTime brake_time;
 
   uint32_t timeout = 0;
-
 };
 
 }  // namespace rev
