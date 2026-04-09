@@ -1,11 +1,14 @@
 #pragma once
 
 #ifdef PLATFORM_BRAIN
+#include "rev/util/defaults.hh"
 #include "rev/api/v5/alg/reckless/path.hh"
+#include "rev/api/v5/alg/drive/stop/simple_stop.hh"
 
 namespace rev {
 /**
  * @brief Parameters for a PilonsSegment
+ * @deprecated As of 3.1.0
  */
 struct PilonsSegmentParams {
   std::shared_ptr<Motion> motion;
@@ -14,13 +17,33 @@ struct PilonsSegmentParams {
 };
 
 /**
+ * @brief Default parameters for PilonsSegment
+ * 
+ */
+struct PilonsParams {
+  // Rename this struct in 4.0.0
+  double power;
+  double k_correction;
+  QLength max_error;
+  QTime harsh;
+  QTime coast;
+  double coast_power;
+  QLength drop_early;
+};
+
+
+/**
  * @brief Path segment for use with Reckless controller
  *
  * TODO: Rename this to be more reflective of what it is specifically, but not
  * until a major release.
  */
 class PilonsSegment : public RecklessSegment {
- public:
+  public:
+  /**
+   * @brief Static instance of default parameters for PilonsSegments
+   */
+
   /**
    * @brief Constructs a new PilonsSegment object
    * 
@@ -53,6 +76,23 @@ class PilonsSegment : public RecklessSegment {
         drop_early(idrop_early) {
     start_point = {0_in, 0_in, 0_deg};
   }
+
+  /**
+   * Constructor for using default params
+   */
+  template<typename Self = PilonsParams>
+  constexpr PilonsSegment(rev::Position itarget_point) : target_point(itarget_point) {
+    start_point = {0.0_in, 0.0_in, 0.0_deg};
+    drop_early = Defaults<Self>::drop_early;
+    power = Defaults<Self>::power;
+    k_correction = Defaults<Self>::k_correction;
+    max_error = Defaults<Self>::max_error;
+    harsh = Defaults<Self>::harsh;
+    coast = Defaults<Self>::coast;
+    coast_power = Defaults<Self>::coast_power;
+    stop = make_shared<SimpleStop>(harsh, coast, coast_power);
+  };
+
 
   /**
    * @brief Initialize the path segment
@@ -110,10 +150,27 @@ class PilonsSegment : public RecklessSegment {
   Position target_point;
   QLength drop_early;
 
+  double power;
+  double k_correction;
+  QLength max_error;
+  QTime harsh;
+  QTime coast;
+  double coast_power;
+
   double part_progress = 0.0;
 
   SegmentStatus last_status = SegmentStatus::drive(0, 0);
+
+  std::tuple<double, double> gen_powers(
+    rev::OdometryState current_state
+  );
+
+  std::tuple<double, double> pilons_correction(
+    rev::OdometryState current_state,
+    std::tuple<double, double> powers
+  );
 };
+
 }  // namespace rev
 
 #endif

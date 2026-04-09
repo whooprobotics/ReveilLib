@@ -2,12 +2,27 @@
 
 #ifdef PLATFORM_BRAIN
 #include <memory>
+#include "rev/util/defaults.hh"
 #include "rev/api/v5/alg/odometry/odometry.hh"
 #include "rev/api/v5/alg/reckless/segment.hh"
 #include "rev/api/common/units/q_angle.hh"
 #include "rev/api/common/units/q_time.hh"
 
 namespace rev {
+
+/**
+ * @brief Default parameters for TurnSegment
+ * 
+ */
+struct TurnSegmentParams {
+  double max_power;
+  double coast_power;
+  double harsh;
+  double coast;
+  QTime brake_time;
+  QTime timeout;
+};
+
 /**
  * @brief Path segment for turning for use with Reckless controller,
  * implementing Walker Campbell's turn algorithm
@@ -32,7 +47,7 @@ class RecklessTurnSegment : public RecklessSegment {
                       double icoast_coeff,
                       QTime ibrake_time);
   
-                      /**
+  /**
    * @brief Constructs a new RecklessTurnSegment object
    * 
    * @param imax_power Maximum turning power
@@ -50,6 +65,21 @@ class RecklessTurnSegment : public RecklessSegment {
                       double icoast_coeff,
                       QTime ibrake_time,
                       QTime itimeout);
+
+  /**
+   * @brief Constructor for using default segment values
+   *
+   */
+  template<typename Self = TurnSegmentParams>
+  constexpr RecklessTurnSegment(QAngle iangle) :
+    angle_goal(iangle) {
+      max_power = Defaults<Self>::max_power;
+      coast_power = Defaults<Self>::coast_power;
+      harsh_coeff = Defaults<Self>::harsh;
+      coast_coeff = Defaults<Self>::coast;
+      brake_time = Defaults<Self>::brake_time.convert(millisecond);
+      timeout = Defaults<Self>::timeout.convert(millisecond);
+    }
 
   /**
    * @brief Current state of the turn segment
@@ -121,6 +151,7 @@ class RecklessTurnSegment : public RecklessSegment {
   TurnState controller_state{TurnState::FULLPOWER};
 };
 
+// REFACTOR THIS IN 4.0.0
 using TurnSegment = RecklessTurnSegment;
 
 }  // namespace rev

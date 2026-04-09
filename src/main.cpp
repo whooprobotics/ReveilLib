@@ -6,6 +6,8 @@
 #include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
+#include "robots/soundwave.hh"
+
 using namespace rev;
 using std::make_shared;    
 
@@ -92,6 +94,11 @@ void autonomous() {
 }
 
 void opcontrol() {
+  soundwave::auton();
+
+  while(true) {
+    pros::delay(20);
+  }
   odom->set_position({0_in, 0_in, 0_deg});
 
   while (true) {
