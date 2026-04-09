@@ -29,9 +29,6 @@ struct PilonsParams {
   QTime coast;
   double coast_power;
   QLength drop_early;
- 
-  bool operator==(const PilonsParams&) const = default;
-  bool operator!=(const PilonsParams&) const = default;
 };
 
 
