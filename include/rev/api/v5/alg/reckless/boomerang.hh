@@ -2,16 +2,33 @@
 
 #ifdef PLATFORM_BRAIN
 #include <memory>
+#include "rev/util/defaults.hh"
 #include "rev/api/v5/alg/reckless/path.hh"
 
 namespace rev {
 /**
  * @brief Parameters for a BoomerangSegment
+ * @deprecated Since 3.1.0
  */
 struct BoomerangSegmentParams {
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
+  double lead;
+};
+
+/**
+ * @brief Default parameters for BoomerangSegment
+ * 
+ */
+struct BoomerangParams {
+  double power;
+  double k_correction;
+  QLength max_error;
+  QTime harsh;
+  QTime coast;
+  double coast_power;
+  QLength drop_early;
   double lead;
 };
 
@@ -70,6 +87,17 @@ class BoomerangSegment : public RecklessSegment {
     start_point = {0_in, 0_in, 0_deg};
   }
 
+  template<typename Self = BoomerangParams>
+  constexpr BoomerangSegment(Position itarget_point)
+    : target_point(itarget_point) {
+    power = Defaults<Self>::power;
+    k_correction = Defaults<Self>::k_correction;
+    max_error = Defaults<Self>::max_error;
+    harsh = Defaults<Self>::harsh;
+    coast = Defaults<Self>::coast;
+    coast_power = Defaults<Self>::coast_power;
+  }
+
   /**
    * @brief Initialize the path segment
    *
@@ -121,9 +149,23 @@ class BoomerangSegment : public RecklessSegment {
   }
 
  private:
+  std::tuple<double, double> gen_powers(OdometryState current_state);
+  std::tuple<double, double> pilons_correction(
+    rev::OdometryState current_state,
+    std::tuple<double, double> powers
+  );
+  QAngle near_semicircle(rev::QAngle angle, rev::QAngle reference);
+
   std::shared_ptr<Motion> motion;
   std::shared_ptr<Correction> correction;
   std::shared_ptr<Stop> stop;
+
+  double power;
+  double k_correction;
+  QLength max_error;
+  QTime harsh;
+  QTime coast;
+  double coast_power;
 
   Position start_point;
   Position target_point;
