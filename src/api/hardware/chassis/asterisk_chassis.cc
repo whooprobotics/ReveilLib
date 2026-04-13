@@ -51,7 +51,7 @@ void AsteriskChassis::drive_holonomic(double forward, double turn, double strafe
 
   double center_left_power  = 0.0;
   double center_right_power = 0.0;
-  if (fabs(forward) > 0.0) {
+  if (fabs(forward) > 0.0 || fabs(turn) > 0.0) {
     center_left_power  = std::clamp(forward + turn, -1.0, 1.0);
     center_right_power = std::clamp(forward - turn, -1.0, 1.0);
   }

@@ -7,15 +7,20 @@ extern rev::MotorGroup back_right;
 extern rev::Motor center_left;
 extern rev::Motor center_right;
 
-extern rev::Motor intake;
+extern pros::Optical color_sensor;
 
-extern pros::Motor lever1;
-extern pros::Motor lever2;
+extern pros::Motor intake;
+extern pros::Motor back_intake;
 
-extern pros::Motor_Group lever;
+extern pros::Motor lever;
+//extern pros::Motor lever2;
+//extern pros::Motor_Group lever;
 extern pros::ADIDigitalOut scraper;
 extern pros::ADIDigitalOut lift;
 extern pros::ADIDigitalOut hood;
+extern pros::ADIDigitalOut lever_piston;
+extern pros::ADIDigitalOut descore_piston;
+
 
 extern rev::AsteriskChassis chassis;
 
