@@ -6,6 +6,7 @@
 #include "rev/api/alg/slipstream/segment.hh"
 #include "rev/api/alg/stop/stop.hh"
 #include "rev/api/units/q_length.hh"
+
 namespace rev {
 
 void MecanumToPose::init(OdometryState initial_state) {
@@ -69,6 +70,15 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
   double raw_heading_error = heading_error.convert(degree);
   double heading_raw = get_heading().convert(radian);
   
+  QAngle angle_to_target = reduce_negative_180_to_180(desired_heading - get_heading());
+  double heading_scale_factor = std::cos(angle_to_target.convert(radian));
+
+  double center_output = drive_output * heading_scale_factor;
+  double center_max_speed = std::abs(heading_scale_factor) * p.center_max_speed;
+
+  double left_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
+  double right_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
+    
   double left_front_output = (drive_output * std::cos(heading_raw) + raw_heading_error - M_PI / 4) + turn_output;
   double left_back_output = (drive_output * std::cos(-heading_raw) - raw_heading_error + 3 * M_PI / 4) + turn_output;
   double right_back_output = (drive_output * std::cos(heading_raw) + raw_heading_error - M_PI / 4) - turn_output;
@@ -79,7 +89,11 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
     .front_right_forward = right_front_output,
     .rear_left_forward = left_back_output,
     .rear_right_forward = right_back_output,
+
+    .front_left_steer = left_center_voltage,
+    .front_right_steer = right_center_voltage
   };
+  
   return last_status = SlipstreamSegmentStatus::drive(power);
 }
 

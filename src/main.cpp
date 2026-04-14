@@ -190,9 +190,9 @@ void opcontrol() {
     double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
     double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
 
-    double forward = deadband(left_y, 0.05);
-    double strafe = deadband(left_x, 0.05);
-    double turn = deadband(right_x, 0.05);
+    // double forward = deadband(left_y, 0.05);
+    // double strafe = deadband(left_x, 0.05);
+    // double turn = deadband(right_x, 0.05);
 
     double lever_speed = 1;
 

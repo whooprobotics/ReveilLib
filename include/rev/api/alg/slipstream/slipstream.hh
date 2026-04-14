@@ -35,6 +35,13 @@ struct Constants {
   double turn_kd;
   double turn_starti;
 
+  // Heading PID
+  double heading_kp;
+  double heading_ki;
+  double heading_kd;
+  double heading_starti;
+  double heading_max_speed;
+
   // Turn Exiting
   double turn_settle_error;
   QTime turn_settle_time;
@@ -106,6 +113,26 @@ inline double clamp_min_voltage(double drive_output, double drive_min_voltage) {
     return drive_min_voltage;
   }
   return drive_output;
+}
+
+inline double reduce_negative_90_to_90(double angle) {
+  while (!(angle >= -90.0 && angle < 90.0)) {
+    if (angle < -90.0) angle += 180.0;
+    if (angle >= 90.0) angle -= 180.0;
+  }
+  return angle;
+}
+
+inline double left_voltage_scaling(double drive_output, double heading_output) {
+  double ratio = std::max(std::abs(drive_output + heading_output), std::abs(drive_output - heading_output)) / 12.0;
+  if (ratio > 1.0) return (drive_output + heading_output) / ratio;
+  return drive_output + heading_output;
+}
+
+inline double right_voltage_scaling(double drive_output, double heading_output) {
+  double ratio = std::max(std::abs(drive_output + heading_output), std::abs(drive_output - heading_output)) / 12.0;
+  if (ratio > 1.0) return (drive_output - heading_output) / ratio;
+  return drive_output - heading_output;
 }
 
 enum class SlipstreamStatus { ACTIVE, DONE };
