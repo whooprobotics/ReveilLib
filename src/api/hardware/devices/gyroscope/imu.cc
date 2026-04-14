@@ -19,4 +19,8 @@ std::pair<std::uint8_t, std::uint8_t> Imu::check_port() {
   return std::make_pair(p, 0);
 }
 
+void Imu::calibrate() {
+  inertial.reset(true);
+}
+
 }  // namespace rev

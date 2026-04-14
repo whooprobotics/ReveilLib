@@ -25,11 +25,22 @@ pros::ADIDigitalOut hood('B');
 pros::ADIDigitalOut lever_piston('A');
 pros::ADIDigitalOut descore_piston('D');
 
-rev::AsteriskChassis chassis(front_left, front_right, back_left, back_right, center_left, center_right);
+std::shared_ptr<rev::AsteriskChassis> chassis = std::make_shared<rev::AsteriskChassis>(front_left, front_right, back_left, back_right, center_left, center_right);
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-rev::QuadEncoder left_encoder('H', 'G', false);
-rev::QuadEncoder right_encoder('E', 'F', false);
-pros::IMU imu(1);
+std::shared_ptr<rev::QuadEncoder> forward_enc = std::make_shared<rev::QuadEncoder>('E', 'F', false);
+std::shared_ptr<rev::QuadEncoder> sideways_enc = std::make_shared<rev::QuadEncoder>('G', 'H', true);
+std::shared_ptr<rev::Imu> imu = std::make_shared<rev::Imu>(1);
 
-// rev::Slipstream slipstream;
+QLength odom_wheel_size = 2.41_in;
+
+std::shared_ptr<rev::TwoRotationInertialOdometry> odom = std::make_shared<rev::TwoRotationInertialOdometry>(
+    forward_enc, sideways_enc, imu,
+    odom_wheel_size, odom_wheel_size,
+    2.75_in, 1.9_in
+);
+
+std::shared_ptr<rev::Slipstream> slipstream = std::make_shared<rev::Slipstream>(chassis, odom);
+
+rev::AsyncRunner odom_runner(odom);
+rev::AsyncRunner slipstream_runner(slipstream);

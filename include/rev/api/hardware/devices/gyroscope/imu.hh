@@ -9,6 +9,7 @@ class Imu : public Gyroscope {
  public:
   Imu(int port);
   double get_heading() override;
+  void calibrate();
   bool is_calibrating() override;
   std::pair<std::uint8_t, std::uint8_t> check_port() override;
 

@@ -81,3 +81,5 @@
 #include "robot-config.hh"
 
 #include "main.h"
+
+using namespace rev;

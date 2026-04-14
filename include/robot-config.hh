@@ -1,5 +1,7 @@
 #pragma once
 
+#include "rev/rev.hh"
+
 extern rev::MotorGroup front_left;
 extern rev::MotorGroup back_left;
 extern rev::MotorGroup front_right;
@@ -21,14 +23,19 @@ extern pros::ADIDigitalOut hood;
 extern pros::ADIDigitalOut lever_piston;
 extern pros::ADIDigitalOut descore_piston;
 
-
-extern rev::AsteriskChassis chassis;
-
 extern pros::Controller controller;
-extern rev::QuadEncoder left_encoder;
-extern rev::QuadEncoder right_encoder;
-extern pros::IMU imu;
+extern std::shared_ptr<QuadEncoder> forward_enc;
+extern std::shared_ptr<QuadEncoder> sideways_enc;
+extern std::shared_ptr<rev::Imu> imu;
+
+extern std::shared_ptr<AsteriskChassis> chassis;
+extern std::shared_ptr<TwoRotationInertialOdometry> odom;
+
+extern rev::QLength odom_wheel_size;
 
 void init();
 
-// rev::Slipstream slipstream;
+extern std::shared_ptr<rev::Slipstream> slipstream;
+
+extern rev::AsyncRunner odom_runner;
+extern rev::AsyncRunner slipstream_runner;

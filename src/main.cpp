@@ -2,142 +2,32 @@
 
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
-
-// Devices have moved into robot-config
-
-double odom_wheel_diameter = 2.41; // in inches
-
-enum Color {
-  RED = 0,
-  BLUE = 1,
-  NONE = 2
-};
-
-// this is a maybe pls god dont pls omg this is a cry for help omg its like 3 am
-// enum IntakeState {
-//   IN = 0,
-//   OUT_BACK = 1,
-//   CLEAR = 2,
-//   OFF = 3
-// };
-
-inline static bool is_sorting = false;
-inline static bool is_stalling = false;
-inline static bool intake_stall = false;
-inline static bool back_intake_stall = false;
-
-Color detect_color() {
-  int hue = color_sensor.get_hue();
-
-  if ((hue < 5 || hue > 350) && color_sensor.get_proximity() > 90) {
-    return Color::RED;
-  } else if ((hue > 200 && hue < 230) && color_sensor.get_proximity() > 90) {
-    return Color::BLUE;
-  } else {
-    return Color::NONE;
-  }
-}
-
-void color_sort(Color color, Color team_color) {
-  if (color != team_color && color != Color::NONE) {
-    is_sorting = true;
-    back_intake.move_voltage(-12000);
-    pros::delay(175);
-    is_sorting = false;
-  }
-}
-
-// Go crazy dawg
-
+  
 // Message me if this doesnt work, i can show you a video on it working on mikgen.
 // Also, if this doesnt work, read the commit logs, its not the code's fault, its probably something else, and if you message me about it not working, i will probably just send you a video of it working and then you can figure out what you did wrong on your end.
 void test_mecanum() {
-  // slipstream.go({
-  //   &MecanumToPose({24_in, 0_in, 0_deg}),
-  //   &MecanumToPose({24_in, 24_in, 90_deg}),
-  //   &MecanumToPose({0_in, 24_in, 180_deg}),
-  //   &MecanumToPose({0_in, 0_in, 270_deg}),
-  // });
+  slipstream->go({
+    &MecanumToPose({24_in, 0_in, 0_deg}),
+    &MecanumToPose({24_in, 24_in, 90_deg}),
+    &MecanumToPose({0_in, 24_in, 180_deg}),
+    &MecanumToPose({0_in, 0_in, 270_deg}),
+  });
 }
-
-void field_centric() {
-    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
-    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
-    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
-
-    // const robotFwd =  throttle * Math.cos(to_rad(angle)) + strafe * Math.sin(to_rad(angle));
-    // const robotStrafe = -throttle * Math.sin(to_rad(angle)) + strafe * Math.cos(to_rad(angle));
-
-    double angle = imu.get_heading() * M_PI / 180.0;
-    double robotFwd    =  throttle * std::cos(angle) + strafe * std::sin(angle);
-    double robotStrafe =  -throttle * std::sin(angle) + strafe * std::cos(angle);
-
-    SlipstreamPower power{
-      .front_left_forward  = robotFwd + turn + robotStrafe,
-      .front_right_forward = robotFwd - turn - robotStrafe,
-      .rear_left_forward   = robotFwd + turn - robotStrafe,
-      .rear_right_forward  = robotFwd - turn + robotStrafe
-    };
-  
-    power.clamp_powers();
-
-    chassis.drive_holonomic(robotFwd, turn, robotStrafe);
-}
-
-void color_task() {
-  Color Team_Color = Color::RED;
-  while (true) {
-    Color detected_color = detect_color();
-    color_sort(detected_color, Team_Color);
-    pros::lcd::print(5, Team_Color == Color::RED ? "RED" : "BLUE");
-    pros::lcd::print(6, detected_color == Color::RED ? "RED" : detected_color == Color::BLUE ? "BLUE" : "UNKNOWN");
-    pros::delay(10);
-  }
-}
-pros::Task Color_Task(color_task);
-
-void antijam() {
-  int stall_timeout = 800; // ms
-  int stall_time = 0;
-  double front_intake_torque_threshold = .3; // Nm
-  double back_intake_torque_threshold = .32; // Nm
-  while (true) {
-    if (!is_stalling && (intake.get_torque() > front_intake_torque_threshold || back_intake.get_torque() > back_intake_torque_threshold)) {
-      stall_time = pros::millis();
-      is_stalling = true;
-    } 
-    
-    if (!is_stalling) {
-      intake_stall = false;
-      back_intake_stall = false;
-    }
-    if (is_stalling && /*pros::millis() - stall_time > stall_timeout &&*/ intake.get_torque() > front_intake_torque_threshold) {
-      intake_stall = true;
-      controller.rumble("--");
-      intake.move_voltage(0);
-    }
-    if (is_stalling && /*pros::millis() - stall_time > stall_timeout &&*/ back_intake.get_torque() > back_intake_torque_threshold){
-      back_intake_stall = true;
-      controller.rumble("-");
-      back_intake.move_voltage(0);
-    }
-    pros::lcd::print(7, "%s", is_stalling ? "STALLING" : "NOT STALLING");
-    pros::delay(20);
-  }
-}
-pros::Task AntiJamTask(antijam);
 
 void initialize() {
   pros::lcd::initialize();
   color_sensor.set_integration_time(5);
   color_sensor.set_led_pwm(75);
-  while (lever.get_torque() < .25) {
-    lever.move_voltage(-4000);
-  }
+
+  // Makes lever go to start
+  // while (lever.get_torque() < .25) {
+  //   lever.move_voltage(-4000);
+  // }
+  
   lever.move_voltage(0);
   lever.set_zero_position(0);
 
-  imu.reset(true);
+  imu->calibrate();
 
   // These constants work, if the algo does not work 
   // ITS NOT THE CONSTANTS FAULT READ THE COMMIT LOGS, NOT THE CONSTANTS FAULT
@@ -174,6 +64,105 @@ void initialize() {
   // });
 }
 
+enum Color {
+  RED = 0,
+  BLUE = 1,
+  NONE = 2
+};
+
+void field_centric() {
+    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
+    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
+    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
+
+    // const robotFwd =  throttle * Math.cos(to_rad(angle)) + strafe * Math.sin(to_rad(angle));
+    // const robotStrafe = -throttle * Math.sin(to_rad(angle)) + strafe * Math.cos(to_rad(angle));
+
+    double angle = imu->get_heading() * M_PI / 180.0;
+    double robotFwd    =  throttle * std::cos(angle) + strafe * std::sin(angle);
+    double robotStrafe =  -throttle * std::sin(angle) + strafe * std::cos(angle);
+
+    SlipstreamPower power{
+      .front_left_forward  = robotFwd + turn + robotStrafe,
+      .front_right_forward = robotFwd - turn - robotStrafe,
+      .rear_left_forward   = robotFwd + turn - robotStrafe,
+      .rear_right_forward  = robotFwd - turn + robotStrafe
+    };
+  
+    power.clamp_powers();
+
+    chassis->drive_holonomic(robotFwd, turn, robotStrafe);
+}
+
+inline static bool is_sorting = false;
+inline static bool is_stalling = false;
+inline static bool intake_stall = false;
+inline static bool back_intake_stall = false;
+
+Color detect_color() {
+  int hue = color_sensor.get_hue();
+
+  if ((hue < 5 || hue > 350) && color_sensor.get_proximity() > 90) {
+    return Color::RED;
+  } else if ((hue > 200 && hue < 230) && color_sensor.get_proximity() > 90) {
+    return Color::BLUE;
+  } else {
+    return Color::NONE;
+  }
+}
+
+void color_sort(Color color, Color team_color) {
+  if (color != team_color && color != Color::NONE) {
+    is_sorting = true;
+    back_intake.move_voltage(-12000);
+    pros::delay(175);
+    is_sorting = false;
+  }
+}
+
+void color_task() {
+  Color Team_Color = Color::RED;
+  while (true) {
+    Color detected_color = detect_color();
+    color_sort(detected_color, Team_Color);
+    // pros::lcd::print(5, Team_Color == Color::RED ? "RED" : "BLUE");
+    // pros::lcd::print(6, detected_color == Color::RED ? "RED" : detected_color == Color::BLUE ? "BLUE" : "UNKNOWN");
+    pros::delay(10);
+  }
+}
+pros::Task Color_Task(color_task);
+
+void antijam() {
+  int stall_timeout = 800; // ms
+  int stall_time = 0;
+  double front_intake_torque_threshold = .3; // Nm
+  double back_intake_torque_threshold = .32; // Nm
+  while (true) {
+    if (!is_stalling && (intake.get_torque() > front_intake_torque_threshold || back_intake.get_torque() > back_intake_torque_threshold)) {
+      stall_time = pros::millis();
+      is_stalling = true;
+    } 
+    
+    if (!is_stalling) {
+      intake_stall = false;
+      back_intake_stall = false;
+    }
+    if (is_stalling && /*pros::millis() - stall_time > stall_timeout &&*/ intake.get_torque() > front_intake_torque_threshold) {
+      intake_stall = true;
+      controller.rumble("--");
+      intake.move_voltage(0);
+    }
+    if (is_stalling && /*pros::millis() - stall_time > stall_timeout &&*/ back_intake.get_torque() > back_intake_torque_threshold){
+      back_intake_stall = true;
+      controller.rumble("-");
+      back_intake.move_voltage(0);
+    }
+    // pros::lcd::print(7, "%s", is_stalling ? "STALLING" : "NOT STALLING");
+    pros::delay(20);
+  }
+}
+pros::Task AntiJamTask(antijam);
+
 // Drive Code
 void opcontrol() {
   bool scraper_state = false;
@@ -182,9 +171,11 @@ void opcontrol() {
   bool intake_in_state = true;
 
   while(true) {
-    pros::lcd::print(2, "Theta: %f", imu.get_heading());
-    pros::lcd::print(3, "Right Encoder: %f", right_encoder.get_position());
-    pros::lcd::print(4, "Left Encoder: %f", left_encoder.get_position());
+    pros::lcd::print(2, "Theta: %f", imu->get_heading());
+    pros::lcd::print(3, "X: %f", odom->get_state().pos.x.convert(inch));
+    pros::lcd::print(4, "Y: %f", odom->get_state().pos.y.convert(inch));
+    pros::lcd::print(5, "Sideways Encoder: %f", sideways_enc->get_position());
+    pros::lcd::print(6, "Forward Encoder: %f", forward_enc->get_position());
 
     double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
     double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
