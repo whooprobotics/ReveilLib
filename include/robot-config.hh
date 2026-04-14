@@ -15,8 +15,6 @@ extern pros::Motor intake;
 extern pros::Motor back_intake;
 
 extern pros::Motor lever;
-//extern pros::Motor lever2;
-//extern pros::Motor_Group lever;
 extern pros::ADIDigitalOut scraper;
 extern pros::ADIDigitalOut lift;
 extern pros::ADIDigitalOut hood;
