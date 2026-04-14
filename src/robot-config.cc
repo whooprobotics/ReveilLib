@@ -32,7 +32,7 @@ std::shared_ptr<rev::QuadEncoder> forward_enc = std::make_shared<rev::QuadEncode
 std::shared_ptr<rev::QuadEncoder> sideways_enc = std::make_shared<rev::QuadEncoder>('G', 'H', true);
 std::shared_ptr<rev::Imu> imu = std::make_shared<rev::Imu>(1);
 
-QLength odom_wheel_size = 2.41_in;
+QLength odom_wheel_size = 2_in;
 
 std::shared_ptr<rev::TwoRotationInertialOdometry> odom = std::make_shared<rev::TwoRotationInertialOdometry>(
     forward_enc, sideways_enc, imu,
