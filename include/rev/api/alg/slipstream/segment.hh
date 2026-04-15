@@ -38,7 +38,7 @@ struct SlipstreamSegmentStatus {
     SlipstreamSegmentStatus status;
     status.status = SlipstreamSegmentStatusType::DRIVE;
     status.power = ipower;
-    return status;
+  return status;
   }
   
   static SlipstreamSegmentStatus brake() {

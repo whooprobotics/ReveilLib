@@ -45,9 +45,12 @@ class MecanumToPoint : public SlipstreamSegment {
   MecanumToPointParams p;
 
   PID drivePID;
-  PID turnPID;
   PID headingPID;
   bool prev_line_settled = false;
+
+  QAngle desired_heading = 0_deg;
+  bool heading_locked = false;
+  QAngle locked_heading = 0_deg;
 
   double part_progress{0.0};
   SlipstreamSegmentStatus last_status{

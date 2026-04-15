@@ -1,4 +1,5 @@
 #pragma once
+#include <ostream>
 #include "rev/api/alg/PID/PID.hh"
 #include "rev/api/alg/slipstream/segment.hh"
 #include "rev/api/alg/slipstream/slipstream.hh"
@@ -34,6 +35,21 @@ struct MecanumToPoseParams {
   double center_max_speed = constants.heading_max_speed;
   QTime timeout = constants.drive_timeout;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const MecanumToPoseParams& p) {
+  return os << "MecanumToPoseParams{\n"
+            << "  drive_k=" << p.drive_k << "\n"
+            << "  turn_k=" << p.turn_k << "\n"
+            << "  drive_settle=" << p.drive_settle << "\n"
+            << "  turn_settle=" << p.turn_settle << "\n"
+            << "  exit_error=" << p.exit_error.convert(inch) << "in\n"
+            << "  min_speed=" << p.min_speed << "\n"
+            << "  max_speed=" << p.max_speed << "\n"
+            << "  turn_max_speed=" << p.turn_max_speed << "\n"
+            << "  center_max_speed=" << p.center_max_speed << "\n"
+            << "  timeout=" << p.timeout.convert(millisecond) << "ms\n"
+            << "}";
+}
 
 class MecanumToPose : public SlipstreamSegment {
   Position start_point;

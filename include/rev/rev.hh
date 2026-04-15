@@ -72,6 +72,9 @@
 #include "rev/api/alg/slipstream/mecanum_segment.hh"
 #include "rev/api/alg/slipstream/mecanum_to_pose.hh"
 #include "rev/api/alg/slipstream/mecanum_to_point.hh"
+#include "rev/api/alg/slipstream/mecanum_to_distance.hh"
+#include "rev/api/alg/slipstream/mecanum_turn_to_angle.hh"
+#include "rev/api/alg/slipstream/mecanum_turn_to_point.hh"
 #include <memory>
 #include <vector>
 #include <string>

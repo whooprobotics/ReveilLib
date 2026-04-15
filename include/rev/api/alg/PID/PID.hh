@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ostream>
 #include "rev/api/units/all_units.hh"
 
 namespace rev {
@@ -11,12 +12,24 @@ struct PIDParams {
   double starti;
 };
 
+inline std::ostream& operator<<(std::ostream& os, const PIDParams& k) {
+  return os << "PIDParams{p=" << k.p << ", i=" << k.i
+            << ", d=" << k.d << ", starti=" << k.starti << "}";
+}
+
 struct settleParams {
   double settle_error;
   QTime settle_time;
   double large_settle_error;
   QTime large_settle_time;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const settleParams& s) {
+  return os << "settleParams{settle_error=" << s.settle_error
+            << ", settle_time=" << s.settle_time.convert(millisecond) << "ms"
+            << ", large_settle_error=" << s.large_settle_error
+            << ", large_settle_time=" << s.large_settle_time.convert(millisecond) << "ms}";
+}
 
 class PID {
 public:

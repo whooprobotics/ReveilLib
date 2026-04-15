@@ -3,19 +3,50 @@
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
   
+void drive_to_point(rev::Position target, rev::MecanumToPointParams params = {}) {
+  slipstream->go({rev::MecanumToPoint::create(target, params)});
+  slipstream->await();
+}
+
+void drive_to_pose(rev::Position target, rev::MecanumToPoseParams params = {}) {
+  slipstream->go({rev::MecanumToPose::create(target, params)});
+  slipstream->await();
+}
+
+void drive_distance(rev::QLength distance, rev::QAngle heading, rev::MecanumToDistanceParams params = {}) {
+  slipstream->go({rev::MecanumToDistance::create(distance, heading, params)});
+  slipstream->await();
+
+  slipstream->go({&MecanumToDistance(distance, heading, {})});
+
+}
+
+void turn_to_angle(rev::QAngle angle, rev::TurnParams params = {}) {
+  slipstream->go({rev::MecanumTurnToAngle::create(angle, params)});
+  slipstream->await();
+}
+
+void turn_to_point(rev::Position target, rev::TurnParams params = {}) {
+  slipstream->go({rev::MecanumTurnToPoint::create(target, params)});
+  slipstream->await();
+}
+
 // Message me if this doesnt work, i can show you a video on it working on mikgen.
 // Also, if this doesnt work, read the commit logs, its not the code's fault, 
 // its probably something else, and if you message me about it not working, 
 // i will probably just send you a video of it working and then you can figure out what you did wrong on your end.
 void test_mecanum() {
   odom->set_position({0_in, 0_in, 0_deg});
-  slipstream->go({
-    &MecanumToPose({24_in, 0_in, 0_deg}),
-    &MecanumToPose({24_in, 24_in, 90_deg}),
-    &MecanumToPose({0_in, 24_in, 180_deg}),
-    &MecanumToPose({0_in, 0_in, 270_deg}),
-  });
-  slipstream->await();
+  turn_to_angle(0_deg);                
+  drive_distance(12_in, 0_deg);         
+  drive_distance(-12_in, 0_deg);        
+  drive_to_point({0_in, 24_in});        
+  turn_to_point({24_in, 24_in}, { .offset = 180_deg });
+  drive_to_pose({24_in, 24_in, 90_deg});
+  turn_to_angle(180_deg);            
+  drive_to_point({0_in, 0_in});      
+  turn_to_angle(0_deg);              
+
 }
 
 void initialize() {
@@ -28,7 +59,13 @@ void initialize() {
 
   // Makes lever go to start no matter hat position it starts in, 
   // and also zeros the position so we can use move_absolute with it
-  while (lever.get_torque() < .25) {lever.move_voltage(-4000);}
+  
+  u_int32_t lever_timeout = 2000; // ms
+
+  u_int32_t start_time = pros::millis();
+  while (lever.get_torque() < .25 || pros::millis() - start_time > 500) {
+    lever.move_voltage(-4000);
+  }
   lever.move_voltage(0);
   lever.set_zero_position(0);
 
@@ -48,12 +85,18 @@ void initialize() {
   
     .drive_exit_error = 0_in,
     .drive_min_speed = 0,
-    .drive_max_speed = 12,
+    .drive_max_speed = 8,
   
     .turn_kp = .4,
     .turn_ki = 0.03,
     .turn_kd = 3,
     .turn_starti = 15,
+
+    .heading_kp = 0.3,
+    .heading_ki = 0,
+    .heading_kd = 3,
+    .heading_starti = 0,
+    .heading_max_speed = 10,
   
     .turn_settle_error = 1,
     .turn_settle_time = 100_ms,
@@ -115,6 +158,13 @@ Color detect_color() {
   }
 }
 
+// Variables for anti-jam system
+static bool is_sorting = false;
+static bool is_stalled = false;
+static bool front_intake_stalled = false;
+static bool back_intake_stalled= false;
+static bool intake_in_state = true;
+
 // Sorts the color, if the detected color is not the same as the team color and is not NONE, 
 // it runs the intake in reverse for a short amount of time to eject the wrong colored object
 void color_sort(Color color, Color team_color) {
@@ -139,12 +189,6 @@ void color_task() {
   }
 }
 pros::Task Color_Task(color_task);
-
-// Variables for anti-jam system
-inline static bool is_sorting = false;
-inline static bool is_stalled = false;
-inline static bool front_intake_stalled = false;
-inline static bool back_intake_stalled= false;
 
 // Resets the anti-jam system, setting all the stalled variables to false 
 void reset_jam() {
@@ -202,8 +246,8 @@ void anti_jam() {
     }
 
     // Graph the torque values for testing in terminal
-    cout << "(" << i << ", " << intake.get_torque() << "), "; 
-    cout << "(" << i << ", " << back_intake.get_torque() << ") " << endl; 
+    // cout << "(" << i << ", " << intake.get_torque() << "), "; 
+    // cout << "(" << i << ", " << back_intake.get_torque() << ") " << endl; 
     i += 0.02;
 
     // If either intake is stalled, set the is_stalling flag to true, otherwise set it to false
@@ -320,7 +364,6 @@ void opcontrol() {
   bool scraper_state = false;
   bool descore_state = false;
   bool lift_state = false;
-  bool intake_in_state = true;
 
   while(true) {
     // Print out telemetry for debugging

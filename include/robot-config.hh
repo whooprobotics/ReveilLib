@@ -27,7 +27,9 @@ extern std::shared_ptr<QuadEncoder> sideways_enc;
 extern std::shared_ptr<rev::Imu> imu;
 
 extern std::shared_ptr<AsteriskChassis> chassis;
-extern std::shared_ptr<TwoRotationInertialOdometry> odom;
+
+extern std::shared_ptr<TwoRotationInertialOdometry> odom; // Rev2
+// extern std::shared_ptr<TwoRotationInertialOdometry45Degrees> odom; // Megatron
 
 extern rev::QLength odom_wheel_size;
 
