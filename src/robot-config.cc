@@ -12,7 +12,7 @@ rev::Motor center_right(-16);
 
 pros::Optical color_sensor(8);
 
-pros::Motor intake(-2, pros::E_MOTOR_GEAR_BLUE);
+pros::Motor front_intake(-2, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor back_intake(-10, pros::E_MOTOR_GEAR_BLUE);
 
 //pros::Motor lever1(-1, pros::E_MOTOR_GEAR_RED);

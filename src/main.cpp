@@ -141,6 +141,7 @@ static bool is_sorting = false;
 static bool is_stalled = false;
 static bool front_intake_stalled = false;
 static bool back_intake_stalled = false;
+
 // Anti-jam system, if the torque on either intake exceeds the threshold for a certain amount of time, 
 // it cuts power to the intakes until the torque drops back down, indicating the jam has been cleared
 
@@ -160,7 +161,7 @@ void anti_jam() {
     // If the torque exceeds the threshold, start a timer, 
     // if the torque is still above the threshold after the timer runs out, 
     // we can assume the intake is stalled and stop the motors until the torque drops back down
-    if (!is_front_stalling && intake.get_torque() > front_intake_torque_threshold) {
+    if (!is_front_stalling && front_intake.get_torque() > front_intake_torque_threshold) {
       frontstall_time = pros::millis();
       is_front_stalling = true;
     } 
@@ -171,7 +172,7 @@ void anti_jam() {
     
     // If the torque drops back down below 90% of the threshold, 
     // we can assume it was a false positive and reset the stall state
-    if (is_front_stalling && intake.get_torque() < front_intake_torque_threshold*0.9) {
+    if (is_front_stalling && front_intake.get_torque() < front_intake_torque_threshold*0.9) {
       is_front_stalling = false;
     }
     if (is_back_stalling && back_intake.get_torque() < back_intake_torque_threshold*0.9) {
@@ -183,7 +184,7 @@ void anti_jam() {
     if (is_front_stalling && pros::millis() - frontstall_time > stall_timeout) {
       front_intake_stalled = true;
       controller.rumble("--");
-      intake.move_voltage(0);
+      front_intake.move_voltage(0);
     }
     if (is_back_stalling && pros::millis() - backstall_time > stall_timeout){
       back_intake_stalled = true;
@@ -209,7 +210,6 @@ void reset_jam() { // Resets the anti-jam system, setting all the stalled variab
 }
 pros::Task AntiJamTask(anti_jam);
 
-
 // Color detection and sorting code, returns the detected color 
 Color detect_color() {
   int hue = color_sensor.get_hue();
@@ -222,9 +222,10 @@ Color detect_color() {
     return Color::NONE;
   }
 }
-
 // Sorts the color, if the detected color is not the same as the team color and is not NONE, 
 // it runs the intake in reverse for a short amount of time to eject the wrong colored object
+// Task for constantly checking the color sensor and sorting the objects, 
+// runs in a separate thread so it can run concurrently with driver control
 void color_sort(Color color, Color team_color) {
   if (color != team_color && color != Color::NONE) {
     is_sorting = true;
@@ -233,8 +234,6 @@ void color_sort(Color color, Color team_color) {
     is_sorting = false;
   }
 }
-// Task for constantly checking the color sensor and sorting the objects, 
-// runs in a separate thread so it can run concurrently with driver control
 void color_task() {
   Color Team_Color = Color::RED;
   while (true) {
@@ -273,25 +272,26 @@ void intake_control() {
     if (eject_state) {
       reset_jam();
       back_intake.move_voltage(-12000);
-      intake.move_voltage(-12000);
+      front_intake.move_voltage(-12000);
     } else if (outtake_state) {
       reset_jam();
       back_intake.move_voltage(-12000);
+      front_intake.move_voltage(-12000);
       if (!outtaking) {
         outtake_reverse_timer = pros::millis();
         outtaking = true;
       }
       if (outtaking && pros::millis() - outtake_reverse_timer < 100) {
-        intake.move_voltage(-12000);
+        front_intake.move_voltage(-12000);
       } else {
-        intake.move_voltage(0);
+        front_intake.move_voltage(0);
       }
     } else if (intake_in_state){
-      intake.move_voltage(12000 * !front_intake_stalled);
+      front_intake.move_voltage(12000 * !front_intake_stalled);
       back_intake.move_voltage(12000 * !back_intake_stalled);
     } else {
       back_intake.move(0);
-      intake.move(0);
+      front_intake.move(0);
     }
   }
 
@@ -299,9 +299,8 @@ void intake_control() {
     outtaking = false;
   }
 }
-void reset_intake() {
-  reset = true;
-  intake_control();
+void intake(bool state) {
+  intake_in_state = state;
 }
 void outtake(bool state) {
   outtake_state = state;
@@ -408,7 +407,6 @@ void lever_code(){
     hood.set_value(0);
   }
 }
-
 void score_lever(bool score_s = false) {
   score = true;
   score_shallow = score_s;
@@ -432,19 +430,14 @@ void opcontrol() {
     pros::lcd::print(5, "Sideways Encoder: %f", sideways_enc->get_position());
     pros::lcd::print(6, "Forward Encoder: %f", forward_enc->get_position());
 
-    // Get the joystick values and apply a deadband to prevent drift, 
-    // also convert to a range of [-1, 1] for easier calculations later
-    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
-    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
-    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
 
-    // Field-centric driving
+    // Field-centric driving toggle
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
       field_centric_enabled = !field_centric_enabled;
     }
     drive();
 
-    // Update the states of the various actuators to the default values
+    // Update the states of the various actuators
     scraper.set_value(scraper_state);
     lift.set_value(lift_state);
     descore_piston.set_value(descore_state);

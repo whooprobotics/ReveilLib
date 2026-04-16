@@ -11,7 +11,7 @@ extern rev::Motor center_right;
 
 extern pros::Optical color_sensor;
 
-extern pros::Motor intake;
+extern pros::Motor front_intake;
 extern pros::Motor back_intake;
 
 extern pros::Motor lever;
