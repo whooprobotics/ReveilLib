@@ -114,21 +114,30 @@ inline double clamp_min_voltage(double drive_output, double drive_min_voltage) {
 
 inline double reduce_negative_90_to_90(double angle) {
   while (!(angle >= -90.0 && angle < 90.0)) {
-    if (angle < -90.0) angle += 180.0;
-    if (angle >= 90.0) angle -= 180.0;
+    if (angle < -90.0)
+      angle += 180.0;
+    if (angle >= 90.0)
+      angle -= 180.0;
   }
   return angle;
 }
 
 inline double left_voltage_scaling(double drive_output, double heading_output) {
-  double ratio = std::max(std::abs(drive_output + heading_output), std::abs(drive_output - heading_output)) / 12.0;
-  if (ratio > 1.0) return (drive_output + heading_output) / ratio;
+  double ratio = std::max(std::abs(drive_output + heading_output),
+                          std::abs(drive_output - heading_output)) /
+                 12.0;
+  if (ratio > 1.0)
+    return (drive_output + heading_output) / ratio;
   return drive_output + heading_output;
 }
 
-inline double right_voltage_scaling(double drive_output, double heading_output) {
-  double ratio = std::max(std::abs(drive_output + heading_output), std::abs(drive_output - heading_output)) / 12.0;
-  if (ratio > 1.0) return (drive_output - heading_output) / ratio;
+inline double right_voltage_scaling(double drive_output,
+                                    double heading_output) {
+  double ratio = std::max(std::abs(drive_output + heading_output),
+                          std::abs(drive_output - heading_output)) /
+                 12.0;
+  if (ratio > 1.0)
+    return (drive_output - heading_output) / ratio;
   return drive_output - heading_output;
 }
 
@@ -184,9 +193,10 @@ struct Turn {
       .large_settle_error = constants.turn_large_settle_error,
       .large_settle_time = constants.turn_large_settle_time};
 
-  QAngle exit_error = constants.turn_exit_error;
   double min_speed = constants.turn_min_speed;
   double max_speed = constants.turn_max_speed;
+  
+  QAngle exit_error = constants.turn_exit_error;
   QTime timeout = constants.turn_timeout;
   QAngle offset = 0_deg;
 };
@@ -212,9 +222,10 @@ struct Drive {
       .large_settle_error = constants.turn_large_settle_error,
       .large_settle_time = constants.turn_large_settle_time};
 
-  QLength exit_error = constants.drive_exit_error;
-  double min_speed = constants.drive_min_speed;
   double max_speed = constants.drive_max_speed;
+  double min_speed = constants.drive_min_speed;
+
+  QLength exit_error = constants.drive_exit_error;
   double turn_max_speed = constants.turn_max_speed;
   double center_max_speed = constants.center_max_speed;
   QTime timeout = constants.drive_timeout;
