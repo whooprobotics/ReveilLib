@@ -1,5 +1,49 @@
 #include "robot-control.hh"
 
+void drive(QLength distance, rev::Drive params) {
+  slipstream->go({rev::MecanumToDistance::create(distance, params)});
+  slipstream->await();
+}
+
+void drive(QLength x, QLength y, rev::Drive params) {
+  slipstream->go({rev::MecanumToPoint::create({x, y}, params)});
+  slipstream->await();
+}
+
+void drive(QLength x, QLength y, QAngle angle, rev::Drive params) {
+  slipstream->go({rev::MecanumToPose::create({x, y, angle}, params)});
+  slipstream->await();
+}
+
+void turn(QAngle angle, rev::Turn params) {
+  slipstream->go({rev::MecanumTurnToAngle::create(angle, params)});
+  slipstream->await();
+}
+
+void turn(QLength x, QLength y, rev::Turn params) {
+  slipstream->go({rev::MecanumTurnToPoint::create({x, y}, params)});
+  slipstream->await();
+}
+
+// Code for field centric control dont touch ts very nice -- I touched btw :)
+bool field_centric_enabled = true;
+void drive() {
+    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
+    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
+    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
+
+    if (!field_centric_enabled) {
+      chassis->drive_holonomic(throttle, turn, strafe);
+      return;
+    }
+
+    // field centric
+    double angle = imu->get_heading() * M_PI / 180.0;
+    double robotFwd    =  throttle * std::cos(angle) + strafe * std::sin(angle);
+    double robotStrafe =  -throttle * std::sin(angle) + strafe * std::cos(angle);
+
+    chassis->drive_holonomic(robotFwd, turn, robotStrafe);
+}
 
 // anti-jam state variables
 bool is_sorting = false;
@@ -7,14 +51,30 @@ bool is_stalled = false;
 bool front_intake_stalled = false;
 bool back_intake_stalled = false;
 
-bool reset = false;
+// intake state variables
+bool toggle_intake = false;
 bool eject_state = false; // highest precednece, if this is true, the robot will reverse both intakes to clear all blocks out
 bool outtake_state = false; // if this is true, the robot will reverse the back intake and briefly reverse the front intake to score in low goal without jamming
 bool intake_in_state = false; // if this is true, the intakes will run forward to take in blocks, if false, the intakes will stop,
 
+// scoring state variables
 bool score = false;
 bool score_shallow = false;
 bool lift_state = false;
+
+// Piston States
+void set_scraper(bool state) {
+  scraper.set_value(state);
+}
+void set_descore(bool state) {
+  descore_piston.set_value(state);
+}
+void set_lift(bool state) {
+  lift.set_value(state);
+}
+void set_hood(bool state) {
+  hood.set_value(state);
+}
 
 // Anti-jam system, if the torque on either intake exceeds the threshold for a certain amount of time, 
 // it cuts power to the intakes until the torque drops back down, indicating the jam has been cleared
@@ -83,6 +143,10 @@ void reset_jam() { // Resets the anti-jam system, setting all the stalled variab
 
 
 // Color detection and sorting code, returns the detected color 
+// Sorts the color, if the detected color is not the same as the team color and is not NONE, 
+// it runs the intake in reverse for a short amount of time to eject the wrong colored object
+// Task for constantly checking the color sensor and sorting the objects, 
+// runs in a separate thread so it can run concurrently with driver control
 Color detect_color() {
   int hue = color_sensor.get_hue();
 
@@ -94,17 +158,14 @@ Color detect_color() {
     return Color::NONE;
   }
 }
-// Sorts the color, if the detected color is not the same as the team color and is not NONE, 
-// it runs the intake in reverse for a short amount of time to eject the wrong colored object
-// Task for constantly checking the color sensor and sorting the objects, 
-// runs in a separate thread so it can run concurrently with driver control
 void color_sort(Color color, Color team_color) {
   if (color != team_color && color != Color::NONE) {
     is_sorting = true;
     back_intake.move_voltage(-12000);
     pros::delay(175);
     is_sorting = false;
-  }}
+  }
+}
 void color_task() {
   Color Team_Color = Color::RED;
   while (true) {
@@ -113,22 +174,23 @@ void color_task() {
     // pros::lcd::print(5, Team_Color == Color::RED ? "RED" : "BLUE");
     // pros::lcd::print(6, detected_color == Color::RED ? "RED" : detected_color == Color::BLUE ? "BLUE" : "UNKNOWN");
     pros::delay(10);
-  }}
+  }
+}
 
- 
+// intake 
 void intake_control() {
   // Intake control, if the intake is not currently sorting, allow the driver to control the intake, 
   // otherwise ignore driver input to prevent interference with the sorting process
   static int outtake_reverse_timer = 0; // ms
   static bool outtaking = false; 
-  if (reset) { 
+  if (toggle_intake) { 
     // Toggle the intake state, if the intake is currently stalled, reset the anti-jam system instead of toggling the intake
     if (!is_stalled) {
       intake_in_state = !intake_in_state;
     } else {
       reset_jam();
     }
-    reset = false;
+    toggle_intake = false;
   }
 
   if(!is_sorting) {
@@ -189,22 +251,22 @@ void intake_task() {
 }
 
 
+// lever control code
 
+// Makes lever go to start no matter hat position it starts in, 
+// and also zeros the position so we can use move_absolute with it
+void reset_lever() {
+  u_int32_t lever_reset_timeout = 500; // ms
 
-void set_scraper(bool state) {
-  scraper.set_value(state);
-}
-void set_descore(bool state) {
-  descore_piston.set_value(state);
-}
-void set_lift(bool state) {
-  lift.set_value(state);
-}
-void set_hood(bool state) {
-  hood.set_value(state);
+  u_int32_t lever_reset_start_time = pros::millis();
+  while (lever.get_torque() < 0.25 || pros::millis() - lever_reset_start_time > lever_reset_timeout) {
+    lever.move_voltage(-4000);
+  }
+  lever.move_voltage(0);
+  lever.set_zero_position(0);
 }
 
-void lever_code(){
+void lever_code() {
   // lever piston goes up immediately, lever follows 200ms later; lever piston goes down 500ms after release
   static uint32_t score_press_time = 0;
   static uint32_t lever_up_time = 0;

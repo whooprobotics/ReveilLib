@@ -3,7 +3,17 @@
 #include "rev/rev.hh"
 
 
-// Global state (shared across files)
+
+// Drive Algs
+void drive(QLength distance, rev::Drive params = {});
+void drive(QLength x, QLength y, rev::Drive params = {});
+void drive(QLength x, QLength y, QAngle angle, rev::Drive params = {});
+void turn(QAngle angle, rev::Turn params = {});
+void turn(QLength x, QLength y, rev::Turn params = {});
+
+// drive code
+extern bool field_centric_enabled;
+void drive();
 
 // Antijam state
 extern bool is_sorting;
@@ -12,7 +22,7 @@ extern bool front_intake_stalled;
 extern bool back_intake_stalled;
 
 // Intake state flags
-extern bool reset;
+extern bool toggle_intake;
 extern bool eject_state;
 extern bool outtake_state;
 extern bool intake_in_state;
@@ -53,5 +63,6 @@ void set_lift(bool state);
 void set_hood(bool state);
 
 // lever logic
+void reset_lever();
 void lever_code();
 void score_lever(bool score_shallo = false);

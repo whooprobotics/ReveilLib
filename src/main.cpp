@@ -5,30 +5,6 @@
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
 
-void drive(QLength distance, rev::Drive params = {}) {
-  slipstream->go({rev::MecanumToDistance::create(distance, params)});
-  slipstream->await();
-}
-
-void drive(QLength x, QLength y, rev::Drive params = {}) {
-  slipstream->go({rev::MecanumToPoint::create({x, y}, params)});
-  slipstream->await();
-}
-
-void drive(QLength x, QLength y, QAngle angle, rev::Drive params = {}) {
-  slipstream->go({rev::MecanumToPose::create({x, y, angle}, params)});
-  slipstream->await();
-}
-
-void turn(QAngle angle, rev::Turn params = {}) {
-  slipstream->go({rev::MecanumTurnToAngle::create(angle, params)});
-  slipstream->await();
-}
-
-void turn(QLength x, QLength y, rev::Turn params = {}) {
-  slipstream->go({rev::MecanumTurnToPoint::create({x, y}, params)});
-  slipstream->await();
-}
 
 // Message me if this doesnt work, i can show you a video on it working on
 // mikgen. Also, if this doesnt work, read the commit logs, its not the code's
@@ -46,18 +22,6 @@ void test_mecanum() {
   turn(180_deg);
   drive(0_in, 0_in);
   turn(0_deg);
-
-}
-
-void reset_lever() {
-  u_int32_t lever_reset_timeout = 500; // ms
-
-  u_int32_t lever_reset_start_time = pros::millis();
-  while (lever.get_torque() < 0.25 || pros::millis() - lever_reset_start_time > lever_reset_timeout) {
-    lever.move_voltage(-4000);
-  }
-  lever.move_voltage(0);
-  lever.set_zero_position(0);
 }
 
 void initialize() {
@@ -71,7 +35,6 @@ void initialize() {
   // Makes lever go to start no matter hat position it starts in, 
   // and also zeros the position so we can use move_absolute with it
   reset_lever();
-
 
   // These constants work, if the algo does not work
   // ITS NOT THE CONSTANTS FAULT READ THE COMMIT LOGS, NOT THE CONSTANTS FAULT
@@ -115,27 +78,6 @@ void initialize() {
   pros::Task Color_Task(color_task);
 }
 
-// Code for field centric control dont touch ts very nice -- I touched :)
-static bool field_centric_enabled = true;
-void drive() {
-    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
-    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
-    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
-
-    if (!field_centric_enabled) {
-      chassis->drive_holonomic(throttle, turn, strafe);
-      return;
-    }
-
-    // field centric
-    double angle = imu->get_heading() * M_PI / 180.0;
-    double robotFwd    =  throttle * std::cos(angle) + strafe * std::sin(angle);
-    double robotStrafe =  -throttle * std::sin(angle) + strafe * std::cos(angle);
-
-    chassis->drive_holonomic(robotFwd, turn, robotStrafe);
-}
-
-
 void opcontrol() {
 
   while(true) {
@@ -154,7 +96,7 @@ void opcontrol() {
     drive();
 
     // intake state control
-    reset = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is held, we want to reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own, which can save valuable time during a match
+    toggle_intake = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is pressed, we want to reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own
     eject(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     outtake(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
@@ -173,7 +115,6 @@ void opcontrol() {
       set_hood(false);
     }
 
-    
     set_scraper(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
     set_lift(lift_state);
     set_descore(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
