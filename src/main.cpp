@@ -144,18 +144,16 @@ static bool back_intake_stalled = false;
 
 // Anti-jam system, if the torque on either intake exceeds the threshold for a certain amount of time, 
 // it cuts power to the intakes until the torque drops back down, indicating the jam has been cleared
-
 void anti_jam() {
-
-  int stall_timeout = 500; // ms
-  int frontstall_time = 0;
-  int backstall_time = 0;
+  static int stall_timeout = 500; // ms
+  static int frontstall_time = 0;
+  static int backstall_time = 0;
   
-  double front_intake_torque_threshold = .27 ; // Nm
-  double back_intake_torque_threshold = .27; // Nm
-  double i = 0;
-  bool is_front_stalling = false;
-  bool is_back_stalling = false;
+  static double front_intake_torque_threshold = .27 ; // Nm
+  static double back_intake_torque_threshold = .27; // Nm
+  static double i = 0;
+  static bool is_front_stalling = false;
+  static bool is_back_stalling = false;
 
   while (true) {
     // If the torque exceeds the threshold, start a timer, 
@@ -232,8 +230,7 @@ void color_sort(Color color, Color team_color) {
     back_intake.move_voltage(-12000);
     pros::delay(175);
     is_sorting = false;
-  }
-}
+  }}
 void color_task() {
   Color Team_Color = Color::RED;
   while (true) {
@@ -242,8 +239,7 @@ void color_task() {
     // pros::lcd::print(5, Team_Color == Color::RED ? "RED" : "BLUE");
     // pros::lcd::print(6, detected_color == Color::RED ? "RED" : detected_color == Color::BLUE ? "BLUE" : "UNKNOWN");
     pros::delay(10);
-  }
-}
+  }}
 pros::Task Color_Task(color_task);
 
 static bool reset = false;
@@ -255,7 +251,7 @@ void intake_control() {
   // otherwise ignore driver input to prevent interference with the sorting process
   static int outtake_reverse_timer = 0; // ms
   static bool outtaking = false; 
-  if (reset) { // if we are currently resetting the jam, we want to ignore driver input until the jam is cleared to prevent interference with the reset process
+  if (reset) { 
     // Toggle the intake state, if the intake is currently stalled, reset the anti-jam system instead of toggling the intake
     if (!is_stalled) {
       intake_in_state = !intake_in_state;
@@ -270,11 +266,11 @@ void intake_control() {
     // if the right trigger is held, run just the back intake in reverse, but run the front intake in reverse for a short amount of time to help eject the blocks
     // otherwise run the intakes based on the intake state, if the intake is stalled, dont run it to prevent further stalling
     if (eject_state) {
-      reset_jam();
+      reset_jam(); // eject overrides jamming
       back_intake.move_voltage(-12000);
       front_intake.move_voltage(-12000);
     } else if (outtake_state) {
-      reset_jam();
+      reset_jam(); // outtake overrides jamming
       back_intake.move_voltage(-12000);
       front_intake.move_voltage(-12000);
       if (!outtaking) {
@@ -287,8 +283,9 @@ void intake_control() {
         front_intake.move_voltage(0);
       }
     } else if (intake_in_state){
-      front_intake.move_voltage(12000 * !front_intake_stalled);
-      back_intake.move_voltage(12000 * !back_intake_stalled);
+      // does not override jamming
+      front_intake.move_voltage(12000 * !front_intake_stalled); // turn on if not stalled
+      back_intake.move_voltage(12000 * !back_intake_stalled);   // turn on if not stalled
     } else {
       back_intake.move(0);
       front_intake.move(0);
@@ -300,6 +297,7 @@ void intake_control() {
   }
 }
 void intake(bool state) {
+  reset_jam();
   intake_in_state = state;
 }
 void outtake(bool state) {
@@ -329,7 +327,7 @@ void lever_code(){
   static uint32_t score_press_time = 0;
   static uint32_t lever_up_time = 0;
   static uint32_t lever_retract_time = 0;
-  //static uint32_t up_release_time = 0;
+  
   static bool lever_actuating = false;
   static bool lever_retracting = false;
 
@@ -355,17 +353,16 @@ void lever_code(){
     //moving the lever to the retract position, and setting the hood to the scoring position
     if (!lever_actuating && !lever_retracting) {
       score_press_time = pros::millis();
-      reset_jam();
 
       if (!score_shallow) {
         lever.move_voltage(-lever_score_velocity * 120); // percent to millivolts // if score_shallow is true, the lever will not move all the way down, allowing for a shallower score that can be useful in certain situations
       } else if (lift_state) {
         lever.move_relative(175, lever_score_velocity); // move lever up a little bit to help with shallower scoring, this is only used if score_shallow is true, which is when the B button is held, allowing for a shallower score
       }
-      hood.set_value(1); // set hood to the scoring position
       lever_actuating = true;
 
-      intake_in_state = false; // set intake to out to eject the object, will be set back to in after the lever retracts
+      set_hood(true); // set hood to the scoring position
+      intake(false); // set intake to stop, will be set back to in after the lever retracts
     }
 
     // After the score pause time has gone by, move the lever to the scoring position
@@ -387,14 +384,13 @@ void lever_code(){
       lever.move_absolute(lever_rest_position, lever_retract_velocity);
       lever_piston.set_value(0);
       lever_retract_time = pros::millis();
-      intake_in_state = false; // set intake back to in
+      intake(false); // turn intake off
     }
 
-    if (lever_retracting && (lever.get_position() <= lever_rest_position + 10 /*|| pros::millis() - lever_retract_time >= lever_retract_timeout*/)) { // if the lever is close enough to the rest position, we can assume it has finished retracting and reset the retracting state just in case the timing was off
+    if (lever_retracting && (lever.get_position() <= lever_rest_position + 10)) { // if the lever is close enough to the rest position, we can assume it has finished retracting and reset the retracting state just in case the timing was off
       lever_retracting = false;
-      intake_in_state = true; // set intake back to in
       score = false; // reset score to prevent re-entering the scoring process without a new button press
-
+      intake(true); // set intake back to in
     }
     
   } else { // If the R1 button is not pressed, reset the lever and piston to the default positions
@@ -404,12 +400,12 @@ void lever_code(){
 
   // After the hood timeout has gone by, lower the hood back down
   if(!lever_actuating && !lever_retracting && pros::millis() - lever_retract_time >= hood_timeout) {
-    hood.set_value(0);
+    set_hood(false);
   }
 }
-void score_lever(bool score_s = false) {
+void score_lever(bool score_shallo = false) {
   score = true;
-  score_shallow = score_s;
+  score_shallow = score_shallo;
 
   while (score) {
     lever_code();
@@ -420,6 +416,21 @@ void score_lever(bool score_s = false) {
 // Variables for driver control states
 static bool scraper_state = false;
 static bool descore_state = false;
+static bool hood_state = false;
+void set_scraper(bool state) {
+  scraper_state = state;
+}
+void set_descore(bool state) {
+  scraper_state = state;
+}
+void set_lift(bool state) {
+  lift_state = state;
+}
+void set_hood(bool state) {
+  hood_state = state;
+}
+
+
 void opcontrol() {
 
   while(true) {
@@ -438,45 +449,33 @@ void opcontrol() {
     drive();
 
     // Update the states of the various actuators
-    scraper.set_value(scraper_state);
-    lift.set_value(lift_state);
-    descore_piston.set_value(descore_state);
+    set_scraper(scraper_state);
+    set_lift(lift_state);
+    set_descore(descore_state);
 
     // intake state control
     reset = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is held, we want to reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own, which can save valuable time during a match
-    eject_state = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    outtake_state = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    eject(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+    outtake(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // use buttons to control lever scoring
-    score_shallow = (score_shallow && score) || controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1); // if the B button is held, the robot will do a shallower score, which can be useful in certain situations, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
+    score_shallow = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) || (score_shallow && score); // if the B button is held, the robot will do a shallower score, which can be useful in certain situations, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
     score         = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) || score_shallow;
     lever_code();
 
     // If the left button is pressed, run the mecanum test function
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      test_mecanum();
-    }
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {test_mecanum();}
+    
 
     // If the right button is pressed, toggle the lift state and set the hood to the default position
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
       lift_state = !lift_state;
-      hood.set_value(0);
+      set_hood(false);
     }
 
-    // If the down button is pressed, set the scraper state to true, otherwise set it to false
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-      scraper_state = true;
-    } else {
-      scraper_state = false;
-    }
-
-    // If the Y button is pressed, set the descore piston state to true, otherwise set it to false
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-      descore_state = true;
-    } else {
-      descore_state = false;
-    }
-    
+    set_scrapper(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)); // If the down button is pressed, set the scraper state to true, otherwise set it to false
+    set_descore(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));// If the Y button is pressed, set the descore piston state to true, otherwise set it to false
+  
     // Delay so brain no exploded
     pros::delay(20);
   }
