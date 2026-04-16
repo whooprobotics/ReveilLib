@@ -82,6 +82,7 @@
 
 #include "api/alg/PID/PID.hh"
 #include "robot-config.hh"
+#include "robot-control.hh"
 
 #include "main.h"
 
