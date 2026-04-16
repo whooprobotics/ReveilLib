@@ -7,12 +7,12 @@ namespace rev {
 
 class MecanumTurnToPoint : public SlipstreamSegment {
   Position target_point;
-  TurnParams p;
+  Turn p;
 
   MecanumTurnToAngle inner;
 
  public:
-  MecanumTurnToPoint(Position itarget_point, TurnParams iparams = TurnParams{})
+  MecanumTurnToPoint(Position itarget_point, Turn iparams = Turn{})
       : target_point(itarget_point), p(iparams), inner(0_deg, iparams) {}
 
   void init(OdometryState initial_state) override;
@@ -27,7 +27,7 @@ class MecanumTurnToPoint : public SlipstreamSegment {
   }
 
   static std::shared_ptr<MecanumTurnToPoint> create(
-      Position target_point, TurnParams params = TurnParams{}) {
+      Position target_point, Turn params = Turn{}) {
     return std::make_shared<MecanumTurnToPoint>(target_point, params);
   }
 };

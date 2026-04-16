@@ -74,8 +74,8 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
   double center_output = drive_output * heading_scale_factor;
   double center_max_speed = std::abs(heading_scale_factor) * p.center_max_speed;
 
-  double left_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
-  double right_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
+  // double left_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
+  // double right_center_voltage = std::clamp(center_output, -center_max_speed, center_max_speed);
     
   double left_front_output  = (drive_output * std::cos( heading_raw + heading_error_rad - M_PI / 4)) + turn_output;
   double left_back_output   = (drive_output * std::cos(-heading_raw - heading_error_rad + 3 * M_PI / 4)) + turn_output;
@@ -88,8 +88,8 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
     .rear_left_forward = left_back_output / 12,
     .rear_right_forward = right_back_output / 12,
 
-    .front_left_steer = left_center_voltage / 12,
-    .front_right_steer = right_center_voltage / 12
+    // .front_left_steer = left_center_voltage / 12,
+    // .front_right_steer = right_center_voltage / 12
   };
 
   return last_status = SlipstreamSegmentStatus::drive(power);

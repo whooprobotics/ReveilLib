@@ -27,7 +27,7 @@ void MecanumToPoint::init(OdometryState initial_state) {
                  p.drive_settle.large_settle_error,
                  p.drive_settle.large_settle_time, 0, p.timeout);
 
-  headingPID = PID(p.heading_k.p, p.heading_k.i, p.heading_k.d, p.heading_k.starti);
+  headingPID = PID(p.turn_k.p, p.turn_k.i, p.turn_k.d, p.turn_k.starti);
 
   prev_line_settled = false;
 }
@@ -48,6 +48,7 @@ SlipstreamSegmentStatus MecanumToPoint::step(OdometryState current_state) {
 
   bool line_settled =
       is_line_settled(x, y, desired_heading, current_x, current_y, p.exit_error);
+      
   if (!(line_settled == prev_line_settled) && p.min_speed > 0)
     return last_status = SlipstreamSegmentStatus::next();
   prev_line_settled = line_settled;

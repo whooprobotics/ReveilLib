@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include "rev/api/alg/PID/PID.hh"
 #include "rev/api/alg/odometry/odometry.hh"
 #include "rev/api/alg/slipstream/path.hh"
 #include "rev/api/async/async_awaitable.hh"
@@ -35,13 +36,6 @@ struct Constants {
   double turn_kd;
   double turn_starti;
 
-  // Heading PID
-  double heading_kp;
-  double heading_ki;
-  double heading_kd;
-  double heading_starti;
-  double heading_max_speed;
-
   // Turn Exiting
   double turn_settle_error;
   QTime turn_settle_time;
@@ -53,6 +47,9 @@ struct Constants {
   QAngle turn_exit_error;
   double turn_min_speed;
   double turn_max_speed;
+
+  // Center/Strafe max speed (used by drive_to_point and drive_to_pose)
+  double center_max_speed;
 };
 
 extern Constants constants;
@@ -173,6 +170,54 @@ class Slipstream : public AsyncRunnable, public AsyncAwaitable {
   size_t current_segment{0};
   long long brake_start_time = -1;
   double partial_progress{-1.0};
+};
+
+struct Turn {
+  PIDParams turn_k = {.p = constants.turn_kp,
+                      .i = constants.turn_ki,
+                      .d = constants.turn_kd,
+                      .starti = constants.turn_starti};
+
+  settleParams turn_settle = {
+      .settle_error = constants.turn_settle_error,
+      .settle_time = constants.turn_settle_time,
+      .large_settle_error = constants.turn_large_settle_error,
+      .large_settle_time = constants.turn_large_settle_time};
+
+  QAngle exit_error = constants.turn_exit_error;
+  double min_speed = constants.turn_min_speed;
+  double max_speed = constants.turn_max_speed;
+  QTime timeout = constants.turn_timeout;
+  QAngle offset = 0_deg;
+};
+
+struct Drive {
+  PIDParams drive_k = {.p = constants.drive_kp,
+                       .i = constants.drive_ki,
+                       .d = constants.drive_kd,
+                       .starti = constants.drive_starti};
+  PIDParams turn_k = {.p = constants.turn_kp,
+                      .i = constants.turn_ki,
+                      .d = constants.turn_kd,
+                      .starti = constants.turn_starti};
+
+  settleParams drive_settle = {
+      .settle_error = constants.drive_settle_error,
+      .settle_time = constants.drive_settle_time,
+      .large_settle_error = constants.drive_large_settle_error,
+      .large_settle_time = constants.drive_large_settle_time};
+  settleParams turn_settle = {
+      .settle_error = constants.turn_settle_error,
+      .settle_time = constants.turn_settle_time,
+      .large_settle_error = constants.turn_large_settle_error,
+      .large_settle_time = constants.turn_large_settle_time};
+
+  QLength exit_error = constants.drive_exit_error;
+  double min_speed = constants.drive_min_speed;
+  double max_speed = constants.drive_max_speed;
+  double turn_max_speed = constants.turn_max_speed;
+  double center_max_speed = constants.center_max_speed;
+  QTime timeout = constants.drive_timeout;
 };
 
 }  // namespace rev

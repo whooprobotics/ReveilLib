@@ -2,34 +2,32 @@
 
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
-  
-void drive_to_point(rev::Position target, rev::MecanumToPointParams params = {}) {
-  slipstream->go({rev::MecanumToPoint::create(target, params)});
-  slipstream->await();
+
+void drive(QLength distance, rev::Drive params = {}) {
+  slipstream->go({rev::MecanumToDistance::create(distance, params)});
+  slipstream->await();  
 }
 
-void drive_to_pose(rev::Position target, rev::MecanumToPoseParams params = {}) {
-  slipstream->go({rev::MecanumToPose::create(target, params)});
-  slipstream->await();
+void drive(QLength x, QLength y, rev::Drive params = {}) {
+  slipstream->go({rev::MecanumToPoint::create({x, y}, params)});
+  slipstream->await();  
 }
 
-void drive_distance(rev::QLength distance, rev::QAngle heading, rev::MecanumToDistanceParams params = {}) {
-  slipstream->go({rev::MecanumToDistance::create(distance, heading, params)});
-  slipstream->await();
-
-  slipstream->go({&MecanumToDistance(distance, heading, {})});
-
+void drive(QLength x, QLength y, QAngle angle, rev::Drive params = {}) {
+  slipstream->go({rev::MecanumToPose::create({x, y, angle}, params)});
+  slipstream->await();  
 }
 
-void turn_to_angle(rev::QAngle angle, rev::TurnParams params = {}) {
+void turn(QAngle angle, rev::Turn params = {}) {
   slipstream->go({rev::MecanumTurnToAngle::create(angle, params)});
-  slipstream->await();
+  slipstream->await();  
 }
 
-void turn_to_point(rev::Position target, rev::TurnParams params = {}) {
-  slipstream->go({rev::MecanumTurnToPoint::create(target, params)});
-  slipstream->await();
+void turn(QLength x, QLength y, rev::Turn params = {}) {
+  slipstream->go({rev::MecanumTurnToPoint::create({x, y}, params)});
+  slipstream->await();  
 }
+
 
 // Message me if this doesnt work, i can show you a video on it working on mikgen.
 // Also, if this doesnt work, read the commit logs, its not the code's fault, 
@@ -37,16 +35,15 @@ void turn_to_point(rev::Position target, rev::TurnParams params = {}) {
 // i will probably just send you a video of it working and then you can figure out what you did wrong on your end.
 void test_mecanum() {
   odom->set_position({0_in, 0_in, 0_deg});
-  turn_to_angle(0_deg);                
-  drive_distance(12_in, 0_deg);         
-  drive_distance(-12_in, 0_deg);        
-  drive_to_point({0_in, 24_in});        
-  turn_to_point({24_in, 24_in}, { .offset = 180_deg });
-  drive_to_pose({24_in, 24_in, 90_deg});
-  turn_to_angle(180_deg);            
-  drive_to_point({0_in, 0_in});      
-  turn_to_angle(0_deg);              
-
+  turn(0_deg, Turn{ .min_speed = 4, .timeout = 2000_ms });                
+  drive(12_in, Drive{ .center_max_speed = 0 });         
+  drive(-12_in);        
+  drive(0_in, 24_in);        
+  turn(0_deg, Turn{ .min_speed = 4});
+  drive(24_in, 24_in, 90_deg);
+  turn(180_deg);            
+  drive(0_in, 0_in);      
+  turn(0_deg);           
 }
 
 void initialize() {
@@ -88,16 +85,10 @@ void initialize() {
     .drive_max_speed = 8,
   
     .turn_kp = .4,
-    .turn_ki = 0.03,
+    .turn_ki = 0,
     .turn_kd = 3,
-    .turn_starti = 15,
+    .turn_starti = 0,
 
-    .heading_kp = 0.3,
-    .heading_ki = 0,
-    .heading_kd = 3,
-    .heading_starti = 0,
-    .heading_max_speed = 10,
-  
     .turn_settle_error = 1,
     .turn_settle_time = 100_ms,
     .turn_large_settle_error = 3,
@@ -106,7 +97,9 @@ void initialize() {
   
     .turn_exit_error = 0_deg,
     .turn_min_speed = 0,
-    .turn_max_speed = 12
+    .turn_max_speed = 12,
+
+    .center_max_speed = 10
   });
 
   // Calibrate the imu

@@ -1,60 +1,13 @@
 #pragma once
-#include <ostream>
-#include "rev/api/alg/PID/PID.hh"
 #include "rev/api/alg/slipstream/segment.hh"
 #include "rev/api/alg/slipstream/slipstream.hh"
 
 namespace rev {
 
-struct MecanumToPoseParams {
-  PIDParams drive_k = {.p = constants.drive_kp,
-                       .i = constants.drive_ki,
-                       .d = constants.drive_kd,
-                       .starti = constants.drive_starti};
-  PIDParams turn_k = {.p = constants.turn_kp,
-                      .i = constants.turn_ki,
-                      .d = constants.turn_kd,
-                      .starti = constants.turn_starti};
-
-  settleParams drive_settle = {
-      .settle_error = constants.drive_settle_error,
-      .settle_time = constants.drive_settle_time,
-      .large_settle_error = constants.drive_large_settle_error,
-      .large_settle_time = constants.drive_large_settle_time};
-
-  settleParams turn_settle = {
-      .settle_error = constants.turn_settle_error,
-      .settle_time = constants.turn_settle_time,
-      .large_settle_error = constants.turn_large_settle_error,
-      .large_settle_time = constants.turn_large_settle_time};
-
-  QLength exit_error = constants.drive_exit_error;
-  double min_speed = constants.drive_min_speed;
-  double max_speed = constants.drive_max_speed;
-  double turn_max_speed = constants.turn_max_speed;
-  double center_max_speed = constants.heading_max_speed;
-  QTime timeout = constants.drive_timeout;
-};
-
-inline std::ostream& operator<<(std::ostream& os, const MecanumToPoseParams& p) {
-  return os << "MecanumToPoseParams{\n"
-            << "  drive_k=" << p.drive_k << "\n"
-            << "  turn_k=" << p.turn_k << "\n"
-            << "  drive_settle=" << p.drive_settle << "\n"
-            << "  turn_settle=" << p.turn_settle << "\n"
-            << "  exit_error=" << p.exit_error.convert(inch) << "in\n"
-            << "  min_speed=" << p.min_speed << "\n"
-            << "  max_speed=" << p.max_speed << "\n"
-            << "  turn_max_speed=" << p.turn_max_speed << "\n"
-            << "  center_max_speed=" << p.center_max_speed << "\n"
-            << "  timeout=" << p.timeout.convert(millisecond) << "ms\n"
-            << "}";
-}
-
 class MecanumToPose : public SlipstreamSegment {
   Position start_point;
   Position target_point;
-  MecanumToPoseParams p;
+  Drive p;
 
   PID drivePID;
   PID turnPID;
@@ -66,7 +19,7 @@ class MecanumToPose : public SlipstreamSegment {
       SlipstreamSegmentStatus::drive({0, 0, 0, 0})};
 
  public:
-  MecanumToPose(Position itarget_point, MecanumToPoseParams iparams = MecanumToPoseParams{})
+  MecanumToPose(Position itarget_point, Drive iparams = Drive{})
       : target_point(itarget_point), p(iparams) {
     start_point = {0_in, 0_in, 0_deg};
   }
@@ -83,7 +36,7 @@ class MecanumToPose : public SlipstreamSegment {
   }
 
   static std::shared_ptr<MecanumToPose> create(Position target_point,
-                                               MecanumToPoseParams params) {
+                                               Drive params) {
     return std::make_shared<MecanumToPose>(target_point, params);
   }
 };
