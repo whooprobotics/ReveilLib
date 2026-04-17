@@ -33,7 +33,6 @@ LIBNAME:=reveillib
 # EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/unpublishedfile.c
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/main.cpp
-EXCLUDE_SRC_FROM_LIB+= $(SRCDIR)/robot_testing
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files

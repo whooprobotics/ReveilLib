@@ -166,6 +166,8 @@ class Slipstream : public AsyncRunnable, public AsyncAwaitable {
 
   bool is_completed();
 
+  void set_constants(Constants constants);
+
   void breakout();
 
  private:

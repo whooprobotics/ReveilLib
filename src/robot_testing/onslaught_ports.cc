@@ -1,6 +1,8 @@
 #include "rev/rev.hh"
 #include "robot_testing/rev2_config.hh"
 
+namespace rev { Constants constants; } // Global constants
+
 rev::MotorGroup front_left({11, 12});
 rev::MotorGroup back_left({19, 20});
 rev::MotorGroup front_right({-14, -15});

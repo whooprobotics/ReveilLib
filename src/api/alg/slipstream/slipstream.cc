@@ -7,8 +7,6 @@
 
 namespace rev {
 
-Constants constants;
-
 Slipstream::Slipstream(std::shared_ptr<HolonomicChassis> ichassis,
                        std::shared_ptr<Odometry> iodometry)
    : chassis(ichassis), odometry(iodometry) {}
@@ -87,6 +85,10 @@ SlipstreamStatus Slipstream::get_status() {
 
 double Slipstream::progress() {
   return partial_progress;
+}
+
+void Slipstream::set_constants(Constants constants_) {
+  constants = constants_;
 }
 
 bool Slipstream::is_completed() {

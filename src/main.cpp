@@ -78,37 +78,38 @@ void initialize() {
 
   // These constants work, if the algo does not work
   // ITS NOT THE CONSTANTS FAULT READ THE COMMIT LOGS, NOT THE CONSTANTS FAULT
-  // slipstream->set_constants({.drive_kp = 1.5,
-  //                            .drive_ki = 0,
-  //                            .drive_kd = 10,
-  //                            .drive_starti = 0,
+  
+  slipstream->set_constants({.drive_kp = 1.5,
+                             .drive_ki = 0,
+                             .drive_kd = 10,
+                             .drive_starti = 0,
 
-  //                            .drive_settle_error = 1,
-  //                            .drive_settle_time = 100_ms,
-  //                            .drive_large_settle_error = 3,
-  //                            .drive_large_settle_time = 500_ms,
-  //                            .drive_timeout = 5000_ms,
+                             .drive_settle_error = 1,
+                             .drive_settle_time = 100_ms,
+                             .drive_large_settle_error = 3,
+                             .drive_large_settle_time = 500_ms,
+                             .drive_timeout = 5000_ms,
 
-  //                            .drive_exit_error = 0_in,
-  //                            .drive_min_speed = 0,
-  //                            .drive_max_speed = 8,
+                             .drive_exit_error = 0_in,
+                             .drive_min_speed = 0,
+                             .drive_max_speed = 8,
 
-  //                            .turn_kp = .4,
-  //                            .turn_ki = 0,
-  //                            .turn_kd = 3,
-  //                            .turn_starti = 0,
+                             .turn_kp = .4,
+                             .turn_ki = 0,
+                             .turn_kd = 3,
+                             .turn_starti = 0,
 
-  //                            .turn_settle_error = 1,
-  //                            .turn_settle_time = 100_ms,
-  //                            .turn_large_settle_error = 3,
-  //                            .turn_large_settle_time = 500_ms,
-  //                            .turn_timeout = 3000_ms,
+                             .turn_settle_error = 1,
+                             .turn_settle_time = 100_ms,
+                             .turn_large_settle_error = 3,
+                             .turn_large_settle_time = 500_ms,
+                             .turn_timeout = 3000_ms,
 
-  //                            .turn_exit_error = 0_deg,
-  //                            .turn_min_speed = 0,
-  //                            .turn_max_speed = 12,
+                             .turn_exit_error = 0_deg,
+                             .turn_min_speed = 0,
+                             .turn_max_speed = 12,
 
-  //                            .center_max_speed = 10});
+                             .center_max_speed = 10});
 
   // Calibrate the imu
   imu->calibrate();
