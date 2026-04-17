@@ -1,6 +1,16 @@
 [
   {
     "metadata": {
+      "location": "https://github.com/whooprobotics/ReveilLib/releases/download/3.1.0-alpha0/reveillib%403.1.0-alpha0.zip"
+    },
+    "name": "reveillib",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "target": "v5",
+    "version": "3.1.0-alpha0",
+    "supported_kernels": "3.8.0"
+  },
+  {
+    "metadata": {
       "location": "https://github.com/whooprobotics/ReveilLib/releases/download/3.0.0/reveillib%403.0.0.zip"
     },
     "name": "reveillib",
