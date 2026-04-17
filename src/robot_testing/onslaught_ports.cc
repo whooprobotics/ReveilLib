@@ -47,7 +47,7 @@ QLength odom_wheel_size = 2_in; // Rev2
 std::shared_ptr<rev::TwoRotationInertialOdometry> odom = std::make_shared<rev::TwoRotationInertialOdometry>(
     forward_enc, sideways_enc, imu,
     odom_wheel_size, odom_wheel_size,
-    2.75_in, 1.9_in
+    3.159_in, 2.21_in
 );
 
 std::shared_ptr<rev::Slipstream> slipstream = std::make_shared<rev::Slipstream>(chassis, odom);
