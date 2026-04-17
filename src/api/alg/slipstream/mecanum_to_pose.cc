@@ -36,8 +36,8 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
   QLength y = target_point.y;
   QAngle angle = target_point.theta;
 
-  QLength current_y = current_state.pos.x;
-  QLength current_x = current_state.pos.y;
+  QLength current_y = current_state.pos.y;
+  QLength current_x = current_state.pos.x;
   QAngle current_heading = current_state.pos.theta;
 
   if ((drivePID.is_settled() && turnPID.is_settled())) {
@@ -88,8 +88,8 @@ SlipstreamSegmentStatus MecanumToPose::step(OdometryState current_state) {
     .rear_left_forward = left_back_output / 12,
     .rear_right_forward = right_back_output / 12,
 
-    // .front_left_steer = left_center_voltage / 12,
-    // .front_right_steer = right_center_voltage / 12
+    .front_left_steer = 0,
+    .front_right_steer = 0
   };
 
   return last_status = SlipstreamSegmentStatus::drive(power);

@@ -159,8 +159,8 @@ void TwoRotationInertialOdometry::step() {
       rev::atan2(local_off_long, local_off_lat) - avga * degree;
 
   // global offsets
-  QLength dX = polar_r * sin(polar_angle);
-  QLength dY = polar_r * cos(polar_angle);
+  QLength dX = polar_r * cos(polar_angle);
+  QLength dY = polar_r * sin(polar_angle);
 
   // vels
   QSpeed vX = dX / (d_time * millisecond);

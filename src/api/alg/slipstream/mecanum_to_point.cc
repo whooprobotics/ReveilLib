@@ -15,8 +15,8 @@ void MecanumToPoint::init(OdometryState initial_state) {
 
   QLength x = target_point.x;
   QLength y = target_point.y;
-  QLength current_x = initial_state.pos.y;
-  QLength current_y = initial_state.pos.x;
+  QLength current_x = initial_state.pos.x;
+  QLength current_y = initial_state.pos.y;
 
   desired_heading = atan2(x - current_x, y - current_y);
   heading_locked = false;

@@ -1,6 +1,7 @@
 #include "rev/rev.hh"
 #include "robot_testing/rev2_config.hh"
 #include "robot_testing/rev2_macros.hh"
+#include "autos/autos.h"
 
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
@@ -129,7 +130,7 @@ void opcontrol() {
 
   pros::delay(2000);
 
-  test_mecanum();
+  onslaught_skills_1();
   return;
   while(true) {
     // Print out telemetry for debugging

@@ -28,7 +28,7 @@ SlipstreamSegmentStatus MecanumToDistance::step(OdometryState current_state) {
   QLength dy = current_state.pos.x - start_pos.x;
 
   double heading_rad = heading.convert(radian);
-  QLength traveled = dx * std::sin(heading_rad) + dy * std::cos(heading_rad);
+  QLength traveled = dx * std::cos(heading_rad) + dy * std::sin(heading_rad);
 
   QLength drive_error = distance - traveled;
   QAngle heading_error =
