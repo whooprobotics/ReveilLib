@@ -56,8 +56,8 @@ SlipstreamSegmentStatus MecanumTurnToAngle::step(OdometryState current_state) {
                                 .rear_left_forward = output / 12,
                                 .rear_right_forward = -output / 12,
 
-                                .front_left_steer = -output / 12,
-                                .front_right_steer = output / 12};
+                                .front_left_steer = output / 12,
+                                .front_right_steer = -output / 12};
 
   return last_status = SlipstreamSegmentStatus::drive(power);
 }

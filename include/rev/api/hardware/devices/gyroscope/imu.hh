@@ -12,9 +12,8 @@ class Imu : public Gyroscope {
   void calibrate();
   bool is_calibrating() override;
   std::pair<std::uint8_t, std::uint8_t> check_port() override;
-
- private:
-  pros::Imu inertial;
+  
+  pros::Imu imu;
   std::uint8_t port;
 };
 

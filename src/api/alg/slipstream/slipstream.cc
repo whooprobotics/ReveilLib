@@ -7,6 +7,8 @@
 
 namespace rev {
 
+Constants constants;
+
 Slipstream::Slipstream(std::shared_ptr<HolonomicChassis> ichassis,
                        std::shared_ptr<Odometry> iodometry)
    : chassis(ichassis), odometry(iodometry) {}

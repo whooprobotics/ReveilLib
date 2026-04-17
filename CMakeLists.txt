@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(ReveilLib)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
@@ -67,6 +67,7 @@ add_executable(ReveilLib
 #find_package(OpenCV REQUIRED)
 #include_directories(${OpenCV_INCLUDE_DIRS})
 
+target_compile_options(ReveilLib PRIVATE -Wno-c99-designator -Wno-reorder-init-list)
 target_link_libraries(ReveilLib GTest::gtest_main) #${OpenCV_LIBS})
 
 include(GoogleTest)
