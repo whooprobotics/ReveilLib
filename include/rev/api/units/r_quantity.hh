@@ -32,7 +32,7 @@ template <typename MassDim,
           typename AngleDim>
 class RQuantity {
  public:
-  explicit constexpr RQuantity() : value(0.0) {}
+  constexpr RQuantity() : value(0.0) {}
 
   explicit constexpr RQuantity(double val) : value(val) {}
 

@@ -180,10 +180,13 @@ class Slipstream : public AsyncRunnable, public AsyncAwaitable {
 };
 
 struct Turn {
-  PIDParams turn_k = {.p = constants.turn_kp,
-                      .i = constants.turn_ki,
-                      .d = constants.turn_kd,
-                      .starti = constants.turn_starti};
+  QAngle offset = 0_deg;
+
+  double min_speed = constants.turn_min_speed;
+  double max_speed = constants.turn_max_speed;
+
+  QAngle exit_error = constants.turn_exit_error;
+  QTime timeout = constants.turn_timeout;
 
   settleParams turn_settle = {
       .settle_error = constants.turn_settle_error,
@@ -191,23 +194,20 @@ struct Turn {
       .large_settle_error = constants.turn_large_settle_error,
       .large_settle_time = constants.turn_large_settle_time};
 
-  double min_speed = constants.turn_min_speed;
-  double max_speed = constants.turn_max_speed;
-  
-  QAngle exit_error = constants.turn_exit_error;
-  QTime timeout = constants.turn_timeout;
-  QAngle offset = 0_deg;
-};
-
-struct Drive {
-  PIDParams drive_k = {.p = constants.drive_kp,
-                       .i = constants.drive_ki,
-                       .d = constants.drive_kd,
-                       .starti = constants.drive_starti};
   PIDParams turn_k = {.p = constants.turn_kp,
                       .i = constants.turn_ki,
                       .d = constants.turn_kd,
                       .starti = constants.turn_starti};
+};
+
+struct Drive {
+  double max_speed = constants.drive_max_speed;
+  double min_speed = constants.drive_min_speed;
+
+  QLength exit_error = constants.drive_exit_error;
+  double turn_max_speed = constants.turn_max_speed;
+  double center_max_speed = constants.center_max_speed;
+  QTime timeout = constants.drive_timeout;
 
   settleParams drive_settle = {
       .settle_error = constants.drive_settle_error,
@@ -220,13 +220,14 @@ struct Drive {
       .large_settle_error = constants.turn_large_settle_error,
       .large_settle_time = constants.turn_large_settle_time};
 
-  double max_speed = constants.drive_max_speed;
-  double min_speed = constants.drive_min_speed;
-
-  QLength exit_error = constants.drive_exit_error;
-  double turn_max_speed = constants.turn_max_speed;
-  double center_max_speed = constants.center_max_speed;
-  QTime timeout = constants.drive_timeout;
+  PIDParams drive_k = {.p = constants.drive_kp,
+                       .i = constants.drive_ki,
+                       .d = constants.drive_kd,
+                       .starti = constants.drive_starti};
+  PIDParams turn_k = {.p = constants.turn_kp,
+                      .i = constants.turn_ki,
+                      .d = constants.turn_kd,
+                      .starti = constants.turn_starti};
 };
 
 }  // namespace rev

@@ -24,6 +24,46 @@ using namespace rev;
 //   turn(0_deg);
 // }
 
+void config_measure_odometry_offsets() {	
+		int iterations = 10;
+	
+		float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
+
+    forward_enc->sensor.reset();
+    sideways_enc->sensor.reset();
+    
+		for (int i = 0; i < iterations; i++) {
+      
+      imu->imu.set_rotation(0);
+      forward_enc->sensor.reset();
+      sideways_enc->sensor.reset();
+	
+			float start_heading = imu->imu.get_rotation();
+			QAngle target = i % 2 == 0 ? 90_deg : 270_deg;
+
+      turn(target, Turn{ .max_speed = 4, .turn_settle = { .settle_error = 1, .settle_time = 500_ms } });
+
+			pros::delay(250);
+	
+			float t_delta = reduce_negative_180_to_180((imu->imu.get_rotation() * degree) - (start_heading * degree)).convert(radian);
+      
+
+			float f_delta = forward_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
+			float s_delta = sideways_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
+	
+			f_offset += f_delta / t_delta;
+			s_offset += s_delta / t_delta;
+		}
+	
+		f_offset /= iterations;
+		s_offset /= iterations;
+
+    pros::lcd::print(6, "Forward Offset: %f", f_offset);
+    pros::lcd::print(7, "Sideways Offset: %f", s_offset);
+
+
+}
+
 void initialize() {
   // Initialize LCD so we can print to it for debugging
   pros::lcd::initialize();
@@ -71,15 +111,22 @@ void initialize() {
   //                            .center_max_speed = 10});
 
   // Calibrate the imu
-  imu->calibrate();
+  imu->imu.reset(true);
 
   pros::Task AntiJamTask(anti_jam);
   pros::Task Intake_Task(intake_task);
   pros::Task Color_Task(color_task);
+
+
 }
 
 void opcontrol() {
 
+
+  pros::delay(2000);
+
+  config_measure_odometry_offsets();
+  return;
   while(true) {
     // Print out telemetry for debugging
     pros::lcd::print(2, "Theta: %f", imu->get_heading());
