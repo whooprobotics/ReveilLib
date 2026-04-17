@@ -1,4 +1,5 @@
-#include "robot-control.hh"
+#include "robot_testing/rev2_config.hh"
+#include "robot_testing/rev2_macros.hh"
 
 void drive(QLength distance, rev::Drive params) {
   slipstream->go({rev::MecanumToDistance::create(distance, params)});

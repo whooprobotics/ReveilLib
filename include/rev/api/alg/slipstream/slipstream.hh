@@ -168,8 +168,6 @@ class Slipstream : public AsyncRunnable, public AsyncAwaitable {
 
   void breakout();
 
-  void set_constants(Constants constants);
-
  private:
   std::shared_ptr<HolonomicChassis> chassis;
   std::shared_ptr<Odometry> odometry;
