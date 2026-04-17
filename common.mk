@@ -25,7 +25,7 @@ LNK_FLAGS=--gc-sections --start-group $(strip $(LIBRARIES)) -lgcc -lstdc++ --end
 
 ASMFLAGS=$(MFLAGS) $(WARNFLAGS)
 CFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) $(GCCFLAGS) --std=gnu11
-CXXFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) $(GCCFLAGS) --std=gnu++20
+CXXFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) $(GCCFLAGS) --std=gnu++17
 LDFLAGS=$(MFLAGS) $(WARNFLAGS) -nostdlib $(GCCFLAGS)
 SIZEFLAGS=-d --common
 NUMFMTFLAGS=--to=iec --format %.2f --suffix=B
@@ -175,7 +175,7 @@ quick: $(DEFAULT_BIN)
 
 all: clean $(DEFAULT_BIN)
 
-clean: 
+clean:
 	@echo Cleaning project
 	-$Drm -rf $(BINDIR)
 	-$Drm -rf $(DEPDIR)

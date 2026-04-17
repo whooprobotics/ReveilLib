@@ -1,7 +1,4 @@
 #pragma once
-
-#ifdef PLATFORM_BRAIN
-
 namespace rev {
 /**
  * @brief Implementation of signum
@@ -16,5 +13,3 @@ int sgn(T val) {
 }
 
 }  // namespace rev
-
-#endif

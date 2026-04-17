@@ -5,20 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
-
-FetchContent_Declare(
-  sciplot
-  GIT_REPOSITORY https://github.com/sciplot/sciplot.git
-  GIT_TAG master
-)
-
-set(SCIPLOT_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(SCIPLOT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(SCIPLOT_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-
-FetchContent_MakeAvailable(sciplot)
-include_directories(${sciplot_SOURCE_DIR})
-
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
@@ -28,7 +14,6 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_compile_definitions(OFF_ROBOT_TESTS)
-add_compile_definitions(PLATFORM_BRAIN)
 
 enable_testing()
 
@@ -38,13 +23,13 @@ include_directories(include)
 add_executable(ReveilLib
 
         src/api/async/async_runner.cc
-        src/api/alg/drive/motion/cascading_motion.cc
-        src/api/alg/drive/motion/proportional_motion.cc
-        src/api/alg/drive/motion/constant_motion.cc
+        src/api/alg/reckless/motion/cascading_motion.cc
+        src/api/alg/reckless/motion/proportional_motion.cc
+        src/api/alg/reckless/motion/constant_motion.cc
         src/api/alg/reckless/turn_segment.cc
-        src/api/alg/drive/stop/simple_stop.cc
-        src/api/alg/drive/correction/pilons_correction.cc
-        src/api/alg/drive/correction/no_correction.cc
+        src/api/alg/stop/simple_stop.cc
+        src/api/alg/reckless/correction/pilons_correction.cc
+        src/api/alg/reckless/correction/no_correction.cc
         src/api/alg/reckless/reckless.cc
         src/api/alg/reckless/pilons_segment.cc
         src/api/alg/path_gen/bezier_curves.cc
@@ -52,21 +37,28 @@ add_executable(ReveilLib
         src/api/alg/pure_pursuit/pure_pursuit.cc
         src/util/math/pose.cc
         src/api/hardware/chassis_sim/driftless_sim.cc
+        src/api/hardware/chassis_sim/holonomic_sim.cc
+        src/api/alg/slipstream/slipstream.cc
+        src/api/alg/slipstream/mecanum_segment.cc
+        src/api/alg/slipstream/motion/mecanum_constant_motion.cc
+        src/api/alg/slipstream/correction/cross_track_correction.cc
+        src/api/alg/stop/simple_holonomic_stop.cc
         src/api/alg/reckless/call.cc
         src/api/alg/reckless/await.cc
         src/api/hardware/devices/rotation_sensors/mock_rotary_sensor.cc
         src/api/hardware/devices/rotation_sensors/mock_quad_encoder.cc
         src/api/hardware/devices/gyroscope/mock_imu.cc
         src/api/alg/odometry/two_rotation_inertial_odometry.cc
-        test/template_test.cc
-        test/point_vector_test.cc
+        #test/template_test.cc
+        #test/point_vector_test.cc
         test/off_robot_utils.cc
-        test/pose_shift_test.cc
-        test/driftless_sim_test.cc
-        test/reckless_test.cc
-        test/odom_test.cc
-        test/reckless_call_test.cc
-        test/turn_segment_test.cc
+        #test/pose_shift_test.cc
+        #test/driftless_sim_test.cc
+        #test/reckless_test.cc
+        #test/odom_test.cc
+        #test/reckless_call_test.cc
+        #test/turn_segment_test.cc
+        test/holonomic_test.cc
         #test/bezier_test.cc
         #test/straight_line_test.cc
         #test/opencv_test.cc

@@ -1,122 +1,192 @@
-#include "main.h"
-#include "rev/api/v5/alg/reckless/path.hh"
-#include "rev/api/v5/alg/reckless/turn_segment.hh"
-#include "rev/api/v5/alg/reckless/look_at.hh"
-#include "rev/api/v5/hardware/devices/rotation_sensors/rotary_sensors.hh"
-#include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
-#include "robots/soundwave.hh"
-
+using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
-using std::make_shared;    
 
-// Setting up tank drive chassis
-Motor_Group left_drive({1, 2, -3});
-Motor_Group right_drive({4, 5, 6});
+// Devices have moved into robot-config
 
-auto chassis = make_shared<SkidSteerChassis>(left_drive, right_drive);
+double odom_wheel_diameter = 2.41; // in inches
 
-/*
-  Setting Up Odometry
-    - When moving forward robot position X should increase
-    - When moving right robot position Y should increase
-*/
-auto imu = make_shared<Imu>(7);
+PID lever_pid(.1, 0.0, 0, 0);
+double lever_target = 0;
 
-auto left_encoder = make_shared<QuadEncoder>('A', 'B', false);
-auto right_encoder = make_shared<QuadEncoder>('C', 'D', true);
+static auto get_left_enc_inches = []() {
+  return left_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
+};
 
-auto odom = make_shared<TwoRotationInertialOdometry45Degrees>(
-  left_encoder, right_encoder, imu, 
-  2.46_in, 2.46_in // Wheel Diameters
-);
+static auto get_right_enc_inches = []() {
+  return right_encoder.get_position() * (odom_wheel_diameter * M_PI / 360.0); 
+};
 
+static void set_coordinates(double x, double y, double angle) {
 
-// Controller Setup
-pros::Controller controller(pros::E_CONTROLLER_MASTER);
+  imu.set_heading(angle);
+  odom45.set_position({x, y}, angle, get_right_enc_inches(), get_left_enc_inches());
 
-// Setting up ReveilLib
-auto reckless = make_shared<Reckless>(chassis, odom);
-AsyncRunner odom_runner(odom);
-AsyncRunner reckless_runner(reckless);
+  static pros::Task odom_task([](){
+    while (true) {
+      odom45.update_position(get_left_enc_inches(), get_right_enc_inches(), imu.get_heading());
+      pros::delay(10);
+    }
+  });
+}
 
 void initialize() {
   pros::lcd::initialize();
+
+  imu.reset(true);
+
+  constants = {
+    .drive_kp = 1.5,
+    .drive_ki = 0,
+    .drive_kd = 10,
+    .drive_starti = 0,
+
+    .drive_settle_error = 1,
+    .drive_settle_time = 100,
+    .drive_large_settle_error = 3,
+    .drive_large_settle_time = 500,
+    .drive_timeout = 5000,
+
+    .drive_exit_error = 0,
+    .drive_min_speed = 0,
+    .drive_max_speed = 12,
+
+    .turn_kp = .4,
+    .turn_ki = 0.03,
+    .turn_kd = 3,
+    .turn_starti = 15,
+
+    .turn_settle_error = 1,
+    .turn_settle_time = 100,
+    .turn_large_settle_error = 3,
+    .turn_large_settle_time = 500,
+    .turn_timeout = 3000,
+
+    .turn_exit_error = 0,
+    .turn_min_speed = 0,
+    .turn_max_speed = 12,
+  };
+
+  odom45.set_physical_distances(-5.3, 0); // in inches, horizontal distance from cog, vertical distance from cog
+  set_coordinates(0, 0, 0);
 }
 
-void disabled() {}
-
-void competition_initialize() {}
-
-/* 
-  Sample autonomous 
-  Robot will:
-    - Drive forward 24 inches while correcting with pilons
-    - Turn 90 degrees right
-    - Drive forward another 24 inches while correcting with pilons
-    - Drive back to origin while correcting with pilons
-    - Look at a point 5 inches in front of the robot
-*/
-void autonomous() {
- odom->set_position({0_in, 0_in, 0_deg});
- reckless->go({
-    &PilonsSegment(
-      &ConstantMotion(1),
-      &PilonsCorrection(2, 0.5_in),
-      &SimpleStop(60_ms, 200_ms, 0.25),
-      {0_in, 24_in}, 0_in
-    ),
-    &TurnSegment(
-      0.75, 0.25,
-      90_deg,
-      0.06, 0.2, 100_ms
-    ),
-    &PilonsSegment(
-      &ConstantMotion(1),
-      &PilonsCorrection(2, 0.5_in),
-      &SimpleStop(60_ms, 200_ms, 0.25),
-      {24_in, 24_in}, 0_in
-    ),
-    &PilonsSegment(
-      &ConstantMotion(1),
-      &PilonsCorrection(2, 0.5_in),
-      &SimpleStop(60_ms, 200_ms, 0.25),
-      {0_in, 0_in}, 0_in
-    ),
-    &LookAt(
-      0.75, 0.25,
-      {5_in, 0_in}, 0_deg,
-      0.06, 0.2, 100_ms
-    )
- });
- reckless->await();
-}
-
+// Drive Code
 void opcontrol() {
-  soundwave::auton();
-
+  bool scraper_state = false;
+  bool lift_state = false;
   while(true) {
-    pros::delay(20);
-  }
-  odom->set_position({0_in, 0_in, 0_deg});
+    pros::lcd::print(0, "X: %f", odom45.get_x());
+    pros::lcd::print(1, "Y: %f", odom45.get_y());
+    pros::lcd::print(2, "Theta: %f", imu.get_heading());
+    pros::lcd::print(3, "Right Encoder: %f", right_encoder.get_position());
+    pros::lcd::print(4, "Left Encoder: %f", left_encoder.get_position());
 
-  while (true) {
-    double left_power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
-    double right_power = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) / 127.0;
 
-    chassis->drive_arcade(left_power, right_power);
+    double left_y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0;
+    double left_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0;
+    double right_x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0;
+
+    double forward = deadband(left_y, 0.05);
+    double strafe = deadband(left_x, 0.05);
+    double turn = deadband(right_x, 0.05);
+
+    double lever_speed = 1;
+
+    chassis.drive_holonomic(forward, turn, strafe);
     
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      autonomous();
+    scraper.set_value(scraper_state);
+    lift.set_value(lift_state);
+    
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      lift_state = !lift_state;
     }
 
-    // Print odometry output
-    pros::lcd::print(0, "X: %f", odom->get_state().pos.x.convert(inch));
-    pros::lcd::print(1, "Y: %f", odom->get_state().pos.y.convert(inch));
-    pros::lcd::print(2, "Theta: %f", odom->get_state().pos.theta.convert(degree));
-    pros::lcd::print(3, "Right Encoder: %f", right_encoder->get_position());
-    pros::lcd::print(4, "Left Encoder: %f", left_encoder->get_position());
+    // hood goes up immediately, lever follows 250ms later; hood goes down 500ms after release
+    static u_int32_t r1_press_time = 0;
+    static u_int32_t r1_release_time = 0;
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      if (r1_press_time == 0) r1_press_time = pros::millis();
+      if (pros::millis() - r1_press_time < 2000){
+        intake.move_voltage(12000);
+      } else {
+        intake.move(0);
+      }
+      r1_release_time = 0;
+      hood.set_value(0);
+      if (pros::millis() - r1_press_time >= 250) 
+        lever_target = 1000;
+    } else {
+      r1_press_time = 0;
+      lever_target = 0;
+      if (r1_release_time == 0) 
+        r1_release_time = pros::millis();
+      if (pros::millis() - r1_release_time >= 1000) 
+        hood.set_value(1);
+    }
+
+    //want the same funcionality for L1 but with the intake instead of the hood, but it is currently buggy and needs to be fixed
+    // static u_int32_t l1_press_time = 0;
+    // static u_int32_t l1_release_time = 0;
+    // if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+    //   if (l1_press_time == 0){
+    //     l1_press_time = pros::millis();
+    //   }
+    //   if (pros::millis() - l1_press_time < 2000) 
+    //   {
+    //     intake.move_voltage(12000);
+    //   } else {
+    //     intake.move(0);
+    //   }
+    //   l1_release_time = 0;
+    //   hood.set_value(0);
+    //   if (pros::millis() - l1_press_time >= 250){
+    //     lever_target = 1000;
+    //     lever_pid.kp = .008;
+    //   } 
+    // } else {
+    //   l1_press_time = 0;
+    //   lever_target = 0;
+    //   lever_pid.kp = .1;
+    //   if (l1_release_time == 0) 
+    //     l1_release_time = pros::millis();
+    //   if (pros::millis() - l1_release_time >= 1000) 
+    //     hood.set_value(1);
+    // }
+
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && !controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      lever_target = 1000;
+      lever_pid.kp = .008;
+      hood.set_value(0);
+      // lever_speed = .28;
+    } else {
+      lever_pid.kp = .1;
+    }
+
+    lever.move_voltage((1000 * lever_pid.compute(lever_target - lever.get_positions()[0])) );
+
+    // lift state needs to be fixed so that it goes down when B is release
+
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+      intake.move_voltage(12000); 
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+      lift_state = true;
+      intake.move_voltage(-12000); 
+    } else {
+      if (scraper_state) {
+        intake.move_voltage(12000); 
+      } else if (!controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+        intake.move(0);
+      }
+    }
+
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      scraper_state = true;
+      lift_state = true;
+    } else {
+      scraper_state = false;
+    }
 
     pros::delay(20);
   }

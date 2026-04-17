@@ -16,20 +16,14 @@ jobs:
           submodules: true
 
       - run: apt update
-      - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi g++-aarch64-linux-gnu zip
+      - run: apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi
       - run: python3 -m pip install pros-cli
 
       - name: Update version number
-        run: ./scripts/setversion.sh ${{ github.ref_name }}
+        run: ./setversion.sh ${{ github.ref_name }}
 
-      - name: Build V5
+      - name: Build
         run: make template
-        
-      - name: Build copro
-        run: make copro-lib
-
-      - name: Package copro
-        run: ./scripts/package_copro.sh
 
       - name: Release
         id: create_release
@@ -52,14 +46,3 @@ jobs:
           asset_path: ./reveillib@${{ github.ref_name }}.zip
           asset_name: reveillib@${{ github.ref_name }}.zip
           asset_content_type: application/zip
-
-      - name: Upload Copro Library to Release
-        id: upload-release-copro-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./reveillib_copro.zip
-          asset_name: reveillib_copro@${{ github.ref_name }}.zip
-          asset_content_type: zip

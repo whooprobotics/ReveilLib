@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "ReveilLib Testing",
+    "project_name": "MEGATRON",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -167,7 +167,9 @@
       }
     },
     "upload_options": {
-      "slot": 5
+      "slot": 1,
+      "description": "the baddest bih",
+      "icon": "X"
     }
   }
 }

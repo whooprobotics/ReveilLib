@@ -1,7 +1,5 @@
 #pragma once
 
-#ifdef OFF_ROBOT_TESTS
-
 #include <tuple>
 #include <vector>
 #include "rev/api/alg/odometry/odometry.hh"
@@ -9,7 +7,7 @@
 #include "rev/api/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
 #include "rev/util/math/pose.hh"
-#include <sciplot/sciplot.hpp>
+#include "sciplot/sciplot.hpp"
 
 using sciplot::Vec, sciplot::Plot2D, sciplot::Figure, sciplot::Canvas;
 using namespace rev;
@@ -88,5 +86,3 @@ int generate_plot(const std::vector<PointVector> ideal_path,
 
   return 0;
 }
-
-#endif

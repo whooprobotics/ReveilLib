@@ -14,7 +14,7 @@ INCDIR=$(ROOT)/include
 
 WARNFLAGS+=
 EXTRA_CFLAGS=
-EXTRA_CXXFLAGS=-DPLATFORM_BRAIN
+EXTRA_CXXFLAGS=
 
 # Set to 1 to enable hot/cold linking
 USE_PACKAGE:=1
@@ -31,17 +31,17 @@ LIBNAME:=reveillib
 # EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/unpublishedfile.c
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/main.cpp
-EXCLUDE_SRC_FROM_LIB+=" " + $(SRCDIR)/robots/soundwave.cc
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files
 # that are in the the include directory get exported
 TEMPLATE_FILES=$(INCDIR)/rev/**/*.h $(INCDIR)/rev/**/*.hpp $(INCDIR)/rev/**/*.hh
 
+MAKEFLAGS+=-j$(shell nproc)
+
 .DEFAULT_GOAL=quick
 
 ################################################################################
 ################################################################################
 ########## Nothing below this line should be edited by typical users ###########
--include ./copro_rules.mk
 -include ./common.mk
