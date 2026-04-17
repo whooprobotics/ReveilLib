@@ -11,18 +11,18 @@ using namespace rev;
 // fault, its probably something else, and if you message me about it not
 // working, i will probably just send you a video of it working and then you can
 // figure out what you did wrong on your end.
-// void test_mecanum() {
-//   odom->set_position({0_in, 0_in, 0_deg});
-//   turn(0_deg, Turn{.min_speed = 4, .timeout = 2000_ms});
-//   drive(12_in, Drive{.center_max_speed = 0});
-//   drive(-12_in);
-//   drive(0_in, 24_in);
-//   turn(0_deg, Turn{.min_speed = 4});
-//   drive(24_in, 24_in, 90_deg);
-//   turn(180_deg);
-//   drive(0_in, 0_in);
-//   turn(0_deg);
-// }
+void test_mecanum() {
+  odom->set_position({0_in, 0_in, 0_deg});
+  turn(0_deg);
+  drive(12_in);
+  drive(-12_in);
+  drive(0_in, 24_in);
+  turn(0_deg);
+  drive(24_in, 24_in, 90_deg);
+  turn(180_deg);
+  drive(0_in, 0_in);
+  turn(0_deg);
+}
 
 void config_measure_odometry_offsets() {	
 		int iterations = 10;
@@ -78,7 +78,7 @@ void initialize() {
 
   // These constants work, if the algo does not work
   // ITS NOT THE CONSTANTS FAULT READ THE COMMIT LOGS, NOT THE CONSTANTS FAULT
-  
+
   slipstream->set_constants({.drive_kp = 1.5,
                              .drive_ki = 0,
                              .drive_kd = 10,
@@ -129,7 +129,7 @@ void opcontrol() {
 
   pros::delay(2000);
 
-  config_measure_odometry_offsets();
+  test_mecanum();
   return;
   while(true) {
     // Print out telemetry for debugging
