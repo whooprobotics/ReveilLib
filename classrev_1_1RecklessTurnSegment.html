@@ -131,6 +131,12 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8427211f371bdc85085bad386c33a202" id="r_a8427211f371bdc85085bad386c33a202"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a> (double imax_power, double icoast_power, QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
 <tr class="memdesc:a8427211f371bdc85085bad386c33a202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1RecklessTurnSegment.html" title="Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori...">RecklessTurnSegment</a> object.  <br /></td></tr>
+<tr class="memitem:a2d0f2a71f071d8adb6f49e52f74522c4" id="r_a2d0f2a71f071d8adb6f49e52f74522c4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2d0f2a71f071d8adb6f49e52f74522c4">RecklessTurnSegment</a> (double imax_power, double icoast_power, QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time, QTime itimeout)</td></tr>
+<tr class="memdesc:a2d0f2a71f071d8adb6f49e52f74522c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1RecklessTurnSegment.html" title="Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori...">RecklessTurnSegment</a> object.  <br /></td></tr>
+<tr class="memitem:a5b26e0e4ce364b6fb79003c96b60a03d" id="r_a5b26e0e4ce364b6fb79003c96b60a03d"><td class="memTemplParams" colspan="2"><a id="a5b26e0e4ce364b6fb79003c96b60a03d" name="a5b26e0e4ce364b6fb79003c96b60a03d"></a>
+template&lt;typename Self = TurnSegmentParams&gt; </td></tr>
+<tr class="memitem:a5b26e0e4ce364b6fb79003c96b60a03d template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><b>RecklessTurnSegment</b> (QAngle iangle)</td></tr>
+<tr class="memdesc:a5b26e0e4ce364b6fb79003c96b60a03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for using default segment values. <br /></td></tr>
 <tr class="memitem:ac3ad7246f8ad26ce38c70d8640cffdd4" id="r_ac3ad7246f8ad26ce38c70d8640cffdd4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac3ad7246f8ad26ce38c70d8640cffdd4">init</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state)</td></tr>
 <tr class="memdesc:ac3ad7246f8ad26ce38c70d8640cffdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the segment to turn the robot.  <br /></td></tr>
 <tr class="memitem:a9b9be61a081da51e50b015d99c9d66b5" id="r_a9b9be61a081da51e50b015d99c9d66b5"><td class="memItemLeft"><a class="el" href="structrev_1_1SegmentStatus.html">SegmentStatus</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9b9be61a081da51e50b015d99c9d66b5">step</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state)</td></tr>
@@ -151,7 +157,7 @@ static std::shared_ptr&lt; <a class="el" href="#a8427211f371bdc85085bad386c33a20
 <div class="textblock"><p>Path segment for turning for use with <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> controller, implementing Walker Campbell's turn algorithm. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8427211f371bdc85085bad386c33a202" name="a8427211f371bdc85085bad386c33a202"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8427211f371bdc85085bad386c33a202">&#9670;&#160;</a></span>RecklessTurnSegment()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8427211f371bdc85085bad386c33a202">&#9670;&#160;</a></span>RecklessTurnSegment() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,6 +204,66 @@ static std::shared_ptr&lt; <a class="el" href="#a8427211f371bdc85085bad386c33a20
     <tr><td class="paramname">iharsh_coeff</td><td>The harsh braking coefficient </td></tr>
     <tr><td class="paramname">icoast_coeff</td><td>The coast braking coefficient </td></tr>
     <tr><td class="paramname">ibrake_time</td><td>The maximum time that should be spent braking </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2d0f2a71f071d8adb6f49e52f74522c4" name="a2d0f2a71f071d8adb6f49e52f74522c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0f2a71f071d8adb6f49e52f74522c4">&#9670;&#160;</a></span>RecklessTurnSegment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rev::RecklessTurnSegment::RecklessTurnSegment </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>imax_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAngle</td>          <td class="paramname"><span class="paramname"><em>iangle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>iharsh_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>ibrake_time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>itimeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classrev_1_1RecklessTurnSegment.html" title="Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori...">RecklessTurnSegment</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imax_power</td><td>Maximum turning power </td></tr>
+    <tr><td class="paramname">icoast_power</td><td>Turning coast power </td></tr>
+    <tr><td class="paramname">iangle</td><td>The angle to face the robot towards </td></tr>
+    <tr><td class="paramname">iharsh_coeff</td><td>The harsh braking coefficient </td></tr>
+    <tr><td class="paramname">icoast_coeff</td><td>The coast braking coefficient </td></tr>
+    <tr><td class="paramname">ibrake_time</td><td>The maximum time that should be spent braking </td></tr>
+    <tr><td class="paramname">itimeout</td><td>The timeout in seconds </td></tr>
   </table>
   </dd>
 </dl>

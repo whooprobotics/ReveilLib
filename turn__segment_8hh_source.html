@@ -97,84 +97,124 @@ $(function(){initNavTree('turn__segment_8hh_source.html','',''); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifdef PLATFORM_BRAIN</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rev/api/v5/alg/odometry/odometry.hh&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;rev/api/v5/alg/reckless/segment.hh&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;rev/api/common/units/q_angle.hh&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;rev/api/common/units/q_time.hh&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html">   16</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a> : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1RecklessSegment.html">RecklessSegment</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a>(<span class="keywordtype">double</span> imax_power,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                      <span class="keywordtype">double</span> icoast_power,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                      QAngle iangle,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                      <span class="keywordtype">double</span> iharsh_coeff,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                      <span class="keywordtype">double</span> icoast_coeff,</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                      QTime ibrake_time);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">   38</a></span>  <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">TurnState</a> { FULLPOWER, COAST, BRAKE };</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#ac3ad7246f8ad26ce38c70d8640cffdd4">init</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_struct" href="structrev_1_1SegmentStatus.html">SegmentStatus</a> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a9b9be61a081da51e50b015d99c9d66b5">step</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#aebb8d5f2a10232fc17757756503e481b">clean_up</a>();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
-<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">   64</a></span>  std::shared_ptr&lt;RecklessSegment&gt; <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">operator&amp;</a>() {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> std::make_shared&lt;RecklessTurnSegment&gt;(*<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rev/util/defaults.hh&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;rev/api/v5/alg/odometry/odometry.hh&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;rev/api/v5/alg/reckless/segment.hh&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;rev/api/common/units/q_angle.hh&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;rev/api/common/units/q_time.hh&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerev.html">rev</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structrev_1_1TurnSegmentParams.html">   17</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrev_1_1TurnSegmentParams.html">TurnSegmentParams</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keywordtype">double</span> max_power;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordtype">double</span> coast_power;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">double</span> harsh;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordtype">double</span> coast;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  QTime brake_time;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  QTime timeout;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">static</span> std::shared_ptr&lt;RecklessTurnSegment&gt; create(<span class="keywordtype">double</span> imax_power,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                                     <span class="keywordtype">double</span> icoast_power,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                                                     QAngle iangle,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                                     <span class="keywordtype">double</span> iharsh_coeff,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                                                     <span class="keywordtype">double</span> icoast_coeff,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                                                     QTime ibrake_time) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> std::make_shared&lt;RecklessTurnSegment&gt;(imax_power, icoast_power,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                                                 iangle, iharsh_coeff,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                                 icoast_coeff, ibrake_time);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">   84</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">progress</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> 0; }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">double</span> max_power;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">double</span> harsh_coeff;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">double</span> coast_coeff;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordtype">double</span> coast_power;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  uint32_t brake_time;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  QAngle angle_goal = 0_deg;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  QAngle start_angle;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  QAngle angle_difference;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  QAngle target_relative_original;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  QAngle target_relative;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordtype">int</span> left_direction = 0;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">int</span> right_direction = 0;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">int</span> brake_start_time = -1;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <a class="code hl_enumeration" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">TurnState</a> controller_state{TurnState::FULLPOWER};</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html">   31</a></span><span class="keyword">class </span><a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a> : <span class="keyword">public</span> <a class="code hl_class" href="classrev_1_1RecklessSegment.html">RecklessSegment</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a>(<span class="keywordtype">double</span> imax_power,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                      <span class="keywordtype">double</span> icoast_power,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                      QAngle iangle,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                      <span class="keywordtype">double</span> iharsh_coeff,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                      <span class="keywordtype">double</span> icoast_coeff,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                      QTime ibrake_time);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">RecklessTurnSegment</a>(<span class="keywordtype">double</span> imax_power,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                      <span class="keywordtype">double</span> icoast_power,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                      QAngle iangle,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                      <span class="keywordtype">double</span> iharsh_coeff,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                      <span class="keywordtype">double</span> icoast_coeff,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                      QTime ibrake_time,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                      QTime itimeout);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Self = TurnSegmentParams&gt;</div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#a5b26e0e4ce364b6fb79003c96b60a03d">   74</a></span>  <span class="keyword">constexpr</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a5b26e0e4ce364b6fb79003c96b60a03d">RecklessTurnSegment</a>(QAngle iangle) :</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    angle_goal(iangle) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      max_power = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::max_power</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      coast_power = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::coast_power</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      harsh_coeff = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::harsh</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      coast_coeff = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::coast</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      brake_time = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::brake_time</a>.convert(millisecond);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      timeout = <a class="code hl_class" href="classrev_1_1Defaults.html">Defaults&lt;Self&gt;::timeout</a>.convert(millisecond);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
 </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">using </span>TurnSegment = <a class="code hl_class" href="classrev_1_1RecklessTurnSegment.html">RecklessTurnSegment</a>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}  <span class="comment">// namespace rev</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">   87</a></span>  <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">TurnState</a> { FULLPOWER, COAST, BRAKE };</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#ac3ad7246f8ad26ce38c70d8640cffdd4">init</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <a class="code hl_struct" href="structrev_1_1SegmentStatus.html">SegmentStatus</a> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a9b9be61a081da51e50b015d99c9d66b5">step</a>(<a class="code hl_struct" href="structrev_1_1OdometryState.html">OdometryState</a> current_state);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#aebb8d5f2a10232fc17757756503e481b">clean_up</a>();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">  113</a></span>  std::shared_ptr&lt;RecklessSegment&gt; <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">operator&amp;</a>() {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">return</span> std::make_shared&lt;RecklessTurnSegment&gt;(*<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keyword">static</span> std::shared_ptr&lt;RecklessTurnSegment&gt; create(<span class="keywordtype">double</span> imax_power,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                                                     <span class="keywordtype">double</span> icoast_power,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                                                     QAngle iangle,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                                                     <span class="keywordtype">double</span> iharsh_coeff,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                                                     <span class="keywordtype">double</span> icoast_coeff,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                                                     QTime ibrake_time) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">return</span> std::make_shared&lt;RecklessTurnSegment&gt;(imax_power, icoast_power,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                                                 iangle, iharsh_coeff,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                                                 icoast_coeff, ibrake_time);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">  133</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">progress</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordtype">double</span> max_power;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">double</span> harsh_coeff;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordtype">double</span> coast_coeff;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="keywordtype">double</span> coast_power;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  uint32_t brake_time;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  uint32_t timeout = 0;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  uint32_t time_init = 0;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  QAngle angle_goal = 0_deg;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  QAngle start_angle;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  QAngle angle_difference;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  QAngle target_relative_original;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  QAngle target_relative;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">int</span> left_direction = 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keywordtype">int</span> right_direction = 0;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordtype">int</span> brake_start_time = -1;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <a class="code hl_enumeration" href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">TurnState</a> controller_state{TurnState::FULLPOWER};</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>};</div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">// REFACTOR THIS IN 4.0.0</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">using </span>TurnSegment = <a class="code hl_class" href="classrev_1_1RecklessTurnSegment.html">RecklessTurnSegment</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>}  <span class="comment">// namespace rev</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassrev_1_1Defaults_html"><div class="ttname"><a href="classrev_1_1Defaults.html">rev::Defaults</a></div><div class="ttdoc">Templated class for storing default values of a struct.</div><div class="ttdef"><b>Definition</b> defaults.hh:10</div></div>
 <div class="ttc" id="aclassrev_1_1RecklessSegment_html"><div class="ttname"><a href="classrev_1_1RecklessSegment.html">rev::RecklessSegment</a></div><div class="ttdoc">Interface for path segments to be used with the Reckless controller.</div><div class="ttdef"><b>Definition</b> segment.hh:95</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html">rev::RecklessTurnSegment</a></div><div class="ttdoc">Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori...</div><div class="ttdef"><b>Definition</b> turn_segment.hh:16</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a207c23e3a9ef442225118ec6b889f2e3"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">rev::RecklessTurnSegment::operator&amp;</a></div><div class="ttdeci">std::shared_ptr&lt; RecklessSegment &gt; operator&amp;()</div><div class="ttdoc">Shorthand for creating a new LookAt object.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:64</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a3656a7a95169ef58cc3629af07fd8a91"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">rev::RecklessTurnSegment::TurnState</a></div><div class="ttdeci">TurnState</div><div class="ttdoc">Current state of the turn segment.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:38</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html">rev::RecklessTurnSegment</a></div><div class="ttdoc">Path segment for turning for use with Reckless controller, implementing Walker Campbell&#39;s turn algori...</div><div class="ttdef"><b>Definition</b> turn_segment.hh:31</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a207c23e3a9ef442225118ec6b889f2e3"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a207c23e3a9ef442225118ec6b889f2e3">rev::RecklessTurnSegment::operator&amp;</a></div><div class="ttdeci">std::shared_ptr&lt; RecklessSegment &gt; operator&amp;()</div><div class="ttdoc">Shorthand for creating a new LookAt object.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:113</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a3656a7a95169ef58cc3629af07fd8a91"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91">rev::RecklessTurnSegment::TurnState</a></div><div class="ttdeci">TurnState</div><div class="ttdoc">Current state of the turn segment.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:87</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a5b26e0e4ce364b6fb79003c96b60a03d"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a5b26e0e4ce364b6fb79003c96b60a03d">rev::RecklessTurnSegment::RecklessTurnSegment</a></div><div class="ttdeci">constexpr RecklessTurnSegment(QAngle iangle)</div><div class="ttdoc">Constructor for using default segment values.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:74</div></div>
 <div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a8427211f371bdc85085bad386c33a202"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a8427211f371bdc85085bad386c33a202">rev::RecklessTurnSegment::RecklessTurnSegment</a></div><div class="ttdeci">RecklessTurnSegment(double imax_power, double icoast_power, QAngle iangle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</div><div class="ttdoc">Constructs a new RecklessTurnSegment object.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:9</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a9b9be61a081da51e50b015d99c9d66b5"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a9b9be61a081da51e50b015d99c9d66b5">rev::RecklessTurnSegment::step</a></div><div class="ttdeci">SegmentStatus step(OdometryState current_state)</div><div class="ttdoc">Update the segment with new sensor data.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:55</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_ac3ad7246f8ad26ce38c70d8640cffdd4"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#ac3ad7246f8ad26ce38c70d8640cffdd4">rev::RecklessTurnSegment::init</a></div><div class="ttdeci">void init(OdometryState initial_state)</div><div class="ttdoc">Initializes the segment to turn the robot.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:22</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_ad43fdfac661c20438406874712b9e93a"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">rev::RecklessTurnSegment::progress</a></div><div class="ttdeci">double progress() override</div><div class="ttdoc">Returns the progress of the segment.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:84</div></div>
-<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_aebb8d5f2a10232fc17757756503e481b"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#aebb8d5f2a10232fc17757756503e481b">rev::RecklessTurnSegment::clean_up</a></div><div class="ttdeci">void clean_up()</div><div class="ttdoc">Cleans up the turn segment.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:131</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_a9b9be61a081da51e50b015d99c9d66b5"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#a9b9be61a081da51e50b015d99c9d66b5">rev::RecklessTurnSegment::step</a></div><div class="ttdeci">SegmentStatus step(OdometryState current_state)</div><div class="ttdoc">Update the segment with new sensor data.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:75</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_ac3ad7246f8ad26ce38c70d8640cffdd4"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#ac3ad7246f8ad26ce38c70d8640cffdd4">rev::RecklessTurnSegment::init</a></div><div class="ttdeci">void init(OdometryState initial_state)</div><div class="ttdoc">Initializes the segment to turn the robot.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:38</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_ad43fdfac661c20438406874712b9e93a"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#ad43fdfac661c20438406874712b9e93a">rev::RecklessTurnSegment::progress</a></div><div class="ttdeci">double progress() override</div><div class="ttdoc">Returns the progress of the segment.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:133</div></div>
+<div class="ttc" id="aclassrev_1_1RecklessTurnSegment_html_aebb8d5f2a10232fc17757756503e481b"><div class="ttname"><a href="classrev_1_1RecklessTurnSegment.html#aebb8d5f2a10232fc17757756503e481b">rev::RecklessTurnSegment::clean_up</a></div><div class="ttdeci">void clean_up()</div><div class="ttdoc">Cleans up the turn segment.</div><div class="ttdef"><b>Definition</b> turn_segment.cc:164</div></div>
 <div class="ttc" id="anamespacerev_html"><div class="ttname"><a href="namespacerev.html">rev</a></div><div class="ttdoc">Implementation of a Vex optical sensor with port checking.</div><div class="ttdef"><b>Definition</b> q_acceleration.hh:20</div></div>
 <div class="ttc" id="astructrev_1_1OdometryState_html"><div class="ttname"><a href="structrev_1_1OdometryState.html">rev::OdometryState</a></div><div class="ttdoc">A structure packaging a velocity and position into one.</div><div class="ttdef"><b>Definition</b> odometry.hh:38</div></div>
 <div class="ttc" id="astructrev_1_1SegmentStatus_html"><div class="ttname"><a href="structrev_1_1SegmentStatus.html">rev::SegmentStatus</a></div><div class="ttdef"><b>Definition</b> segment.hh:12</div></div>
+<div class="ttc" id="astructrev_1_1TurnSegmentParams_html"><div class="ttname"><a href="structrev_1_1TurnSegmentParams.html">rev::TurnSegmentParams</a></div><div class="ttdoc">Default parameters for TurnSegment.</div><div class="ttdef"><b>Definition</b> turn_segment.hh:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

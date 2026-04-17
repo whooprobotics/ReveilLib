@@ -123,15 +123,22 @@ Collaboration diagram for rev::LookAt:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9a6435eeea12b5f59aa382069d926201" id="r_a9a6435eeea12b5f59aa382069d926201"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9a6435eeea12b5f59aa382069d926201">LookAt</a> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
 <tr class="memdesc:a9a6435eeea12b5f59aa382069d926201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object.  <br /></td></tr>
+<tr class="memitem:a4474d05b9eb3a17d885de525a61aa1dd" id="r_a4474d05b9eb3a17d885de525a61aa1dd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4474d05b9eb3a17d885de525a61aa1dd">LookAt</a> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time, QTime itimeout)</td></tr>
+<tr class="memdesc:a4474d05b9eb3a17d885de525a61aa1dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object.  <br /></td></tr>
 <tr class="memitem:a7231de9adc1fde287bdbdb09474f0ebd" id="r_a7231de9adc1fde287bdbdb09474f0ebd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7231de9adc1fde287bdbdb09474f0ebd">LookAt</a> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle iangle_offset, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
 <tr class="memdesc:a7231de9adc1fde287bdbdb09474f0ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object.  <br /></td></tr>
+<tr class="memitem:a92470163c6b5112e079472bfa3dc340e" id="r_a92470163c6b5112e079472bfa3dc340e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a92470163c6b5112e079472bfa3dc340e">LookAt</a> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle iangle_offset, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time, QTime itimeout)</td></tr>
+<tr class="memdesc:a92470163c6b5112e079472bfa3dc340e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object.  <br /></td></tr>
+<tr class="memitem:ad65ebd3d2d3e301411f34c8c8317810b" id="r_ad65ebd3d2d3e301411f34c8c8317810b"><td class="memTemplParams" colspan="2"><a id="ad65ebd3d2d3e301411f34c8c8317810b" name="ad65ebd3d2d3e301411f34c8c8317810b"></a>
+template&lt;typename Self = LookAtParams&gt; </td></tr>
+<tr class="memitem:ad65ebd3d2d3e301411f34c8c8317810b template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><b>LookAt</b> (<a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position)</td></tr>
 <tr class="memitem:a962e18cb0032450c78cee5b6edc0fcba" id="r_a962e18cb0032450c78cee5b6edc0fcba"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a962e18cb0032450c78cee5b6edc0fcba">init</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state) override</td></tr>
 <tr class="memdesc:a962e18cb0032450c78cee5b6edc0fcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the segment to turn the robot.  <br /></td></tr>
 <tr class="memitem:a2c6dcebe9580fdef5849c96e79ab8c2b" id="r_a2c6dcebe9580fdef5849c96e79ab8c2b"><td class="memItemLeft"><a class="el" href="structrev_1_1SegmentStatus.html">SegmentStatus</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2c6dcebe9580fdef5849c96e79ab8c2b">step</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state) override</td></tr>
 <tr class="memdesc:a2c6dcebe9580fdef5849c96e79ab8c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the segment with new sensor data.  <br /></td></tr>
 <tr class="memitem:aa7f6e1e1ea10f5fea934187c04877c0e" id="r_aa7f6e1e1ea10f5fea934187c04877c0e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa7f6e1e1ea10f5fea934187c04877c0e">clean_up</a> () override</td></tr>
 <tr class="memdesc:aa7f6e1e1ea10f5fea934187c04877c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans up the turn segment.  <br /></td></tr>
-<tr class="memitem:a5a7578896d377129fea55df1864535b3" id="r_a5a7578896d377129fea55df1864535b3"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d926201">LookAt</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5a7578896d377129fea55df1864535b3">operator&amp;</a> ()</td></tr>
+<tr class="memitem:a5a7578896d377129fea55df1864535b3" id="r_a5a7578896d377129fea55df1864535b3"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="classLookAt.html">LookAt</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5a7578896d377129fea55df1864535b3">operator&amp;</a> ()</td></tr>
 <tr class="memdesc:a5a7578896d377129fea55df1864535b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for creating a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object.  <br /></td></tr>
 <tr class="memitem:aae12fb2b772c93dbb2a35b8698f020a7" id="r_aae12fb2b772c93dbb2a35b8698f020a7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aae12fb2b772c93dbb2a35b8698f020a7">progress</a> () override</td></tr>
 <tr class="memdesc:aae12fb2b772c93dbb2a35b8698f020a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the progress of the segment.  <br /></td></tr>
@@ -139,13 +146,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a849c58fa029ab8b2aa5c0b9a9690c567" id="r_a849c58fa029ab8b2aa5c0b9a9690c567"><td class="memItemLeft"><a id="a849c58fa029ab8b2aa5c0b9a9690c567" name="a849c58fa029ab8b2aa5c0b9a9690c567"></a>
-static std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d926201">LookAt</a> &gt;&#160;</td><td class="memItemRight"><b>create</b> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
+static std::shared_ptr&lt; <a class="el" href="classLookAt.html">LookAt</a> &gt;&#160;</td><td class="memItemRight"><b>create</b> (double imax_power, double icoast_power, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_position, QAngle idrop_angle, double iharsh_coeff, double icoast_coeff, QTime ibrake_time)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements a point turn segment to face the robot towards a set of coordinates. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9a6435eeea12b5f59aa382069d926201" name="a9a6435eeea12b5f59aa382069d926201"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a6435eeea12b5f59aa382069d926201">&#9670;&#160;</a></span>LookAt() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6435eeea12b5f59aa382069d926201">&#9670;&#160;</a></span>LookAt() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,8 +211,74 @@ static std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d92620
 
 </div>
 </div>
+<a id="a4474d05b9eb3a17d885de525a61aa1dd" name="a4474d05b9eb3a17d885de525a61aa1dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4474d05b9eb3a17d885de525a61aa1dd">&#9670;&#160;</a></span>LookAt() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rev::LookAt::LookAt </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>imax_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a></td>          <td class="paramname"><span class="paramname"><em>itarget_position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAngle</td>          <td class="paramname"><span class="paramname"><em>idrop_angle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>iharsh_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>ibrake_time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>itimeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imax_power</td><td>Maximum turning power </td></tr>
+    <tr><td class="paramname">icoast_power</td><td>Turning coast power </td></tr>
+    <tr><td class="paramname">itarget_position</td><td>The point to face the robot towards </td></tr>
+    <tr><td class="paramname">idrop_angle</td><td>The angle at which the segment should end. You probably should leave this at 0, as it has not been tested. </td></tr>
+    <tr><td class="paramname">iharsh_coeff</td><td>The harsh braking coefficient </td></tr>
+    <tr><td class="paramname">icoast_coeff</td><td>The coast braking coefficient </td></tr>
+    <tr><td class="paramname">ibrake_time</td><td>The maximum time that should be spent braking </td></tr>
+    <tr><td class="paramname">itimeout</td><td>The maximum amount of time in the turn before it breaks out </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a7231de9adc1fde287bdbdb09474f0ebd" name="a7231de9adc1fde287bdbdb09474f0ebd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7231de9adc1fde287bdbdb09474f0ebd">&#9670;&#160;</a></span>LookAt() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7231de9adc1fde287bdbdb09474f0ebd">&#9670;&#160;</a></span>LookAt() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,6 +337,78 @@ static std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d92620
     <tr><td class="paramname">iharsh_coeff</td><td>The harsh braking coefficient </td></tr>
     <tr><td class="paramname">icoast_coeff</td><td>The coast braking coefficient </td></tr>
     <tr><td class="paramname">ibrake_time</td><td>The maximum time that should be spent braking </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a92470163c6b5112e079472bfa3dc340e" name="a92470163c6b5112e079472bfa3dc340e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92470163c6b5112e079472bfa3dc340e">&#9670;&#160;</a></span>LookAt() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rev::LookAt::LookAt </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>imax_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_power</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a></td>          <td class="paramname"><span class="paramname"><em>itarget_position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAngle</td>          <td class="paramname"><span class="paramname"><em>iangle_offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAngle</td>          <td class="paramname"><span class="paramname"><em>idrop_angle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>iharsh_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>icoast_coeff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>ibrake_time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTime</td>          <td class="paramname"><span class="paramname"><em>itimeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classrev_1_1LookAt.html" title="Implements a point turn segment to face the robot towards a set of coordinates.">LookAt</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imax_power</td><td>Maximum turning power </td></tr>
+    <tr><td class="paramname">icoast_power</td><td>Turning coast power </td></tr>
+    <tr><td class="paramname">itarget_position</td><td>The point to face the robot towards </td></tr>
+    <tr><td class="paramname">iangle_offset</td><td>The amount of offset to add to the computed angle from the target position, EX: 180_deg to look backwards </td></tr>
+    <tr><td class="paramname">idrop_angle</td><td>The angle at which the segment should end. You probably should leave this at 0, as it has not been tested. </td></tr>
+    <tr><td class="paramname">iharsh_coeff</td><td>The harsh braking coefficient </td></tr>
+    <tr><td class="paramname">icoast_coeff</td><td>The coast braking coefficient </td></tr>
+    <tr><td class="paramname">ibrake_time</td><td>The maximum time that should be spent braking </td></tr>
+    <tr><td class="paramname">itimeout</td><td>The maximum amount of time in the turn before it breaks out </td></tr>
   </table>
   </dd>
 </dl>
@@ -345,7 +490,7 @@ static std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d92620
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="#a9a6435eeea12b5f59aa382069d926201">LookAt</a> &gt; rev::LookAt::operator&amp; </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classLookAt.html">LookAt</a> &gt; rev::LookAt::operator&amp; </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>

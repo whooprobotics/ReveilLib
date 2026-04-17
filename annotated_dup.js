@@ -22,15 +22,19 @@ var annotated_dup =
       [ "PurePursuitSegment", "classrev_1_1PurePursuitSegment.html", "classrev_1_1PurePursuitSegment" ],
       [ "Await", "classrev_1_1Await.html", "classrev_1_1Await" ],
       [ "BoomerangSegmentParams", "structrev_1_1BoomerangSegmentParams.html", null ],
+      [ "BoomerangParams", "structrev_1_1BoomerangParams.html", null ],
       [ "BoomerangSegment", "classrev_1_1BoomerangSegment.html", "classrev_1_1BoomerangSegment" ],
       [ "Call", "classrev_1_1Call.html", "classrev_1_1Call" ],
+      [ "LookAtParams", "structrev_1_1LookAtParams.html", null ],
       [ "LookAt", "classrev_1_1LookAt.html", "classrev_1_1LookAt" ],
       [ "RecklessPath", "structrev_1_1RecklessPath.html", "structrev_1_1RecklessPath" ],
       [ "PilonsSegmentParams", "structrev_1_1PilonsSegmentParams.html", null ],
+      [ "PilonsParams", "structrev_1_1PilonsParams.html", null ],
       [ "PilonsSegment", "classrev_1_1PilonsSegment.html", "classrev_1_1PilonsSegment" ],
       [ "Reckless", "classrev_1_1Reckless.html", "classrev_1_1Reckless" ],
       [ "SegmentStatus", "structrev_1_1SegmentStatus.html", null ],
       [ "RecklessSegment", "classrev_1_1RecklessSegment.html", "classrev_1_1RecklessSegment" ],
+      [ "TurnSegmentParams", "structrev_1_1TurnSegmentParams.html", null ],
       [ "RecklessTurnSegment", "classrev_1_1RecklessTurnSegment.html", "classrev_1_1RecklessTurnSegment" ],
       [ "AsyncAwaitable", "classrev_1_1AsyncAwaitable.html", "classrev_1_1AsyncAwaitable" ],
       [ "AsyncRunnable", "classrev_1_1AsyncRunnable.html", "classrev_1_1AsyncRunnable" ],
@@ -53,7 +57,16 @@ var annotated_dup =
       [ "Motor", "classrev_1_1Motor.html", "classrev_1_1Motor" ],
       [ "MotorGroup", "classrev_1_1MotorGroup.html", "classrev_1_1MotorGroup" ],
       [ "Optical", "classrev_1_1Optical.html", "classrev_1_1Optical" ],
+      [ "Defaults", "classrev_1_1Defaults.html", null ],
       [ "PointVector", "structrev_1_1PointVector.html", null ],
-      [ "Pose", "structrev_1_1Pose.html", "structrev_1_1Pose" ]
-    ] ]
+      [ "Pose", "structrev_1_1Pose.html", "structrev_1_1Pose" ],
+      [ "Defaults&lt; PilonsParams &gt;", "structrev_1_1Defaults_3_01PilonsParams_01_4.html", null ],
+      [ "Defaults&lt; TurnSegmentParams &gt;", "structrev_1_1Defaults_3_01TurnSegmentParams_01_4.html", null ],
+      [ "Defaults&lt; LookAtParams &gt;", "structrev_1_1Defaults_3_01LookAtParams_01_4.html", null ]
+    ] ],
+    [ "LookAt", "classLookAt.html", "classLookAt" ],
+    [ "LookAtParams", "structLookAtParams.html", null ],
+    [ "PilonsParams", "structPilonsParams.html", null ],
+    [ "PilonsSegment", "classPilonsSegment.html", "classPilonsSegment" ],
+    [ "TurnSegmentParams", "structTurnSegmentParams.html", null ]
 ];

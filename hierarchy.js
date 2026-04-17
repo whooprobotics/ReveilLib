@@ -15,6 +15,7 @@ var hierarchy =
       [ "rev::TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html", null ]
     ] ],
     [ "rev::AsyncRunner", "classrev_1_1AsyncRunner.html", null ],
+    [ "rev::BoomerangParams", "structrev_1_1BoomerangParams.html", null ],
     [ "rev::BoomerangSegmentParams", "structrev_1_1BoomerangSegmentParams.html", null ],
     [ "rev::Chassis", "classrev_1_1Chassis.html", [
       [ "rev::ChassisSim", "classrev_1_1ChassisSim.html", [
@@ -26,11 +27,17 @@ var hierarchy =
       [ "rev::NoCorrection", "classrev_1_1NoCorrection.html", null ],
       [ "rev::PilonsCorrection", "classrev_1_1PilonsCorrection.html", null ]
     ] ],
+    [ "rev::Defaults&lt; T &gt;", "classrev_1_1Defaults.html", null ],
+    [ "rev::Defaults&lt; LookAtParams &gt;", "structrev_1_1Defaults_3_01LookAtParams_01_4.html", null ],
+    [ "rev::Defaults&lt; PilonsParams &gt;", "structrev_1_1Defaults_3_01PilonsParams_01_4.html", null ],
+    [ "rev::Defaults&lt; TurnSegmentParams &gt;", "structrev_1_1Defaults_3_01TurnSegmentParams_01_4.html", null ],
     [ "rev::Gyroscope", "classrev_1_1Gyroscope.html", [
       [ "rev::DualImu", "classrev_1_1DualImu.html", null ],
       [ "rev::Imu", "classrev_1_1Imu.html", null ],
       [ "rev::MockImu", "classrev_1_1MockImu.html", null ]
     ] ],
+    [ "LookAtParams", "structLookAtParams.html", null ],
+    [ "rev::LookAtParams", "structrev_1_1LookAtParams.html", null ],
     [ "rev::Motion", "classrev_1_1Motion.html", [
       [ "rev::CascadingMotion", "classrev_1_1CascadingMotion.html", null ],
       [ "rev::ConstantMotion", "classrev_1_1ConstantMotion.html", null ],
@@ -47,6 +54,8 @@ var hierarchy =
       [ "rev::Optical", "classrev_1_1Optical.html", null ]
     ] ],
     [ "rev::OTOS", "classrev_1_1OTOS.html", null ],
+    [ "PilonsParams", "structPilonsParams.html", null ],
+    [ "rev::PilonsParams", "structrev_1_1PilonsParams.html", null ],
     [ "rev::PilonsSegmentParams", "structrev_1_1PilonsSegmentParams.html", null ],
     [ "rev::PointVector", "structrev_1_1PointVector.html", [
       [ "rev::Pose", "structrev_1_1Pose.html", null ]
@@ -75,5 +84,7 @@ var hierarchy =
     [ "rev::Stop", "classrev_1_1Stop.html", [
       [ "rev::SimpleStop", "classrev_1_1SimpleStop.html", null ]
     ] ],
+    [ "rev::TurnSegmentParams", "structrev_1_1TurnSegmentParams.html", null ],
+    [ "TurnSegmentParams", "structTurnSegmentParams.html", null ],
     [ "rev::Velocity", "structrev_1_1Velocity.html", null ]
 ];

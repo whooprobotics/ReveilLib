@@ -122,9 +122,11 @@ Collaboration diagram for rev::PilonsSegment:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aedf1ecdda5a1bfd38213c4de733c05ce" id="r_aedf1ecdda5a1bfd38213c4de733c05ce"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aedf1ecdda5a1bfd38213c4de733c05ce">PilonsSegment</a> (std::shared_ptr&lt; <a class="el" href="classrev_1_1Motion.html">Motion</a> &gt; imotion, std::shared_ptr&lt; <a class="el" href="classrev_1_1Correction.html">Correction</a> &gt; icorrection, std::shared_ptr&lt; <a class="el" href="classrev_1_1Stop.html">Stop</a> &gt; istop, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_point, QLength idrop_early=0 *inch)</td></tr>
-<tr class="memdesc:aedf1ecdda5a1bfd38213c4de733c05ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1PilonsSegment.html" title="Path segment for use with Reckless controller.">PilonsSegment</a> object.  <br /></td></tr>
+<tr class="memdesc:aedf1ecdda5a1bfd38213c4de733c05ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static instance of default parameters for PilonsSegments.  <br /></td></tr>
 <tr class="memitem:af7dc32b3b0b1681400e7a0ad42235b99" id="r_af7dc32b3b0b1681400e7a0ad42235b99"><td class="memItemLeft"><a id="af7dc32b3b0b1681400e7a0ad42235b99" name="af7dc32b3b0b1681400e7a0ad42235b99"></a>
 &#160;</td><td class="memItemRight"><b>PilonsSegment</b> (<a class="el" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> iparams, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> itarget_point, QLength idrop_early=0 *inch)</td></tr>
+<tr class="memitem:a5dee6075f232a09736bb9fb3ce72d049" id="r_a5dee6075f232a09736bb9fb3ce72d049"><td class="memTemplParams" colspan="2">template&lt;typename Self = PilonsParams&gt; </td></tr>
+<tr class="memitem:a5dee6075f232a09736bb9fb3ce72d049 template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a5dee6075f232a09736bb9fb3ce72d049">PilonsSegment</a> (<a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a> itarget_point)</td></tr>
 <tr class="memitem:aa6b3b674d53d1016ade8b4c0b3abfabf" id="r_aa6b3b674d53d1016ade8b4c0b3abfabf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa6b3b674d53d1016ade8b4c0b3abfabf">init</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> initial_state) override</td></tr>
 <tr class="memdesc:aa6b3b674d53d1016ade8b4c0b3abfabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the path segment.  <br /></td></tr>
 <tr class="memitem:a583d9d79b786075f20a5191cb85752ab" id="r_a583d9d79b786075f20a5191cb85752ab"><td class="memItemLeft"><a class="el" href="structrev_1_1SegmentStatus.html">SegmentStatus</a>&#160;</td><td class="memItemRight"><a class="el" href="#a583d9d79b786075f20a5191cb85752ab">step</a> (<a class="el" href="structrev_1_1OdometryState.html">OdometryState</a> current_state) override</td></tr>
@@ -139,14 +141,14 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad037a1d60401413f25e8da569e784ca6" id="r_ad037a1d60401413f25e8da569e784ca6"><td class="memItemLeft"><a id="ad037a1d60401413f25e8da569e784ca6" name="ad037a1d60401413f25e8da569e784ca6"></a>
-static std::shared_ptr&lt; <a class="el" href="#aedf1ecdda5a1bfd38213c4de733c05ce">PilonsSegment</a> &gt;&#160;</td><td class="memItemRight"><b>create</b> (<a class="el" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> params, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point, QLength drop_early=0 *inch)</td></tr>
+static std::shared_ptr&lt; <a class="el" href="classPilonsSegment.html">PilonsSegment</a> &gt;&#160;</td><td class="memItemRight"><b>create</b> (<a class="el" href="structrev_1_1PilonsSegmentParams.html">PilonsSegmentParams</a> params, <a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">Position</a> target_point, QLength drop_early=0 *inch)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Path segment for use with <a class="el" href="classrev_1_1Reckless.html" title="High-speed chassis motion controller.">Reckless</a> controller. </p>
 <p>TODO: Rename this to be more reflective of what it is specifically, but not until a major release. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aedf1ecdda5a1bfd38213c4de733c05ce" name="aedf1ecdda5a1bfd38213c4de733c05ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedf1ecdda5a1bfd38213c4de733c05ce">&#9670;&#160;</a></span>PilonsSegment()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf1ecdda5a1bfd38213c4de733c05ce">&#9670;&#160;</a></span>PilonsSegment() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +189,8 @@ static std::shared_ptr&lt; <a class="el" href="#aedf1ecdda5a1bfd38213c4de733c05c
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classrev_1_1PilonsSegment.html" title="Path segment for use with Reckless controller.">PilonsSegment</a> object. </p>
+<p>Static instance of default parameters for PilonsSegments. </p>
+<p>Constructs a new <a class="el" href="classrev_1_1PilonsSegment.html" title="Path segment for use with Reckless controller.">PilonsSegment</a> object</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">imotion</td><td>The motion controller used for this segment </td></tr>
@@ -198,6 +201,34 @@ static std::shared_ptr&lt; <a class="el" href="#aedf1ecdda5a1bfd38213c4de733c05c
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a5dee6075f232a09736bb9fb3ce72d049" name="a5dee6075f232a09736bb9fb3ce72d049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dee6075f232a09736bb9fb3ce72d049">&#9670;&#160;</a></span>PilonsSegment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Self = PilonsParams&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">rev::PilonsSegment::PilonsSegment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacerev.html#a032bee8fc59a38d427e7be078e6653b8">rev::Position</a></td>          <td class="paramname"><span class="paramname"><em>itarget_point</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor for using default params </p>
 
 </div>
 </div>

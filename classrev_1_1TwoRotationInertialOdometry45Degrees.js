@@ -1,6 +1,6 @@
 var classrev_1_1TwoRotationInertialOdometry45Degrees =
 [
-    [ "TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html#ad3349cccbc5fb5799fd357aef3216f99", null ],
+    [ "TwoRotationInertialOdometry45Degrees", "classrev_1_1TwoRotationInertialOdometry45Degrees.html#a0e77d177e5488969e94175bd40bcf3ee", null ],
     [ "get_state", "classrev_1_1TwoRotationInertialOdometry45Degrees.html#abf6a2fa4aeb94c0bd0be804e6d6a4d2a", null ],
     [ "reset_position", "classrev_1_1TwoRotationInertialOdometry45Degrees.html#a1dfa56f5a266b48bb22929d9b1d01edc", null ],
     [ "set_position", "classrev_1_1TwoRotationInertialOdometry45Degrees.html#aa7755e5da1b3c53d1e769797c398bde4", null ],

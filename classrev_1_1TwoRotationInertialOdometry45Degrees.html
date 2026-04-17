@@ -133,14 +133,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1dfa56f5a266b48bb22929d9b1d01edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the current robot position to {0, 0, 0}.  <br /></td></tr>
 <tr class="memitem:a4870908954116de498a7cf4f2f9a062d" id="r_a4870908954116de498a7cf4f2f9a062d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4870908954116de498a7cf4f2f9a062d">step</a> () override</td></tr>
 <tr class="memdesc:a4870908954116de498a7cf4f2f9a062d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current robot position with new data from sensors.  <br /></td></tr>
-<tr class="memitem:ad3349cccbc5fb5799fd357aef3216f99" id="r_ad3349cccbc5fb5799fd357aef3216f99"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad3349cccbc5fb5799fd357aef3216f99">TwoRotationInertialOdometry45Degrees</a> (std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">rev::RotarySensor</a> &gt; left_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">rev::RotarySensor</a> &gt; right_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1Gyroscope.html">rev::Gyroscope</a> &gt; iinertial, QLength ilongitudinal_wheel_diameter=3.25 *inch, QLength ilateral_wheel_diameter=3.25 *inch, QLength ilongitudinal_wheel_offset=0 *inch, QLength ilateral_wheel_offset=0 *inch)</td></tr>
-<tr class="memdesc:ad3349cccbc5fb5799fd357aef3216f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine...">TwoRotationInertialOdometry45Degrees</a> object.  <br /></td></tr>
+<tr class="memitem:a0e77d177e5488969e94175bd40bcf3ee" id="r_a0e77d177e5488969e94175bd40bcf3ee"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0e77d177e5488969e94175bd40bcf3ee">TwoRotationInertialOdometry45Degrees</a> (std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">rev::RotarySensor</a> &gt; left_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">rev::RotarySensor</a> &gt; right_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1Gyroscope.html">rev::Gyroscope</a> &gt; iinertial, QLength ilongitudinal_wheel_diameter=3.25 *inch, QLength ilateral_wheel_diameter=3.25 *inch, QLength ivertical_distance_from_cog=0 *inch, QLength ihorizontal_distance_from_cog=0 *inch)</td></tr>
+<tr class="memdesc:a0e77d177e5488969e94175bd40bcf3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1TwoRotationInertialOdometry45Degrees.html" title="Odometry implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an ine...">TwoRotationInertialOdometry45Degrees</a> object.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">Odometry</a> implementation using 2 tracking wheels mounted at a 45 degree angle to each other and an inertial. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad3349cccbc5fb5799fd357aef3216f99" name="ad3349cccbc5fb5799fd357aef3216f99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3349cccbc5fb5799fd357aef3216f99">&#9670;&#160;</a></span>TwoRotationInertialOdometry45Degrees()</h2>
+<a id="a0e77d177e5488969e94175bd40bcf3ee" name="a0e77d177e5488969e94175bd40bcf3ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e77d177e5488969e94175bd40bcf3ee">&#9670;&#160;</a></span>TwoRotationInertialOdometry45Degrees()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,12 +173,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ilongitudinal_wheel_offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>, </td>
+          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ivertical_distance_from_cog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ilateral_wheel_offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>&#160;)</td>
+          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ihorizontal_distance_from_cog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -188,6 +188,8 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">left_sensor</td><td>std::shared_ptr&lt;RotarySensor&gt; pointing to the left sensor </td></tr>
     <tr><td class="paramname">right_sensor</td><td>std::shared_ptr&lt;RotarySensor&gt; pointing to the right sensor </td></tr>
+    <tr><td class="paramname">vertical_distance_from_cog</td><td>Vertical distance from the center, positive is behind the center, negative is in front. </td></tr>
+    <tr><td class="paramname">horizontal_distance_from_cog</td><td>Horizontal distance from the center, positive is to the right of the center, negative is to the left. </td></tr>
   </table>
   </dd>
 </dl>

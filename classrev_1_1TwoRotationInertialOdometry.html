@@ -133,14 +133,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7df17c493df505ae0c32ff64bc14ddbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the current robot position to {0, 0, 0}.  <br /></td></tr>
 <tr class="memitem:a7ea176fa34cd913f09aef982e18d284e" id="r_a7ea176fa34cd913f09aef982e18d284e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7ea176fa34cd913f09aef982e18d284e">step</a> () override</td></tr>
 <tr class="memdesc:a7ea176fa34cd913f09aef982e18d284e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current robot position with new data from sensors.  <br /></td></tr>
-<tr class="memitem:a7a1d8ba7764101dcfa79031e229c4d77" id="r_a7a1d8ba7764101dcfa79031e229c4d77"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7a1d8ba7764101dcfa79031e229c4d77">TwoRotationInertialOdometry</a> (std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">RotarySensor</a> &gt; ilongitudinal_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">RotarySensor</a> &gt; ilateral_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1Gyroscope.html">Gyroscope</a> &gt; iinertial, QLength ilongitudinal_wheel_diameter=3.25 *inch, QLength ilateral_wheel_diameter=3.25 *inch, QLength ilongitudinal_wheel_offset=0 *inch, QLength ilateral_wheel_offset=0 *inch)</td></tr>
-<tr class="memdesc:a7a1d8ba7764101dcfa79031e229c4d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial.">TwoRotationInertialOdometry</a> object.  <br /></td></tr>
+<tr class="memitem:aafed0123594858b059af55790439ce1d" id="r_aafed0123594858b059af55790439ce1d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aafed0123594858b059af55790439ce1d">TwoRotationInertialOdometry</a> (std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">RotarySensor</a> &gt; ilongitudinal_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1RotarySensor.html">RotarySensor</a> &gt; ilateral_sensor, std::shared_ptr&lt; <a class="el" href="classrev_1_1Gyroscope.html">Gyroscope</a> &gt; iinertial, QLength ilongitudinal_wheel_diameter=3.25 *inch, QLength ilateral_wheel_diameter=3.25 *inch, QLength ivertical_distance_from_cog=0 *inch, QLength ihorizontal_distance_from_cog=0 *inch)</td></tr>
+<tr class="memdesc:aafed0123594858b059af55790439ce1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classrev_1_1TwoRotationInertialOdometry.html" title="Odometry implementation using 2 tracking wheels and an inertial.">TwoRotationInertialOdometry</a> object.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classrev_1_1Odometry.html" title="Interface for odometry implementations.">Odometry</a> implementation using 2 tracking wheels and an inertial. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7a1d8ba7764101dcfa79031e229c4d77" name="a7a1d8ba7764101dcfa79031e229c4d77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a1d8ba7764101dcfa79031e229c4d77">&#9670;&#160;</a></span>TwoRotationInertialOdometry()</h2>
+<a id="aafed0123594858b059af55790439ce1d" name="aafed0123594858b059af55790439ce1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafed0123594858b059af55790439ce1d">&#9670;&#160;</a></span>TwoRotationInertialOdometry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,12 +173,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ilongitudinal_wheel_offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>, </td>
+          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ivertical_distance_from_cog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ilateral_wheel_offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>&#160;)</td>
+          <td class="paramtype">QLength</td>          <td class="paramname"><span class="paramname"><em>ihorizontal_distance_from_cog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0&#160;*&#160;inch</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,8 +191,8 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">iinertial</td><td>std::shared_ptr&lt;Gyroscope&gt; pointing to the inertial sensors </td></tr>
     <tr><td class="paramname">ilongitudinal_wheel_diameter</td><td>Diameter of the wheel on the longitudinal sensor </td></tr>
     <tr><td class="paramname">ilateral_wheel_diameter</td><td>Diameter of the wheel on the lateral sensor </td></tr>
-    <tr><td class="paramname">ilongitudinal_wheel_offset</td><td>Offset of the longitudinal wheel to the right of the center of the robot </td></tr>
-    <tr><td class="paramname">ilateral_wheel_offset</td><td>Offset of the lateral wheel backward from the center of rotation </td></tr>
+    <tr><td class="paramname">ivertical_distance_from_cog</td><td>Vertical distance from the center, positive is behind the center, negative is in front. </td></tr>
+    <tr><td class="paramname">ihorizontal_distance_from_cog</td><td>Horizontal distance from the center, positive is to the right of the center, negative is to the left. </td></tr>
   </table>
   </dd>
 </dl>

@@ -44,6 +44,7 @@ var NAVTREE =
     [ "Code styling &amp; standards for ReveilLib", "md_Style.html", [
       [ "Capitalization", "md_Style.html#autotoc_md16", null ]
     ] ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -77,9 +78,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "all__units_8hh_source.html",
-"classrev_1_1MockRotationSensor.html#a309f40af84e03491cfddf1022dc75fe5",
-"classrev_1_1RecklessTurnSegment.html#a9b9be61a081da51e50b015d99c9d66b5",
-"skid__steer__chassis_8hh_source.html"
+"classrev_1_1MockImu.html#acde5fee7c7cb8fd4bf02e5caf0448224",
+"classrev_1_1Reckless.html#ac024208d41885c83f2126c5759e736e8",
+"pilons__correction_8hh_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

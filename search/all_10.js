@@ -6,7 +6,8 @@ var searchData=
   ['the_20reveillib_20depot_3',['Setting up the ReveilLib depot',['../md_docs_2tutorials_2depot-setup.html',1,'']]],
   ['to_5fabsolute_4',['to_absolute',['../structrev_1_1Pose.html#a32ddc2a4f1bda3cdb0b54b27f1a1a770',1,'rev::Pose']]],
   ['to_5frelative_5',['to_relative',['../structrev_1_1Pose.html#a9df1859ff4d1d087044e0b20256d2abe',1,'rev::Pose']]],
-  ['turnstate_6',['TurnState',['../classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91',1,'rev::RecklessTurnSegment']]],
-  ['tworotationinertialodometry_7',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev::TwoRotationInertialOdometry'],['../classrev_1_1TwoRotationInertialOdometry.html#a7a1d8ba7764101dcfa79031e229c4d77',1,'rev::TwoRotationInertialOdometry::TwoRotationInertialOdometry()']]],
-  ['tworotationinertialodometry45degrees_8',['TwoRotationInertialOdometry45Degrees',['../classrev_1_1TwoRotationInertialOdometry45Degrees.html',1,'rev::TwoRotationInertialOdometry45Degrees'],['../classrev_1_1TwoRotationInertialOdometry45Degrees.html#ad3349cccbc5fb5799fd357aef3216f99',1,'rev::TwoRotationInertialOdometry45Degrees::TwoRotationInertialOdometry45Degrees()']]]
+  ['turnsegmentparams_6',['TurnSegmentParams',['../structrev_1_1TurnSegmentParams.html',1,'rev::TurnSegmentParams'],['../structTurnSegmentParams.html',1,'TurnSegmentParams']]],
+  ['turnstate_7',['TurnState',['../classrev_1_1RecklessTurnSegment.html#a3656a7a95169ef58cc3629af07fd8a91',1,'rev::RecklessTurnSegment']]],
+  ['tworotationinertialodometry_8',['TwoRotationInertialOdometry',['../classrev_1_1TwoRotationInertialOdometry.html',1,'rev::TwoRotationInertialOdometry'],['../classrev_1_1TwoRotationInertialOdometry.html#aafed0123594858b059af55790439ce1d',1,'rev::TwoRotationInertialOdometry::TwoRotationInertialOdometry()']]],
+  ['tworotationinertialodometry45degrees_9',['TwoRotationInertialOdometry45Degrees',['../classrev_1_1TwoRotationInertialOdometry45Degrees.html',1,'rev::TwoRotationInertialOdometry45Degrees'],['../classrev_1_1TwoRotationInertialOdometry45Degrees.html#a0e77d177e5488969e94175bd40bcf3ee',1,'rev::TwoRotationInertialOdometry45Degrees::TwoRotationInertialOdometry45Degrees()']]]
 ];
