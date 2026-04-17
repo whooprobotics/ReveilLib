@@ -61,6 +61,8 @@ bool intake_in_state = false; // if this is true, the intakes will run forward t
 // scoring state variables
 bool score = false;
 bool score_shallow = false;
+bool lever_score_fail = false;
+bool lever_retract_fail = false;
 bool lift_state = false;
 
 // Piston States
@@ -265,46 +267,52 @@ void intake_task() {
 // Makes lever go to start no matter hat position it starts in, 
 // and also zeros the position so we can use move_absolute with it
 void reset_lever() {
-  u_int32_t lever_reset_timeout = 500; // ms
+  u_int32_t lever_reset_timeout = 1000; // ms
 
   u_int32_t lever_reset_start_time = pros::millis();
-  while (lever.get_torque() < 0.25 || pros::millis() - lever_reset_start_time > lever_reset_timeout) {
+  while (true) {
+    if (pros::millis() - lever_reset_start_time > lever_reset_timeout) break;
+    if (lever.get_torque() > 0.25) break;
+
     lever.move_voltage(-4000);
   }
   lever.move_voltage(0);
   lever.set_zero_position(0);
 }
 
-void lever_code() {
+bool lever_actuating = false;
+bool lever_retracting = false;
+uint32_t score_press_time = 0;
+void lever_control() {
   // lever piston goes up immediately, lever follows 200ms later; lever piston goes down 500ms after release
-  static uint32_t score_press_time = 0;
+  //static uint32_t score_press_time = 0;
   static uint32_t lever_up_time = 0;
   static uint32_t lever_retract_time = 0;
-  
-  static bool lever_actuating = false;
-  static bool lever_retracting = false;
 
-  static int lever_end_position = 750;
-  static int lever_rest_position = 180;
-  static int lever_retract_score_position = 50;
+  static bool lever_paused = false;
+  static bool lever_setting_up = false;
 
-  static int lever_score_velocity = 100; // percent
-  static int lever_retract_velocity = 100; // percent
+  static uint32_t lever_end_position = 750;
+  static uint32_t lever_rest_position = 180;
+  static uint32_t lever_retract_score_position = 50;
 
-  static int lever_score_timeout = 800; // ms
-  static int lever_retract_timeout = 1000; // ms
-  static int lever_score_pause = 200; // ms
-  static int lever_retract_pause = 100; // ms
-  static int hood_timeout = 1200; // ms
+  static uint32_t lever_score_velocity = 100; // percent
+  static uint32_t lever_retract_velocity = 100; // percent
 
-  score_shallow &= (score || lever_actuating || lever_retracting); // if score_shallow is true, we want to keep it true until the lever is done moving to prevent it from changing mid-score, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
+  static uint32_t lever_score_timeout = 800; // ms
+  static uint32_t lever_retract_timeout = 1000; // ms
+  static uint32_t lever_score_pause = 200; // ms
+  static uint32_t lever_retract_pause = 100; // ms
+  static uint32_t hood_timeout = 1200; // ms
+
+  score_shallow &= (score || lever_actuating || lever_retracting || lever_paused || lever_setting_up); // if score_shallow is true, we want to keep it true until the lever is done moving to prevent it from changing mid-score, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
   
   // If the score button is pressed, start the scoring process, which involves moving the lever and actuating the piston in a certain sequence with specific timing to achieve the desired scoring motion, also set the hood to the scoring position
-  if (score || lever_actuating || lever_retracting) {
+  if (score || lever_actuating || lever_retracting || lever_paused || lever_setting_up) {
     // If the lever is not currently moving, start the scoring process by setting the score press time, 
     // resetting the anti-jam system, setting the intake state to in, 
     //moving the lever to the retract position, and setting the hood to the scoring position
-    if (!lever_actuating && !lever_retracting) {
+    if (!lever_actuating && !lever_retracting && !lever_paused && !lever_setting_up) {
       score_press_time = pros::millis();
 
       if (!score_shallow) {
@@ -312,16 +320,20 @@ void lever_code() {
       } else if (lift_state) {
         lever.move_relative(175, lever_score_velocity); // move lever up a little bit to help with shallower scoring, this is only used if score_shallow is true, which is when the B button is held, allowing for a shallower score
       }
-      lever_actuating = true;
+      lever_setting_up = true;
+      lever_score_fail = false;
+      lever_retract_fail = false;
 
       set_hood(true); // set hood to the scoring position
       intake(false); // set intake to stop, will be set back to in after the lever retracts
     }
 
     // After the score pause time has gone by, move the lever to the scoring position
-    if (lever_actuating && (pros::millis() - score_press_time >= lever_score_pause || lever.get_position() <= lever_retract_score_position)) {
+    if (lever_setting_up && (pros::millis() - score_press_time >= lever_score_pause || lever.get_position() <= lever_retract_score_position)) {
       lever_piston.set_value(!(score_shallow && !lift_state)); // if score_shallow is true and barrel is down, the piston will not extend all the way up, allowing for a shallower score that can be useful in certain situations
       lever.move_voltage(lever_score_velocity * 120); // percent to millivolts
+      lever_actuating = true;
+      lever_setting_up = false;
     }
 
     // After the lever timeout has gone by or the lever has reached the end position, stop the lever and start the retract process
@@ -329,40 +341,96 @@ void lever_code() {
       lever_up_time = pros::millis();
       lever.move_voltage(0);
       lever_actuating = false;
-      lever_retracting = true;
+      lever_paused = true;
+      
+      // lever timed out and failed to score
+      lever_score_fail = lever.get_position() < lever_end_position;                     
     }
 
     // After the retract pause time has gone by, move the lever back to the rest position and lower the piston
-    if (lever_retracting && pros::millis() - lever_up_time >= lever_retract_pause) {
+    if (lever_paused && pros::millis() - lever_up_time >= lever_retract_pause) {
+      lever_retracting = true;
+      lever_paused = false;
       lever.move_absolute(lever_rest_position, lever_retract_velocity);
       lever_piston.set_value(0);
       lever_retract_time = pros::millis();
-      intake(false); // turn intake off
+      //intake(false); // turn intake off
     }
 
-    if (lever_retracting && (lever.get_position() <= lever_rest_position + 10)) { // if the lever is close enough to the rest position, we can assume it has finished retracting and reset the retracting state just in case the timing was off
+    if (lever_retracting && (lever.get_position() <= lever_rest_position + 10 || pros::millis() - lever_retract_time >= lever_retract_timeout)) { // if the lever is close enough to the rest position, we can assume it has finished retracting and reset the retracting state just in case the timing was off
       lever_retracting = false;
       score = false; // reset score to prevent re-entering the scoring process without a new button press
       intake(true); // set intake back to in
+
+      // lever timed out and failed to retract
+      lever_retract_fail = lever.get_position() > lever_rest_position + 10;                     
     }
     
   } else { // If the R1 button is not pressed, reset the lever and piston to the default positions
-    lever.move_absolute(lever_rest_position, lever_retract_velocity);
+    if (!lever_score_fail && !lever_retract_fail) lever.move_absolute(lever_rest_position, lever_retract_velocity);
+    //lever.move_voltage(0);
     lever_piston.set_value(0);
+    recover_lever();
   }
 
   // After the hood timeout has gone by, lower the hood back down
-  if(!lever_actuating && !lever_retracting && pros::millis() - lever_retract_time >= hood_timeout) {
+  if(!lever_actuating && !lever_retracting && !lever_paused && !lever_setting_up && pros::millis() - lever_retract_time >= hood_timeout) {
     set_hood(false);
   }
 }
 
-void score_lever(bool score_shallo) {
+
+bool score_lever(bool score_shallo, bool retry) {
   score = true;
   score_shallow = score_shallo;
 
+  bool failure = false;
   while (score) {
-    lever_code();
+    lever_control();
+    failure |= lever_score_fail || lever_retract_fail;
+
+    if (retry && !score && failure) recover_lever();
     pros::delay(20);
   }
+  return !failure;
+}
+
+// outtakes and retries to retract if lever_retract_fail
+// rescores if lever_score_fail
+// currently untested
+void recover_lever() {
+  static int retry_count = 0;
+  static bool recovering = false;
+  if (lever_retract_fail && retry_count < 3) {
+    score = true;
+    
+    lever_actuating = true;
+    lever.move_voltage(12000);
+    score_press_time = pros::millis();
+    set_hood(true);
+    outtake(true);
+    intake(false);
+    lift_state = true;
+    lever_retract_fail = false;
+    lever_score_fail = false;
+    lever_control();
+    std::cout << "Retract Fail detected. count = " << retry_count << std::endl;
+    if (!recovering) {retry_count = 0; recovering = true;}
+    retry_count++;
+
+  } else if (lever_score_fail && retry_count < 2) {
+    score = true;
+    score_shallow = true;
+    lever_score_fail = false;
+    lever_retract_fail = false;
+    retry_count++;
+    lever_control();
+    std::cout << "Score Fail detected. count = " << retry_count << std::endl;
+  } else if (!lever_score_fail && !lever_retract_fail) {
+    retry_count = 0;
+  } else {
+    recovering = false;
+  }
+
+
 }

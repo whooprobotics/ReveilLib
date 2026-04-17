@@ -2,8 +2,6 @@
 
 #include "rev/rev.hh"
 
-
-
 // Drive Algs
 void drive(QLength distance, rev::Drive params = {});
 void drive(QLength x, QLength y, rev::Drive params = {});
@@ -30,7 +28,13 @@ extern bool intake_in_state;
 // scoring state flags
 extern bool score;
 extern bool score_shallow;
+extern bool lever_actuating;
+extern bool lever_retracting;
+extern uint32_t score_press_time;
+extern bool lever_score_fail;
+extern bool lever_retract_fail;
 extern bool lift_state;
+
 
 // Functions
 void anti_jam();
@@ -64,5 +68,6 @@ void set_hood(bool state);
 
 // lever logic
 void reset_lever();
-void lever_code();
-void score_lever(bool score_shallo = false);
+void lever_control();
+bool score_lever(bool score_shallo = false, bool retry = false);
+void recover_lever();

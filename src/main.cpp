@@ -72,6 +72,9 @@ void initialize() {
 
   // Calibrate the imu
   imu->calibrate();
+  while(imu->is_calibrating()) {
+    pros::delay(10);
+  }
 
   pros::Task AntiJamTask(anti_jam);
   pros::Task Intake_Task(intake_task);
@@ -96,19 +99,18 @@ void opcontrol() {
     drive();
 
     // intake state control
-    toggle_intake = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is pressed, we want to reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own
+    toggle_intake = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is pressed, we want to toggle the intake or reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own
     eject(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     outtake(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // use buttons to control lever scoring
     score_shallow = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) || (score_shallow && score); // if the B button is held, the robot will do a shallower score, which can be useful in certain situations, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
     score         = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) || score_shallow;
-    lever_code();
+    lever_control();
 
     // If the left button is pressed, run the mecanum test function
     // if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {test_mecanum();}
     
-
     // If the right button is pressed, toggle the lift state and set the hood to the default position
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
       lift_state = !lift_state;
