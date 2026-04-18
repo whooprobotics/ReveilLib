@@ -1,0 +1,52 @@
+name: Release Alphas
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+-alpha[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Environment Setup
+        run: |
+          apt update && apt install -y git
+          apt -y install make build-essential python3 python3-pip gcc-arm-none-eabi
+          python3 -m pip install pros-cli --break-system-packages
+
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+          
+      - name: Update Version Number
+        run: ./setversion.sh ${{ github.ref_name }}
+
+      - name: Build
+        run: make template
+
+      - name: Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ReveilLib ${{ github.ref }}
+          draft: false
+          prerelease: true
+
+      - name: Upload Template to Release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./reveillib@${{ github.ref_name }}.zip
+          asset_name: reveillib@${{ github.ref_name }}.zip
+          asset_content_type: application/zip
