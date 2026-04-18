@@ -39,7 +39,7 @@ std::shared_ptr<rev::QuadEncoder> sideways_enc = std::make_shared<rev::QuadEncod
 // std::shared_ptr<rev::Imu> imu = std::make_shared<rev::Imu>(7); // Megatron
 std::shared_ptr<rev::Imu> imu = std::make_shared<rev::Imu>(1); // Rev2
 
-QLength odom_wheel_size = 50.5_mm; // Rev2
+QLength odom_wheel_size = 50.5_mm; // Rev2v
 // QLength odom_wheel_size = 2.41_in; // Megatron
  
 // std::shared_ptr<rev::TwoRotationInertialOdometry45Degrees> odom = std::make_shared<rev::TwoRotationInertialOdometry45Degrees>(

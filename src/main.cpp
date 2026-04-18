@@ -25,6 +25,16 @@ void test_mecanum() {
   turnTo(0_deg);
 }
 
+void test_omni_slip() {
+  odom->set_position({0_in, 0_in, 0_deg});
+  for(int i = 0; i < 3; i += 1) {
+    driveTo((odom->get_state().pos.x - 48_in), (odom->get_state().pos.y), 180_deg);
+    std::cout << "(" << odom->get_state().pos.x.convert(inch) << ", " << odom->get_state().pos.y.convert(inch) << ")" << std::endl;
+    driveTo((odom->get_state().pos.x + 48_in), (odom->get_state().pos.y), 0_deg);
+    std::cout << "(" << odom->get_state().pos.x.convert(inch) << ", " << odom->get_state().pos.y.convert(inch) << ")" << std::endl;
+  }
+}
+
 // void config_measure_odometry_offsets() {
 // 		int iterations = 10;
 
@@ -67,6 +77,8 @@ void test_mecanum() {
 
 // }
 
+
+
 void initialize() {
   // Initialize LCD so we can print to it for debugging
   pros::lcd::initialize();
@@ -87,9 +99,9 @@ void initialize() {
                              .drive_kd = 10,
                              .drive_starti = 0,
 
-                             .drive_settle_error = 1,
+                             .drive_settle_error = .5,
                              .drive_settle_time = 100_ms,
-                             .drive_large_settle_error = 3,
+                             .drive_large_settle_error = 1.5,
                              .drive_large_settle_time = 500_ms,
                              .drive_timeout = 5000_ms,
 
@@ -123,6 +135,7 @@ void initialize() {
   pros::Task AntiJamTask(anti_jam);
   pros::Task Intake_Task(intake_task);
   pros::Task Color_Task(color_task);
+
 }
 
 void opcontrol() {
@@ -133,6 +146,8 @@ void opcontrol() {
     pros::lcd::print(4, "Y: %f", odom->get_state().pos.y.convert(inch));
     pros::lcd::print(5, "Sideways Encoder: %f", sideways_enc->get_position());
     pros::lcd::print(6, "Forward Encoder: %f", forward_enc->get_position());
+
+
 
     // Field-centric driving toggle
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
@@ -166,7 +181,7 @@ void opcontrol() {
 
     // If the left button is pressed, run the mecanum test function
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      AWP();
+      onslaught_skills_1();
     }
 
     // If the right button is pressed, toggle the lift state and set the hood to

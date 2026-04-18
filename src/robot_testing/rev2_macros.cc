@@ -139,6 +139,7 @@ void anti_jam() {
     // if the torque is still above the threshold after the timer runs out,
     // we can assume the intake is stalled and stop the motors until the torque
     // drops back down
+    
     if (!is_front_stalling &&
         front_intake.get_torque() > front_intake_torque_threshold) {
       frontstall_time = pros::millis();
@@ -201,7 +202,7 @@ void reset_jam() {  // Resets the anti-jam system, setting all the stalled
 // eject the wrong colored object Task for constantly checking the color sensor
 // and sorting the objects, runs in a separate thread so it can run concurrently
 // with driver control
-Color detect_color() {
+Color detect_color() {                        
   int hue = color_sensor.get_hue();
 
   if ((hue < 5 || hue > 350) && color_sensor.get_proximity() > 90) {
@@ -417,51 +418,43 @@ void lever_control() {
     if (!lever_actuating && !lever_retracting && !lever_paused &&
         !lever_setting_up) {
       score_press_time = pros::millis();
-
+      
+      // percent to millivolts // if score_shallow is true, the
+      // lever will not move all the way down, allowing for a
+      // shallower score that can be useful in certain situations
       if (!score_shallow) {
-        lever.move_voltage(
-            -lever_score_velocity *
-            120);  // percent to millivolts // if score_shallow is true, the
-                   // lever will not move all the way down, allowing for a
-                   // shallower score that can be useful in certain situations
+        lever.move_voltage(-lever_score_velocity * 120);
+        
+      // move lever up a little bit to help with shallower scoring, 
+      // this is only used if score_shallow is true, 
+      // which is when the B button is held, allowing for a shallower score
       } else if (lift_state) {
-        lever.move_relative(
-            175, lever_score_velocity);  // move lever up a little bit to help
-                                         // with shallower scoring, this is only
-                                         // used if score_shallow is true, which
-                                         // is when the B button is held,
-                                         // allowing for a shallower score
+        lever.move_relative(175, lever_score_velocity);  
       }
       lever_setting_up = true;
       lever_score_fail = false;
       lever_retract_fail = false;
 
       set_hood(true);  // set hood to the scoring position
-      intake(false);   // set intake to stop, will be set back to in after the
-                       // lever retracts
+      intake(true);   // set intake to true to intake lowest block to scoring position, will be turned off for scoring and finally set back to in after the lever retracts
     }
 
     // After the score pause time has gone by, move the lever to the scoring
-    // position
-    if (lever_setting_up &&
-        (pros::millis() - score_press_time >= lever_score_pause ||
-         lever.get_position() <= lever_retract_score_position)) {
-      lever_piston.set_value(
-          !(score_shallow &&
-            !lift_state));  // if score_shallow is true and barrel is down, the
-                            // piston will not extend all the way up, allowing
-                            // for a shallower score that can be useful in
-                            // certain situations
+    // position if score_shallow is true and barrel is down, the
+    // piston will not extend all the way up, allowing for a shallower score
+    if (lever_setting_up && (pros::millis() - score_press_time >= lever_score_pause 
+    || lever.get_position() <= lever_retract_score_position)) {
+      lever_piston.set_value(!(score_shallow && !lift_state));  
       lever.move_voltage(lever_score_velocity * 120);  // percent to millivolts
       lever_actuating = true;
       lever_setting_up = false;
+      intake(false);  // turn intake off for scoring
     }
 
     // After the lever timeout has gone by or the lever has reached the end
     // position, stop the lever and start the retract process
-    if (lever_actuating &&
-        (lever.get_position() >= lever_end_position ||
-         pros::millis() - score_press_time >= lever_score_timeout)) {
+    if (lever_actuating && (lever.get_position() >= lever_end_position 
+    || pros::millis() - score_press_time >= lever_score_timeout)) {
       lever_up_time = pros::millis();
       lever.move_voltage(0);
       lever_actuating = false;
