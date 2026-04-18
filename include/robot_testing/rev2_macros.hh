@@ -3,11 +3,11 @@
 #include "rev/rev.hh"
 
 // Drive Algs
-void drive(QLength distance, rev::Drive params = {});
-void drive(QLength x, QLength y, rev::Drive params = {});
-void drive(QLength x, QLength y, QAngle angle, rev::Drive params = {});
-void turn(QAngle angle, rev::Turn params = {});
-void turn(QLength x, QLength y, rev::Turn params = {});
+void driveTo(rev::QLength distance, rev::Drive params = {});
+void driveTo(rev::QLength x, rev::QLength y, rev::Drive params = {});
+void driveTo(rev::QLength x, rev::QLength y, rev::QAngle angle, rev::Drive params = {});
+void turnTo(rev::QAngle angle, rev::Turn params = {});
+void turnTo(rev::QLength x, rev::QLength y, rev::Turn params = {});
 
 // drive code
 extern bool field_centric_enabled;
@@ -48,6 +48,10 @@ enum Color {
 };
 
 Color detect_color();
+void kill_sorting(bool state);
+bool is_sorting_on();
+void set_team(Color team_color);
+Color get_team();
 void color_sort(Color color, Color team_color);
 void color_task();
 

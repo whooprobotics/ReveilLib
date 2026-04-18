@@ -1,27 +1,29 @@
 #include "robot_testing/rev2_config.hh"
 #include "robot_testing/rev2_macros.hh"
 
-void drive(QLength distance, rev::Drive params) {
+using rev::QLength, rev::QAngle;
+
+void driveTo(QLength distance, rev::Drive params) {
   slipstream->go({rev::MecanumToDistance::create(distance, params)});
   slipstream->await();
 }
 
-void drive(QLength x, QLength y, rev::Drive params) {
+void driveTo(QLength x, QLength y, rev::Drive params) {
   slipstream->go({rev::MecanumToPoint::create({x, y}, params)});
   slipstream->await();
 }
 
-void drive(QLength x, QLength y, QAngle angle, rev::Drive params) {
+void driveTo(QLength x, QLength y, QAngle angle, rev::Drive params) {
   slipstream->go({rev::MecanumToPose::create({x, y, angle}, params)});
   slipstream->await();
 }
 
-void turn(QAngle angle, rev::Turn params) {
+void turnTo(QAngle angle, rev::Turn params) {
   slipstream->go({rev::MecanumTurnToAngle::create(angle, params)});
   slipstream->await();
 }
 
-void turn(QLength x, QLength y, rev::Turn params) {
+void turnTo(QLength x, QLength y, rev::Turn params) {
   slipstream->go({rev::MecanumTurnToPoint::create({x, y}, params)});
   slipstream->await();
 }
@@ -29,9 +31,9 @@ void turn(QLength x, QLength y, rev::Turn params) {
 // Code for field centric control dont touch ts very nice -- I touched btw :)
 bool field_centric_enabled = true;
 void drive() {
-    double throttle = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
-    double strafe   = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
-    double turn     = deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
+    double throttle = rev::deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0, 0.05);
+    double strafe   = rev::deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0, 0.05);
+    double turn     = rev::deadband(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0, 0.05);
 
     if (!field_centric_enabled) {
       chassis->drive_holonomic(throttle, turn, strafe);
@@ -163,27 +165,56 @@ Color detect_color() {
   }
 }
 
+
+
+// function to enable and disable solor sorting
+static bool kill_color_sorting = false; 
+void kill_sorting(bool state) {
+  kill_color_sorting = state;
+}
+
+bool is_sorting_on() {
+  return kill_color_sorting;
+}
+
+static Color TEAM = Color::RED; // default team color is red, can be set w this function
+void set_team(Color team_color) {
+  TEAM = team_color;
+}
+
+Color get_team() {
+  return TEAM;
+}
+
 void color_sort(Color color, Color team_color) {
+  static uint32_t sort_start_time = 0;
+  static uint32_t sort_timeout = 175;
+
+  static uint32_t sort_total_start_time = 0;
+  static uint32_t sort_total_timeout = 400;
+
   if (color != team_color && color != Color::NONE) {
+    if (!is_sorting) sort_total_start_time = pros::millis();
     is_sorting = true;
     back_intake.move_voltage(-12000);
-    pros::delay(175);
+    front_intake.move_voltage(6000);
+    sort_start_time = pros::millis();
+  }
+  if (is_sorting && pros::millis() - sort_start_time > sort_timeout && pros::millis() - sort_total_start_time > sort_total_timeout){
     is_sorting = false;
   }
 }
 
+
 void color_task() {
-  Color Team_Color = Color::RED;
+  Color Team_Color = TEAM;
   while (true) {
     Color detected_color = detect_color();
     color_sort(detected_color, Team_Color);
-    // pros::lcd::print(5, Team_Color == Color::RED ? "RED" : "BLUE");
-    // pros::lcd::print(6, detected_color == Color::RED ? "RED" : detected_color == Color::BLUE ? "BLUE" : "UNKNOWN");
     pros::delay(10);
   }
 }
 
-// intake 
 void intake_control() {
   // Intake control, if the intake is not currently sorting, allow the driver to control the intake, 
   // otherwise ignore driver input to prevent interference with the sorting process
@@ -262,7 +293,7 @@ void intake_task() {
 }
 
 
-// lever control code
+//---------------------------------------------lever control code---------------------------------------------
 
 // Makes lever go to start no matter hat position it starts in, 
 // and also zeros the position so we can use move_absolute with it
@@ -278,6 +309,7 @@ void reset_lever() {
   }
   lever.move_voltage(0);
   lever.set_zero_position(0);
+  lever_control();
 }
 
 bool lever_actuating = false;
@@ -305,13 +337,16 @@ void lever_control() {
   static uint32_t lever_retract_pause = 100; // ms
   static uint32_t hood_timeout = 1200; // ms
 
-  score_shallow &= (score || lever_actuating || lever_retracting || lever_paused || lever_setting_up); // if score_shallow is true, we want to keep it true until the lever is done moving to prevent it from changing mid-score, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
+  // if score_shallow is true, we want to keep it true until the lever is done moving to prevent it from changing mid-score, 
+  // also if the score button is released but the lever is still moving, 
+  // we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
+  score_shallow &= (score || lever_actuating || lever_retracting || lever_paused || lever_setting_up); 
   
   // If the score button is pressed, start the scoring process, which involves moving the lever and actuating the piston in a certain sequence with specific timing to achieve the desired scoring motion, also set the hood to the scoring position
   if (score || lever_actuating || lever_retracting || lever_paused || lever_setting_up) {
     // If the lever is not currently moving, start the scoring process by setting the score press time, 
     // resetting the anti-jam system, setting the intake state to in, 
-    //moving the lever to the retract position, and setting the hood to the scoring position
+    // moving the lever to the retract position, and setting the hood to the scoring position
     if (!lever_actuating && !lever_retracting && !lever_paused && !lever_setting_up) {
       score_press_time = pros::millis();
 
@@ -379,10 +414,9 @@ void lever_control() {
   }
 }
 
-
-bool score_lever(bool score_shallo, bool retry) {
+bool score_lever(bool score_shall_O, bool retry) {
   score = true;
-  score_shallow = score_shallo;
+  score_shallow = score_shall_O;
 
   bool failure = false;
   while (score) {
@@ -401,36 +435,40 @@ bool score_lever(bool score_shallo, bool retry) {
 void recover_lever() {
   static int retry_count = 0;
   static bool recovering = false;
-  if (lever_retract_fail && retry_count < 3) {
+  if (lever_retract_fail && retry_count < 5) {
+    std::cout << "Retract Fail detected. count = " << retry_count << std::endl;
+
     score = true;
     
     lever_actuating = true;
     lever.move_voltage(12000);
     score_press_time = pros::millis();
+
     set_hood(true);
     outtake(true);
     intake(false);
+
     lift_state = true;
     lever_retract_fail = false;
     lever_score_fail = false;
-    lever_control();
-    std::cout << "Retract Fail detected. count = " << retry_count << std::endl;
+
     if (!recovering) {retry_count = 0; recovering = true;}
     retry_count++;
+    lever_control();
 
   } else if (lever_score_fail && retry_count < 2) {
+    std::cout << "Score Fail detected. count = " << retry_count << std::endl;
+
     score = true;
     score_shallow = true;
     lever_score_fail = false;
     lever_retract_fail = false;
     retry_count++;
     lever_control();
-    std::cout << "Score Fail detected. count = " << retry_count << std::endl;
+
   } else if (!lever_score_fail && !lever_retract_fail) {
     retry_count = 0;
   } else {
     recovering = false;
   }
-
-
 }

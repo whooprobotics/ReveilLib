@@ -14,56 +14,56 @@ using namespace rev;
 // figure out what you did wrong on your end.
 void test_mecanum() {
   odom->set_position({0_in, 0_in, 0_deg});
-  turn(0_deg);
-  drive(12_in);
-  drive(-12_in);
-  drive(0_in, 24_in);
-  turn(0_deg);
-  drive(24_in, 24_in, 90_deg);
-  turn(180_deg);
-  drive(0_in, 0_in);
-  turn(0_deg);
+  turnTo(0_deg);
+  driveTo(12_in, 0_in, 0_deg);
+  driveTo(-12_in, 0_in, 0_deg);
+  driveTo(0_in, 24_in, 90_deg);
+  turnTo(0_deg);
+  driveTo(24_in, 24_in, 90_deg);
+  turnTo(180_deg);
+  driveTo(0_in, 0_in, 0_deg);
+  turnTo(0_deg);
 }
 
-void config_measure_odometry_offsets() {	
-		int iterations = 10;
+// void config_measure_odometry_offsets() {	
+// 		int iterations = 10;
 	
-		float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
+// 		float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
 
-    forward_enc->sensor.reset();
-    sideways_enc->sensor.reset();
+//     forward_enc->sensor.reset();
+//     sideways_enc->sensor.reset();
     
-		for (int i = 0; i < iterations; i++) {
+// 		for (int i = 0; i < iterations; i++) {
       
-      imu->imu.set_rotation(0);
-      forward_enc->sensor.reset();
-      sideways_enc->sensor.reset();
+//       imu->imu.set_rotation(0);
+//       forward_enc->sensor.reset();
+//       sideways_enc->sensor.reset();
 	
-			float start_heading = imu->imu.get_rotation();
-			QAngle target = i % 2 == 0 ? 90_deg : 270_deg;
+// 			float start_heading = imu->imu.get_rotation();
+// 			QAngle target = i % 2 == 0 ? 90_deg : 270_deg;
 
-      turn(target, Turn{ .max_speed = 4, .turn_settle = { .settle_error = 1, .settle_time = 500_ms } });
+//       turn(target, Turn{ .max_speed = 4, .turn_settle = { .settle_error = 1, .settle_time = 500_ms } });
 
-			pros::delay(250);
+// 			pros::delay(250);
 	
-			float t_delta = reduce_negative_180_to_180((imu->imu.get_rotation() * degree) - (start_heading * degree)).convert(radian);
+// 			float t_delta = reduce_negative_180_to_180((imu->imu.get_rotation() * degree) - (start_heading * degree)).convert(radian);
       
 
-			float f_delta = forward_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
-			float s_delta = sideways_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
+// 			float f_delta = forward_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
+// 			float s_delta = sideways_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
 	
-			f_offset += f_delta / t_delta;
-			s_offset += s_delta / t_delta;
-		}
+// 			f_offset += f_delta / t_delta;
+// 			s_offset += s_delta / t_delta;
+// 		}
 	
-		f_offset /= iterations;
-		s_offset /= iterations;
+// 		f_offset /= iterations;
+// 		s_offset /= iterations;
 
-    pros::lcd::print(6, "Forward Offset: %f", f_offset);
-    pros::lcd::print(7, "Sideways Offset: %f", s_offset);
+//     pros::lcd::print(6, "Forward Offset: %f", f_offset);
+//     pros::lcd::print(7, "Sideways Offset: %f", s_offset);
 
 
-}
+// }
 
 void initialize() {
   // Initialize LCD so we can print to it for debugging
@@ -126,12 +126,6 @@ void initialize() {
 }
 
 void opcontrol() {
-
-
-  pros::delay(2000);
-
-  onslaught_skills_1();
-  return;
   while(true) {
     // Print out telemetry for debugging
     pros::lcd::print(2, "Theta: %f", imu->get_heading());
@@ -158,7 +152,9 @@ void opcontrol() {
     lever_control();
 
     // If the left button is pressed, run the mecanum test function
-    // if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {test_mecanum();}
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      test_mecanum();
+    }
     
     // If the right button is pressed, toggle the lift state and set the hood to the default position
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
