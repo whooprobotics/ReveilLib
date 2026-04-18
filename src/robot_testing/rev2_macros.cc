@@ -3,6 +3,8 @@
 
 using rev::QLength, rev::QAngle;
 
+using namespace rev;
+
 void driveTo(QLength distance, rev::Drive params) {
   slipstream->go({rev::MecanumToDistance::create(distance, params)});
   slipstream->await();
