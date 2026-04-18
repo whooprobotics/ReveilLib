@@ -16,7 +16,7 @@ void MecanumToDistance::init(OdometryState initial_state) {
   drivePID = PID(p.drive_k.p, p.drive_k.i, p.drive_k.d, p.drive_k.starti,
                  p.drive_settle.settle_error, p.drive_settle.settle_time,
                  p.drive_settle.large_settle_error,
-                 p.drive_settle.large_settle_time, 0, p.timeout);
+                 p.drive_settle.large_settle_time, p.exit_error.convert(inch), p.timeout);
 
   headingPID = PID(p.turn_k.p, p.turn_k.i, p.turn_k.d, p.turn_k.starti);
 
@@ -52,8 +52,8 @@ SlipstreamSegmentStatus MecanumToDistance::step(OdometryState current_state) {
       .rear_left_forward = (drive_output + heading_output) / 12,
       .rear_right_forward = (drive_output - heading_output) / 12,
 
-      .front_left_steer = -heading_output / 12,
-      .front_right_steer = heading_output / 12,
+      .front_left_steer = heading_output / 12,
+      .front_right_steer = -heading_output / 12,
   };
 
   return last_status = SlipstreamSegmentStatus::drive(power);

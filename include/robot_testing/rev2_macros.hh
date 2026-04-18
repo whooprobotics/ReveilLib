@@ -5,7 +5,8 @@
 // Drive Algs
 void driveTo(rev::QLength distance, rev::Drive params = {});
 void driveTo(rev::QLength x, rev::QLength y, rev::Drive params = {});
-void driveTo(rev::QLength x, rev::QLength y, rev::QAngle angle, rev::Drive params = {});
+void driveTo(double left_volts, double right_volts, rev::Drive params = {});
+void driveTo(rev::QLength x, rev::QLength y, rev::QAngle angle, rev::Drive params = {}, bool async = false);
 void turnTo(rev::QAngle angle, rev::Turn params = {});
 void turnTo(rev::QLength x, rev::QLength y, rev::Turn params = {});
 

@@ -19,11 +19,12 @@ pros::Motor back_intake(-10, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor lever(-9, pros::E_MOTOR_GEAR_GREEN); //controlled by up & down
 
 //pros::Motor_Group lever(lever1, lever2);
-pros::ADIDigitalOut scraper({7, 'A'});
-pros::ADIDigitalOut lift('C');
+pros::ADIDigitalOut scraper('A');
 pros::ADIDigitalOut hood('B');
-pros::ADIDigitalOut lever_piston('A');
-pros::ADIDigitalOut descore_piston('D');
+pros::ADIDigitalOut odom_lift('C');
+pros::ADIDigitalOut lever_piston({7, 'A'});
+pros::ADIDigitalOut lift({7, 'B'});
+pros::ADIDigitalOut descore_piston({7, 'C'});
 
 std::shared_ptr<rev::AsteriskChassis> chassis = std::make_shared<rev::AsteriskChassis>(front_left, front_right, back_left, back_right, center_left, center_right);
 
