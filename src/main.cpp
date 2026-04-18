@@ -4,8 +4,16 @@
 #include "autos/autos.h"
 
 using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
-using namespace rev;
+#include "main.h"
+#include "rev/api/v5/alg/reckless/path.hh"
+#include "rev/api/v5/alg/reckless/turn_segment.hh"
+#include "rev/api/v5/alg/reckless/look_at.hh"
+#include "rev/api/v5/hardware/devices/rotation_sensors/rotary_sensors.hh"
+#include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
+#include "rev/rev.hh"
 
+using namespace rev;
+using std::make_shared;    
 
 // Message me if this doesnt work, i can show you a video on it working on
 // mikgen. Also, if this doesnt work, read the commit logs, its not the code's

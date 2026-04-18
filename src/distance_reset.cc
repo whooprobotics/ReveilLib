@@ -1,3 +1,5 @@
+#ifdef PLATFORM_BRAIN
+
 #include "distance_reset.hh"
 #include <cmath>
 #include <iostream>
@@ -226,3 +228,5 @@ bool distance_reset::reset_axis(distance_position sensor_position,
 }
 
 }  // namespace rev
+
+#endif

@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
 #include "rev/util/math/point_vector.hh"
 
 namespace rev {
@@ -45,3 +46,5 @@ constexpr bool operator==(Pose lhs, Pose rhs) {
 }
 
 }  // namespace rev
+
+#endif

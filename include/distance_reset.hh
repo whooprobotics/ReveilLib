@@ -1,9 +1,11 @@
 #pragma once
 
+#ifdef PLATFORM_BRAIN
+
 #include "pros/distance.hpp"
-#include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/units/q_length.hh"
-#include "rev/api/units/q_angle.hh"
+#include "rev/api/v5/alg/odometry/odometry.hh"
+#include "rev/api/common/units/q_length.hh"
+#include "rev/api/common/units/q_angle.hh"
 #include <cmath>
 #include <memory>
 #include <string>
@@ -95,3 +97,5 @@ class distance_reset {
 };
 
 }  // namespace rev
+
+#endif

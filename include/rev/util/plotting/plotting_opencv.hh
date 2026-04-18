@@ -1,12 +1,13 @@
 #pragma once
+
 #ifdef OFF_ROBOT_TESTS
 
 #include <iostream>
 #include <tuple>
 #include <vector>
-#include "rev/api/alg/odometry/odometry.hh"
-#include "rev/api/units/q_angle.hh"
-#include "rev/api/units/q_length.hh"
+#include "rev/api/v5/alg/odometry/odometry.hh"
+#include "rev/api/common/units/q_angle.hh"
+#include "rev/api/common/units/q_length.hh"
 #include "rev/util/math/point_vector.hh"
 #include "rev/util/math/pose.hh"
 

@@ -175,7 +175,7 @@ quick: $(DEFAULT_BIN)
 
 all: clean $(DEFAULT_BIN)
 
-clean:
+clean: 
 	@echo Cleaning project
 	-$Drm -rf $(BINDIR)
 	-$Drm -rf $(DEPDIR)
