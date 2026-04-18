@@ -1,9 +1,8 @@
+#include "autos/autos.h"
 #include "rev/rev.hh"
 #include "robot_testing/rev2_config.hh"
 #include "robot_testing/rev2_macros.hh"
-#include "autos/autos.h"
 
-using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 #include "main.h"
 #include "rev/api/v5/alg/reckless/path.hh"
 #include "rev/api/v5/alg/reckless/turn_segment.hh"
@@ -12,8 +11,9 @@ using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, st
 #include "rev/api/v5/hardware/devices/rotation_sensors/rotation_sensor.hh"
 #include "rev/rev.hh"
 
+
+using std::shared_ptr, std::make_shared, std::vector, std::string, std::cout, std::endl;
 using namespace rev;
-using std::make_shared;    
 
 // Message me if this doesnt work, i can show you a video on it working on
 // mikgen. Also, if this doesnt work, read the commit logs, its not the code's
@@ -33,43 +33,45 @@ void test_mecanum() {
   turnTo(0_deg);
 }
 
-// void config_measure_odometry_offsets() {	
+// void config_measure_odometry_offsets() {
 // 		int iterations = 10;
-	
+
 // 		float f_offset = 0.0, s_offset = 0.0, d_offset = 0.0;
 
 //     forward_enc->sensor.reset();
 //     sideways_enc->sensor.reset();
-    
+
 // 		for (int i = 0; i < iterations; i++) {
-      
+
 //       imu->imu.set_rotation(0);
 //       forward_enc->sensor.reset();
 //       sideways_enc->sensor.reset();
-	
+
 // 			float start_heading = imu->imu.get_rotation();
 // 			QAngle target = i % 2 == 0 ? 90_deg : 270_deg;
 
-//       turn(target, Turn{ .max_speed = 4, .turn_settle = { .settle_error = 1, .settle_time = 500_ms } });
+//       turn(target, Turn{ .max_speed = 4, .turn_settle = { .settle_error = 1,
+//       .settle_time = 500_ms } });
 
 // 			pros::delay(250);
-	
-// 			float t_delta = reduce_negative_180_to_180((imu->imu.get_rotation() * degree) - (start_heading * degree)).convert(radian);
-      
 
-// 			float f_delta = forward_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
-// 			float s_delta = sideways_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
-	
+// 			float t_delta =
+// reduce_negative_180_to_180((imu->imu.get_rotation() * degree) -
+// (start_heading * degree)).convert(radian);
+
+// 			float f_delta = forward_enc->get_position() / 360.0 *
+// M_PI * odom_wheel_size.convert(inch); 			float s_delta =
+// sideways_enc->get_position() / 360.0 * M_PI * odom_wheel_size.convert(inch);
+
 // 			f_offset += f_delta / t_delta;
 // 			s_offset += s_delta / t_delta;
 // 		}
-	
+
 // 		f_offset /= iterations;
 // 		s_offset /= iterations;
 
 //     pros::lcd::print(6, "Forward Offset: %f", f_offset);
 //     pros::lcd::print(7, "Sideways Offset: %f", s_offset);
-
 
 // }
 
@@ -81,7 +83,7 @@ void initialize() {
   color_sensor.set_integration_time(5);
   color_sensor.set_led_pwm(75);
 
-  // Makes lever go to start no matter hat position it starts in, 
+  // Makes lever go to start no matter hat position it starts in,
   // and also zeros the position so we can use move_absolute with it
   reset_lever();
 
@@ -122,26 +124,23 @@ void initialize() {
 
   // Calibrate the imu
   imu->calibrate();
-  while(imu->is_calibrating()) {
+  while (imu->is_calibrating()) {
     pros::delay(10);
   }
 
   pros::Task AntiJamTask(anti_jam);
   pros::Task Intake_Task(intake_task);
   pros::Task Color_Task(color_task);
-
-
 }
 
 void opcontrol() {
-  while(true) {
+  while (true) {
     // Print out telemetry for debugging
     pros::lcd::print(2, "Theta: %f", imu->get_heading());
     pros::lcd::print(3, "X: %f", odom->get_state().pos.x.convert(inch));
     pros::lcd::print(4, "Y: %f", odom->get_state().pos.y.convert(inch));
     pros::lcd::print(5, "Sideways Encoder: %f", sideways_enc->get_position());
     pros::lcd::print(6, "Forward Encoder: %f", forward_enc->get_position());
-
 
     // Field-centric driving toggle
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
@@ -150,21 +149,36 @@ void opcontrol() {
     drive();
 
     // intake state control
-    toggle_intake = controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B); // if the B button is pressed, we want to toggle the intake or reset the anti-jam system, this allows the driver to clear jams without having to stop and wait for the system to reset on its own
+    toggle_intake = controller.get_digital_new_press(
+        pros::E_CONTROLLER_DIGITAL_B);  // if the B button is pressed, we want
+                                        // to toggle the intake or reset the
+                                        // anti-jam system, this allows the
+                                        // driver to clear jams without having
+                                        // to stop and wait for the system to
+                                        // reset on its own
     eject(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     outtake(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // use buttons to control lever scoring
-    score_shallow = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) || (score_shallow && score); // if the B button is held, the robot will do a shallower score, which can be useful in certain situations, also if the score button is released but the lever is still moving, we want to keep the score_shallow variable true until the lever is done moving to prevent it from changing mid-score
-    score         = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) || score_shallow;
+    score_shallow =
+        controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) ||
+        (score_shallow &&
+         score);  // if the B button is held, the robot will do a shallower
+                  // score, which can be useful in certain situations, also if
+                  // the score button is released but the lever is still moving,
+                  // we want to keep the score_shallow variable true until the
+                  // lever is done moving to prevent it from changing mid-score
+    score =
+        controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) || score_shallow;
     lever_control();
 
     // If the left button is pressed, run the mecanum test function
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      test_mecanum();
+      AWP();
     }
-    
-    // If the right button is pressed, toggle the lift state and set the hood to the default position
+
+    // If the right button is pressed, toggle the lift state and set the hood to
+    // the default position
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
       lift_state = !lift_state;
       set_hood(false);
@@ -172,7 +186,7 @@ void opcontrol() {
 
     set_scraper(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
     set_lift(lift_state);
-    set_descore(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
+    set_descore(!controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
 
     // Delay so brain no exploded
     pros::delay(20);

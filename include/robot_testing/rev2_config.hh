@@ -21,6 +21,7 @@ extern pros::ADIDigitalOut scraper;
 extern pros::ADIDigitalOut lift;
 extern pros::ADIDigitalOut hood;
 extern pros::ADIDigitalOut lever_piston;
+extern pros::ADIDigitalOut odom_lift;
 extern pros::ADIDigitalOut descore_piston;
 
 extern pros::Controller controller;
