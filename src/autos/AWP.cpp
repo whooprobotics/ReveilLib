@@ -16,7 +16,7 @@ void AWP() {
   intake(true);
   // Go back to score
   driveTo(-56.5_in, -47_in, 90_deg, Drive{. max_speed = 6 });
-  driveTo(-3.0, -3.0, Drive{ .timeout = 2000_ms });
+  driveTo(-3.0, -3.0, Drive{ .timeout = 3000_ms });
   
   set_lift(true);
   // Drive back to the long goal
